@@ -1,0 +1,165 @@
+section {
+    &.previous-records {
+        center {
+            margin-top: 3rem;
+
+            h1 {
+                border-bottom: 1px solid #00592e;
+                font-size: 2rem;
+                margin-block: 1rem;
+            }
+        }
+
+        div{ 
+            height: 68vh;
+            margin-top: .5rem;
+            overflow: scroll;
+            width: 75vw;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-block: 1rem;
+            text-align: center;
+            width: max-content;
+
+            
+            tr {
+                border-bottom: 1px solid #eee;
+                color: #222;
+
+                td { 
+                    padding-block: 1rem;
+                    
+                    &.appearance-result {
+                        display: flex;
+                        justify-content: center;
+                    }    
+                    
+                    .Bright {
+                        @include AppearanceResult();
+                    }
+                    
+                    .CM {
+                        @include AppearanceResult();
+                        background: #ff8c8c2e;
+                        color: #f33f3f;
+                    }
+                    
+                    .Clear {
+                        @include AppearanceResult();
+                        background: rgb(191 191 1 / 17%);
+                        color: #abab00;
+                    }
+                    
+                    &.density {
+                        color: green; 
+                        font-weight: bold;
+                    }
+                    
+                    &.flash-point {
+                        background: #00828f1c;
+                        color: #00bccf;
+                    }
+                    
+                    input {
+                        border: none;
+                        outline: none;
+                        text-align: center;
+                    }
+                    
+                    .Muddy {
+                        @include AppearanceResult();
+                        background: #00828f1c;
+                        color: #00bccf;
+                    } 
+                    
+                    &.sample-collection-date { 
+                        color: #f33f3f;
+                    }
+                    
+                    &.tank-no { 
+                        background: #ff8c8c2e;
+                        color: #f33f3f;
+                    }
+                    
+                    &.temp {   
+                        color: #f33f3f;
+                    }
+                    
+                    &.truck-plate-no { 
+                        color: #00bccf;
+                    }
+
+                    &.sample-no {
+                        color: #00828f;
+                    } 
+
+                    &.pdf-and-edit {
+                        display: flex; 
+                        height: 1rem;
+                    }
+                      
+                    button {
+                        margin-top: unset; 
+                        padding: .2rem 1rem;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    input[type="image"] {
+                        margin-inline: 1rem;
+                        width: 2rem;
+                    }
+
+                    
+                }
+
+                td, 
+                th {
+                    width: 15rem;
+                } 
+
+                th {
+                    background: $color-4;
+                    color: #fff;
+                    font-weight: unset;
+                    letter-spacing: .1rem;
+                    padding: 1rem;
+                    position: sticky;
+                    top: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1416px) {
+    section {
+        &.previous-records {
+            div {
+                margin-left: 2rem;
+                width: 78vw;
+            }
+        }
+    }
+}
+
+@media (max-width:950px) {
+    section {
+        &.fuel-test {
+            .fuel-test-left-nav {
+                display: none;
+            }
+
+            .previous-records {
+                div {
+                    width: 100vw;
+                }
+            }
+        }
+    }
+}
+    

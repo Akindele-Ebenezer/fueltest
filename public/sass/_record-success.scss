@@ -1,0 +1,26 @@
+section {
+    &.fuel-test {
+        .fuel-test-main {
+            h1 {
+                background: -webkit-linear-gradient(#25066a, $color-2);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            h1,  
+            .record-info {
+                margin-left: 2rem;
+                text-align: center;
+            }
+
+            center {
+                form {
+                    input {
+                        transform: translateY(2rem);
+                        width: 5rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,185 @@
+section {
+    &.fuel-test {
+        display: flex; 
+        transform: translateY(5rem);
+
+        .fuel-test {
+            &-left-nav {
+                background-image: linear-gradient( to bottom, $color-2, #111);
+                color: #ddd;
+                overflow: scroll;
+                width: 25rem;
+
+                center {
+                    img {
+                        border-radius: 0.5rem 1.5rem;
+                        margin-top: 3rem;
+                    }
+                }
+                
+                ul {
+                    a {
+                        color: $color-1;
+
+                        li {
+                            align-items: center;
+                            display: flex;
+                            padding: 2rem;
+    
+                            &:hover {
+                                background: darken($color: $color-2, $amount: 2);
+                                border-radius: 0 0.5rem 1rem 0;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    li {  
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                        letter-spacing: .09rem; 
+                        padding: 1rem;
+    
+                        &.active-dashboard {
+                            background: darken($color: $color-2, $amount: 2); 
+                            border-left: 7px solid;
+                            border-radius: 0 0.5rem 1rem 0;
+                        }
+
+                        svg {
+                            fill: darken($color: $color-1, $amount: 10);
+                            margin-right: 1.5rem;
+                            width: 2rem;
+                        }
+                    }
+                }
+            }
+            
+            &-left-nav,
+            &-main {
+                height: 90vh;
+                padding: 1rem;
+                
+                li {
+                    &.active-bg {
+
+                    }                            
+                }
+                
+                a { 
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 1.1rem;
+                    text-decoration: none;
+                }
+            }
+
+            &-main {
+                overflow: scroll;
+                width: 80vw;
+
+                .form {
+                    border-radius: .3rem;
+                    box-shadow: 1px 2px 19px #ddd;
+                    display: flex;
+                    justify-content: center;
+                    margin-block: 1rem;
+                    padding: 1rem;
+
+                    div {
+                        align-items: center;
+                        background: #fff; 
+                        display: flex;
+                        margin: 1rem;
+                        width: 42rem;
+
+                        &:last-of-type {
+                            box-shadow: unset;
+                            justify-content: center;
+                            width: 100%;
+                        }
+
+                        select {
+                            border: 3px solid #999;
+                            width: 100%;
+                        }
+
+                        svg {
+                            fill: $color-2;
+                            width: 3rem;
+
+                            &:hover {
+                                cursor: pointer;
+                                fill: lighten($color: $color-2, $amount: 60);
+                            }
+                        }
+                    }
+
+                    form {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-around;
+                    }
+
+                    input {
+                        border: 1px solid #ccc;
+                        border-radius: 0.5rem 1rem;
+                        color: $color-2;
+                        outline: none;
+                        padding: 1rem;
+                        width: 100%;
+
+                        &:focus {
+                            border-bottom: 3px solid $color-2;
+                        }
+                    }
+
+                    label { 
+                        border-radius: .3rem;
+                        color: $color-2;
+                        display: block;
+                        margin-right: 1rem;
+                        padding: 1rem; 
+                        width: 37%;
+
+                        // &[for="Color"],
+                        // &[for="AppearanceResult"] {
+                        //     margin-right: 0;
+                        // }
+                    }
+                }
+
+                h1 {
+                    border-bottom: 1px solid $color-2; 
+                    font-size: 5.2rem;
+                    margin-left: 2rem;
+                    padding-top: 2rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1047px) {
+    section {
+        &.fuel-test {
+            .fuel-test-main {
+                .form {
+                    div {
+                        width: 80%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    section {
+        &.fuel-test {
+            .fuel-test-main {
+                width: unset;
+            }
+        }
+    }
+}

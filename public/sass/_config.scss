@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+}
+
+$color-1: antiquewhite;
+$color-2: #00592e;
+$color-3: cadetblue;
+$color-4: #444;
+$error: red;
+
+$headings: 1, 2, 3, 4;
+@each $heading in $headings {
+    h#{$heading} {
+        font-family: 'Bitter', serif;
+    }
+}
+
+button {
+    background: $color-2;
+    border: 3px solid #fff;
+    border-radius: .5rem;
+    color: #fff;
+    padding: 1rem;
+    transition: .5s;
+
+    &:hover {
+        background: #fff;
+        border: 3px solid $color-2;
+        color: $color-2;
+        cursor: pointer;
+    }
+}
+
+@mixin AppearanceResult {
+    background: #62d9622e;
+    border-radius: .5rem;
+    color: green; 
+    padding: 0.5rem 3rem; 
+    width: 10rem;
+}
+ 
+ul {
+    list-style: none;
+}

@@ -1,0 +1,57 @@
+header {
+    background: #000;
+    color: $color-1;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
+    div {
+        padding: 1rem;
+    }
+}
+
+
+nav {
+    background: #fff;
+    color: $color-2;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    transform: translateY(3.5rem);
+    width: 100%;
+    z-index: 10;
+
+    ul {
+        display: flex; 
+
+        li {
+            letter-spacing: .1rem;
+            padding: .5rem 2rem; 
+            
+            &.active-bg {
+                background: $color-2;
+            }
+            
+            &:hover {
+                border-bottom: 2px solid $color-1;
+            }
+
+            .active {
+                color: #fff;
+            }
+
+            a {
+                color: $color-2;
+                text-decoration: none;
+            } 
+        }
+    }
+}
+
+@media (max-width: 755px) { 
+    nav {
+        display: none;
+    } 
+}
