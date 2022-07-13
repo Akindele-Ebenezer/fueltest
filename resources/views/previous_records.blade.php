@@ -107,7 +107,7 @@
                     <td>{{ $previous_record->DateOfTest }}</td>
                     <td>{{ $previous_record->MadeBy }}</td>
                     <td>{{ $previous_record->DeliveredTo }}</td> 
-                    <td>{{ $previous_record->Remarks }}</td> 
+                    <td class="remarks">{{ $previous_record->Remarks }}</td> 
                 </tr>
                 @endforeach 
             </table>

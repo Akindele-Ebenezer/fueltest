@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\FuelTest;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Support\Facades\DB;
 
 class FuelTestsExport implements FromCollection
 {
@@ -12,6 +13,6 @@ class FuelTestsExport implements FromCollection
     */
     public function collection()
     {
-        return FuelTest::all();
+        return DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
     }
 }

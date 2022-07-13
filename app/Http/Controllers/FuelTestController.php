@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
  
 
 use Illuminate\Http\Request;
-use App\Models\FuelTest;
+use App\Models\FuelTestRecord;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Exports\FuelTestsExport;
@@ -38,7 +38,8 @@ class FuelTestController extends Controller
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->get(); 
         $number_of_previous_records = count($previous_records);
  
-        $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
+        // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
         $number_of_all_records = count($all_records);
 
         if(!(Session::has('email'))) {
@@ -157,7 +158,8 @@ class FuelTestController extends Controller
                 ]);
                 
             if(Session::has('email')) {
-                $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+                $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
+                // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
                 $number_of_all_records = count($all_records);
                  
                 $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
@@ -200,7 +202,8 @@ class FuelTestController extends Controller
     { 
         if(Session::has('email')) {
             // $all_records = FuelTest::paginate(3);
-            $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
+            // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
             $number_of_all_records = count($all_records);
              
             $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
@@ -218,14 +221,15 @@ class FuelTestController extends Controller
     }
 
     public function show_previous_records()
-    {
+    {  
         if(Session::has('email')) {
 
             $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
             $number_of_previous_records = count($previous_records);
             Session::put('number_of_previous_records',  $number_of_previous_records);
              
-            $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
+            // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
             $number_of_all_records = count($all_records);
 
             return view("previous_records", [
@@ -271,7 +275,8 @@ class FuelTestController extends Controller
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
         $number_of_previous_records = count($previous_records); 
          
-        $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
+        // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
         $number_of_all_records = count($all_records);
 
         // $edit = FuelTest::where('SampleNo', $SampleNo)->update([

@@ -6,17 +6,7 @@
     $email = Session::get('email');
     $title = 'All Records';
     $header_info = 'Manage all your Records effectively. Log In';
-     
-    if (isset($_GET['export'])) {
-        
-        ob_clean(); 
-        header("Content-Type: application/xls");    
-        header("Content-Disposition: attachment; filename=DEPASA Fuel Test Records.xls");  
-        header("Pragma: no-cache"); 
-        header("Expires: 0");
-        header("X-Accel-Buffering: no");
-        
-    }
+    
       
 @endphp
 
@@ -117,7 +107,7 @@
                     <td>{{ $record->DateOfTest }}</td>
                     <td>{{ $record->MadeBy }}</td>
                     <td>{{ $record->DeliveredTo }}</td> 
-                    <td>{{ $record->Remarks }}</td>
+                    <td class="remarks">{{ $record->Remarks }}</td>
                 </tr>
                 @endforeach
             </table> 

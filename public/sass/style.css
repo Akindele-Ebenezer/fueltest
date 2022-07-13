@@ -86,9 +86,52 @@ nav ul li a {
   text-decoration: none;
 }
 
+.nav-sm-screen {
+  background: #eee;
+  display: none;
+  padding: 1rem 0;
+  position: relative;
+  transform: translateY(3.5rem);
+  z-index: 101;
+}
+.nav-sm-screen-header-info div {
+  background: #fff;
+  display: none;
+  padding-inline: 2rem;
+  transform: translateY(4.5rem);
+}
+.nav-sm-screen-header-info div svg {
+  fill: #00592e;
+  width: 1rem;
+}
+.nav-sm-screen-header-info div svg:hover {
+  cursor: pointer;
+  fill: #8cffc7;
+}
+.nav-sm-screen ul {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.nav-sm-screen ul li a svg {
+  fill: #00592e;
+  width: 2rem;
+}
+.nav-sm-screen ul li a svg:hover {
+  cursor: pointer;
+  fill: #8cffc7;
+}
+
 @media (max-width: 755px) {
   nav {
     display: none;
+  }
+}
+@media (max-width: 755px) {
+  .nav-sm-screen,
+.nav-sm-screen-header-info div {
+    display: block;
   }
 }
 section.log-in {
@@ -285,6 +328,47 @@ section.fuel-test .fuel-test-main h1 {
     width: unset;
   }
 }
+@media (max-width: 740px) {
+  section.fuel-test .fuel-test-main .form div {
+    flex-wrap: wrap;
+  }
+  section.fuel-test .fuel-test-main .form div select {
+    border: none;
+    border-radius: 0;
+    margin-block: 2rem;
+  }
+  section.fuel-test .fuel-test-main .form input {
+    margin-block: 2rem;
+  }
+}
+@media (max-width: 541px) {
+  section.fuel-test .fuel-test-main .form label {
+    width: max-content;
+  }
+  section.previous-records table tr td {
+    font-size: 10px;
+    width: 5rem;
+  }
+  section.previous-records table tr td.appearance-result {
+    margin: auto;
+  }
+  section.previous-records table tr td p[class] {
+    font-size: 10px;
+    padding: 0;
+    width: 5rem;
+  }
+  section.previous-records table tr td.remarks {
+    width: 30rem;
+  }
+  section.previous-records table tr th {
+    font-size: 10px;
+  }
+}
+@media (max-width: 399px) {
+  section.fuel-test .fuel-test-main h1 {
+    font-size: 3.2rem;
+  }
+}
 section.fuel-test .fuel-test-main h1 {
   background: -webkit-linear-gradient(#25066a, #00592e);
   -webkit-background-clip: text;
@@ -409,10 +493,6 @@ section.previous-records table tr td input[type=image] {
   margin-inline: 1rem;
   width: 2rem;
 }
-section.previous-records table tr td,
-section.previous-records table tr th {
-  width: 15rem;
-}
 section.previous-records table tr th {
   background: #444;
   color: #fff;
@@ -421,6 +501,7 @@ section.previous-records table tr th {
   padding: 1rem;
   position: sticky;
   top: 0;
+  z-index: 102;
 }
 
 @media (min-width: 1416px) {

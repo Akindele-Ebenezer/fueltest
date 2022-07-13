@@ -183,3 +183,82 @@ section {
         }
     }
 }
+
+@media (max-width: 740px) {
+    section {
+        &.fuel-test {
+            .fuel-test-main {
+                .form {
+                    div {
+                        flex-wrap: wrap;
+
+                        select {
+                            border: none;                            
+                            border-radius: 0;
+                            margin-block: 2rem;
+                        }
+                    }
+                    
+                    input { 
+                        margin-block: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 541px) {
+    section {
+        &.fuel-test {
+            .fuel-test-main {
+                .form {
+                    label { 
+                        width: max-content;
+                    }
+                }
+            }
+        }
+
+        &.previous-records {
+            table {
+                tr {
+                    td {
+                        font-size: 10px;
+                        width: 5rem;
+
+                        &.appearance-result {
+                            margin: auto;
+                        } 
+
+                        p[class] {
+                            font-size: 10px;
+                            padding: 0;
+                            width: 5rem;    
+                        }
+
+                        &.remarks {
+                            width: 30rem;
+                        }
+                    }
+
+                    th {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 399px) {
+    section {
+        &.fuel-test {
+            .fuel-test-main {
+                h1 {
+                    font-size: 3.2rem;
+                }
+            }
+        }
+    }
+}
