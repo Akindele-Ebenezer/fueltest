@@ -120,12 +120,89 @@ section {
                 th {
                     background: $color-4;
                     color: #fff;
-                    font-weight: unset;
-                    letter-spacing: .1rem;
+                    font-weight: unset; 
                     padding: 1rem;
                     position: sticky;
                     top: 0;
                     z-index: 102;
+
+                    .filter {
+                        background: #fff;
+                        border-radius: 1rem 2rem;
+                        box-shadow: 1px 2px 19px #ccc;
+                        color: #aaa;
+                        display: none;
+                        height: 20rem;
+                        margin: unset;
+                        margin-block: 2rem;
+                        overflow: scroll;
+                        padding: 0 2rem 4rem;
+                        position: absolute;
+                        text-align: left;
+                        width: 20rem;
+
+                        &-toggle {
+                            display: block; 
+                        }
+
+                        ul {  
+                            position: relative;
+                            
+                            button { 
+                                padding: unset;
+                                padding-inline: 1rem;
+                                transition: unset;
+
+                                &:first-of-type {
+                                    background: #bbb;
+
+                                    a {
+                                        color: #fff;
+                                    }
+
+                                    &:hover {
+                                        border: 3px solid #fff; 
+                                        color: #fff;
+                                    }
+                                }
+                            }
+
+                            center {
+                                background: #fff; 
+                                margin: 0 auto 1rem;
+                                padding: .5rem;  
+                                width: 16rem;
+                            }
+
+                            li {
+                                input {
+                                    margin-right: 1rem;
+                                }
+                            }
+                        }
+                    }
+
+                    svg {
+                        cursor: pointer;
+                        fill: $color-1;
+                        height: 1.2rem;
+                        transform: translateY(.3rem);
+                        width: 1.2rem;
+                        
+                        &:first-of-type {
+                            margin-left: 1rem;
+                        }
+
+                        &:hover {
+                            fill: darken($color: $color-1, $amount: 10);
+                        }
+
+                        &:last-of-type {
+                            border: 1px solid $color-1;
+                            border-radius: .2rem;
+                            padding: .2rem;
+                        }
+                    }
                 }
             }
         }

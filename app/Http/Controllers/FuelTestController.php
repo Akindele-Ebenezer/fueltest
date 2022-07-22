@@ -2,12 +2,12 @@
 namespace App\Http\Controllers;
  
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\Models\FuelTestRecord;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Exports\FuelTestsExport;
-use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel; 
 
 class FuelTestController extends Controller
 {
@@ -32,14 +32,13 @@ class FuelTestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    { 
+    {  
         $fuel_test_users = DB::table('fuel_test_users')->get();
  
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->get(); 
         $number_of_previous_records = count($previous_records);
  
-        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
-        // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
         $number_of_all_records = count($all_records);
 
         if(!(Session::has('email'))) {
@@ -50,7 +49,7 @@ class FuelTestController extends Controller
             return view('fuel_test', [
                 'number_of_previous_records' => $number_of_previous_records,
                 'number_of_all_records' => $number_of_all_records,
-                'fuel_test_users' => $fuel_test_users
+                'fuel_test_users' => $fuel_test_users,
             ]);
         }
     }
@@ -117,49 +116,29 @@ class FuelTestController extends Controller
         } elseif(empty($Remarks)) { 
             return redirect('fuel_test');
         } else { 
-                // $create_record = new FuelTest([
-                //         'SampleNo' => $request->SampleNo,
-                //         'SampleCollectionDate' => $SampleCollectionDate,
-                //         'TruckPlateNo' => $TruckPlateNo,
-                //         'TankNo' => $TankNo,
-                //         'AppearanceResult' => $AppearanceResult,
-                //         'Color' => $Color,
-                //         'Density' => $Density,
-                //         'FlashPoint' => $FlashPoint,
-                //         'Temp' => $Temp,
-                //         'WaterSediment' => $WaterSediment,
-                //         'Cleanliness' => $Cleanliness,
-                //         'DateOfTest' => $DateOfTest,
-                //         'uid' => $uid,
-                //         'MadeBy' => $MadeBy,
-                //         'DeliveredTo' => $DeliveredTo,
-                //         'Remarks' => $Remarks
-                //     ]);
+                $create_record = FuelTestRecord::create([
+                        'SampleNo' => $SampleNo,
+                        'SampleCollectionDate' => $SampleCollectionDate,
+                        'TruckPlateNo' => $TruckPlateNo,
+                        'TankNo' => $TankNo,
+                        'AppearanceResult' => $AppearanceResult,
+                        'Color' => $Color,
+                        'Density' => $Density,
+                        'FlashPoint' => $FlashPoint,
+                        'Temp' => $Temp,
+                        'WaterSediment' => $WaterSediment,
+                        'Cleanliness' => $Cleanliness,
+                        'DateOfTest' => $DateOfTest,
+                        'uid' => $uid,
+                        'MadeBy' => $MadeBy,
+                        'DeliveredTo' => $DeliveredTo,
+                        'Remarks' => $Remarks,
+                    ]);
         
-                // $create_record->save();
-
-                $create_record = DB::table('fuel_test_records')->insert([
-                    'SampleNo' => $request->SampleNo,
-                    'SampleCollectionDate' => $SampleCollectionDate,
-                    'TruckPlateNo' => $TruckPlateNo,
-                    'TankNo' => $TankNo,
-                    'AppearanceResult' => $AppearanceResult,
-                    'Color' => $Color,
-                    'Density' => $Density,
-                    'FlashPoint' => $FlashPoint,
-                    'Temp' => $Temp,
-                    'WaterSediment' => $WaterSediment,
-                    'Cleanliness' => $Cleanliness,
-                    'DateOfTest' => $DateOfTest,
-                    'uid' => $uid,
-                    'MadeBy' => $MadeBy,
-                    'DeliveredTo' => $DeliveredTo,
-                    'Remarks' => $Remarks
-                ]);
+                $create_record->save();
                 
             if(Session::has('email')) {
-                $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
-                // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+                $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
                 $number_of_all_records = count($all_records);
                  
                 $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
@@ -198,21 +177,171 @@ class FuelTestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_all_records()
+    public function show_all_records(Request $request)
     { 
         if(Session::has('email')) {
             // $all_records = FuelTest::paginate(3);
-            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
-            // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
             $number_of_all_records = count($all_records);
              
             $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
             $number_of_previous_records = count($previous_records);
 
+            $FilterSampleNo = FuelTestRecord::distinct()->get(['SampleNo']);
+            $FilterSampleCollectionDate = FuelTestRecord::distinct()->get(['SampleCollectionDate']);
+            $FilterTruckPlateNo = FuelTestRecord::distinct()->get(['TruckPlateNo']);
+            $FilterTankNo = FuelTestRecord::distinct()->get(['TankNo']);
+            $FilterAppearanceResult = FuelTestRecord::distinct()->get(['AppearanceResult']);
+            $FilterColor = FuelTestRecord::distinct()->get(['Color']);
+            $FilterDensity = FuelTestRecord::distinct()->get(['Density']);
+            $FilterFlashPoint = FuelTestRecord::distinct()->get(['FlashPoint']);
+            $FilterTemp = FuelTestRecord::distinct()->get(['Temp']);
+            $FilterWaterSediment = FuelTestRecord::distinct()->get(['WaterSediment']);
+            $FilterCleanliness = FuelTestRecord::distinct()->get(['Cleanliness']);
+            $FilterDateOfTest = FuelTestRecord::distinct()->get(['DateOfTest']);
+            $FilterMadeBy = FuelTestRecord::distinct()->get(['MadeBy']);
+            $FilterDeliveredTo = FuelTestRecord::distinct()->get(['DeliveredTo']);
+            $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']); 
+
+            if(isset($_GET['FilterSampleNo'])) {
+                $FilteredRecords[] = $request->CheckSampleNo; 
+
+                foreach ($FilteredRecords as $SampleNo) {
+                    $all_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->orderBy('SampleNo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterSampleCollectionDate'])) {
+                $FilteredRecords[] = $request->CheckSampleCollectionDate; 
+
+                foreach ($FilteredRecords as $SampleCollectionDate) {
+                    $all_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->orderBy('SampleCollectionDate', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterTruckPlateNo'])) {
+                $FilteredRecords[] = $request->CheckTruckPlateNo; 
+
+                foreach ($FilteredRecords as $TruckPlateNo) {
+                    $all_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->orderBy('TruckPlateNo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterTankNo'])) {
+                $FilteredRecords[] = $request->CheckTankNo; 
+
+                foreach ($FilteredRecords as $TankNo) {
+                    $all_records = FuelTestRecord::whereIn('TankNo', $TankNo)->orderBy('TankNo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterAppearanceResult'])) {
+                $FilteredRecords[] = $request->CheckAppearanceResult; 
+
+                foreach ($FilteredRecords as $AppearanceResult) {
+                    $all_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->orderBy('AppearanceResult', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterColor'])) {
+                $FilteredRecords[] = $request->CheckColor; 
+
+                foreach ($FilteredRecords as $Color) {
+                    $all_records = FuelTestRecord::whereIn('Color', $Color)->orderBy('Color', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterDensity'])) {
+                $FilteredRecords[] = $request->CheckDensity; 
+
+                foreach ($FilteredRecords as $Density) {
+                    $all_records = FuelTestRecord::whereIn('Density', $Density)->orderBy('Density', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterFlashPoint'])) {
+                $FilteredRecords[] = $request->CheckFlashPoint; 
+
+                foreach ($FilteredRecords as $FlashPoint) {
+                    $all_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->orderBy('FlashPoint', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterTemp'])) {
+                $FilteredRecords[] = $request->CheckTemp; 
+
+                foreach ($FilteredRecords as $Temp) {
+                    $all_records = FuelTestRecord::whereIn('Temp', $Temp)->orderBy('Temp', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterWaterSediment'])) {
+                $FilteredRecords[] = $request->CheckWaterSediment; 
+
+                foreach ($FilteredRecords as $WaterSediment) {
+                    $all_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->orderBy('WaterSediment', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterCleanliness'])) {
+                $FilteredRecords[] = $request->CheckCleanliness; 
+
+                foreach ($FilteredRecords as $Cleanliness) {
+                    $all_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->orderBy('Cleanliness', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterDateOfTest'])) {
+                $FilteredRecords[] = $request->CheckDateOfTest; 
+
+                foreach ($FilteredRecords as $DateOfTest) {
+                    $all_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->orderBy('DateOfTest', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterMadeBy'])) {
+                $FilteredRecords[] = $request->CheckMadeBy; 
+
+                foreach ($FilteredRecords as $MadeBy) {
+                    $all_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->orderBy('MadeBy', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterDeliveredTo'])) {
+                $FilteredRecords[] = $request->CheckDeliveredTo; 
+
+                foreach ($FilteredRecords as $DeliveredTo) {
+                    $all_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->orderBy('DeliveredTo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterRemarks'])) {
+                $FilteredRecords[] = $request->CheckRemarks; 
+
+                foreach ($FilteredRecords as $Remarks) {
+                    $all_records = FuelTestRecord::whereIn('Remarks', $Remarks)->orderBy('Remarks', 'DESC')->get();  
+                }
+            }
+
             return view("all_records", [
                 'all_records' => $all_records,
                 'number_of_all_records' => $number_of_all_records,
                 'number_of_previous_records' => $number_of_previous_records,
+                'FilterSampleNo' => $FilterSampleNo,
+                'FilterSampleCollectionDate' => $FilterSampleCollectionDate,
+                'FilterTruckPlateNo' => $FilterTruckPlateNo,
+                'FilterTankNo' => $FilterTankNo,
+                'FilterAppearanceResult' => $FilterAppearanceResult,
+                'FilterColor' => $FilterColor,
+                'FilterDensity' => $FilterDensity,
+                'FilterFlashPoint' => $FilterFlashPoint,
+                'FilterTemp' => $FilterTemp,
+                'FilterWaterSediment' => $FilterWaterSediment,
+                'FilterCleanliness' => $FilterCleanliness,
+                'FilterDateOfTest' => $FilterDateOfTest,
+                'FilterMadeBy' => $FilterMadeBy,
+                'FilterDeliveredTo' => $FilterDeliveredTo,
+                'FilterRemarks' => $FilterRemarks, 
             ]);
 
         } else { 
@@ -220,7 +349,7 @@ class FuelTestController extends Controller
         }
     }
 
-    public function show_previous_records()
+    public function show_previous_records(Request $request)
     {  
         if(Session::has('email')) {
 
@@ -228,12 +357,162 @@ class FuelTestController extends Controller
             $number_of_previous_records = count($previous_records);
             Session::put('number_of_previous_records',  $number_of_previous_records);
              
-            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
-            // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
+            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
             $number_of_all_records = count($all_records);
+
+            $FilterSampleNo = FuelTestRecord::distinct()->get(['SampleNo']);
+            $FilterSampleCollectionDate = FuelTestRecord::distinct()->get(['SampleCollectionDate']);
+            $FilterTruckPlateNo = FuelTestRecord::distinct()->get(['TruckPlateNo']);
+            $FilterTankNo = FuelTestRecord::distinct()->get(['TankNo']);
+            $FilterAppearanceResult = FuelTestRecord::distinct()->get(['AppearanceResult']);
+            $FilterColor = FuelTestRecord::distinct()->get(['Color']);
+            $FilterDensity = FuelTestRecord::distinct()->get(['Density']);
+            $FilterFlashPoint = FuelTestRecord::distinct()->get(['FlashPoint']);
+            $FilterTemp = FuelTestRecord::distinct()->get(['Temp']);
+            $FilterWaterSediment = FuelTestRecord::distinct()->get(['WaterSediment']);
+            $FilterCleanliness = FuelTestRecord::distinct()->get(['Cleanliness']);
+            $FilterDateOfTest = FuelTestRecord::distinct()->get(['DateOfTest']);
+            $FilterMadeBy = FuelTestRecord::distinct()->get(['MadeBy']);
+            $FilterDeliveredTo = FuelTestRecord::distinct()->get(['DeliveredTo']);
+            $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']); 
+
+            if(isset($_GET['FilterSampleNo'])) {
+                $FilteredRecords[] = $request->CheckSampleNo; 
+
+                foreach ($FilteredRecords as $SampleNo) {
+                    $previous_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->orderBy('SampleNo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterSampleCollectionDate'])) {
+                $FilteredRecords[] = $request->CheckSampleCollectionDate; 
+
+                foreach ($FilteredRecords as $SampleCollectionDate) {
+                    $previous_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->orderBy('SampleCollectionDate', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterTruckPlateNo'])) {
+                $FilteredRecords[] = $request->CheckTruckPlateNo; 
+
+                foreach ($FilteredRecords as $TruckPlateNo) {
+                    $previous_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->orderBy('TruckPlateNo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterTankNo'])) {
+                $FilteredRecords[] = $request->CheckTankNo; 
+
+                foreach ($FilteredRecords as $TankNo) {
+                    $previous_records = FuelTestRecord::whereIn('TankNo', $TankNo)->orderBy('TankNo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterAppearanceResult'])) {
+                $FilteredRecords[] = $request->CheckAppearanceResult; 
+
+                foreach ($FilteredRecords as $AppearanceResult) {
+                    $previous_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->orderBy('AppearanceResult', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterColor'])) {
+                $FilteredRecords[] = $request->CheckColor; 
+
+                foreach ($FilteredRecords as $Color) {
+                    $previous_records = FuelTestRecord::whereIn('Color', $Color)->orderBy('Color', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterDensity'])) {
+                $FilteredRecords[] = $request->CheckDensity; 
+
+                foreach ($FilteredRecords as $Density) {
+                    $previous_records = FuelTestRecord::whereIn('Density', $Density)->orderBy('Density', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterFlashPoint'])) {
+                $FilteredRecords[] = $request->CheckFlashPoint; 
+
+                foreach ($FilteredRecords as $FlashPoint) {
+                    $previous_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->orderBy('FlashPoint', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterTemp'])) {
+                $FilteredRecords[] = $request->CheckTemp; 
+
+                foreach ($FilteredRecords as $Temp) {
+                    $previous_records = FuelTestRecord::whereIn('Temp', $Temp)->orderBy('Temp', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterWaterSediment'])) {
+                $FilteredRecords[] = $request->CheckWaterSediment; 
+
+                foreach ($FilteredRecords as $WaterSediment) {
+                    $previous_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->orderBy('WaterSediment', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterCleanliness'])) {
+                $FilteredRecords[] = $request->CheckCleanliness; 
+
+                foreach ($FilteredRecords as $Cleanliness) {
+                    $previous_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->orderBy('Cleanliness', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterDateOfTest'])) {
+                $FilteredRecords[] = $request->CheckDateOfTest; 
+
+                foreach ($FilteredRecords as $DateOfTest) {
+                    $previous_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->orderBy('DateOfTest', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterMadeBy'])) {
+                $FilteredRecords[] = $request->CheckMadeBy; 
+
+                foreach ($FilteredRecords as $MadeBy) {
+                    $previous_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->orderBy('MadeBy', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterDeliveredTo'])) {
+                $FilteredRecords[] = $request->CheckDeliveredTo; 
+
+                foreach ($FilteredRecords as $DeliveredTo) {
+                    $previous_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->orderBy('DeliveredTo', 'DESC')->get();  
+                }
+            }
+
+            if(isset($_GET['FilterRemarks'])) {
+                $FilteredRecords[] = $request->CheckRemarks; 
+
+                foreach ($FilteredRecords as $Remarks) {
+                    $previous_records = FuelTestRecord::whereIn('Remarks', $Remarks)->orderBy('Remarks', 'DESC')->get();  
+                }
+            }
 
             return view("previous_records", [
                 'previous_records' => $previous_records,
+                'FilterSampleNo' => $FilterSampleNo,
+                'FilterSampleCollectionDate' => $FilterSampleCollectionDate,
+                'FilterTruckPlateNo' => $FilterTruckPlateNo,
+                'FilterTankNo' => $FilterTankNo,
+                'FilterAppearanceResult' => $FilterAppearanceResult,
+                'FilterColor' => $FilterColor,
+                'FilterDensity' => $FilterDensity,
+                'FilterFlashPoint' => $FilterFlashPoint,
+                'FilterTemp' => $FilterTemp,
+                'FilterWaterSediment' => $FilterWaterSediment,
+                'FilterCleanliness' => $FilterCleanliness,
+                'FilterDateOfTest' => $FilterDateOfTest,
+                'FilterMadeBy' => $FilterMadeBy,
+                'FilterDeliveredTo' => $FilterDeliveredTo,
+                'FilterRemarks' => $FilterRemarks, 
                 'number_of_previous_records' => $number_of_previous_records,
                 'number_of_all_records' => $number_of_all_records,
             ]);
@@ -241,6 +520,7 @@ class FuelTestController extends Controller
             return redirect('/');        
         }  
     }
+     
     /**
      * Show the form for editing the specified resource.
      *
@@ -254,7 +534,7 @@ class FuelTestController extends Controller
             Session::flush();
             return redirect('/');        
         } 
-
+        
         $SampleNo = $request->SampleNo;   
         $SampleCollectionDate = $request->SampleCollectionDate; 
         $TruckPlateNo = $request->TruckPlateNo; 

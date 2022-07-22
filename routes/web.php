@@ -6,6 +6,7 @@ use App\Http\Controllers\FuelTestController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\VendorController;
  
 Route::get('/', [HomeController::class, 'index'])->name('login_page'); 
 
@@ -32,3 +33,7 @@ Route::get('/generate_certificate/{SampleNo}', [PdfController::class, 'index']);
 Route::get('/show_certificate/{SampleNo}', [PdfController::class, 'show']);
  
 Route::get('/export', [FuelTestController::class, 'export']);
+
+Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');;
+
+Route::get('/filter', [FuelTestController::class, 'filter'])->name('filter');;
