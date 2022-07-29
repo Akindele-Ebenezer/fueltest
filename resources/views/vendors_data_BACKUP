@@ -1,0 +1,16 @@
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (1, '200543', 119, 'BLUEFIN ENERGY LIMITED', '2022-07-29 11:27:28', '2022-07-29 11:27:29');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (2, '201388', 119, 'DAUZ GLOBAL VENTURES', '2022-07-29 11:28:30', '2022-07-29 11:28:30');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (3, '201408', 119, 'FOURPOINTS INTEGRATED SOLUTIONS', '2022-07-29 11:29:55', '2022-07-29 11:29:57');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (4, '200506', 119, 'INTEGRATED OSMOSIS CONCEPT LIMITED', '2022-07-29 11:30:40', '2022-07-29 11:30:40');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (5, '201373', 119, 'JESSICON GLOBAL', '2022-07-29 11:32:59', '2022-07-29 11:32:59');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (6, '201208', 119, 'LEKSYD ENERGY LTD', '2022-07-29 11:33:37', '2022-07-29 11:33:37');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (7, '200189', 119, 'MATRIX ENERGY RESOURCES LTD', '2022-07-29 11:34:29', '2022-07-29 11:34:29');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (8, '200801', 119, 'NAVAHO PETROLEUM LIMITED', '2022-07-29 11:35:22', '2022-07-29 11:35:22');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (9, '200210', 119, 'NIPCO PLC', '2022-07-29 11:36:23', '2022-07-29 11:36:23');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (10, '201163', 119, 'PRACTIC ENERGY SOLUTIONS LIMITED', '2022-07-29 11:37:14', '2022-07-29 11:37:14');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (11, '200521', 119, 'SADESH ENERGY LIMITED', '2022-07-29 11:38:18', '2022-07-29 11:38:18');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (12, '200537', 119, 'SKID GLOBAL RESOURCES LTD', '2022-07-29 11:39:42', '2022-07-29 11:39:43');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (13, '200367', 119, 'TOTAL NIGERIA PLC (LAGOS)', '2022-07-29 11:42:17', '2022-07-29 11:42:18');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (14, '200580', 119, 'WHITEHILL INTEGRATED SERVICES LIMITED', '2022-07-29 11:43:04', '2022-07-29 11:43:04');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (15, '200770', 119, 'YURT ENERGY LTD', '2022-07-29 11:44:00', '2022-07-29 11:44:00');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (16, '201359', 119, 'Z\'LURTOY OIL & GAS LTD', '2022-07-29 11:44:39', '2022-07-29 11:44:39');
