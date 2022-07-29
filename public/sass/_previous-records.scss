@@ -1,18 +1,35 @@
 section {
     &.previous-records {
         center {
-            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 5rem 1rem 2rem;
+
+            a {
+                button {
+                    background: unset;
+                    border: 1px solid $color-2;
+                    border-radius: .5rem 1.5rem;
+                    color: $color-2;
+                    margin-left: .5rem;
+
+                    &:hover {
+                        background: $color-2; 
+                        color: #fff;
+                    }
+                }
+            }
 
             h1 {
                 border-bottom: 1px solid #00592e;
                 font-size: 2rem;
-                margin-block: 1rem;
+                margin: 1rem;
             }
         }
 
         div{ 
             height: 68vh;
-            margin-top: .5rem;
+            margin: 1rem 1rem 0;
             overflow: scroll;
             width: 75vw;
         }
@@ -27,6 +44,24 @@ section {
             tr {
                 border-bottom: 1px solid #eee;
                 color: #222;
+                
+                &.history {
+                    display: none; 
+                    
+                    td {
+                        font-family: "Bitter", serif;
+                        font-size: 1.4rem;
+
+                        span {
+                            font-style: italic;
+                            margin-left: 2rem;
+                        }
+                    }
+                } 
+
+                &:hover {
+                    background: #eee;
+                }
 
                 td { 
                     padding-block: 1rem;
@@ -100,6 +135,10 @@ section {
                         height: 1rem;
                     }
                       
+                    &.vendor-name {
+                        text-align: left;
+                    }
+
                     button {
                         margin-top: unset; 
                         padding: .2rem 1rem;
@@ -203,6 +242,11 @@ section {
                             padding: .2rem;
                         }
                     }
+                      
+                    &.vendor-name {
+                        text-align: left;
+                    }
+
                 }
             }
         }

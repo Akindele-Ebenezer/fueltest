@@ -18,10 +18,11 @@
 @section('content')
     <section class="previous-records">
         <center>
-            <h1>{{ $title }}</h1>
+            <h1>{{ $title }} ({{ $number_of_previous_records }})</h1>
             <form action="/export">
                 <button type="submit" name="export">Export to Excel</button>
             </form>
+            <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>
         </center>
         <div>
             <table>
@@ -261,6 +262,46 @@
                 </tr>
                 @endif
                 @foreach($previous_records as $previous_record)
+                    <tr> 
+                            @if($previous_record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
+                                <tr class="Yesterday history">
+                                    <td>Yesterday <span></span> </td>  
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate === date('Y-m-d'))
+                                <tr class="Today history">
+                                    <td>Today <span></span> </td>
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
+                                <tr class="Three-Days-Ago history">
+                                    <td>Three days ago <span></span> </td>
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
+                                <tr class="Last-Week history">
+                                    <td>Last week  <span></span> </td>
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
+                                <tr class="Two-Weeks-Ago history">
+                                    <td>Two weeks ago    <span></span> </td>
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
+                                <tr class="Three-Weeks-Ago history">
+                                    <td>Three weeks ago <span></span> </td>
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
+                                <tr class="Last-Month history">
+                                    <td>Last month <span></span> </td>
+                                </tr>
+                            @elseif($previous_record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
+                                <tr class="Two-Months-Ago history">
+                                    <td>Two months ago <span></span> </td>
+                                </tr>
+                            @else($previous_record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
+                                <tr class="Older history">
+                                    <td>Older  <span></span> </td>
+                                </tr>
+                            @endif  
+                    </tr>  
+
                 <tr>
                     <td class="pdf-and-edit">
                         <form action="/generate_certificate/{{ $previous_record->SampleNo }}" method="get" target="_blank">@csrf
@@ -340,6 +381,48 @@
                 Filter[i].classList.toggle('filter-toggle');
             });
         } 
+
+        let Today = document.querySelectorAll('section.previous-records table tr.Today');
+        let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
+        let ThreeDaysAgo = document.querySelectorAll('section.previous-records table tr.Three-Days-Ago');
+        let LastWeek = document.querySelectorAll('section.previous-records table tr.Last-Week');
+        let TwoWeeksAgo = document.querySelectorAll('section.previous-records table tr.Two-Weeks-Ago');
+        let ThreeWeeksAgo = document.querySelectorAll('section.previous-records table tr.Three-Weeks-Ago');
+        let LastMonth = document.querySelectorAll('section.previous-records table tr.Last-Month');
+        let TwoMonthsAgo = document.querySelectorAll('section.previous-records table tr.Two-Months-Ago');
+        let Older = document.querySelectorAll('section.previous-records table tr.Older');
+        
+        let History = [
+            Today,
+            Yesterday,
+            ThreeDaysAgo,
+            LastWeek,
+            TwoWeeksAgo,
+            ThreeWeeksAgo,
+            LastMonth,
+            TwoMonthsAgo,
+            Older,
+        ]
+        
+        let HistoryTotal = document.querySelectorAll('section.previous-records table tr.history span');
+        let HistoryTotalArray = [];
+
+        for (let i = 0; i < History.length; i++) {
+            for (let j = 0; j < History[i].length; j++) { 
+                History[i][0].style.display = 'block';
+                
+                let HistoryTotal_ = History[i].length;
+                let HistoryArray = [];
+                    HistoryArray.push(HistoryTotal_);
+                    HistoryTotalArray.push(HistoryTotal_); 
+            } 
+        }  
+
+        for (let i = 0; i < HistoryTotal.length; i++) { 
+            for (let j = 0; j < HistoryTotalArray.length; j++) {
+                HistoryTotal[i].textContent = HistoryTotalArray[i]; 
+            }
+        }
 
     </script>
 @endsection 

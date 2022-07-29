@@ -32,6 +32,8 @@ class VendorController extends Controller
         $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
         $number_of_all_records = count($all_records);
 
+        $Vendors = Vendor::all();
+
         return view('vendors', [
             'Id' => $id,
             'Name' => $name,
@@ -41,6 +43,7 @@ class VendorController extends Controller
             'number_of_previous_records' => $number_of_previous_records,
             'number_of_all_records' => $number_of_all_records,
             'all_records' => $all_records,
+            'Vendors' => $Vendors,
         ]);
     }
 

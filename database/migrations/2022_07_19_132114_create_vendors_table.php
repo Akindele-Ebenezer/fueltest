@@ -14,10 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vendors', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('VendorNo');
+            $table->unsignedInteger('RecordId');
             $table->string('VendorName');
             $table->timestamps();
+            $table->foreign('RecordId')
+                ->references('id')
+                ->on('fuel_test_records')
+                ->onDelete('cascade');
         });
     }
 

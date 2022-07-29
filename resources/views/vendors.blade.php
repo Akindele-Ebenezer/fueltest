@@ -13,31 +13,19 @@
             </form>
         </center>
         <div>
-            <table>
+            <table> 
                 <tr>  
+                    <th>Vendor ID</th>
                     <th>Vendor No.</th>
-                    <th>Vendor Name</th> 
+                    <th class="vendor-name">Vendor Name</th> 
                 </tr>  
+                @foreach($Vendors as $Vendor)
                 <tr> 
-                    <td class="vendor-no">73737892</td>
-                    <td class="vendor-name">Vendor Name One</td>  
-                </tr> 
-                <tr> 
-                    <td class="vendor-no">73737892</td>
-                    <td class="vendor-name">Vendor Name Two</td>  
-                </tr> 
-                <tr> 
-                    <td class="vendor-no">73737892</td>
-                    <td class="vendor-name">Vendor Name Three</td>  
-                </tr> 
-                <tr> 
-                    <td class="vendor-no">73737892</td>
-                    <td class="vendor-name">Vendor Name Four</td>  
-                </tr> 
-                <tr> 
-                    <td class="vendor-no">73737892</td>
-                    <td class="vendor-name">Vendor Name Five</td>  
-                </tr> 
+                    <td class="vendor-id">{{ $Vendor->id }}</td>
+                    <td class="vendor-no">{{ $Vendor->VendorNo }}</td>
+                    <td class="vendor-name">{{ $Vendor->VendorName }}</td>  
+                </tr>  
+                @endforeach
             </table> 
             <!-- Pagination links -->
         </div>
