@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use App\Models\FuelTestRecord;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Exports\FuelTestsExport;
@@ -41,6 +42,9 @@ class FuelTestController extends Controller
         $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
         $number_of_all_records = count($all_records);
 
+        $vendors = Vendor::all();
+        $number_of_vendors = count($vendors);
+
         if(!(Session::has('email'))) {
             Session::forget('email');
             Session::flush();
@@ -50,6 +54,8 @@ class FuelTestController extends Controller
                 'number_of_previous_records' => $number_of_previous_records,
                 'number_of_all_records' => $number_of_all_records,
                 'fuel_test_users' => $fuel_test_users,
+                'number_of_vendors' => $number_of_vendors,
+                'vendors' => $vendors,
             ]);
         }
     }
@@ -140,7 +146,10 @@ class FuelTestController extends Controller
             if(Session::has('email')) {
                 $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
                 $number_of_all_records = count($all_records);
-                 
+                        
+                $vendors = Vendor::all();
+                $number_of_vendors = count($vendors);
+
                 $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
                 $number_of_previous_records = count($previous_records);
                 
@@ -163,6 +172,8 @@ class FuelTestController extends Controller
                     'Remarks' => $Remarks,
                     'number_of_all_records' => $number_of_all_records,
                     'number_of_previous_records' => $number_of_previous_records,
+                    'number_of_vendors' => $number_of_vendors,
+                    'vendors' => $vendors,
                 ]);
 
             } else { 
@@ -180,10 +191,20 @@ class FuelTestController extends Controller
     public function show_all_records(Request $request)
     { 
         if(Session::has('email')) {
-            // $all_records = FuelTest::paginate(3);
+
+            $id = Session::get('id');
+            $name = Session::get('name');
+            $email = Session::get('email');
+            $title = 'All Records';
+            $header_info = 'Manage all your Records effectively. Log In';
+             
+            // $all_records = FuelTestRecord::paginate(3);
             $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
             $number_of_all_records = count($all_records);
-             
+                                     
+            $vendors = Vendor::all();
+            $number_of_vendors = count($vendors);
+            
             $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
             $number_of_previous_records = count($previous_records);
 
@@ -324,6 +345,11 @@ class FuelTestController extends Controller
             }
 
             return view("all_records", [
+                'id' => $id,
+                'name' => $name,
+                'email' => $email,
+                'title' => $title,
+                'header_info' => $header_info,
                 'all_records' => $all_records,
                 'number_of_all_records' => $number_of_all_records,
                 'number_of_previous_records' => $number_of_previous_records,
@@ -342,6 +368,8 @@ class FuelTestController extends Controller
                 'FilterMadeBy' => $FilterMadeBy,
                 'FilterDeliveredTo' => $FilterDeliveredTo,
                 'FilterRemarks' => $FilterRemarks, 
+                'number_of_vendors' => $number_of_vendors,
+                'vendors' => $vendors,
             ]);
 
         } else { 
@@ -353,13 +381,22 @@ class FuelTestController extends Controller
     {  
         if(Session::has('email')) {
 
+            $id = Session::get('id');
+            $name = Session::get('name');
+            $email = Session::get('email');
+            $title = 'All Records';
+            $header_info = 'Manage all your Records effectively. Log In';
+             
             $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
             $number_of_previous_records = count($previous_records);
             Session::put('number_of_previous_records',  $number_of_previous_records);
              
             $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
             $number_of_all_records = count($all_records);
-
+                        
+            $vendors = Vendor::all();
+            $number_of_vendors = count($vendors);
+            
             $FilterSampleNo = FuelTestRecord::distinct()->get(['SampleNo']);
             $FilterSampleCollectionDate = FuelTestRecord::distinct()->get(['SampleCollectionDate']);
             $FilterTruckPlateNo = FuelTestRecord::distinct()->get(['TruckPlateNo']);
@@ -497,6 +534,11 @@ class FuelTestController extends Controller
             }
 
             return view("previous_records", [
+                'id' => $id,
+                'name' => $name,
+                'email' => $email,
+                'title' => $title,
+                'header_info' => $header_info,
                 'previous_records' => $previous_records,
                 'FilterSampleNo' => $FilterSampleNo,
                 'FilterSampleCollectionDate' => $FilterSampleCollectionDate,
@@ -515,6 +557,8 @@ class FuelTestController extends Controller
                 'FilterRemarks' => $FilterRemarks, 
                 'number_of_previous_records' => $number_of_previous_records,
                 'number_of_all_records' => $number_of_all_records,
+                'number_of_vendors' => $number_of_vendors,
+                'vendors' => $vendors,
             ]);
         } else { 
             return redirect('/');        
@@ -558,29 +602,11 @@ class FuelTestController extends Controller
         $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
         // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
         $number_of_all_records = count($all_records);
-
-        // $edit = FuelTest::where('SampleNo', $SampleNo)->update([
-        //     'SampleNo' => $request->SampleNo,
-        //     'SampleCollectionDate' => $SampleCollectionDate,
-        //     'TruckPlateNo' => $TruckPlateNo,
-        //     'TankNo' => $TankNo,
-        //     'AppearanceResult' => $AppearanceResult,
-        //     'Color' => $Color,
-        //     'Density' => $Density,
-        //     'FlashPoint' => $FlashPoint,
-        //     'Temp' => $Temp,
-        //     'WaterSediment' => $WaterSediment,
-        //     'Cleanliness' => $Cleanliness,
-        //     'DateOfTest' => $DateOfTest,
-        //     'uid' => $uid,
-        //     'MadeBy' => $MadeBy,
-        //     'DeliveredTo' => $DeliveredTo,
-        //     'Remarks' => $Remarks
-        //  ]);
-
-         $edit = DB::table('fuel_test_records')
-         ->where('SampleNo', $SampleNo)
-         ->update([
+                        
+        $vendors = Vendor::all();
+        $number_of_vendors = count($vendors);
+        
+        $edit = FuelTestRecord::where('SampleNo', $SampleNo)->update([
             'SampleNo' => $request->SampleNo,
             'SampleCollectionDate' => $SampleCollectionDate,
             'TruckPlateNo' => $TruckPlateNo,
@@ -618,6 +644,8 @@ class FuelTestController extends Controller
             'Remarks' => $Remarks,
             'number_of_previous_records' => $number_of_previous_records,
             'number_of_all_records' => $number_of_all_records,
+            'number_of_vendors' => $number_of_vendors,
+            'vendors' => $vendors,
         ]);
     }
 
@@ -652,8 +680,8 @@ class FuelTestController extends Controller
         $MadeBy = $request->MadeBy; 
         $DeliveredTo = $request->DeliveredTo; 
         $Remarks = $request->Remarks; 
-        echo $SampleNo;
-        $save_changes = FuelTest::where('SampleNo', $SampleNo)->update([
+         
+        $save_changes = FuelTestRecord::where('SampleNo', $SampleNo)->update([
             'SampleNo' => $request->SampleNo,
             'SampleCollectionDate' => $SampleCollectionDate,
             'TruckPlateNo' => $TruckPlateNo,

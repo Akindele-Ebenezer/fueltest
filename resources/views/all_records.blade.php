@@ -1,14 +1,3 @@
-@php
-    ob_start();
-    
-    $id = Session::get('id');
-    $name = Session::get('name');
-    $email = Session::get('email');
-    $title = 'All Records';
-    $header_info = 'Manage all your Records effectively. Log In'; 
-     
-@endphp
-
 @extends('layouts.layout_1')
 
 @section('name', $name)
@@ -261,46 +250,60 @@
                     </td>
                 </tr>
                 @endif
-                @foreach($all_records as $record) 
-                    <tr> 
-                            @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
-                                <tr class="Yesterday history">
-                                    <td>Yesterday <span></span> </td>  
-                                </tr>
-                            @elseif($record->SampleCollectionDate === date('Y-m-d'))
-                                <tr class="Today history">
-                                    <td>Today <span></span> </td>
-                                </tr>
-                            @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
-                                <tr class="Three-Days-Ago history">
-                                    <td>Three days ago <span></span> </td>
-                                </tr>
-                            @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
-                                <tr class="Last-Week history">
-                                    <td>Last week  <span></span> </td>
-                                </tr>
-                            @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
-                                <tr class="Two-Weeks-Ago history">
-                                    <td>Two weeks ago    <span></span> </td>
-                                </tr>
-                            @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
-                                <tr class="Three-Weeks-Ago history">
-                                    <td>Three weeks ago <span></span> </td>
-                                </tr>
-                            @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
-                                <tr class="Last-Month history">
-                                    <td>Last month <span></span> </td>
-                                </tr>
-                            @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
-                                <tr class="Two-Months-Ago history">
-                                    <td>Two months ago <span></span> </td>
-                                </tr>
-                            @else($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
-                                <tr class="Older history">
-                                    <td>Older  <span></span> </td>
-                                </tr>
-                            @endif  
-                    </tr>  
+                @foreach($all_records as $record)  
+                    @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
+                        <tr class="Yesterday history">
+                            <td>Yesterday <span></span> </td>  
+                        </tr>
+                    @elseif($record->SampleCollectionDate === date('Y-m-d'))
+                        <tr class="Today history">
+                            <td>Today <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-2 day")))
+                        <tr class="Two-Days-Ago history">
+                            <td>Two days ago <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
+                        <tr class="Three-Days-Ago history">
+                            <td>Three days ago <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-4 day")))
+                        <tr class="Four-Days-Ago history">
+                            <td>Four days ago <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-5 day")))
+                        <tr class="Five-Days-Ago history">
+                            <td>Five days ago <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-6 day")))
+                        <tr class="Six-Days-Ago history">
+                            <td>Six days ago <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
+                        <tr class="Last-Week history">
+                            <td>Last week  <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
+                        <tr class="Two-Weeks-Ago history">
+                            <td>Two weeks ago    <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
+                        <tr class="Three-Weeks-Ago history">
+                            <td>Three weeks ago <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
+                        <tr class="Last-Month history">
+                            <td>Last month <span></span> </td>
+                        </tr>
+                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
+                        <tr class="Two-Months-Ago history">
+                            <td>Two months ago <span></span> </td>
+                        </tr>
+                    @else($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
+                        <tr class="Older history">
+                            <td>Older  <span></span> </td>
+                        </tr>
+                    @endif   
 
                     <tr>  
                         <td class="pdf-and-edit">
@@ -386,9 +389,13 @@
 
         }  
 
-        let Today = document.querySelectorAll('section.previous-records table tr.Today');
         let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
+        let Today = document.querySelectorAll('section.previous-records table tr.Today');
+        let TwoDaysAgo = document.querySelectorAll('section.previous-records table tr.Two-Days-Ago');
         let ThreeDaysAgo = document.querySelectorAll('section.previous-records table tr.Three-Days-Ago');
+        let FourDaysAgo = document.querySelectorAll('section.previous-records table tr.Four-Days-Ago');
+        let FiveDaysAgo = document.querySelectorAll('section.previous-records table tr.Five-Days-Ago');
+        let SixDaysAgo = document.querySelectorAll('section.previous-records table tr.Six-Days-Ago');
         let LastWeek = document.querySelectorAll('section.previous-records table tr.Last-Week');
         let TwoWeeksAgo = document.querySelectorAll('section.previous-records table tr.Two-Weeks-Ago');
         let ThreeWeeksAgo = document.querySelectorAll('section.previous-records table tr.Three-Weeks-Ago');
@@ -397,9 +404,13 @@
         let Older = document.querySelectorAll('section.previous-records table tr.Older');
         
         let History = [
-            Today,
             Yesterday,
+            Today,
+            TwoDaysAgo,
             ThreeDaysAgo,
+            FourDaysAgo,
+            FiveDaysAgo,
+            SixDaysAgo,
             LastWeek,
             TwoWeeksAgo,
             ThreeWeeksAgo,
@@ -425,8 +436,8 @@
         for (let i = 0; i < HistoryTotal.length; i++) { 
             for (let j = 0; j < HistoryTotalArray.length; j++) {
                 HistoryTotal[i].textContent = HistoryTotalArray[i]; 
+                console.log(HistoryTotalArray[i]);
             }
         }
-
     </script>
 @endsection

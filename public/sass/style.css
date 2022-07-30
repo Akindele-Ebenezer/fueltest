@@ -42,6 +42,11 @@ ul {
   list-style: none;
 }
 
+@media (max-width: 1400px) {
+  * {
+    font-size: 11px;
+  }
+}
 header {
   background: #000;
   color: antiquewhite;
@@ -424,6 +429,7 @@ section.previous-records table tr {
 }
 section.previous-records table tr.history {
   display: none;
+  padding-block: 1rem;
 }
 section.previous-records table tr.history td {
   font-family: "Bitter", serif;
@@ -435,9 +441,6 @@ section.previous-records table tr.history td span {
 }
 section.previous-records table tr:hover {
   background: #eee;
-}
-section.previous-records table tr td {
-  padding-block: 1rem;
 }
 section.previous-records table tr td.appearance-result {
   display: flex;
@@ -522,13 +525,14 @@ section.previous-records table tr td button:hover {
 }
 section.previous-records table tr td input[type=image] {
   margin-inline: 1rem;
+  transform: translateY(0.5rem);
   width: 2rem;
 }
 section.previous-records table tr th {
   background: #444;
   color: #fff;
   font-weight: unset;
-  padding: 1rem;
+  padding: 0.3rem;
   position: sticky;
   top: 0;
   z-index: 102;

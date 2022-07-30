@@ -47,6 +47,7 @@ section {
                 
                 &.history {
                     display: none; 
+                    padding-block: 1rem;
                     
                     td {
                         font-family: "Bitter", serif;
@@ -64,7 +65,7 @@ section {
                 }
 
                 td { 
-                    padding-block: 1rem;
+                    // padding-block: 1rem;
                     
                     &.appearance-result {
                         display: flex;
@@ -150,6 +151,7 @@ section {
 
                     input[type="image"] {
                         margin-inline: 1rem;
+                        transform: translateY(.5rem);
                         width: 2rem;
                     }
 
@@ -160,7 +162,7 @@ section {
                     background: $color-4;
                     color: #fff;
                     font-weight: unset; 
-                    padding: 1rem;
+                    padding: .3rem;
                     position: sticky;
                     top: 0;
                     z-index: 102;

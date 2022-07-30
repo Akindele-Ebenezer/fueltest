@@ -14,7 +14,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('fuel_test_records', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('SampleNo');
+            $table->string('SampleCollectionDate');
+            $table->string('TruckPlateNo');
+            $table->string('TankNo');
+            $table->string('AppearanceResult');
+            $table->string('Color');
+            $table->string('Density');
+            $table->string('FlashPoint');
+            $table->string('Temp');
+            $table->string('WaterSediment');
+            $table->string('Cleanliness');
+            $table->string('DateOfTest');
+            $table->string('uid');
+            $table->string('MadeBy');
+            $table->string('DeliveredTo');
+            $table->string('Remarks');
             $table->timestamps();
         });
     }

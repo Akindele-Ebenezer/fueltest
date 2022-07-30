@@ -47,3 +47,9 @@ button {
 ul {
     list-style: none;
 }
+
+@media (max-width: 1400px) {
+    * {
+        font-size: 11px;
+    }
+}
