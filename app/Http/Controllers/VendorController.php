@@ -20,34 +20,39 @@ class VendorController extends Controller
     public function index()
     {
         
-        $id = Session::get('id');
-        $name = Session::get('name');
-        $email = Session::get('email');
-        $title = 'VENDORS';
-        $header_info = 'Manage all your Records effectively. Log In'; 
-        
-        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->get(); 
-        $number_of_previous_records = count($previous_records);
- 
-        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
-        $number_of_all_records = count($all_records); 
-
-        $vendors = Vendor::all();
-        $number_of_vendors = count($vendors);
-        
-
-        return view('vendors', [
-            'Id' => $id,
-            'Name' => $name,
-            'Email' => $email,
-            'Title' => $title,
-            'Header_Info' => $header_info,
-            'number_of_previous_records' => $number_of_previous_records,
-            'number_of_all_records' => $number_of_all_records,
-            'number_of_vendors' => $number_of_vendors,
-            'all_records' => $all_records,
-            'Vendors' => $vendors,
-        ]);
+        if(Session::has('email')) {
+              
+            $id = Session::get('id');
+            $name = Session::get('name');
+            $email = Session::get('email');
+            $title = 'VENDORS';
+            $header_info = 'Manage all your Records effectively. Log In'; 
+            
+            $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->get(); 
+            $number_of_previous_records = count($previous_records);
+     
+            $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
+            $number_of_all_records = count($all_records); 
+    
+            $vendors = Vendor::all();
+            $number_of_vendors = count($vendors);
+            
+    
+            return view('vendors', [
+                'Id' => $id,
+                'Name' => $name,
+                'Email' => $email,
+                'Title' => $title,
+                'Header_Info' => $header_info,
+                'number_of_previous_records' => $number_of_previous_records,
+                'number_of_all_records' => $number_of_all_records,
+                'number_of_vendors' => $number_of_vendors,
+                'all_records' => $all_records,
+                'Vendors' => $vendors,
+            ]);
+        } else {                                       
+            return redirect('/');        
+        }  
     }
 
     /**
