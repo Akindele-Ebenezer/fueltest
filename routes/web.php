@@ -10,15 +10,15 @@ use App\Http\Controllers\VendorController;
  
 Route::get('/', [HomeController::class, 'index'])->name('login_page'); 
 
-Route::get('/fuel_test', [FuelTestController::class, 'create'])->name('fuel_test');
+Route::get('/FuelTest', [FuelTestController::class, 'create'])->name('fuel_test');
 
-Route::get('/previous_records', [FuelTestController::class, 'show_previous_records'])->name('previous_records');
+Route::get('/PreviousRecords', [FuelTestController::class, 'show_previous_records'])->name('previous_records');
 
-Route::get('/all_records', [FuelTestController::class, 'show_all_records'])->name('all_records');
+Route::get('/AllRecords', [FuelTestController::class, 'show_all_records'])->name('all_records');
 
 Route::get('/edit', [FuelTestController::class, 'edit'])->name('edit_records');
 
-Route::post('/record_success', [FuelTestController::class, 'store'])->name('record_success');
+Route::post('/RecordSuccess', [FuelTestController::class, 'store'])->name('record_success');
 
 Route::post('/login', [AuthController::class, 'fuel_test_user_login'])->name('login');
     
@@ -26,14 +26,14 @@ Route::get('/logout', [AuthController::class, 'fuel_test_user_logout']);
  
 Route::post('/update/{SampleNo}', [FuelTestController::class, 'update']); 
 
-Route::post('/edit/{SampleNo}', [FuelTestController::class, 'edit']); 
+Route::post('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
  
-Route::get('/generate_certificate/{SampleNo}', [PdfController::class, 'index']);
+Route::get('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']);
 
-Route::get('/show_certificate/{SampleNo}', [PdfController::class, 'show']);
+Route::get('/ShowCertificate/{SampleNo}', [PdfController::class, 'show']);
  
 Route::get('/export', [FuelTestController::class, 'export']);
 
-Route::get('/vendors', [VendorController::class, 'index'])->name('vendors');;
+Route::get('/Vendors', [VendorController::class, 'index'])->name('vendors');;
 
 Route::get('/filter', [FuelTestController::class, 'filter'])->name('filter');;

@@ -34,6 +34,13 @@ class FuelTestController extends Controller
      */
     public function create(Request $request)
     {  
+        $title = 'Depasamarine';
+        $id = Session::get('id'); 
+        $name = Session::get('name');
+        $email = Session::get('email');
+        $header_info = "ID : [" . $id . "] Email : " . $email;
+        $sample_no = date('Ymd') . $id . 0;
+
         $fuel_test_users = DB::table('fuel_test_users')->get();
  
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->get(); 
@@ -56,6 +63,12 @@ class FuelTestController extends Controller
                 'fuel_test_users' => $fuel_test_users,
                 'number_of_vendors' => $number_of_vendors,
                 'vendors' => $vendors,
+                'id' => $id,
+                'title' => $title,
+                'name' => $name,
+                'header_info' => $header_info,
+                'email' => $email,
+                'sample_no' => $sample_no,
             ]);
         }
     }
@@ -75,7 +88,14 @@ class FuelTestController extends Controller
             Session::flush();
             return redirect('/');        
         }
-        
+
+        $id = Session::get('id');
+        $title = 'Record Created';
+        $name = Session::get('name');
+        $email = Session::get('email');
+        $header_info = 'Manage all your Records effectively. Log In';
+        $sample_no; 
+
         $SampleNo = $request->SampleNo; 
         $SampleCollectionDate = $request->SampleCollectionDate; 
         $TruckPlateNo = $request->TruckPlateNo; 
@@ -94,33 +114,33 @@ class FuelTestController extends Controller
         $Remarks = $request->Remarks; 
         
         if(empty($SampleCollectionDate)) {
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($TruckPlateNo)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($TankNo)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($AppearanceResult)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($Color)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($Density)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($FlashPoint)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($Temp)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($WaterSediment)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($Cleanliness)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($DateOfTest)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($MadeBy)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($DeliveredTo)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } elseif(empty($Remarks)) { 
-            return redirect('fuel_test');
+            return redirect('FuelTest');
         } else { 
                 $create_record = FuelTestRecord::create([
                         'SampleNo' => $SampleNo,
@@ -174,6 +194,11 @@ class FuelTestController extends Controller
                     'number_of_previous_records' => $number_of_previous_records,
                     'number_of_vendors' => $number_of_vendors,
                     'vendors' => $vendors,
+                    'id' => $id,
+                    'title' => $title,
+                    'name' => $name,
+                    'header_info' => $header_info,
+                    'email' => $email, 
                 ]);
 
             } else { 
@@ -384,7 +409,7 @@ class FuelTestController extends Controller
             $id = Session::get('id');
             $name = Session::get('name');
             $email = Session::get('email');
-            $title = 'All Records';
+            $title = 'Previous Records';
             $header_info = 'Manage all your Records effectively. Log In';
              
             $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
@@ -579,6 +604,14 @@ class FuelTestController extends Controller
             return redirect('/');        
         } 
         
+        $id = Session::get('id');
+        $title = 'Edit Record';
+        $name = Session::get('name');
+        $email = Session::get('email');
+        $header_info = 'Manage all your Records effectively. Log In';
+        
+        $sample_no;
+
         $SampleNo = $request->SampleNo;   
         $SampleCollectionDate = $request->SampleCollectionDate; 
         $TruckPlateNo = $request->TruckPlateNo; 
@@ -645,7 +678,11 @@ class FuelTestController extends Controller
             'number_of_previous_records' => $number_of_previous_records,
             'number_of_all_records' => $number_of_all_records,
             'number_of_vendors' => $number_of_vendors,
-            'vendors' => $vendors,
+            'id' => $id,
+            'title' => $title,
+            'name' => $name,
+            'header_info' => $header_info,
+            'email' => $email,
         ]);
     }
 
@@ -700,7 +737,7 @@ class FuelTestController extends Controller
             'Remarks' => $Remarks
          ]);
 
-         return redirect('fuel_test');
+         return redirect('FuelTest');
     }
 
     /**

@@ -30,7 +30,7 @@ class AuthController extends Controller
                     Session::put('name', $current_user->Name); 
                 
                     if(Session::has('email')) {
-                        return redirect('fuel_test'); 
+                        return redirect('FuelTest'); 
                     } else {                                       
                         return redirect('/');        
                     }  

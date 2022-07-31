@@ -1,14 +1,3 @@
-@php
-
-$title = 'Depasamarine';
-$id = Session::get('id'); 
-$name = Session::get('name');
-$email = Session::get('email');
-$header_info = "ID : [" . $id . "] Email : " . $email;
-$sample_no = date('Ymd') . $id . 0; 
-
-@endphp
-
 @extends('layouts.layout_1')
  
 @section('name', $name)

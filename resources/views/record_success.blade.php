@@ -1,14 +1,3 @@
-@php
-
-    $id = Session::get('id');
-    $title = 'Record Created';
-    $name = Session::get('name');
-    $email = Session::get('email');
-    $header_info = 'Manage all your Records effectively. Log In';
-    $sample_no;
-
-@endphp
-
 @extends('layouts.layout_1')
 
 @section('name', $name)
@@ -18,7 +7,7 @@
 @section('content')
     <div class="fuel-test-main">
         <center>
-            <form action="/show_certificate/{{ $SampleNo }}" target="_blank">  
+            <form action="/ShowCertificate/{{ $SampleNo }}" target="_blank">  
                 <input type="image" src="images/pdf.png">
                 <input name="SampleNo" type="hidden" value="{{ $SampleNo }}">
                 <input name="SampleCollectionDate" type="hidden" value="{{ $SampleCollectionDate }}">
@@ -50,8 +39,8 @@
             </p>
             <br><br>
             <ul>
-                <li> <a href="/fuel_test" style="color: green">Insert New Record.</a> </li>
-                <li> <a href="/previous_records" style="color: green"> Edit Previous Records.</a> </li>
+                <li> <a href="/FuelTest" style="color: green">Insert New Record.</a> </li>
+                <li> <a href="/PreviousRecords" style="color: green"> Edit Previous Records.</a> </li>
             </ul>
         </div> 
 

@@ -307,7 +307,7 @@
 
                 <tr>
                     <td class="pdf-and-edit">
-                        <form action="/generate_certificate/{{ $previous_record->SampleNo }}" method="get" target="_blank">@csrf
+                        <form action="/GenerateCertificate/{{ $previous_record->SampleNo }}" method="get" target="_blank">@csrf
                             <input type="image" src="/images/pdf.png"> 
                             <input name="SampleNo" type="hidden" value="{{ $previous_record->SampleNo }}">
                             <input name="SampleCollectionDate" type="hidden" value="{{ $previous_record->SampleCollectionDate }}">
@@ -326,7 +326,7 @@
                             <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $previous_record->DeliveredTo }}">
                             <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $previous_record->Remarks }}"> 
                         </form> 
-                        <form action="/edit/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf 
+                        <form action="/Edit/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf 
                             <input type="image" src="/images/edit.png"> 
                             <input name="SampleNo" type="hidden" value="{{ $previous_record->SampleNo }}">
                             <input name="SampleCollectionDate" type="hidden" value="{{ $previous_record->SampleCollectionDate }}">

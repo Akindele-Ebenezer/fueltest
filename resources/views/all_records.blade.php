@@ -307,7 +307,7 @@
 
                     <tr>  
                         <td class="pdf-and-edit">
-                            <form action="/generate_certificate/{{ $record->SampleNo }}" method="get" target="_blank">@csrf
+                            <form action="/GenerateCertificate/{{ $record->SampleNo }}" method="get" target="_blank">@csrf
                                 <input type="image" src="/images/pdf.png"> 
                                 <input name="SampleNo" type="hidden" value="{{ $record->SampleNo }}">
                                 <input name="SampleCollectionDate" type="hidden" value="{{ $record->SampleCollectionDate }}">
