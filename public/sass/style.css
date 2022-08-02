@@ -305,6 +305,13 @@ section.fuel-test .fuel-test-main .form input {
   padding: 1rem;
   width: 100%;
 }
+section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]:first-of-type, section.fuel-test .fuel-test-main .form input[placeholder="Vendor Name..."]:first-of-type {
+  width: 40%;
+  margin-right: 1rem;
+}
+section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]:last-of-type, section.fuel-test .fuel-test-main .form input[placeholder="Vendor Name..."]:last-of-type {
+  width: 53%;
+}
 section.fuel-test .fuel-test-main .form input:focus {
   border-bottom: 3px solid #00592e;
 }
