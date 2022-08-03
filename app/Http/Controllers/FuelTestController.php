@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Exports\FuelTestsExport;
 use Maatwebsite\Excel\Facades\Excel; 
+use Illuminate\Support\Carbon;
 
 class FuelTestController extends Controller
 {
@@ -248,6 +249,8 @@ class FuelTestController extends Controller
             $FilterMadeBy = FuelTestRecord::distinct()->get(['MadeBy']);
             $FilterDeliveredTo = FuelTestRecord::distinct()->get(['DeliveredTo']);
             $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']); 
+
+            $Date = Carbon::now()->diffForHumans();
 
             if (isset($_GET['SortBySampleNo'])) {
                 $FilteredRecords[] = $request->CheckSampleNo; 
@@ -581,6 +584,7 @@ class FuelTestController extends Controller
                 'FilterRemarks' => $FilterRemarks, 
                 'number_of_vendors' => $number_of_vendors,
                 'vendors' => $vendors,
+                'Date' => $Date,
             ]);
 
         } else { 
@@ -627,9 +631,9 @@ class FuelTestController extends Controller
             if (isset($_GET['SortBySampleNo'])) {
                 $FilteredRecords[] = $request->CheckSampleNo; 
  
-                foreach ($FilteredRecords as $SampleNo) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('SampleNo', $SortOrder)->get(); 
+                foreach ($FilteredRecords as $SampleNo) {  
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -648,8 +652,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckSampleCollectionDate; 
  
                 foreach ($FilteredRecords as $SampleCollectionDate) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('SampleCollectionDate', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('SampleCollectionDate', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -668,8 +672,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTruckPlateNo; 
  
                 foreach ($FilteredRecords as $TruckPlateNo) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('TruckPlateNo', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('TruckPlateNo', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -688,8 +692,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTankNo; 
  
                 foreach ($FilteredRecords as $TankNo) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('TankNo', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('TankNo', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -708,8 +712,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckAppearanceResult; 
  
                 foreach ($FilteredRecords as $AppearanceResult) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('AppearanceResult', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('AppearanceResult', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -728,8 +732,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckColor; 
  
                 foreach ($FilteredRecords as $Color) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('Color', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Color', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -748,8 +752,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDensity; 
  
                 foreach ($FilteredRecords as $Density) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('Density', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Density', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -768,8 +772,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckFlashPoint; 
  
                 foreach ($FilteredRecords as $FlashPoint) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('FlashPoint', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('FlashPoint', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -788,8 +792,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTemp; 
  
                 foreach ($FilteredRecords as $Temp) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('Temp', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Temp', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -808,8 +812,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckWaterSediment; 
  
                 foreach ($FilteredRecords as $WaterSediment) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('WaterSediment', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('WaterSediment', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -828,8 +832,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckCleanliness; 
  
                 foreach ($FilteredRecords as $Cleanliness) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('Cleanliness', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Cleanliness', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -848,8 +852,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDateOfTest; 
  
                 foreach ($FilteredRecords as $DateOfTest) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('DateOfTest', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('DateOfTest', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -868,8 +872,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckMadeBy; 
  
                 foreach ($FilteredRecords as $MadeBy) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('MadeBy', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('MadeBy', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -888,8 +892,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDeliveredTo; 
  
                 foreach ($FilteredRecords as $DeliveredTo) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('DeliveredTo', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('DeliveredTo', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -908,8 +912,8 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckRemarks; 
  
                 foreach ($FilteredRecords as $Remarks) { 
-                    $SortOrder = Session::get('SortOrder');
-                    $previous_records = FuelTestRecord::orderBy('Remarks', $SortOrder)->get(); 
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Remarks', $SortOrder)->get(); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 

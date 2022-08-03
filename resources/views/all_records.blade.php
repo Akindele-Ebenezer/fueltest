@@ -354,7 +354,7 @@
                          There are no RECORDS.. 
                     </td>
                 </tr>
-                @endif
+                @endif 
                 @foreach($all_records as $record)  
                     @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
                         <tr class="Yesterday history">
@@ -430,7 +430,7 @@
                                 <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $record->MadeBy }}">
                                 <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $record->DeliveredTo }}">
                                 <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $record->Remarks }}"> 
-                            </form> 
+                            </form>  
                             <!-- <form action="/edit/{{ $record->SampleNo }}" method="post" target="_blank">@csrf 
                                 <input type="image" src="/images/edit.png"> 
                                 <input name="SampleNo" type="hidden" value="{{ $record->SampleNo }}">

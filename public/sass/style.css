@@ -323,6 +323,9 @@ section.fuel-test .fuel-test-main .form label {
   padding: 1rem;
   width: 37%;
 }
+section.fuel-test .fuel-test-main .form section.filter ul form {
+  display: unset;
+}
 section.fuel-test .fuel-test-main h1 {
   border-bottom: 1px solid #00592e;
   font-size: 5.2rem;

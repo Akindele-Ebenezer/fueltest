@@ -159,6 +159,16 @@ section {
                         //     margin-right: 0;
                         // }
                     }
+
+                    section {                                            
+                        &.filter {
+                            ul {
+                                form {
+                                    display: unset;
+                                }    
+                            }
+                        }
+                    }
                 }
 
                 h1 {
@@ -170,6 +180,7 @@ section {
             }
         }
     }
+
 }
 
 @media (max-width: 1047px) {
