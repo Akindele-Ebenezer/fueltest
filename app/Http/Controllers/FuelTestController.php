@@ -1296,19 +1296,16 @@ class FuelTestController extends Controller
      */
     public function edit(Request $request, $SampleNo)
     {
+        $Config = $this->config();  
+        extract($Config); 
+        
         if(!(Session::has('email'))) {
             Session::forget('email');
             Session::flush();
             return redirect('/');        
         } 
-        
-        $id = Session::get('id');
-        $title = 'Edit Record';
-        $name = Session::get('name');
-        $email = Session::get('email');
-        $header_info = 'Manage all your Records effectively. Log In';
-        
-        $sample_no;
+         
+        $title = 'Edit Record';  
 
         $SampleNo = $request->SampleNo;   
         $SampleCollectionDate = $request->SampleCollectionDate; 
@@ -1325,17 +1322,7 @@ class FuelTestController extends Controller
         $uid = $request->uid; 
         $MadeBy = $request->MadeBy; 
         $DeliveredTo = $request->DeliveredTo; 
-        $Remarks = $request->Remarks; 
-        
-        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'desc')->get(); 
-        $number_of_previous_records = count($previous_records); 
-         
-        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get();
-        // $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'desc')->get();
-        $number_of_all_records = count($all_records);
-                        
-        $vendors = Vendor::all();
-        $number_of_vendors = count($vendors);
+        $Remarks = $request->Remarks;  
         
         $edit = FuelTestRecord::where('SampleNo', $SampleNo)->update([
             'SampleNo' => $request->SampleNo,
@@ -1356,7 +1343,7 @@ class FuelTestController extends Controller
             'Remarks' => $Remarks
          ]);
 
-        return view("edit", [
+         $ViewData = [
             'SampleNo' => $request->SampleNo,
             'SampleCollectionDate' => $SampleCollectionDate,
             'TruckPlateNo' => $TruckPlateNo,
@@ -1372,16 +1359,13 @@ class FuelTestController extends Controller
             'uid' => $uid,
             'MadeBy' => $MadeBy,
             'DeliveredTo' => $DeliveredTo,
-            'Remarks' => $Remarks,
-            'number_of_previous_records' => $number_of_previous_records,
-            'number_of_all_records' => $number_of_all_records,
-            'number_of_vendors' => $number_of_vendors,
-            'id' => $id,
-            'title' => $title,
-            'name' => $name,
-            'header_info' => $header_info,
-            'email' => $email,
-        ]);
+            'Remarks' => $Remarks, 
+            'title' => $title, 
+        ];
+ 
+        $ViewData = [...$Config, ...$ViewData];   
+
+        return view("edit", $ViewData);
     }
 
     /**

@@ -6,6 +6,7 @@
 @section('title', $title)
 @section('content')
     <div class="fuel-test-main">
+        @include('PageTitle')
         <center>
             <form action="/ShowCertificate/{{ $SampleNo }}" method="post" target="_blank">@csrf  
                 <input type="image" src="/images/pdf.png">
@@ -28,7 +29,7 @@
             </form>
         </center>
         <br>
-        <h1>EDIT : {{ $MadeBy }}</h1>
+        <h1>MADE BY : {{ $MadeBy }}</h1>
         <h1>Sample no : {{ $SampleNo }}</h1>
         <br>
         <div class="record-info">
