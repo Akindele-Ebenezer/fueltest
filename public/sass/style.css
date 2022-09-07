@@ -42,6 +42,8 @@ button:hover {
 .date {
   align-items: center;
   background: #fff;
+  border-radius: 1rem;
+  box-shadow: 10px 20px 20px #eee;
   color: #00592e;
   display: flex;
   justify-content: space-between;
@@ -345,8 +347,9 @@ section.fuel-test .fuel-test-main .log-in-alert {
   padding: 2rem;
   position: absolute;
   right: 2rem;
-  top: 2rem;
+  top: 10rem;
   width: max-content;
+  z-index: 2000;
 }
 section.fuel-test .fuel-test-main .form {
   border-radius: 0.3rem;
@@ -584,8 +587,9 @@ section.fuel-test .fuel-test-main .record-created-alert {
   padding: 2rem;
   position: absolute;
   right: 2rem;
-  top: 2rem;
+  top: 10rem;
   width: max-content;
+  z-index: 2000;
 }
 
 @media (max-width: 1047px) {

@@ -28,8 +28,9 @@ $headings: 1, 2, 3, 4;
     padding: 2rem; 
     position: absolute;
     right: 2rem;
-    top: 2rem;
-    width: max-content;
+    top: 10rem;
+    width: max-content; 
+    z-index: 2000;
 }
 
 button {
@@ -60,6 +61,8 @@ button {
 .date {
     align-items: center;
     background: #fff;
+    border-radius: 1rem;
+    box-shadow: 10px 20px 20px #eee;
     color: $color-2; 
     display: flex;
     justify-content: space-between;

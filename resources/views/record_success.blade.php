@@ -6,6 +6,7 @@
 @section('title', $title)
 @section('content')
     <div class="fuel-test-main">
+        @include('PageTitle')
         <div class="record-created-alert">NEW Record Created {{ $SampleNo }}</div>
         <center>
             <form action="/ShowCertificate/{{ $SampleNo }}" target="_blank" method="post">@csrf
