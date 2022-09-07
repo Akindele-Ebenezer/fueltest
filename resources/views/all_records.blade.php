@@ -6,13 +6,36 @@
 @section('title', $title)
 @section('content')
     <section class="previous-records">
-        <center>
-            <h1>{{ $title }} ({{ $number_of_all_records }})</h1>
-            <form action="/export">
-                <button type="submit" name="export">Export to Excel</button>
-            </form>
-            <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>
+        <center>  
+            <div>
+                <h1>{{ $title }} ({{ $number_of_all_records }})</h1> 
+            </div>
+            <div>
+                <form action="/export">
+                    <button type="submit" name="export">Export to Excel</button>
+                </form>
+                <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>                
+            </div>
+            <div>
+                <form action="" class="Passed">
+                    <label>
+                        <input type="submit" name="FilterPassedTests">
+                        <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg> 
+                    </label>
+                    PASSED <span>{{ $number_of_passed_records }}</span>
+                </form> 
+                <form action="" class="Failed">
+                    <label>
+                        <input type="submit" name="FilterFailedTests">
+                        <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                    </label>
+                    FAILED <span>{{ $number_of_failed_records }}</span>
+                </form> 
+            </div>
         </center>
+        <section>
+            <input type="text" placeholder="Search..">
+        </section>
         <div>
             <table>
                 <tr> 
@@ -31,11 +54,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterSampleNo">Filter</button>
                                 </center>
-                                @foreach($FilterSampleNo as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckSampleNo[]" value="{{ $filter->SampleNo }}"> {{ $filter->SampleNo }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterSampleNo as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckSampleNo[]" value="{{ $filter->SampleNo }}"> {{ $filter->SampleNo }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -50,14 +75,40 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <br> 
+                                <p>Select Fields</p>
+                                <section>
+                                    <li class="date"><span>From</span> <input type="date" name="DateFrom"> </li>
+                                    <li class="date"><span>To</span> <input type="date" name="DateTo"> </li>
+                                    <button name="FilterDateBetween">Apply</button>
+                                </section> <br>
+                                <section class="DatesFilter"> 
+                                    <input type="hidden" name="RecordsOfToday" value="{{ date('Y-m-d') }}">
+                                    <button name="FilterRecordsOfToday">Today</button>
+                                </section>
+                                <section class="DatesFilter"> 
+                                    <input type="hidden" name="RecordsOfYesterday" value="{{ date('Y-m-d', strtotime( '-1 day' )) }}">
+                                    <button name="FilterRecordsOfYesterday">Yesterday</button>
+                                </section>
+                                <section class="DatesFilter">  
+                                    <button name="FilterRecordsOfLastSevenDays">Last Seven Days</button>
+                                </section>
+                                <section class="DatesFilter">  
+                                    <button name="FilterRecordsOfThisMonth">This Month</button>
+                                </section>
+                                <section class="DatesFilter">  
+                                    <button name="FilterRecordsOfLastMonth">Last Month</button>
+                                </section> <br>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterSampleCollectionDate">Filter</button>
                                 </center>
-                                @foreach($FilterSampleCollectionDate as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckSampleCollectionDate[]" value="{{ $filter->SampleCollectionDate }}"> {{ $filter->SampleCollectionDate }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterSampleCollectionDate as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckSampleCollectionDate[]" value="{{ $filter->SampleCollectionDate }}"> {{ $filter->SampleCollectionDate }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -75,11 +126,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterTruckPlateNo">Filter</button>
                                 </center>
-                                @foreach($FilterTruckPlateNo as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckTruckPlateNo[]" value="{{ $filter->TruckPlateNo }}"> {{ $filter->TruckPlateNo }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterTruckPlateNo as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckTruckPlateNo[]" value="{{ $filter->TruckPlateNo }}"> {{ $filter->TruckPlateNo }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -97,11 +150,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterTankNo">Filter</button>
                                 </center>
-                                @foreach($FilterTankNo as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckTankNo[]" value="{{ $filter->TankNo }}"> {{ $filter->TankNo }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterTankNo as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckTankNo[]" value="{{ $filter->TankNo }}"> {{ $filter->TankNo }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -119,11 +174,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterAppearanceResult">Filter</button>
                                 </center>
-                                @foreach($FilterAppearanceResult as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckAppearanceResult[]" value="{{ $filter->AppearanceResult }}"> {{ $filter->AppearanceResult }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterAppearanceResult as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckAppearanceResult[]" value="{{ $filter->AppearanceResult }}"> {{ $filter->AppearanceResult }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -141,11 +198,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterColor">Filter</button>
                                 </center>
-                                @foreach($FilterColor as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckColor[]" value="{{ $filter->Color }}"> {{ $filter->Color }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterColor as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckColor[]" value="{{ $filter->Color }}"> {{ $filter->Color }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -163,11 +222,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterDensity">Filter</button>
                                 </center>
-                                @foreach($FilterDensity as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckDensity[]" value="{{ $filter->Density }}"> {{ $filter->Density }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterDensity as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckDensity[]" value="{{ $filter->Density }}"> {{ $filter->Density }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -185,11 +246,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterFlashPoint">Filter</button>
                                 </center>
-                                @foreach($FilterFlashPoint as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckFlashPoint[]" value="{{ $filter->FlashPoint }}"> {{ $filter->FlashPoint }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterFlashPoint as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckFlashPoint[]" value="{{ $filter->FlashPoint }}"> {{ $filter->FlashPoint }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -207,11 +270,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterTemp">Filter</button>
                                 </center>
-                                @foreach($FilterTemp as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckTemp[]" value="{{ $filter->Temp }}"> {{ $filter->Temp }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterTemp as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckTemp[]" value="{{ $filter->Temp }}"> {{ $filter->Temp }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -229,11 +294,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterWaterSediment">Filter</button>
                                 </center>
-                                @foreach($FilterWaterSediment as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckWaterSediment[]" value="{{ $filter->WaterSediment }}"> {{ $filter->WaterSediment }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterWaterSediment as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckWaterSediment[]" value="{{ $filter->WaterSediment }}"> {{ $filter->WaterSediment }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -251,11 +318,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterCleanliness">Filter</button>
                                 </center>
-                                @foreach($FilterCleanliness as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckCleanliness[]" value="{{ $filter->Cleanliness }}"> {{ $filter->Cleanliness }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterCleanliness as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckCleanliness[]" value="{{ $filter->Cleanliness }}"> {{ $filter->Cleanliness }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -273,11 +342,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterDateOfTest">Filter</button>
                                 </center>
-                                @foreach($FilterDateOfTest as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckDateOfTest[]" value="{{ $filter->DateOfTest }}"> {{ $filter->DateOfTest }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterDateOfTest as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckDateOfTest[]" value="{{ $filter->DateOfTest }}"> {{ $filter->DateOfTest }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -295,11 +366,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterMadeBy">Filter</button>
                                 </center>
-                                @foreach($FilterMadeBy as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckMadeBy[]" value="{{ $filter->MadeBy }}"> {{ $filter->MadeBy }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterMadeBy as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckMadeBy[]" value="{{ $filter->MadeBy }}"> {{ $filter->MadeBy }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -317,11 +390,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterDeliveredTo">Filter</button>
                                 </center>
-                                @foreach($FilterDeliveredTo as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckDeliveredTo[]" value="{{ $filter->DeliveredTo }}"> {{ $filter->DeliveredTo }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterDeliveredTo as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckDeliveredTo[]" value="{{ $filter->DeliveredTo }}"> {{ $filter->DeliveredTo }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -339,11 +414,13 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterRemarks">Filter</button>
                                 </center>
-                                @foreach($FilterRemarks as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckRemarks[]" value="{{ $filter->Remarks }}"> {{ $filter->Remarks }}
-                                    </li>   
-                                @endforeach
+                                <section>
+                                    @foreach($FilterRemarks as $filter)
+                                        <li>
+                                            <input type="checkbox" name="CheckRemarks[]" value="{{ $filter->Remarks }}"> {{ $filter->Remarks }}
+                                        </li>   
+                                    @endforeach
+                                </section>
                             </form>
                         </ul>
                     </div></th>
@@ -354,65 +431,65 @@
                          There are no RECORDS.. 
                     </td>
                 </tr>
-                @endif 
-                @foreach($all_records as $record)  
-                    @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
-                        <tr class="Yesterday history">
-                            <td>Yesterday <span></span> </td>  
-                        </tr>
-                    @elseif($record->SampleCollectionDate === date('Y-m-d'))
-                        <tr class="Today history">
-                            <td>Today <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-2 day")))
-                        <tr class="Two-Days-Ago history">
-                            <td>Two days ago <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
-                        <tr class="Three-Days-Ago history">
-                            <td>Three days ago <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-4 day")))
-                        <tr class="Four-Days-Ago history">
-                            <td>Four days ago <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-5 day")))
-                        <tr class="Five-Days-Ago history">
-                            <td>Five days ago <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-6 day")))
-                        <tr class="Six-Days-Ago history">
-                            <td>Six days ago <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
-                        <tr class="Last-Week history">
-                            <td>Last week  <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
-                        <tr class="Two-Weeks-Ago history">
-                            <td>Two weeks ago    <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
-                        <tr class="Three-Weeks-Ago history">
-                            <td>Three weeks ago <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
-                        <tr class="Last-Month history">
-                            <td>Last month <span></span> </td>
-                        </tr>
-                    @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
-                        <tr class="Two-Months-Ago history">
-                            <td>Two months ago <span></span> </td>
-                        </tr>
-                    @else($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
-                        <tr class="Older history">
-                            <td>Older  <span></span> </td>
-                        </tr>
-                    @endif   
+                @endif  
+                    @foreach($all_records as $record)  
+                        @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
+                            <tr class="Yesterday history">
+                                <td>Yesterday <span></span> </td>  
+                            </tr> 
+                        @elseif($record->SampleCollectionDate === date('Y-m-d'))
+                            <tr class="Today history">
+                                <td>Today <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-2 day")))
+                            <tr class="Two-Days-Ago history">
+                                <td>Two days ago <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
+                            <tr class="Three-Days-Ago history">
+                                <td>Three days ago <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-4 day")))
+                            <tr class="Four-Days-Ago history">
+                                <td>Four days ago <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-5 day")))
+                            <tr class="Five-Days-Ago history">
+                                <td>Five days ago <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-6 day")))
+                            <tr class="Six-Days-Ago history">
+                                <td>Six days ago <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
+                            <tr class="Last-Week history">
+                                <td>Last week  <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
+                            <tr class="Two-Weeks-Ago history">
+                                <td>Two weeks ago    <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
+                            <tr class="Three-Weeks-Ago history">
+                                <td>Three weeks ago <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
+                            <tr class="Last-Month history">
+                                <td>Last month <span></span> </td>
+                            </tr>
+                        @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
+                            <tr class="Two-Months-Ago history">
+                                <td>Two months ago <span></span> </td>
+                            </tr>
+                        @else($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
+                            <tr class="Older history">
+                                <td>Older  <span></span> </td>
+                            </tr>
+                        @endif   
 
                     <tr>  
                         <td class="pdf-and-edit">
-                            <form action="/GenerateCertificate/{{ $record->SampleNo }}" method="get" target="_blank">@csrf
+                            <form action="/GenerateCertificate/{{ $record->SampleNo }}" method="post" target="_blank">@csrf
                                 <input type="image" src="/images/pdf.png"> 
                                 <input name="SampleNo" type="hidden" value="{{ $record->SampleNo }}">
                                 <input name="SampleCollectionDate" type="hidden" value="{{ $record->SampleCollectionDate }}">
@@ -430,7 +507,7 @@
                                 <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $record->MadeBy }}">
                                 <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $record->DeliveredTo }}">
                                 <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $record->Remarks }}"> 
-                            </form>  
+                            </form> 
                             <!-- <form action="/edit/{{ $record->SampleNo }}" method="post" target="_blank">@csrf 
                                 <input type="image" src="/images/edit.png"> 
                                 <input name="SampleNo" type="hidden" value="{{ $record->SampleNo }}">
@@ -450,12 +527,12 @@
                                 <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $record->DeliveredTo }}">
                                 <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $record->Remarks }}"> 
                             </form>  -->  
-                        </td>  
+                        </td> 
                         <td class="sample-no">{{ $record->SampleNo }}</td>
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
                         <td class="truck-plate-no">{{ $record->TruckPlateNo  }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>
-                        <td class="appearance-result"><p class="{{ $record->AppearanceResult === 'Bright' || 'BRIGHT' ? 'Bright' : '' }} {{ $record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $record->AppearanceResult === 'C/M' ? 'CM' : '' }}">{{ $record->AppearanceResult }} </p></td>
+                        <td class="appearance-result"><p class="{{ $record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $record->AppearanceResult }} </p></td>
                         <td>{{ str_replace("Choose Color...", "null", $record->Color) }}</td>
                         <td class="density">{{ $record->Density }}</td>
                         <td class="flash-point">{{ $record->FlashPoint }}</td>
@@ -464,12 +541,15 @@
                         <td>{{ $record->Cleanliness }}</td>
                         <td>{{ $record->DateOfTest }}</td>
                         <td>{{ $record->MadeBy }}</td>
-                        <td>{{ $record->DeliveredTo }}</td> 
-                        <td class="remarks">{{ $record->Remarks }}</td>
+                        <td>{{ $record->DeliveredTo }}</td>  
+                        <td class="remarks">{{ substr($record->Remarks, 0, 17) }}{{ strlen($record->Remarks) > 17 ? '..' : '' }}</td>
                     </tr>
                 @endforeach
             </table> 
-            <!-- Pagination links -->
+            <!-- <div class="links"> -->
+                <!-- Pagination links -->
+                
+            <!-- </div> -->
         </div>
     </section>
 
@@ -486,13 +566,13 @@
 
         }
 
-        for (let i = 0; i < Filter.length; i++) {  
+        // for (let i = 0; i < Filter.length; i++) {  
 
-            Filter[i].addEventListener('mouseleave', () => {
-                Filter[i].classList.toggle('filter-toggle');
-            });
+        //     Filter[i].addEventListener('mouseleave', () => {
+        //         Filter[i].classList.toggle('filter-toggle');
+        //     });
 
-        }  
+        // }  
 
         let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
         let Today = document.querySelectorAll('section.previous-records table tr.Today');
@@ -526,7 +606,7 @@
         
         let HistoryTotal = document.querySelectorAll('section.previous-records table tr.history span');
         let HistoryTotalArray = [];
-
+ 
         for (let i = 0; i < History.length; i++) {
             for (let j = 0; j < History[i].length; j++) { 
                 History[i][0].style.display = 'block';
@@ -542,6 +622,7 @@
             for (let j = 0; j < HistoryTotalArray.length; j++) {
                 HistoryTotal[i].textContent = HistoryTotalArray[i]; 
                 // console.log(HistoryTotalArray[i]);
+                // console.log(HistoryTotal);
             }
         }
 
@@ -574,6 +655,37 @@
                 } 
             });
         }
+
+        // let Search = document.querySelector('section input[placeholder="Search.."]');
+
+        // let Records = document.querySelectorAll('section.previous-records table tr'); 
+        // let Records__ = document.querySelectorAll('section.previous-records table tr td'); 
+        // let Records_ = document.querySelectorAll('section.previous-records table tr td p'); 
+        
+        // Search.addEventListener('input', e => {
+        //     let FilteredText = e.target.value.toLocaleLowerCase(); 
+ 
+        //     Records.forEach(Record => {
+        //         // if (Record.textContent.toLocaleLowerCase().indexOf(FilteredText) != -1) {
+        //         //     Record.parentElement.style.display = 'block';
+        //         // } else {
+        //         //     Record.parentElement.style.display = 'none';                    
+        //         // }       
+        //         Records__.forEach(Record_ => {
+        //             console.log(Record_.textContent);                    
+        //         });
+        //     });
+ 
+        //     Records_.forEach(Record => {
+        //         if (Record.textContent.toLocaleLowerCase().indexOf(FilteredText) != -1) {
+        //             Record.parentElement.style.display = 'revert';
+        //             console.log(Record.textContent);
+        //         } else {
+        //             Record.parentElement.style.display = 'none';                    
+        //         }        
+        //     });
+
+        // });
 
     </script>
 @endsection

@@ -1,25 +1,20 @@
 @extends('layouts.layout_1')
 
-@section('name', $Name)
-@section('email', $Email)
-@section('header_info', $Title)
-@section('title', $Title)
+@section('name', $name)
+@section('email', $email)
+@section('header_info', $title)
+@section('title', $title)
 @section('content')
     <section class="previous-records">
-        <center>
-            <h1>{{ $Title }}</h1>
-            <form action="/export">
-                <button type="submit" name="export">Export to Excel</button>
-            </form>
-        </center>
+        @include('PageTitle')
         <div>
-            <table> 
+            <table class="vendors"> 
                 <tr>  
-                    <th>Vendor ID</th>
+                    <th>#</th>
                     <th>Vendor No.</th>
                     <th class="vendor-name">Vendor Name</th> 
                 </tr>  
-                @foreach($Vendors as $Vendor)
+                @foreach($vendors as $Vendor)
                 <tr> 
                     <td class="vendor-id">{{ $Vendor->id }}</td>
                     <td class="vendor-no">{{ $Vendor->VendorNo }}</td>

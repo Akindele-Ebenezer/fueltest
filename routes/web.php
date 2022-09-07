@@ -18,7 +18,7 @@ Route::get('/AllRecords', [FuelTestController::class, 'show_all_records'])->name
 
 Route::get('/edit', [FuelTestController::class, 'edit'])->name('edit_records');
 
-Route::post('/RecordSuccess', [FuelTestController::class, 'store'])->name('record_success');
+Route::get('/RecordSuccess', [FuelTestController::class, 'store'])->name('record_success');
 
 Route::post('/login', [AuthController::class, 'fuel_test_user_login'])->name('login');
     
@@ -26,14 +26,16 @@ Route::get('/logout', [AuthController::class, 'fuel_test_user_logout']);
  
 Route::post('/update/{SampleNo}', [FuelTestController::class, 'update']); 
 
-Route::post('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
+Route::get('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
  
-Route::get('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']);
+Route::post('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']);
 
-Route::get('/ShowCertificate/{SampleNo}', [PdfController::class, 'show']);
+Route::post('/ShowCertificate/{SampleNo}', [PdfController::class, 'show']);
  
 Route::get('/export', [FuelTestController::class, 'export']);
 
-Route::get('/Vendors', [VendorController::class, 'index'])->name('vendors');;
+Route::get('/Vendors', [VendorController::class, 'index'])->name('vendors');
 
-Route::get('/filter', [FuelTestController::class, 'filter'])->name('filter');;
+Route::get('/filter', [FuelTestController::class, 'filter'])->name('filter');
+
+Route::get('/FuelTestStats', [FuelTestController::class, 'show_stats'])->name('fuel_test_stats');

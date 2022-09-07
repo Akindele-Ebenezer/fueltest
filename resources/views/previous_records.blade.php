@@ -7,11 +7,31 @@
 @section('content')
     <section class="previous-records">
         <center>
-            <h1>{{ $title }} ({{ $number_of_previous_records }})</h1>
-            <form action="/export">
-                <button type="submit" name="export">Export to Excel</button>
-            </form>
-            <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>
+            <div>
+                <h1>{{ $title }} ({{ $number_of_previous_records }})</h1>
+            </div>
+            <div>
+                <form action="/export">
+                    <button type="submit" name="export">Export to Excel</button>
+                </form>
+                <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>                
+            </div>
+            <div>
+                <form action="" class="Passed">
+                    <label>
+                        <input type="submit" name="FilterPassedTests">
+                        <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                    </label>
+                    PASSED <span>{{ $number_of_passed_records }}</span>
+                </form>                
+                <form action="" class="Failed">
+                    <label>
+                        <input type="submit" name="FilterFailedTests">
+                        <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                    </label>
+                    FAILED <span>{{ $number_of_failed_records }}</span>
+                </form>   
+            </div>
         </center>
         <div>
             <table>
@@ -50,6 +70,30 @@
                     <div class="filter filter-sample-collection-date">
                         <ul>
                             <form action="" method="get">
+                                <br> 
+                                <p>Select Fields</p>
+                                <section>
+                                    <li class="date"><span>From</span> <input type="date" name="DateFrom"> </li>
+                                    <li class="date"><span>To</span> <input type="date" name="DateTo"> </li>
+                                    <button name="FilterDateBetween">Apply</button>
+                                </section> <br>
+                                <section class="DatesFilter"> 
+                                    <input type="hidden" name="RecordsOfToday" value="{{ date('Y-m-d') }}">
+                                    <button name="FilterRecordsOfToday">Today</button>
+                                </section>
+                                <section class="DatesFilter"> 
+                                    <input type="hidden" name="RecordsOfYesterday" value="{{ date('Y-m-d', strtotime( '-1 day' )) }}">
+                                    <button name="FilterRecordsOfYesterday">Yesterday</button>
+                                </section>
+                                <section class="DatesFilter">  
+                                    <button name="FilterRecordsOfLastSevenDays">Last Seven Days</button>
+                                </section>
+                                <section class="DatesFilter">  
+                                    <button name="FilterRecordsOfThisMonth">This Month</button>
+                                </section>
+                                <section class="DatesFilter">  
+                                    <button name="FilterRecordsOfLastMonth">Last Month</button>
+                                </section> <br>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterSampleCollectionDate">Filter</button>
                                 </center>
@@ -412,7 +456,7 @@
 
                 <tr>
                     <td class="pdf-and-edit">
-                        <form action="/GenerateCertificate/{{ $previous_record->SampleNo }}" method="get" target="_blank">@csrf
+                        <form action="/GenerateCertificate/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf
                             <input type="image" src="/images/pdf.png"> 
                             <input name="SampleNo" type="hidden" value="{{ $previous_record->SampleNo }}">
                             <input name="SampleCollectionDate" type="hidden" value="{{ $previous_record->SampleCollectionDate }}">
@@ -431,7 +475,7 @@
                             <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $previous_record->DeliveredTo }}">
                             <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $previous_record->Remarks }}"> 
                         </form> 
-                        <form action="/Edit/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf 
+                        <form action="/Edit/{{ $previous_record->SampleNo }}" > 
                             <input type="image" src="/images/edit.png"> 
                             <input name="SampleNo" type="hidden" value="{{ $previous_record->SampleNo }}">
                             <input name="SampleCollectionDate" type="hidden" value="{{ $previous_record->SampleCollectionDate }}">
@@ -456,7 +500,7 @@
                     <td class="sample-collection-date">{{ $previous_record->SampleCollectionDate }}</td> 
                     <td class="truck-plate-no">{{ $previous_record->TruckPlateNo  }}</td>
                     <td class="tank-no">{{ $previous_record->TankNo }}</td>
-                    <td class="appearance-result"><p class="{{ $previous_record->AppearanceResult === 'Bright' || 'BRIGHT' ? 'Bright' : '' }} {{ $previous_record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $previous_record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $previous_record->AppearanceResult === 'C/M' ? 'CM' : '' }}">{{ $previous_record->AppearanceResult }} </p></td> 
+                    <td class="appearance-result"><p class="{{ $previous_record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $previous_record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $previous_record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $previous_record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $previous_record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $previous_record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $previous_record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $previous_record->AppearanceResult }} </p></td> 
                     <td>{{ str_replace("Choose Color...", "null", $previous_record->Color) }}</td>
                     <td class="density">{{ $previous_record->Density }}</td>
                     <td class="flash-point">{{ $previous_record->FlashPoint }}</td>
@@ -466,7 +510,7 @@
                     <td>{{ $previous_record->DateOfTest }}</td>
                     <td>{{ $previous_record->MadeBy }}</td>
                     <td>{{ $previous_record->DeliveredTo }}</td> 
-                    <td class="remarks">{{ $previous_record->Remarks }}</td> 
+                    <td class="remarks">{{ substr($previous_record->Remarks, 0, 17) }}{{ strlen($previous_record->Remarks) > 17 ? '..' : '' }}</td> 
                 </tr>
                 @endforeach 
             </table>
@@ -484,11 +528,11 @@
             });
         }
 
-        for (let i = 0; i < Filter.length; i++) {  
-            Filter[i].addEventListener('mouseleave', () => {
-                Filter[i].classList.toggle('filter-toggle');
-            });
-        } 
+        // for (let i = 0; i < Filter.length; i++) {  
+        //     Filter[i].addEventListener('mouseleave', () => {
+        //         Filter[i].classList.toggle('filter-toggle');
+        //     });
+        // } 
 
         let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
         let Today = document.querySelectorAll('section.previous-records table tr.Today');

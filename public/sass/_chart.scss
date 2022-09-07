@@ -1,0 +1,51 @@
+.fuel-test-dashboard { 
+    display: flex;
+    flex-wrap: wrap;
+    height: 70vh;
+    overflow: scroll;
+    padding: 1rem;
+    max-width: 90rem;
+
+    &-inner {
+        border-radius: 1rem;
+        box-shadow: 1px 2px 19px #ddd;
+        margin: 1rem;
+        max-width: 600px  !important;
+        padding: 2rem; 
+        
+        canvas {    
+            height: 240px  !important;
+            width: 100% !important; 
+        }
+
+        h1 {
+            color: #555;
+            font-size: 2rem;
+        }
+
+        .inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            div {
+                display: flex;
+
+                h2 {
+                    border-radius: 50%;
+                    color: #444;
+                    margin-inline: .5rem;
+                    padding: 1rem;
+                    
+                    &:first-of-type {
+                        border: 8px solid #ea5545;
+                    }
+                    
+                    &:last-of-type {
+                        border: 8px solid #6cd4c5;
+                    }
+                }
+            }
+        }
+    }
+}

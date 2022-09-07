@@ -76,7 +76,12 @@ section {
 
             &-main {
                 overflow: scroll;
+                position: relative;
                 width: 80vw;
+ 
+                .log-in-alert {
+                    @include alert();
+                }
 
                 .form {
                     border-radius: .3rem;
@@ -91,6 +96,7 @@ section {
                         background: #fff; 
                         display: flex;
                         margin: 1rem;
+                        position: relative;
                         width: 42rem;
 
                         &:last-of-type {
@@ -99,9 +105,120 @@ section {
                             width: 100%;
                         }
 
+                        p {
+                            color: red;
+                            position: absolute;
+                            transform: translate(3rem, 3rem);
+                        }
+
                         select {
                             border: 3px solid #999;
                             width: 100%;
+                        }
+
+                        section {
+                            background: #fff;
+                            border-radius: 1rem 2rem;
+                            box-shadow: 1px 2px 19px #bbb;
+                            display: none;
+                            max-height: 27rem;
+                            padding: 1.5rem;
+                            position: absolute;
+                            left: 14rem;
+                            overflow: scroll;
+                            top: 5rem;
+                            width: 28rem;
+                            z-index: 1;
+
+                            ul {
+                                h2 {
+                                    align-items: center;
+                                    background: -webkit-linear-gradient(#25066a, #00592e);
+                                    background-clip: border-box; 
+                                    border-bottom: 2px solid #eee;
+                                    display: flex;
+                                    font-size: 2rem;
+                                    justify-content: space-between;
+                                    margin-bottom: 1rem;
+                                    padding-block: 1rem;
+                                    -webkit-background-clip: text;
+                                    -webkit-text-fill-color: transparent; 
+                                }
+                                
+                                li { 
+                                    align-items: center;
+                                    border-bottom: 1px solid $color-1;
+                                    border-left: 3px solid #fff;
+                                    display: flex;
+                                    color: #333; 
+                                    font-size: 1.25rem;
+                                    justify-content: space-between;
+                                    padding-block: .5rem;
+                                    text-transform: capitalize;
+                                    width: 100% !important;
+
+                                    &.Bright {
+                                        @include AppearanceResult();
+                                        border-radius: unset;
+
+                                        span {
+                                            background: green;
+                                        }
+                                    }
+
+                                    &.Clear {
+                                        @include AppearanceResult();
+                                        background: rgb(191 191 1 / 17%);
+                                        border-radius: unset;
+                                        color: #abab00;
+
+                                        span {
+                                            background: #abab00;
+                                        }
+                                    }
+                                    
+                                    &:hover {
+                                        background: lighten($color: #eee, $amount: 1);
+                                        border-left: 3px solid green;
+                                        cursor: pointer;
+                                        padding-left: 1rem;
+                                        transition: .5s;
+                                    }
+
+                                    &.Muddy {
+                                        @include AppearanceResult();
+                                        background: #00828f1c;
+                                        border-radius: unset;
+                                        color: #00bccf;
+
+                                        span {
+                                            background: #00bccf;
+                                        }
+                                    }
+                                    
+                                    p {
+                                        color: unset; 
+                                        color: $color-2; 
+                                        position: unset;
+                                        transform: unset;
+                                        width: 15rem;
+                                    }
+
+                                    span {
+                                        border-radius: 1rem;
+                                        color: $color-3;
+                                        height: 1rem;
+                                        padding: .5rem;
+                                        margin-left: 1rem;
+                                        text-align: center;
+                                        width: 5rem;
+                                    }
+                                }
+                            }
+
+                            &.ToggleList {
+                                display: block;
+                            }
                         }
 
                         svg {
@@ -121,7 +238,8 @@ section {
                         justify-content: space-around;
                     }
 
-                    input {
+                    input,
+                    h3 {
                         border: 1px solid #ccc;
                         border-radius: 0.5rem 1rem;
                         color: $color-2;
@@ -130,7 +248,7 @@ section {
                         width: 100%;
                         
                         &[placeholder="Vendor No..."],
-                        &[placeholder="Vendor Name..."] {
+                        &[placeholder="Name of VENDOR..."] {
                             &:first-of-type {
                                 width: 40%;
                                 margin-right: 1rem;
@@ -143,6 +261,54 @@ section {
 
                         &:focus {
                             border-bottom: 3px solid $color-2;
+                        }
+                        &[name="SampleNo"],
+                        &[name="TruckPlateNo"],
+                        &[name="Temp"],
+                        &[name="WaterSediment"],
+                        &[name="VendorNo"],
+                        &[name="Remarks"] {
+                            border: none; 
+                            border-bottom: 1px solid #ccc;
+                            border-radius: unset;
+                        }
+                         
+                        &[name="FlashPoint"] { 
+                            color: darken(#00bccf, 10);
+                            font-style: italic;
+                        }                            
+                         
+                        &[name="TankNo"] {
+                            color: #f33f3f;
+                            font-style: italic;
+                        }   
+                         
+                        &[name="TruckPlateNo"] {
+                            color: darken(#00bccf, 10);
+                            font-style: italic;
+                        }   
+
+                        &[name="SampleNo"] {
+                            border-bottom: 3px solid $color-2;
+                            color: #00828f;
+                            cursor: pointer;
+                        }
+                    
+                        &:focus {
+                            border-bottom: 3px solid $color-2;
+                        }
+
+                        &.select,
+                        &[type="date"] {
+                            background: #eee;
+                            border: none;
+                            border-radius: unset;
+                            cursor: pointer;
+                        }
+ 
+                        &[type="date"] {
+                            background: lighten($color-1, 5); 
+                            color: #f33f3f; 
                         }
                     }
 
@@ -159,28 +325,14 @@ section {
                         //     margin-right: 0;
                         // }
                     }
+                } 
 
-                    section {                                            
-                        &.filter {
-                            ul {
-                                form {
-                                    display: unset;
-                                }    
-                            }
-                        }
-                    }
-                }
-
-                h1 {
-                    border-bottom: 1px solid $color-2; 
-                    font-size: 5.2rem;
-                    margin-left: 2rem;
-                    padding-top: 2rem;
+                .record-created-alert {
+                    @include alert();
                 }
             }
         }
     }
-
 }
 
 @media (max-width: 1047px) {

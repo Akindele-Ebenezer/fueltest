@@ -36,7 +36,7 @@ class PdfController extends Controller
             
         $pdf = new FPDF();
         $pdf->AddPage();
-        $pdf->SetLeftMargin(17);  
+        $pdf->SetLeftMargin(9);  
         $pdf->SetFont('Arial','B',16); 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetDrawColor(89, 74, 74); 
@@ -54,7 +54,7 @@ class PdfController extends Controller
         $pdf->Cell(45, 10,'SAMPLE OF', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(32, 10, $SampleNo, 1, 0, 'C');
-        $pdf->Cell(12.9, 10,'', 0, 0, '');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -67,7 +67,7 @@ class PdfController extends Controller
         $pdf->Cell(45, 10,'DATE OF SAMPLING', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(32, 10, $SampleCollectionDate, 1, 0, 'C');
-        $pdf->Cell(12.9, 10,'', 0, 0, '');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -81,7 +81,7 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(32, 10, $DateOfTest, 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(12.9, 10,'', 0, 0, '');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -94,7 +94,7 @@ class PdfController extends Controller
         $pdf->Cell(45, 10,'DATE OF REPORTING', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(32, 10, $DateOfTest, 1, 0, 'C');
-        $pdf->Cell(12.9, 10,'', 0, 0, '');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -108,57 +108,155 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(10, 10,'S/N', 1, 0, 'C');
         $pdf->Cell(33, 10,'PROPERTIES', 1, 0, 'C');
-        $pdf->Cell(33, 10,'UNITS', 1, 0, 'C');
+        $pdf->Cell(25, 10,'UNITS', 1, 0, 'C');
         $pdf->Cell(33, 10,'LIMITS (Min Max)', 1, 0, 'C');
         $pdf->Cell(33, 10,'TEST METHODS', 1, 0, 'C');
-        $pdf->Cell(34.9, 10,'RESULT', 1, 1, 'C');
+        $pdf->Cell(59.9, 10,'RESULT', 1, 1, 'C');
         
         $pdf->SetFont('Arial','', 8);
         $pdf->SetTextColor(89, 74, 74); 
         $pdf->Cell(10, 10,'1', 1, 0, 'C');
         $pdf->Cell(33, 10,'APPERANCE', 1, 0, 'C');
-        $pdf->Cell(33, 10,'-', 1, 0, 'C');
+        $pdf->Cell(25, 10,'-', 1, 0, 'C');
         $pdf->Cell(33, 10,'BRIGHT AND CLEAR', 1, 0, 'C');
         $pdf->Cell(33, 10,'VISUAL', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $AppearanceResult, 1, 1, 'C');
+
+        switch ($AppearanceResult) { 
+            case 'Bright':
+                $AppearanceResult_ = 'PASSED';
+                break;
+
+            case 'BRIGHT':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+
+            case 'bright':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+
+            case 'Clear':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            
+            case 'CLEAR':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            
+            
+            case 'clear':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            
+            default:
+                $AppearanceResult_ = 'FAILED'; 
+                break;
+        } 
+
+        $pdf->Cell(34.9, 10, $AppearanceResult, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $AppearanceResult_, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'2', 1, 0, 'C');
         $pdf->Cell(33, 10,'COLOR', 1, 0, 'C');
-        $pdf->Cell(33, 10,'-', 1, 0, 'C');
+        $pdf->Cell(25, 10,'-', 1, 0, 'C');
         $pdf->Cell(33, 10,'   -                 2.5   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D1500', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $Color, 1, 1, 'C');
+
+        switch ($Color) {
+            case $Color <= 2.5:
+                 $ColorResult = 'PASSED';
+                break;                          
+                 
+            default:
+                 $ColorResult = 'FAILED';                                
+                 break;
+        }  
+
+        $pdf->Cell(34.9, 10, $Color, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $ColorResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'3', 1, 0, 'C');
         $pdf->Cell(33, 10,'DENSITY', 1, 0, 'C');
-        $pdf->Cell(33, 10,'kg/m3', 1, 0, 'C');
-        $pdf->Cell(33, 10,'   0.82                 0855   ', 1, 0, 'C');
+        $pdf->Cell(25, 10,'kg/m3', 1, 0, 'C');
+        $pdf->Cell(33, 10,'   0.82                 0.855   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D1298', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $Density, 1, 1, 'C');
+ 
+        switch ($Density) {
+            case $Density <= 0.856 && $Density >= 0.82:
+                $DensityResult = 'PASSED';
+                break;                          
+                
+            default:
+                $DensityResult = 'FAILED'; 
+                break;
+        }  
+
+        $pdf->Cell(34.9, 10, $Density, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $DensityResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
         
         $pdf->Cell(10, 10,'4', 1, 0, 'C');
         $pdf->Cell(33, 10,'FLASH POINT', 1, 0, 'C');
-        $pdf->Cell(33, 10,'oC', 1, 0, 'C');
+        $pdf->Cell(25, 10,'oC', 1, 0, 'C');
         $pdf->Cell(33, 10,'   52                 92   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D93', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $FlashPoint, 1, 1, 'C');
+ 
+        switch ($FlashPoint) {
+            case $FlashPoint <= 92 && $FlashPoint >= 52:
+                $DensityResult = 'PASSED';
+                break;                          
+                
+            default:
+                $DensityResult = 'FAILED';
+                break;
+        } 
+
+        $pdf->Cell(34.9, 10, $FlashPoint, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $DensityResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'5', 1, 0, 'C');
         $pdf->Cell(33, 10,'WATER / SEDIMEMT', 1, 0, 'C');
-        $pdf->Cell(33, 10,'%', 1, 0, 'C');
+        $pdf->Cell(25, 10,'%', 1, 0, 'C');
         $pdf->Cell(33, 10,'   -                 0.050   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D2709', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $WaterSediment, 1, 1, 'C');
+
+        switch ($WaterSediment) {
+            case $WaterSediment <= 0.050:
+                $WaterSedimentResult = 'PASSED';
+                break;                          
+            
+            default:
+                $WaterSedimentResult = 'FAILED';
+                break;
+        } 
+
+        $pdf->Cell(34.9, 10, $WaterSediment, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $WaterSedimentResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'6', 1, 0, 'C');
         $pdf->Cell(33, 10,'CLEANLINESS', 1, 0, 'C');
-        $pdf->Cell(33, 10,'Mins', 1, 0, 'C');
+        $pdf->Cell(25, 10,'Mins', 1, 0, 'C');
         $pdf->Cell(33, 10,'   12                 15   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D2068', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $Cleanliness, 1, 1, 'C'); 
-            
+ 
+        switch ($Cleanliness) {
+            case $Cleanliness <= 15 && $Cleanliness >= 12:
+                $CleanlinessResult = 'PASSED';
+                break;        
+
+            default:
+                $CleanlinessResult = 'FAILED';
+                break;   
+        } 
+        
+        $pdf->Cell(34.9, 10, $Cleanliness, 1, 0, 'C'); 
+        $pdf->Cell(24.9, 10, $CleanlinessResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74);  
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
-        $pdf->Cell(0, 10,'REMARKS : ' . $Remarks, 0, 1);   
+        $pdf->MultiCell(130, 5, 'REMARKS : ' . $Remarks, 0, 1);   
 
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->Cell(0, 2, $MadeBy, 0, 1);  
@@ -166,12 +264,14 @@ class PdfController extends Controller
         $pdf->Cell(0, 5,' ', 0, 1, 'C');  
         $pdf->Cell(0, 8, $DateOfTest, 0, 1); 
         
-        $pdf->Image('images/depasa-logo.png', 16, 225, 30);
+        $pdf->Image('images/depasa-logo.png', 10, 225, 30);
         $pdf->Cell(33, 10,'', 0, 1, 'C');
+        $pdf->Cell(33, 3,'', 0, 1, 'C');
         $pdf->SetFont('Arial','B', 7);
         $pdf->SetTextColor(9, 33, 81);  
         $pdf->Cell(38, 33,'AN ISO CERTIFIED COMPANY', 0, 0, 'C');
-        $pdf->Image('images/iso.png', 20, 245, 30);
+        $pdf->Cell(33, 7,'', 0, 1, 'C');
+        $pdf->Image('images/iso.png', 10, 245, 30);
         
 
         $pdf->Output(); 
@@ -180,7 +280,7 @@ class PdfController extends Controller
     }
 
     public function show(Request $request) {
-        
+         	
         $SampleNo = $request->SampleNo;   
         $SampleCollectionDate = $request->SampleCollectionDate; 
         $TruckPlateNo = $request->TruckPlateNo; 
@@ -200,7 +300,7 @@ class PdfController extends Controller
             
         $pdf = new FPDF();
         $pdf->AddPage();
-        $pdf->SetLeftMargin(17);  
+        $pdf->SetLeftMargin(9);  
         $pdf->SetFont('Arial','B',16); 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetDrawColor(89, 74, 74); 
@@ -217,8 +317,8 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(45, 10,'SAMPLE OF', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(22, 10, $SampleNo, 1, 0, 'C');
-        $pdf->Cell(22.9, 10,'', 0, 0, '');
+        $pdf->Cell(32, 10, $SampleNo, 1, 0, 'C');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -230,8 +330,8 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(45, 10,'DATE OF SAMPLING', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(22, 10, $SampleCollectionDate, 1, 0, 'C');
-        $pdf->Cell(22.9, 10,'', 0, 0, '');
+        $pdf->Cell(32, 10, $SampleCollectionDate, 1, 0, 'C');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -243,9 +343,9 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(45, 10,'DATE OF ANALYSIS', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(22, 10, $DateOfTest, 1, 0, 'C');
+        $pdf->Cell(32, 10, $DateOfTest, 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(22.9, 10,'', 0, 0, '');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -257,8 +357,8 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(45, 10,'DATE OF REPORTING', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(22, 10, $DateOfTest, 1, 0, 'C');
-        $pdf->Cell(22.9, 10,'', 0, 0, '');
+        $pdf->Cell(32, 10, $DateOfTest, 1, 0, 'C');
+        $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
@@ -272,54 +372,159 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(10, 10,'S/N', 1, 0, 'C');
         $pdf->Cell(33, 10,'PROPERTIES', 1, 0, 'C');
-        $pdf->Cell(33, 10,'UNITS', 1, 0, 'C');
+        $pdf->Cell(25, 10,'UNITS', 1, 0, 'C');
         $pdf->Cell(33, 10,'LIMITS (Min Max)', 1, 0, 'C');
         $pdf->Cell(33, 10,'TEST METHODS', 1, 0, 'C');
-        $pdf->Cell(34.9, 10,'RESULT', 1, 1, 'C');
+        $pdf->Cell(59.9, 10,'RESULT', 1, 1, 'C');
         
         $pdf->SetFont('Arial','', 8);
         $pdf->SetTextColor(89, 74, 74); 
         $pdf->Cell(10, 10,'1', 1, 0, 'C');
         $pdf->Cell(33, 10,'APPERANCE', 1, 0, 'C');
-        $pdf->Cell(33, 10,'-', 1, 0, 'C');
+        $pdf->Cell(25, 10,'-', 1, 0, 'C');
         $pdf->Cell(33, 10,'BRIGHT AND CLEAR', 1, 0, 'C');
         $pdf->Cell(33, 10,'VISUAL', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $AppearanceResult, 1, 1, 'C');
+
+        switch ($AppearanceResult) { 
+            case 'Bright':
+                $AppearanceResult_ = 'PASSED';
+                break;
+
+            case 'BRIGHT':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+
+            case 'bright':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            case 'BRIGHT':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            case 'bright':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+
+            case 'Clear':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            
+            case 'CLEAR':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            
+            
+            case 'clear':
+                $AppearanceResult_ = 'PASSED';
+                break;                          
+            
+            default:
+                $AppearanceResult_ = 'FAILED'; 
+                break;
+        } 
+
+        $pdf->Cell(34.9, 10, $AppearanceResult, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $AppearanceResult_, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'2', 1, 0, 'C');
         $pdf->Cell(33, 10,'COLOR', 1, 0, 'C');
-        $pdf->Cell(33, 10,'-', 1, 0, 'C');
+        $pdf->Cell(25, 10,'-', 1, 0, 'C');
         $pdf->Cell(33, 10,'   -                 2.5   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D1500', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $Color, 1, 1, 'C');
+
+        switch ($Color) {
+            case $Color <= 2.5:
+                 $ColorResult = 'PASSED';
+                break;                          
+                 
+            default:
+                 $ColorResult = 'FAILED';                                
+                 break;
+        }  
+
+        $pdf->Cell(34.9, 10, $Color, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $ColorResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'3', 1, 0, 'C');
         $pdf->Cell(33, 10,'DENSITY', 1, 0, 'C');
-        $pdf->Cell(33, 10,'kg/m3', 1, 0, 'C');
-        $pdf->Cell(33, 10,'   0.82                 0855   ', 1, 0, 'C');
+        $pdf->Cell(25, 10,'kg/m3', 1, 0, 'C');
+        $pdf->Cell(33, 10,'   0.82                 0.855   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D1298', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $Density, 1, 1, 'C');
+ 
+        switch ($Density) {
+            case $Density <= 0.856 && $Density >= 0.82:
+                $DensityResult = 'PASSED';
+                break;                          
+                
+            default:
+                $DensityResult = 'FAILED'; 
+                break;
+        }  
+
+        $pdf->Cell(34.9, 10, $Density, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $DensityResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
         
         $pdf->Cell(10, 10,'4', 1, 0, 'C');
         $pdf->Cell(33, 10,'FLASH POINT', 1, 0, 'C');
-        $pdf->Cell(33, 10,'oC', 1, 0, 'C');
+        $pdf->Cell(25, 10,'oC', 1, 0, 'C');
         $pdf->Cell(33, 10,'   52                 92   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D93', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $FlashPoint, 1, 1, 'C');
+ 
+        switch ($FlashPoint) {
+            case $FlashPoint <= 92 && $FlashPoint >= 52:
+                $DensityResult = 'PASSED';
+                break;                          
+                
+            default:
+                $DensityResult = 'FAILED';
+                break;
+        } 
+
+        $pdf->Cell(34.9, 10, $FlashPoint, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $DensityResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'5', 1, 0, 'C');
         $pdf->Cell(33, 10,'WATER / SEDIMEMT', 1, 0, 'C');
-        $pdf->Cell(33, 10,'%', 1, 0, 'C');
+        $pdf->Cell(25, 10,'%', 1, 0, 'C');
         $pdf->Cell(33, 10,'   -                 0.050   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D2709', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $WaterSediment, 1, 1, 'C');
+
+        switch ($WaterSediment) {
+            case $WaterSediment <= 0.050:
+                $WaterSedimentResult = 'PASSED';
+                break;                          
+            
+            default:
+                $WaterSedimentResult = 'FAILED';
+                break;
+        } 
+
+        $pdf->Cell(34.9, 10, $WaterSediment, 1, 0, 'C');
+        $pdf->Cell(24.9, 10, $WaterSedimentResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(10, 10,'6', 1, 0, 'C');
         $pdf->Cell(33, 10,'CLEANLINESS', 1, 0, 'C');
-        $pdf->Cell(33, 10,'Mins', 1, 0, 'C');
+        $pdf->Cell(25, 10,'Mins', 1, 0, 'C');
         $pdf->Cell(33, 10,'   12                 15   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D2068', 1, 0, 'C');
-        $pdf->Cell(34.9, 10, $Cleanliness, 1, 1, 'C'); 
+ 
+        switch ($Cleanliness) {
+            case $Cleanliness <= 15 && $Cleanliness >= 12:
+                $CleanlinessResult = 'PASSED';
+                break;        
+
+            default:
+                $CleanlinessResult = 'FAILED';
+                break;   
+        } 
+
+        $pdf->Cell(34.9, 10, $Cleanliness, 1, 0, 'C'); 
+        $pdf->Cell(24.9, 10, $CleanlinessResult, 1, 1, 'C');
+        $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->Cell(0, 10,'REMARKS : ' . $Remarks, 0, 1);   
@@ -330,12 +535,13 @@ class PdfController extends Controller
         $pdf->Cell(0, 5,' ', 0, 1, 'C');  
         $pdf->Cell(0, 8, $DateOfTest, 0, 1); 
         
-        $pdf->Image('images/depasa-logo.png', 16, 225, 30);
+        $pdf->Image('images/depasa-logo.png', 10, 225, 30);
         $pdf->Cell(33, 10,'', 0, 1, 'C');
+        $pdf->Cell(33, 3,'', 0, 1, 'C');
         $pdf->SetFont('Arial','B', 7);
         $pdf->SetTextColor(9, 33, 81);  
         $pdf->Cell(38, 33,'AN ISO CERTIFIED COMPANY', 0, 0, 'C');
-        $pdf->Image('images/iso.png', 20, 245, 30);
+        $pdf->Image('images/iso.png', 10, 245, 30);
         
 
         $pdf->Output(); 

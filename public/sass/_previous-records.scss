@@ -1,9 +1,21 @@
 section {
     &.previous-records {
+        
+        .date { 
+            height: unset; 
+
+            div { 
+                height: unset; 
+                width: unset; 
+            } 
+        }
+
         center {
+            align-items: center;
             display: flex;
             flex-wrap: wrap;
-            margin: 5rem 1rem 2rem;
+            justify-content: space-between;
+            margin: 5rem 1rem 0;
 
             a {
                 button {
@@ -20,14 +32,61 @@ section {
                 }
             }
 
+            div {
+                display: flex;
+                height: unset;
+                margin: unset;
+                overflow: unset;
+                width: unset;
+
+                form {
+                    text-decoration: underline 1px;
+                    
+                    label input { display: none; }
+
+                    svg {
+                        border: 1px solid #333;
+                        border-radius: .2rem;
+                        cursor: pointer;
+                        fill: #333; 
+                        padding: 0.25rem;
+                        transform: translate(-0.2rem, 0.2rem);
+                        width: 1.5rem;
+                    }
+                }
+            }
+
             h1 {
-                border-bottom: 1px solid #00592e;
+                background: -webkit-linear-gradient(#25066a, #00592e);
+                background-clip: border-box;  
                 font-size: 2rem;
                 margin: 1rem;
+                text-transform: uppercase;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+            }
+        }
+ 
+        .Passed,
+        .Failed {
+            font-family: "Bitter", serif;
+            font-size: 1.4rem;
+            margin-left: 2rem;
+
+            span {
+                margin-inline: 2rem;
             }
         }
 
-        div{ 
+        .Passed {
+            color: $color-2;
+        }
+        
+        .Failed {
+            color: $error;
+        }
+
+        div { 
             height: 68vh;
             margin: 1rem 1rem 0;
             overflow: scroll;
@@ -40,7 +99,28 @@ section {
             text-align: center;
             width: max-content;
 
-            
+            &.vendors { 
+                tr {
+                    td {
+                        padding-block: .5rem;
+                        
+                        &.vendor-id {
+                            // color: $color-3;
+                            width: 2rem;
+                        }
+                        
+                        &.vendor-no {
+                            color: $color-2;
+                            width: 10rem;
+                        }
+                        
+                        &.vendor-name {
+                            color: #00828f;
+                        }
+                    }
+                }
+            }
+
             tr {
                 border-bottom: 1px solid #eee;
                 color: #222;
@@ -62,7 +142,7 @@ section {
 
                 &:hover {
                     background: #eee;
-                }
+                } 
 
                 td { 
                     // padding-block: 1rem;
@@ -109,6 +189,12 @@ section {
                         background: #00828f1c;
                         color: #00bccf;
                     } 
+                    
+                    p {
+                        &.Appearance {
+                            text-transform: uppercase;
+                        }
+                    }
                     
                     &.sample-collection-date { 
                         color: #f33f3f;
@@ -184,6 +270,7 @@ section {
 
                         &-toggle {
                             display: block; 
+                            width: 21.3rem;
                         }
 
                         ul {  
@@ -210,19 +297,42 @@ section {
 
                             center {
                                 background: #fff; 
+                                border: 1px solid #eee;
                                 margin: 0 auto 1rem;
                                 padding: .5rem;  
                                 width: 16rem;
                             }
 
                             li {
-                                &:hover {
+                                &.date {
+                                    display: flex;
+                                    font-weight: bold;
+                                    margin-block: .5rem;
+
+                                    input {
+                                        border: none;
+                                        color: #777;
+                                        cursor: pointer;
+                                    }
+
+                                    span {
+                                        padding-left: .55rem;
+                                        width: 5rem;
+                                    }
+                                }
+
+                                &:hover:not(&.date) {
                                     background: #eee;
                                     cursor: pointer;
                                 }
 
+
                                 input {
                                     margin-right: 1rem;
+
+                                    &[type="checkbox"] {
+                                        margin-left: 1rem;
+                                    }
                                 }
                             }
                         }
@@ -235,6 +345,26 @@ section {
                         label {
                             input {
                                 display: none;
+                            }
+                        }
+                    }
+
+                    p {
+                        background: -webkit-linear-gradient(#25066a, #00592e); 
+                        border-bottom: 1px solid #ddd;
+                        font-size: 2rem;
+                        font-family: "Bitter", serif;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+
+                    section { 
+                        &.DatesFilter {
+                            button {
+                                background: $color-3 !important;
+                                border-radius: 0.6rem;
+                                padding: 0.5rem; 
+                                width: 100%;
                             }
                         }
                     }
@@ -269,6 +399,10 @@ section {
                 }
             }
         }
+    }
+
+    input[placeholder="Search.."] {
+        margin-left: 2rem;
     }
 }
 
