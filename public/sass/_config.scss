@@ -160,6 +160,20 @@ button {
     }
 }
 
+.show {
+    display: block !important;
+}
+
+.tooltip {
+    background: #222;
+    border-radius: .5rem;
+    box-shadow: 1px 2px 19px #aaa;
+    color: #eee;
+    display: none;
+    padding: .5rem;
+    position: absolute;
+}
+
 ul {
     list-style: none;
 }

@@ -77,7 +77,6 @@
             
             @yield('content')
         </section>
-    </main> 
- 
+    </main>  
 </body>
 </html>

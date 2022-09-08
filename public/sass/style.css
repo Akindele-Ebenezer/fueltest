@@ -117,6 +117,20 @@ button:hover {
   -webkit-text-fill-color: transparent;
 }
 
+.show {
+  display: block !important;
+}
+
+.tooltip {
+  background: #222;
+  border-radius: 0.5rem;
+  box-shadow: 1px 2px 19px #aaa;
+  color: #eee;
+  display: none;
+  padding: 0.5rem;
+  position: absolute;
+}
+
 ul {
   list-style: none;
 }
@@ -662,6 +676,7 @@ section.fuel-test .fuel-test-main center form input {
 
 section.previous-records .date {
   height: unset;
+  overflow: unset;
 }
 section.previous-records .date div {
   height: unset;
