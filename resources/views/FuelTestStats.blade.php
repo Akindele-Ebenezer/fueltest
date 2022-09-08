@@ -20,12 +20,12 @@
             <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
         </div>    
         <div class="fuel-test-dashboard-inner">
-            <h1>Recent</h1>
-            <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
-        </div>
-        <div class="fuel-test-dashboard-inner">
             <h1>Monthly</h1>
             <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
+        </div>
+        <div class="fuel-test-dashboard-inner">
+            <h1>Recent</h1>
+            <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
         </div>
         <div class="fuel-test-dashboard-inner">
             <h1>Daily/Recent</h1>
@@ -57,8 +57,7 @@ let FuelTestResults = new Chart("myChart", {
             }
         }
     });
- 
-    
+  
     let FuelTestResults2 = new Chart("myChart2", {
         type: "line",
         data: {

@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class FuelTestUser extends Model
 {
+    protected $fillable = ['Name',
+                            'Email', 
+                            'Password', 
+                        ]; 
     use HasFactory;
 }

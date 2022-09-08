@@ -672,6 +672,22 @@ section.fuel-test .fuel-test-main center form input {
   width: 5rem;
 }
 
+section.previous-records .add-vendor,
+section.previous-records .add-user {
+  margin: 3rem 3rem 0;
+}
+section.previous-records .add-vendor form,
+section.previous-records .add-user form {
+  color: #00592e;
+}
+section.previous-records .add-vendor form input,
+section.previous-records .add-user form input {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem 1rem;
+  margin-inline: 1rem;
+  outline: none;
+  padding: 1rem;
+}
 section.previous-records .date {
   height: unset;
   overflow: unset;
@@ -757,18 +773,27 @@ section.previous-records table {
   text-align: center;
   width: max-content;
 }
-section.previous-records table.vendors tr td {
+section.previous-records table.vendors, section.previous-records table.users {
+  text-align: left;
+}
+section.previous-records table.vendors tr td, section.previous-records table.users tr td {
   padding-block: 0.5rem;
 }
-section.previous-records table.vendors tr td.vendor-id {
+section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.user-email {
+  width: 25rem !important;
+}
+section.previous-records table.vendors tr td.vendor-id, section.previous-records table.vendors tr td.user-id, section.previous-records table.users tr td.vendor-id, section.previous-records table.users tr td.user-id {
   width: 2rem;
 }
-section.previous-records table.vendors tr td.vendor-no {
+section.previous-records table.vendors tr td.vendor-name, section.previous-records table.vendors tr td.user-name, section.previous-records table.users tr td.vendor-name, section.previous-records table.users tr td.user-name {
+  color: #00828f;
+}
+section.previous-records table.vendors tr td.vendor-no, section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.vendor-no, section.previous-records table.users tr td.user-email {
   color: #00592e;
   width: 10rem;
 }
-section.previous-records table.vendors tr td.vendor-name {
-  color: #00828f;
+section.previous-records table.vendors tr th:first-of-type, section.previous-records table.users tr th:first-of-type {
+  width: 3rem;
 }
 section.previous-records table tr {
   border-bottom: 1px solid #eee;
@@ -995,7 +1020,7 @@ section.previous-records table tr th svg:last-of-type {
   border-radius: 0.2rem;
   padding: 0.2rem;
 }
-section.previous-records table tr th.vendor-name {
+section.previous-records table tr th.vendor-name, section.previous-records table tr th.user-name {
   text-align: left;
 }
 section input[placeholder="Search.."] {

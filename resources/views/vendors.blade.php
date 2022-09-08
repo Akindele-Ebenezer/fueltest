@@ -7,7 +7,18 @@
 @section('content')
     <section class="previous-records">
         @include('PageTitle')
-        <div>
+        @if(Session::get('email') == 'awadhesh@depasamarine.com') 
+        <section class="add-vendor">
+            <form action="/AddVendor" method="post"> @csrf 
+                <label for="VendorNo">Vendor No.</label>
+                <input type="number" name="VendorNo">
+                <label for="VendorName">Vendor Name</label>
+                <input type="text" name="VendorName"> 
+                <button>Add Vendor</button>
+            </form>
+        </section>
+        @endif
+        <div> 
             <table class="vendors"> 
                 <tr>  
                     <th>#</th>

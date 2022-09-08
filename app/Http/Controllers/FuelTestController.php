@@ -37,6 +37,7 @@ class FuelTestController extends Controller
         $sample_no = date('Ymd') . $id . 0;
 
         $fuel_test_users = DB::table('fuel_test_users')->get();
+        $number_fuel_test_users = count($fuel_test_users);
 
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->get(); 
         $number_of_previous_records = count($previous_records);
@@ -123,6 +124,7 @@ class FuelTestController extends Controller
             'previous_records' => $previous_records,
             'vendors' => $vendors,
             'fuel_test_users' => $fuel_test_users,
+            'number_fuel_test_users' => $number_fuel_test_users,
             'number_of_all_records' => $number_of_all_records,
             'number_of_previous_records' => $number_of_previous_records,
             'number_of_passed_records' => $number_of_passed_records,

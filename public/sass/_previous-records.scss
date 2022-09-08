@@ -1,6 +1,22 @@
 section {
-    &.previous-records {
-        
+    &.previous-records {        
+        .add-vendor,
+        .add-user {
+            margin: 3rem 3rem 0;
+
+            form { 
+                color: #00592e;
+                
+                input {
+                    border: 1px solid #ccc;
+                    border-radius: 0.5rem 1rem;
+                    margin-inline: 1rem;
+                    outline: none;
+                    padding: 1rem; 
+                }
+            }
+        }
+
         .date { 
             height: unset; 
             overflow: unset;
@@ -99,24 +115,40 @@ section {
             margin-block: 1rem;
             text-align: center;
             width: max-content;
+            
+            &.vendors,
+            &.users { 
+                text-align: left;
 
-            &.vendors { 
                 tr {
                     td {
                         padding-block: .5rem;
                         
-                        &.vendor-id {
+                        &.user-email {
+                            width: 25rem !important;
+                        }
+
+                        &.vendor-id,
+                        &.user-id {
                             // color: $color-3;
                             width: 2rem;
                         }
                         
-                        &.vendor-no {
+                        &.vendor-name,
+                        &.user-name {
+                            color: #00828f;
+                        }
+                        
+                        &.vendor-no,
+                        &.user-email {
                             color: $color-2;
                             width: 10rem;
                         }
-                        
-                        &.vendor-name {
-                            color: #00828f;
+                    }
+
+                    th {                
+                        &:first-of-type {
+                            width: 3rem;
                         }
                     }
                 }
@@ -393,7 +425,8 @@ section {
                         }
                     }
                       
-                    &.vendor-name {
+                    &.vendor-name,
+                    &.user-name {
                         text-align: left;
                     }
 

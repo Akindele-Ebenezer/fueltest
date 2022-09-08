@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\FuelTestUserController;
  
 Route::get('/', [HomeController::class, 'index'])->name('login_page'); 
 
@@ -39,3 +40,9 @@ Route::get('/Vendors', [VendorController::class, 'index'])->name('vendors');
 Route::get('/filter', [FuelTestController::class, 'filter'])->name('filter');
 
 Route::get('/FuelTestStats', [FuelTestController::class, 'show_stats'])->name('fuel_test_stats');
+
+Route::post('/AddVendor', [VendorController::class, 'store']);
+
+Route::get('/Users', [FuelTestUserController::class, 'index'])->name('users');
+
+Route::post('/AddUser', [FuelTestUserController::class, 'store']);

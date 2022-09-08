@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vendor;
 use Illuminate\Http\Request;
+use App\Models\Vendor; 
 use App\Models\FuelTestRecord;
+use App\Models\FuelTestUser;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Exports\FuelTestsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\FuelTestController;
 
-class VendorController extends Controller
+class FuelTestUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +20,12 @@ class VendorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(FuelTestController $FuelTestController)
-    {  
+    {
         $Config = $FuelTestController->config();  
         extract($Config);  
         
         if(Session::has('email')) { 
-            $title = 'VENDORS';  
+            $title = 'USERS';  
             
             $ViewData = [ 
                 'title' => $title,   
@@ -32,7 +33,7 @@ class VendorController extends Controller
 
             $ViewData = [...$Config, ...$ViewData]; 
              
-            return view('vendors', $ViewData);
+            return view('Users', $ViewData);
         } else {                                       
             return redirect('/');        
         }  
@@ -45,7 +46,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -55,26 +56,28 @@ class VendorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $VendorNo = $request->VendorNo;
-        $VendorName = $request->VendorName;
+    {
+        $Name = $request->Name;
+        $Email = $request->Email;
+        $Password = $request->Password;
         
         
-        $AddVendor = Vendor::create([
-            'VendorNo' => $VendorNo,
-            'VendorName' => $VendorName, 
+        $AddVendor = FuelTestUser::create([
+            'Name' => $Name,
+            'Email' => $Email, 
+            'Password' => $Password, 
         ]);
 
-        return redirect('Vendors'); 
+        return redirect('Users');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendor $vendor)
+    public function show($id)
     {
         //
     }
@@ -82,10 +85,10 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendor $vendor)
+    public function edit($id)
     {
         //
     }
@@ -94,10 +97,10 @@ class VendorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -105,10 +108,10 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function destroy($id)
     {
         //
     }
