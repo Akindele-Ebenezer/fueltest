@@ -518,21 +518,28 @@
     </section>
 
     <script>
-
+ 
         let Filter = document.querySelectorAll('section.previous-records table tr th .filter');
         let FilterSvg = document.querySelectorAll('section.previous-records table tr th svg:last-of-type'); 
+        
+       document.addEventListener('click', (e) => {                
+           for (let i = 0; i < Filter.length; i++) { 
+               Filter[i].classList.remove('filter-toggle');  
+               e.stopPropagation();
+           } 
+       });
 
         for (let i = 0; i < FilterSvg.length; i++) {  
-            FilterSvg[i].addEventListener('click', () => {
-                FilterSvg[i].nextElementSibling.classList.toggle('filter-toggle');  
+            FilterSvg[i].addEventListener('click', () => { 
+                FilterSvg[i].nextElementSibling.classList.toggle('filter-toggle');        
             });
         }
 
-        // for (let i = 0; i < Filter.length; i++) {  
-        //     Filter[i].addEventListener('mouseleave', () => {
-        //         Filter[i].classList.toggle('filter-toggle');
-        //     });
-        // } 
+        for (let i = 0; i < FilterSvg.length; i++) {  
+            FilterSvg[i].addEventListener('click', (e) => {        
+                e.stopPropagation(); 
+            });
+        } 
 
         let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
         let Today = document.querySelectorAll('section.previous-records table tr.Today');

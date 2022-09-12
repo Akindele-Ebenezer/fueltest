@@ -10,28 +10,17 @@ let LogInAlert = document.querySelector('section.fuel-test .fuel-test-main .log-
 setTimeout(() => {
     LogInAlert.style.display = 'none';
 }, 4000);
-////////////////////////////////////
+ 
+document.addEventListener('click', () => {
+    for (let i = 0; i < SelectFields.length; i++) {  
+        SelectFields[i].addEventListener('click', (e) => {
+            e.stopPropagation();
+        }); 
+        
+        SelectFields[i].nextElementSibling.classList.remove('ToggleList');
+    }
+});
 
-    let Header = document.querySelector('header');
-    let Nav = document.querySelector('nav');
-    let LeftNav = document.querySelector('.fuel-test-left-nav');
-    let FuelTestHeader = document.querySelector('.date');
-
-    let RemoveToggleElements = [
-        Header,
-        Nav,
-        LeftNav,
-        FuelTestHeader
-    ]; 
-
-    for (let i = 0; i < RemoveToggleElements.length; i++) {        
-        RemoveToggleElements[i].addEventListener('click', () => { 
-            for (let i = 0; i < SelectFields.length; i++) {    
-                SelectFields[i].nextElementSibling.classList.remove('ToggleList');
-            }
-        })
-    } 
-///////////////////////////////
 let VendorNoInputBox = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]');
 let ChooseColorBox = document.querySelector('section.fuel-test .fuel-test-main .form .choose-color');
 let ChooseAppearanceResult = document.querySelector('section.fuel-test .fuel-test-main .form .appearance-result');
@@ -57,7 +46,8 @@ let SelectDropdownArray = [
 ];
 
 for (let i = 0; i < SelectFields.length; i++) {                
-    SelectFields[i].addEventListener('click', () => { 
+    SelectFields[i].addEventListener('click', (e) => { 
+        e.stopPropagation();
         SelectFields[i].nextElementSibling.classList.toggle('ToggleList');
     });  
 } 

@@ -554,7 +554,7 @@
     </section>
 
     <script>
-
+ 
         let Filter = document.querySelectorAll('section.previous-records table tr th .filter');
         let FilterSvg = document.querySelectorAll('section.previous-records table tr th svg:last-of-type'); 
 
@@ -565,14 +565,19 @@
             });
 
         }
-
-        // for (let i = 0; i < Filter.length; i++) {  
-
-        //     Filter[i].addEventListener('mouseleave', () => {
-        //         Filter[i].classList.toggle('filter-toggle');
-        //     });
-
-        // }  
+ 
+        for (let i = 0; i < FilterSvg.length; i++) {  
+            FilterSvg[i].addEventListener('click', (e) => {        
+                e.stopPropagation(); 
+            })
+        } 
+        
+        document.addEventListener('click', (e) => {                
+            for (let i = 0; i < Filter.length; i++) { 
+                e.stopPropagation();
+                Filter[i].classList.remove('filter-toggle');  
+            } 
+        })
 
         let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
         let Today = document.querySelectorAll('section.previous-records table tr.Today');
@@ -620,9 +625,7 @@
 
         for (let i = 0; i < HistoryTotal.length; i++) { 
             for (let j = 0; j < HistoryTotalArray.length; j++) {
-                HistoryTotal[i].textContent = HistoryTotalArray[i]; 
-                // console.log(HistoryTotalArray[i]);
-                // console.log(HistoryTotal);
+                HistoryTotal[i].textContent = HistoryTotalArray[i];  
             }
         }
 
