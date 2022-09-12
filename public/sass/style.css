@@ -43,7 +43,6 @@ button:hover {
   align-items: center;
   background: #fff;
   border-radius: 1rem;
-  box-shadow: 10px 20px 20px #eee;
   color: #00592e;
   display: flex;
   justify-content: space-between;
@@ -1047,17 +1046,17 @@ section input[placeholder="Search.."] {
   height: 70vh;
   overflow: scroll;
   padding: 1rem;
-  max-width: 90rem;
+  max-width: 120rem;
 }
 .fuel-test-dashboard-inner {
   border-radius: 1rem;
   box-shadow: 1px 2px 19px #ddd;
   margin: 1rem;
-  max-width: 600px !important;
+  max-width: 420px !important;
   padding: 2rem;
 }
 .fuel-test-dashboard-inner canvas {
-  height: 240px !important;
+  height: 200px !important;
   width: 100% !important;
 }
 .fuel-test-dashboard-inner h1 {

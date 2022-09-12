@@ -4,17 +4,17 @@
     height: 70vh;
     overflow: scroll;
     padding: 1rem;
-    max-width: 90rem;
+    max-width: 120rem;
 
     &-inner {
         border-radius: 1rem;
         box-shadow: 1px 2px 19px #ddd;
         margin: 1rem;
-        max-width: 600px  !important;
+        max-width: 420px  !important;
         padding: 2rem; 
         
         canvas {    
-            height: 240px  !important;
+            height: 200px  !important;
             width: 100% !important; 
         }
 
