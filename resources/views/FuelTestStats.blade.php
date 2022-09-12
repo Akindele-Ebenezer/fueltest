@@ -112,11 +112,11 @@ let FuelTestResults = new Chart("myChart", {
     });
  
     let FuelTestResults5 = new Chart("myChart5", {
-        type: "radar",
+        type: "pie",
         data: {
             labels: ['Today', 'Yesterday', 'Day Before', '3 Days', '4 Days', '5 Days', '6 Days', 'One Week'],
             datasets: [{
-                backgroundColor: ['#333', '#333', '#333', '#333', '#333', '#333', '#333', '#333'],
+                backgroundColor: ['#9b19f5', '#8bd3c7', '#edbf33', '#fdcce5', '#b2e061', '#bd7ebe', '#fd7f6f', '#d7e1ee'],
                 data: [{{ $number_of_todays_records }}, {{ $number_of_yesterday_records }}, {{ $number_of_two_days_ago_records }}, {{ $number_of_three_days_ago_records }}, {{ $number_of_four_days_ago_records }}, {{ $number_of_five_days_ago_records }}, {{ $number_of_six_days_ago_records }}, {{ $number_of_all_records_last_seven_days }}]
             }]
         },
