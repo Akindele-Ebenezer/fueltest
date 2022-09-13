@@ -368,8 +368,12 @@ class FuelTestController extends Controller
             $FilterDateOfTest = FuelTestRecord::distinct()->get(['DateOfTest']);
             $FilterMadeBy = FuelTestRecord::distinct()->get(['MadeBy']);
             $FilterDeliveredTo = FuelTestRecord::distinct()->get(['DeliveredTo']);
-            $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']); 
-    
+            $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']);          
+
+            $Config = $this->config(); 
+             
+            extract($Config);    
+ 
             $ViewData = [   
                 'title' => $title,    
                 'FilterSampleNo' => $FilterSampleNo,
@@ -386,14 +390,11 @@ class FuelTestController extends Controller
                 'FilterDateOfTest' => $FilterDateOfTest,
                 'FilterMadeBy' => $FilterMadeBy,
                 'FilterDeliveredTo' => $FilterDeliveredTo,
-                'FilterRemarks' => $FilterRemarks,  
+                'FilterRemarks' => $FilterRemarks,   
             ];
 
-            $Config = $this->config(); 
+            $ViewData = [...$Config, ...$ViewData]; 
             
-            $ViewData = [...$Config, ...$ViewData];  
-            extract($Config); 
-             
             if (isset($_GET['FilterRecordsOfToday'])) {
                 $RecordsOfToday = $request->RecordsOfToday; 
                 
@@ -864,7 +865,7 @@ class FuelTestController extends Controller
             ]; 
             
             $ViewData = [...$Config, ...$ViewData];  
-             
+            
             if (isset($_GET['FilterRecordsOfToday'])) {
                 $RecordsOfToday = $request->RecordsOfToday; 
                 

@@ -528,7 +528,7 @@
                                 <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $record->Remarks }}"> 
                             </form>  -->  
                         </td> 
-                        <td class="sample-no">{{ $record->SampleNo }}</td>
+                        <td class="sample-no">{{ $record->SampleNo }}{{ in_array($record->SampleNo, (array) $PassedRecords) ? 'P' : '' }}</td>  
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
                         <td class="truck-plate-no">{{ $record->TruckPlateNo  }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>

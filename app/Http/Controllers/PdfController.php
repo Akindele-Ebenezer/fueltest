@@ -26,7 +26,7 @@ class PdfController extends Controller
         $Density = $request->Density; 
         $FlashPoint = $request->FlashPoint; 
         $Temp = $request->Temp; 
-        $WaterSediment = $request->WaterSediment; 
+        $WaterSediment = str_replace('<', '', $request->WaterSediment); 
         $Cleanliness = $request->Cleanliness; 
         $DateOfTest = $request->DateOfTest; 
         $uid = $request->uid; 
@@ -245,7 +245,11 @@ class PdfController extends Controller
         switch ($Cleanliness) {
             case $Cleanliness <= 15 && $Cleanliness >= 12:
                 $CleanlinessResult = 'PASSED';
-                break;        
+                break;      
+                
+            case $Cleanliness = 'OK':
+                $CleanlinessResult = 'PASSED';
+                break;         
 
             default:
                 $CleanlinessResult = 'FAILED';
@@ -290,7 +294,7 @@ class PdfController extends Controller
         $Density = $request->Density; 
         $FlashPoint = $request->FlashPoint; 
         $Temp = $request->Temp; 
-        $WaterSediment = $request->WaterSediment; 
+        $WaterSediment = str_replace('<', '', $request->WaterSediment); 
         $Cleanliness = $request->Cleanliness; 
         $DateOfTest = $request->DateOfTest; 
         $uid = $request->uid; 
@@ -515,7 +519,11 @@ class PdfController extends Controller
         switch ($Cleanliness) {
             case $Cleanliness <= 15 && $Cleanliness >= 12:
                 $CleanlinessResult = 'PASSED';
-                break;        
+                break;  
+                
+                case $Cleanliness = 'OK':
+                    $CleanlinessResult = 'PASSED';
+                    break;               
 
             default:
                 $CleanlinessResult = 'FAILED';
