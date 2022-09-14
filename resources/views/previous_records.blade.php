@@ -594,7 +594,8 @@
         let CheckBoxLists = document.querySelectorAll('section.previous-records table tr th .filter ul li');
         
         for (let i = 0; i < CheckBoxLists.length; i++) { 
-            CheckBoxLists[i].addEventListener('click', () => {
+            CheckBoxLists[i].addEventListener('click', (e) => {
+                e.stopPropagation();
                 if(CheckBoxLists[i].firstElementChild.checked == false) {
                     CheckBoxLists[i].firstElementChild.checked = true; 
                 }
