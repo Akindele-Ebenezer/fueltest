@@ -528,7 +528,7 @@
                                 <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $record->Remarks }}"> 
                             </form>  -->  
                         </td> 
-                        <td class="sample-no">{{ $record->SampleNo }}{{ in_array($record->SampleNo, (array) $PassedRecords) ? 'P' : '' }}</td>  
+                        <td class="sample-no">{{ $record->SampleNo }}</td>  
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
                         <td class="truck-plate-no">{{ $record->TruckPlateNo  }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>
@@ -569,7 +569,7 @@
         for (let i = 0; i < FilterSvg.length; i++) {  
             FilterSvg[i].addEventListener('click', (e) => {        
                 e.stopPropagation(); 
-            })
+            });
         } 
         
         document.addEventListener('click', (e) => {                
@@ -577,7 +577,7 @@
                 e.stopPropagation();
                 Filter[i].classList.remove('filter-toggle');  
             } 
-        })
+        });
 
         let Yesterday = document.querySelectorAll('section.previous-records table tr.Yesterday');
         let Today = document.querySelectorAll('section.previous-records table tr.Today');
@@ -632,7 +632,8 @@
         let CheckBoxLists = document.querySelectorAll('section.previous-records table tr th .filter ul li');
         
         for (let i = 0; i < CheckBoxLists.length; i++) { 
-            CheckBoxLists[i].addEventListener('click', () => {
+            CheckBoxLists[i].addEventListener('click', (e) => {
+                e.stopPropagation();
                 if(CheckBoxLists[i].firstElementChild.checked == false) {
                     CheckBoxLists[i].firstElementChild.checked = true; 
                 }
