@@ -431,6 +431,15 @@ section.fuel-test .fuel-test-main .form div section ul li {
   text-transform: capitalize;
   width: 100% !important;
 }
+section.fuel-test .fuel-test-main .form div section ul li.Rejected {
+  color: red;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Approved {
+  color: #00592e;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Waved {
+  color: #ffc966;
+}
 section.fuel-test .fuel-test-main .form div section ul li.Bright {
   background: rgba(98, 217, 98, 0.1803921569);
   border-radius: 0.5rem;

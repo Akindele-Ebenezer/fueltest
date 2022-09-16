@@ -168,6 +168,19 @@
                     <input name="DeliveredTo" type="text" placeholder="Delivered To..." value="{{ $DeliveredTo }}">
                 </div>
                 <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96.2 200.1C96.07 197.4 96 194.7 96 192C96 103.6 167.6 32 256 32C315.3 32 367 64.25 394.7 112.2C409.9 101.1 428.3 96 448 96C501 96 544 138.1 544 192C544 204.2 541.7 215.8 537.6 226.6C596 238.4 640 290.1 640 352C640 422.7 582.7 480 512 480H144C64.47 480 0 415.5 0 336C0 273.2 40.17 219.8 96.2 200.1z"/></svg>                     
+                    <label for="ApprovalForUse">Approval For Use</label><br> 
+                    <input type="text" class="approval-for-use select" placeholder="Choose Approval..." name="ApprovalForUse" value="{{ $ApprovalForUse }}" readonly>                 
+                    <section class="ApprovalForUse">
+                        <ul>
+                            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96.2 200.1C96.07 197.4 96 194.7 96 192C96 103.6 167.6 32 256 32C315.3 32 367 64.25 394.7 112.2C409.9 101.1 428.3 96 448 96C501 96 544 138.1 544 192C544 204.2 541.7 215.8 537.6 226.6C596 238.4 640 290.1 640 352C640 422.7 582.7 480 512 480H144C64.47 480 0 415.5 0 336C0 273.2 40.17 219.8 96.2 200.1z"/></svg>Test Approval<span> </span></h2>
+                            <li class="Rejected">REJECTED</li>
+                            <li class="Approved">APPROVED</li>
+                            <li class="Waved">WAVED</li> 
+                        </ul>
+                    </section> 
+                </div>
+                <div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L440.6 201.4L310.6 71.43L362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75zM240.1 114.9C231.6 105.5 216.4 105.5 207 114.9L104.1 216.1C95.6 226.3 80.4 226.3 71.03 216.1C61.66 207.6 61.66 192.4 71.03 183L173.1 80.97C201.2 52.85 246.8 52.85 274.9 80.97L417.9 224L229.5 412.5C181.5 460.5 120.3 493.2 53.7 506.5L28.71 511.5C20.84 513.1 12.7 510.6 7.03 504.1C1.356 499.3-1.107 491.2 .4662 483.3L5.465 458.3C18.78 391.7 51.52 330.5 99.54 282.5L254.1 128L240.1 114.9z"/></svg>
                     <label for="Remarks">Remarks</label><br>
                     <input name="Remarks" type="text" placeholder="Remarks..." value="{{ $Remarks }}">

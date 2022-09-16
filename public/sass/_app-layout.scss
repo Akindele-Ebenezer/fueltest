@@ -157,6 +157,19 @@ section {
                                     text-transform: capitalize;
                                     width: 100% !important;
 
+                                    
+                                    &.Rejected {
+                                        color: red;
+                                    }
+                                                                        
+                                    &.Approved {
+                                        color: #00592e;
+                                    }
+                                                                        
+                                    &.Waved {
+                                        color: lighten($color: orange, $amount: 20);
+                                    }
+                                    
                                     &.Bright {
                                         @include AppearanceResult();
                                         border-radius: unset;
@@ -195,7 +208,7 @@ section {
                                             background: #00bccf;
                                         }
                                     }
-                                    
+
                                     p {
                                         color: unset; 
                                         color: $color-2; 

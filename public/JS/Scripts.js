@@ -25,12 +25,14 @@ let VendorNoInputBox = document.querySelector('section.fuel-test .fuel-test-main
 let ChooseColorBox = document.querySelector('section.fuel-test .fuel-test-main .form .choose-color');
 let ChooseAppearanceResult = document.querySelector('section.fuel-test .fuel-test-main .form .appearance-result');
 let ChooseMadeBy = document.querySelector('section.fuel-test .fuel-test-main .form .made-by');
+let ApprovalForUse = document.querySelector('section.fuel-test .fuel-test-main .form .approval-for-use');
 
 let SelectFields = [
     VendorNoInputBox,
     ChooseColorBox,
     ChooseAppearanceResult,
     ChooseMadeBy, 
+    ApprovalForUse, 
 ];
     
 let VendorsList = document.querySelectorAll('section.fuel-test .fuel-test-main .form div section ul li'); 

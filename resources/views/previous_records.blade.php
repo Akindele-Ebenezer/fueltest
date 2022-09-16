@@ -596,6 +596,7 @@
         for (let i = 0; i < CheckBoxLists.length; i++) { 
             CheckBoxLists[i].addEventListener('click', (e) => {
                 e.stopPropagation();
+                
                 if(CheckBoxLists[i].firstElementChild.checked == false) {
                     CheckBoxLists[i].firstElementChild.checked = true; 
                 }

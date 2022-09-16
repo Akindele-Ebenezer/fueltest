@@ -634,6 +634,7 @@
         for (let i = 0; i < CheckBoxLists.length; i++) { 
             CheckBoxLists[i].addEventListener('click', (e) => {
                 e.stopPropagation();
+
                 if(CheckBoxLists[i].firstElementChild.checked == false) {
                     CheckBoxLists[i].firstElementChild.checked = true; 
                 }
@@ -659,37 +660,33 @@
                 } 
             });
         }
-
+//////////////////
         // let Search = document.querySelector('section input[placeholder="Search.."]');
 
         // let Records = document.querySelectorAll('section.previous-records table tr'); 
         // let Records__ = document.querySelectorAll('section.previous-records table tr td'); 
         // let Records_ = document.querySelectorAll('section.previous-records table tr td p'); 
-        
+         
         // Search.addEventListener('input', e => {
         //     let FilteredText = e.target.value.toLocaleLowerCase(); 
  
-        //     Records.forEach(Record => {
-        //         // if (Record.textContent.toLocaleLowerCase().indexOf(FilteredText) != -1) {
-        //         //     Record.parentElement.style.display = 'block';
-        //         // } else {
-        //         //     Record.parentElement.style.display = 'none';                    
-        //         // }       
-        //         Records__.forEach(Record_ => {
-        //             console.log(Record_.textContent);                    
-        //         });
-        //     });
- 
-        //     Records_.forEach(Record => {
+        //     Records__.forEach(Record => { 
         //         if (Record.textContent.toLocaleLowerCase().indexOf(FilteredText) != -1) {
         //             Record.parentElement.style.display = 'revert';
-        //             console.log(Record.textContent);
         //         } else {
         //             Record.parentElement.style.display = 'none';                    
-        //         }        
+        //         }       
+        //     });
+ 
+        //     Records_.forEach(Record => { 
+        //         if (Record.textContent.toLocaleLowerCase().indexOf(FilteredText) != -1) {
+        //             Record.parentElement.parentElement.style.display = 'revert';
+        //         } else {
+        //             Record.parentElement.parentElement.style.display = 'none';                    
+        //         }       
         //     });
 
         // });
-
+////////////////////
     </script>
 @endsection

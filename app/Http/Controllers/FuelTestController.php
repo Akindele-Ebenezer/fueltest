@@ -186,6 +186,7 @@ class FuelTestController extends Controller
                 'DeliveredToErrorMessage' => Session::get('DeliveredToErrorMessage'), 
                 'RemarksErrorMessage' => Session::get('RemarksErrorMessage'), 
                 'TestResultErrorMessage' => Session::get('TestResultErrorMessage'),  
+                'ApprovalForUseErrorMessage' => Session::get('ApprovalForUseErrorMessage'),  
                 'number_of_failed_records' => $number_of_failed_records_,  
                 'number_of_passed_records' => $number_of_passed_records_,  
             ];
@@ -232,6 +233,7 @@ class FuelTestController extends Controller
         $MadeBy = $request->MadeBy; 
         $DeliveredTo = $request->DeliveredTo; 
         $Remarks = $request->Remarks; 
+        $ApprovalForUse = $request->ApprovalForUse; 
         
         $VendorNo = substr($request->VendorNo, 0, 6); 
         $VendorName = $request->VendorName; 
@@ -280,6 +282,9 @@ class FuelTestController extends Controller
         } elseif(empty($Remarks)) { 
             $RemarksErrorMessage = 'Write your Remarks..';
             return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('RemarksErrorMessage', $RemarksErrorMessage);
+        } elseif(empty($ApprovalForUse)) { 
+            $ApprovalForUseErrorMessage = 'Approved or Not?..';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ApprovalForUseErrorMessage', $ApprovalForUseErrorMessage);
         } else { 
                 $create_record = FuelTestRecord::create([
                         'SampleNo' => $SampleNo,
@@ -324,6 +329,7 @@ class FuelTestController extends Controller
                     'DateOfTest' => $DateOfTest,
                     'uid' => $uid,
                     'MadeBy' => $MadeBy,
+                    'ApprovalForUse' => $ApprovalForUse,
                     'DeliveredTo' => $DeliveredTo,
                     'Remarks' => $Remarks, 
                     'title' => $title, 
@@ -1363,7 +1369,7 @@ class FuelTestController extends Controller
             'MadeBy' => $MadeBy,
             'DeliveredTo' => $DeliveredTo,
             'Remarks' => $Remarks, 
-            'title' => $title, 
+            'title' => $title,  
         ];
  
         $ViewData = [...$Config, ...$ViewData];   
