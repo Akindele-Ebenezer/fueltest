@@ -474,6 +474,9 @@
                             <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $previous_record->MadeBy }}">
                             <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $previous_record->DeliveredTo }}">
                             <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $previous_record->Remarks }}"> 
+                            <input name="VendorName" type="hidden" value="{{ $previous_record->VendorName }}"> 
+                            <input name="VendorNo" type="hidden" value="{{ $previous_record->VendorNo }}"> 
+                            <input name="ApprovalForUse" type="hidden" value="{{ $previous_record->ApprovalForUse }}"> 
                         </form> 
                         <form action="/Edit/{{ $previous_record->SampleNo }}" > 
                             <input type="image" src="/images/edit.png"> 
@@ -493,6 +496,9 @@
                             <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $previous_record->MadeBy }}">
                             <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $previous_record->DeliveredTo }}">
                             <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $previous_record->Remarks }}"> 
+                            <input name="VendorName" type="hidden" value="{{ $previous_record->VendorName }}"> 
+                            <input name="VendorNo" type="hidden" value="{{ $previous_record->VendorNo }}"> 
+                            <input name="ApprovalForUse" type="hidden" value="{{ $previous_record->ApprovalForUse }}"> 
                         </form> 
                     </td>
                     <td class="sample-no">{{ $previous_record->SampleNo }}</td> 

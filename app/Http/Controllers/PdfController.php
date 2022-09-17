@@ -33,6 +33,10 @@ class PdfController extends Controller
         $MadeBy = $request->MadeBy; 
         $DeliveredTo = $request->DeliveredTo; 
         $Remarks = $request->Remarks; 
+        $VendorName = $request->VendorName; 
+        $VendorNo = $request->VendorNo; 
+        
+        $ApprovalForUse = $request->ApprovalForUse; 
             
         $pdf = new FPDF();
         $pdf->AddPage();
@@ -101,6 +105,19 @@ class PdfController extends Controller
         $pdf->Cell(50, 10,'TANK NUMBER', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(37, 10, $TankNo, 1, 1, 'C');
+        
+        $pdf->SetTextColor(9, 33, 81); 
+        $pdf->SetFont('Arial','B', 10);
+        $pdf->Cell(45, 10,'VENDOR NAME', 1, 0, 'C');
+        $pdf->SetFont('Arial','B', 8);
+        $pdf->Cell(32, 10, $VendorName, 1, 0, 'C');
+        $pdf->Cell(30, 10,'', 0, 0, '');
+
+        $pdf->SetTextColor(9, 33, 81); 
+        $pdf->SetFont('Arial','B', 10);
+        $pdf->Cell(50, 10,'VENDOR NUMBER', 1, 0, 'C');
+        $pdf->SetFont('Arial','B', 8);
+        $pdf->Cell(37, 10, $VendorNo, 1, 1, 'C');
         
         $pdf->Ln(); 
 
@@ -262,22 +279,17 @@ class PdfController extends Controller
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->MultiCell(130, 5, 'REMARKS : ' . $Remarks, 0, 1);   
 
+        $pdf->Ln(); 
+        $pdf->Cell(0, 10, 'APPROVAL FOR USE = [ ' . $ApprovalForUse . ' ]', 0, 1, 'C');
+
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->Cell(0, 2, $MadeBy, 0, 1);  
         
-        $pdf->Cell(0, 5,' ', 0, 1, 'C');  
+        $pdf->Cell(0, 2,' ', 0, 1, 'C');  
         $pdf->Cell(0, 8, $DateOfTest, 0, 1); 
         
-        $pdf->Image('images/depasa-logo.png', 10, 225, 30);
-        $pdf->Cell(33, 10,'', 0, 1, 'C');
-        $pdf->Cell(33, 3,'', 0, 1, 'C');
-        $pdf->SetFont('Arial','B', 7);
-        $pdf->SetTextColor(9, 33, 81);  
-        $pdf->Cell(38, 33,'AN ISO CERTIFIED COMPANY', 0, 0, 'C');
-        $pdf->Cell(33, 7,'', 0, 1, 'C');
-        $pdf->Image('images/iso.png', 10, 245, 30);
-        
-
+        $pdf->Image('images/depasa-signature.png', 10, 250, 30); 
+         
         $pdf->Output(); 
 
         exit;
@@ -301,7 +313,11 @@ class PdfController extends Controller
         $MadeBy = $request->MadeBy; 
         $DeliveredTo = $request->DeliveredTo; 
         $Remarks = $request->Remarks; 
+        $VendorName = $request->VendorName; 
+        $VendorNo = $request->VendorNo; 
             
+        $ApprovalForUse = $request->ApprovalForUse; 
+
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetLeftMargin(9);  
@@ -370,6 +386,19 @@ class PdfController extends Controller
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(37, 10, $TankNo, 1, 1, 'C');
         
+        $pdf->SetTextColor(9, 33, 81); 
+        $pdf->SetFont('Arial','B', 10);
+        $pdf->Cell(45, 10,'VENDOR NAME', 1, 0, 'C');
+        $pdf->SetFont('Arial','B', 8);
+        $pdf->Cell(32, 10, $VendorName, 1, 0, 'C');
+        $pdf->Cell(30, 10,'', 0, 0, '');
+
+        $pdf->SetTextColor(9, 33, 81); 
+        $pdf->SetFont('Arial','B', 10);
+        $pdf->Cell(50, 10,'VENDOR NUMBER', 1, 0, 'C');
+        $pdf->SetFont('Arial','B', 8);
+        $pdf->Cell(37, 10, $VendorNo, 1, 1, 'C');
+
         $pdf->Ln(); 
 
         $pdf->SetTextColor(9, 33, 81); 
@@ -535,23 +564,18 @@ class PdfController extends Controller
         $pdf->SetTextColor(89, 74, 74); 
             
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
-        $pdf->Cell(0, 10,'REMARKS : ' . $Remarks, 0, 1);   
+        $pdf->Cell(0, 10,'REMARKS : ' . $Remarks, 0, 1); 
+
+        $pdf->Cell(0, 10, 'APPROVAL FOR USE = [ ' . $ApprovalForUse . ' ]', 0, 1, 'C');
 
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
-        $pdf->Cell(0, 2, $MadeBy, 0, 1);  
+        $pdf->Cell(0, 2, $MadeBy, 0, 1);   
         
-        $pdf->Cell(0, 5,' ', 0, 1, 'C');  
+        $pdf->Cell(0, 2,' ', 0, 1, 'C');  
         $pdf->Cell(0, 8, $DateOfTest, 0, 1); 
         
-        $pdf->Image('images/depasa-logo.png', 10, 225, 30);
-        $pdf->Cell(33, 10,'', 0, 1, 'C');
-        $pdf->Cell(33, 3,'', 0, 1, 'C');
-        $pdf->SetFont('Arial','B', 7);
-        $pdf->SetTextColor(9, 33, 81);  
-        $pdf->Cell(38, 33,'AN ISO CERTIFIED COMPANY', 0, 0, 'C');
-        $pdf->Image('images/iso.png', 10, 245, 30);
-        
-
+        $pdf->Image('images/depasa-signature.png', 10, 240, 30); 
+         
         $pdf->Output(); 
 
         exit;

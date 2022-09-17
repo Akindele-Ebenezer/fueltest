@@ -26,7 +26,10 @@
                 <input name="DateOfTest" type="hidden" placeholder="Date..." value="{{ $DateOfTest }}"> 
                 <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $MadeBy }}">
                 <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $DeliveredTo }}">
-                <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $Remarks }}">
+                <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $Remarks }}"> 
+                <input name="VendorName" type="hidden" value="{{ $VendorName_ }}">
+                <input name="VendorNo" type="hidden" value="{{ $VendorNo_ }}">
+                <input name="ApprovalForUse" type="hidden" value="{{ $ApprovalForUse }}">
             </form>
         </center>
         <br>

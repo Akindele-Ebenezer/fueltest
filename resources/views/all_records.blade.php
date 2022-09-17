@@ -507,6 +507,9 @@
                                 <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $record->MadeBy }}">
                                 <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $record->DeliveredTo }}">
                                 <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $record->Remarks }}"> 
+                                <input name="VendorName" type="hidden" value="{{ $record->VendorName }}"> 
+                                <input name="VendorNo" type="hidden" value="{{ $record->VendorNo }}"> 
+                                <input name="ApprovalForUse" type="hidden" value="{{ $record->ApprovalForUse }}"> 
                             </form> 
                             <!-- <form action="/edit/{{ $record->SampleNo }}" method="post" target="_blank">@csrf 
                                 <input type="image" src="/images/edit.png"> 
