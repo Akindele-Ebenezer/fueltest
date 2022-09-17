@@ -305,7 +305,7 @@ class FuelTestController extends Controller
                         'VendorName' => $VendorName,
                         'VendorNo' => $VendorNo,
                         'Remarks' => $Remarks,
-                        'ApprovalForUse ' => $ApprovalForUse ,
+                        'ApprovalForUse ' => $ApprovalForUse,
                     ]);
         
                 $create_record->save();
@@ -1419,8 +1419,12 @@ class FuelTestController extends Controller
         $uid = $request->uid; 
         $MadeBy = $request->MadeBy; 
         $DeliveredTo = $request->DeliveredTo; 
-        $Remarks = $request->Remarks; 
+        $Remarks = $request->Remarks;
+        $ApprovalForUse = $request->ApprovalForUse;  
          
+        $VendorNo = substr($request->VendorNo, 0, 6); 
+        $VendorName = $request->VendorName;
+
         $save_changes = FuelTestRecord::where('SampleNo', $SampleNo)->update([
             'SampleNo' => $request->SampleNo,
             'SampleCollectionDate' => $SampleCollectionDate,
@@ -1437,7 +1441,10 @@ class FuelTestController extends Controller
             'uid' => $uid,
             'MadeBy' => $MadeBy,
             'DeliveredTo' => $DeliveredTo,
-            'Remarks' => $Remarks
+            'Remarks' => $Remarks,
+            'VendorName' => $VendorName,
+            'VendorNo' => $VendorNo,
+            'ApprovalForUse' => $ApprovalForUse,
          ]);
 
          return redirect('FuelTest');
