@@ -378,6 +378,7 @@ class FuelTestController extends Controller
             $FilterMadeBy = FuelTestRecord::distinct()->get(['MadeBy']);
             $FilterDeliveredTo = FuelTestRecord::distinct()->get(['DeliveredTo']);
             $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']);          
+            $FilterVendorName = FuelTestRecord::distinct()->get(['VendorName']);          
 
             $Config = $this->config(); 
              
@@ -400,10 +401,34 @@ class FuelTestController extends Controller
                 'FilterMadeBy' => $FilterMadeBy,
                 'FilterDeliveredTo' => $FilterDeliveredTo,
                 'FilterRemarks' => $FilterRemarks,   
+                'FilterVendorName' => $FilterVendorName,   
             ];
 
             $ViewData = [...$Config, ...$ViewData]; 
             
+            if (isset($_GET['SortByVendorName'])) {
+                $FilteredRecords[] = $request->CheckVendorName; 
+ 
+                foreach ($FilteredRecords as $VendorName) {    
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $all_records = FuelTestRecord::orderBy('VendorName', $SortOrder)->get(); 
+
+                    $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
+                    
+                    Session::put('SortOrder', $SortOrder); 
+                }
+            }
+
+            if(isset($_GET['FilterVendorName'])) {
+                $FilteredRecords[] = $request->CheckVendorName;  
+                
+                foreach ($FilteredRecords as $VendorName) {
+                    $all_records = FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->get();
+                   
+                    $number_of_all_records = count($all_records);
+                } 
+            }
+
             if (isset($_GET['FilterRecordsOfToday'])) {
                 $RecordsOfToday = $request->RecordsOfToday; 
                 
@@ -849,6 +874,7 @@ class FuelTestController extends Controller
             $FilterMadeBy = FuelTestRecord::where('uid', $id)->distinct()->get(['MadeBy']);
             $FilterDeliveredTo = FuelTestRecord::where('uid', $id)->distinct()->get(['DeliveredTo']);
             $FilterRemarks = FuelTestRecord::where('uid', $id)->distinct()->get(['Remarks']); 
+            $FilterVendorName = FuelTestRecord::where('uid', $id)->distinct()->get(['VendorName']); 
   
             $ViewData = [   
                 'title' => $title,    
@@ -867,6 +893,7 @@ class FuelTestController extends Controller
                 'FilterMadeBy' => $FilterMadeBy,
                 'FilterDeliveredTo' => $FilterDeliveredTo,
                 'FilterRemarks' => $FilterRemarks,  
+                'FilterVendorName' => $FilterVendorName,  
                 'PassedRecords' => $PassedRecords_,
                 'FailedRecords' => $FailedRecords_,
                 'number_of_passed_records' => $number_of_passed_records_,
@@ -875,6 +902,28 @@ class FuelTestController extends Controller
             
             $ViewData = [...$Config, ...$ViewData];  
             
+            if (isset($_GET['SortByVendorName'])) {
+                $FilteredRecords[] = $request->CheckVendorName; 
+ 
+                foreach ($FilteredRecords as $VendorName) {  
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('VendorName', $SortOrder)->get(); 
+
+                    $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
+                    Session::put('SortOrder', $SortOrder); 
+                }
+            }
+
+            if(isset($_GET['FilterVendorName'])) {
+                $FilteredRecords[] = $request->CheckVendorName; 
+ 
+                foreach ($FilteredRecords as $VendorName) {
+                    $previous_records = FuelTestRecord::whereIn('VendorName', $VendorName)->where('uid', $id)->orderBy('SampleNo', 'DESC')->get();  
+                 
+                    $number_of_previous_records = count($previous_records);
+                }
+            }
+
             if (isset($_GET['FilterRecordsOfToday'])) {
                 $RecordsOfToday = $request->RecordsOfToday; 
                 

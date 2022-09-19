@@ -776,7 +776,6 @@ section.previous-records div {
   width: 75vw;
 }
 section.previous-records table {
-  border-collapse: collapse;
   margin-block: 1rem;
   text-align: center;
   width: max-content;
@@ -895,6 +894,9 @@ section.previous-records table tr td.truck-plate-no {
 }
 section.previous-records table tr td.sample-no {
   color: #00828f;
+}
+section.previous-records table tr td.vendors {
+  color: #444;
 }
 section.previous-records table tr td.pdf-and-edit {
   display: flex;
