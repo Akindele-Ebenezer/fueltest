@@ -1422,7 +1422,7 @@ class FuelTestController extends Controller
         $Remarks = $request->Remarks;
         $ApprovalForUse = $request->ApprovalForUse;  
          
-        $VendorNo = substr($request->VendorNo, 0, 6); 
+        $VendorNo = $request->VendorNo;
         $VendorName = $request->VendorName;
 
         $save_changes = FuelTestRecord::where('SampleNo', $SampleNo)->update([

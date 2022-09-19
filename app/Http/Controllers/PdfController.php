@@ -109,8 +109,8 @@ class PdfController extends Controller
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(45, 10,'VENDOR NAME', 1, 0, 'C');
-        $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(32, 10, $VendorName, 1, 0, 'C');
+        $pdf->SetFont('Arial','B', 6);
+        $pdf->Cell(32, 10, strlen($VendorName) > 22 ? substr($VendorName, 0, 22) . '..' : $VendorName, 1, 0, 'C');
         $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 
@@ -389,8 +389,8 @@ class PdfController extends Controller
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(45, 10,'VENDOR NAME', 1, 0, 'C');
-        $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(32, 10, $VendorName, 1, 0, 'C');
+        $pdf->SetFont('Arial','B', 6);
+        $pdf->Cell(32, 10, strlen($VendorName) > 22 ? substr($VendorName, 0, 22) . '..' : $VendorName, 1, 0, 'C');
         $pdf->Cell(30, 10,'', 0, 0, '');
 
         $pdf->SetTextColor(9, 33, 81); 

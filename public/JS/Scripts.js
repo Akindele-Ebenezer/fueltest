@@ -1,9 +1,5 @@
-let VendorName = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Name of VENDOR..."]');
+let VendorName = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Name of VENDOR..."]'); 
 let FuelTestForm = document.querySelector('section.fuel-test .fuel-test-main .form form');
-
-VendorName.addEventListener('click', () => {
-    FuelTestForm.submit();
-});
 
 let LogInAlert = document.querySelector('section.fuel-test .fuel-test-main .log-in-alert');
 
@@ -26,7 +22,7 @@ let ChooseColorBox = document.querySelector('section.fuel-test .fuel-test-main .
 let ChooseAppearanceResult = document.querySelector('section.fuel-test .fuel-test-main .form .appearance-result');
 let ChooseMadeBy = document.querySelector('section.fuel-test .fuel-test-main .form .made-by');
 let ApprovalForUse = document.querySelector('section.fuel-test .fuel-test-main .form .approval-for-use');
-
+ 
 let SelectFields = [
     VendorNoInputBox,
     ChooseColorBox,
@@ -47,11 +43,23 @@ let SelectDropdownArray = [
     MadeByList,
 ];
 
-for (let i = 0; i < SelectFields.length; i++) {                
+for (let i = 0; i < SelectFields.length; i++) {       
+             
     SelectFields[i].addEventListener('click', (e) => { 
         e.stopPropagation();
-        SelectFields[i].nextElementSibling.classList.toggle('ToggleList');
+        SelectFields[i].nextElementSibling.classList.toggle('ToggleList');         
     });  
+
+    SelectFields[0].addEventListener('click', (SelectFieldsEvent) => {    
+        document.addEventListener('click', (e) => {
+            if (VendorName.id === "EditVendorName") {
+                SelectFieldsEvent.preventDefault();
+            } else {
+                FuelTestForm.submit();
+            }     
+        });
+    });  
+
 } 
 
 SelectDropdownArray.forEach(SelectDropdown => {
