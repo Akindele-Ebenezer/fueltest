@@ -1386,8 +1386,17 @@ class FuelTestController extends Controller
         $Remarks = $request->Remarks; 
         $VendorName = $request->VendorName; 
         $VendorNo = $request->VendorNo;  
-        $ApprovalForUse = $request->ApprovalForUse;  
+        $ApprovalForUse = $request->ApprovalForUse;
         
+        $VendorName = '';
+ 
+            $VendorEdit = Vendor::where('VendorNo', $VendorNo)->get();
+
+            foreach ($VendorEdit as $VendorName) {
+                $VendorName = $VendorName->VendorName;
+            } 
+        // dd($VendorName);
+
         $edit = FuelTestRecord::where('SampleNo', $SampleNo)->update([
             'SampleNo' => $request->SampleNo,
             'SampleCollectionDate' => $SampleCollectionDate,

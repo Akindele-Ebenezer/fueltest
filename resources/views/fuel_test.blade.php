@@ -181,4 +181,13 @@
 
     <script src="/JS/Scripts.js"></script> 
 
+    <script>
+
+        let LogInAlert = document.querySelector('section.fuel-test .fuel-test-main .log-in-alert');
+ 
+        setTimeout(() => {
+            LogInAlert.style.display = 'none';
+        }, 4000); 
+        
+    </script>
 @endsection

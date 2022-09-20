@@ -1,12 +1,6 @@
 let VendorName = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Name of VENDOR..."]'); 
 let FuelTestForm = document.querySelector('section.fuel-test .fuel-test-main .form form');
 
-let LogInAlert = document.querySelector('section.fuel-test .fuel-test-main .log-in-alert');
-
-setTimeout(() => {
-    LogInAlert.style.display = 'none';
-}, 4000);
- 
 document.addEventListener('click', () => {
     for (let i = 0; i < SelectFields.length; i++) {  
         SelectFields[i].addEventListener('click', (e) => {
@@ -93,4 +87,5 @@ VendorNoInputBox.addEventListener('input', (VendorNo) => {
         } 
     }        
 });
+  
  

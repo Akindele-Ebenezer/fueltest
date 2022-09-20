@@ -340,7 +340,8 @@ section {
                     }
                 } 
 
-                .record-created-alert {
+                .record-created-alert,
+                .record-updated-alert {
                     @include alert();
                 }
             }

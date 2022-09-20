@@ -600,7 +600,8 @@ section.fuel-test .fuel-test-main .form label {
   padding: 1rem;
   width: 37%;
 }
-section.fuel-test .fuel-test-main .record-created-alert {
+section.fuel-test .fuel-test-main .record-created-alert,
+section.fuel-test .fuel-test-main .record-updated-alert {
   border-radius: 1rem;
   background: #d3ffd3;
   color: green;
