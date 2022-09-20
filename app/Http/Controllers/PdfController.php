@@ -37,7 +37,7 @@ class PdfController extends Controller
         $VendorNo = $request->VendorNo; 
         
         $ApprovalForUse = $request->ApprovalForUse; 
-            
+               
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetLeftMargin(9);  
@@ -280,7 +280,24 @@ class PdfController extends Controller
         $pdf->MultiCell(130, 5, 'REMARKS : ' . $Remarks, 0, 1);   
 
         $pdf->Ln(); 
-        $pdf->Cell(0, 10, 'APPROVAL FOR USE = [ ' . $ApprovalForUse . ' ]', 0, 1, 'C');
+        $pdf->Cell(65, 10, ' ', 0, 0, 'C'); 
+        $pdf->Cell(35, 5, 'APPROVAL FOR USE = ', 0, 0, 'C');
+
+        switch ($ApprovalForUse) {
+            case 'REJECTED':
+                $pdf->SetFillColor(255, 110, 110);
+                break;
+            
+            case 'APPROVED':
+                $pdf->SetFillColor(185, 255, 155);
+                break;
+
+            default:
+                $pdf->SetFillColor(255, 245, 211);
+                break;
+        }
+ 
+        $pdf->Cell(17, 5, "[  " . $ApprovalForUse . "  ]", 0, 1, 'C', 1); 
 
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->Cell(0, 2, $MadeBy, 0, 1);  
@@ -566,7 +583,25 @@ class PdfController extends Controller
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->Cell(0, 10,'REMARKS : ' . $Remarks, 0, 1); 
 
-        $pdf->Cell(0, 10, 'APPROVAL FOR USE = [ ' . $ApprovalForUse . ' ]', 0, 1, 'C');
+        $pdf->Cell(65, 10, ' ', 0, 0, 'C'); 
+        $pdf->Cell(35, 5, 'APPROVAL FOR USE = ', 0, 0, 'C');
+
+        switch ($ApprovalForUse) {
+            case 'REJECTED':
+                $pdf->SetFillColor(255, 110, 110);
+                break;
+            
+            case 'APPROVED':
+                $pdf->SetFillColor(185, 255, 155);
+                break;
+
+            default:
+                $pdf->SetFillColor(255, 245, 211);
+                break;
+        }
+ 
+        $pdf->Cell(17, 5, "[  " . $ApprovalForUse . "  ]", 0, 1, 'C', 1); 
+
 
         $pdf->Cell(0, 10,' ', 0, 1, 'C');  
         $pdf->Cell(0, 2, $MadeBy, 0, 1);   
