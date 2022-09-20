@@ -875,6 +875,9 @@ section.previous-records table tr td input {
   outline: none;
   text-align: center;
 }
+section.previous-records table tr td input.Certificate {
+  display: none;
+}
 section.previous-records table tr td .Muddy {
   background: rgba(98, 217, 98, 0.1803921569);
   border-radius: 0.5rem;
@@ -902,7 +905,13 @@ section.previous-records table tr td.truck-plate-no {
   color: #00bccf;
 }
 section.previous-records table tr td.sample-no {
+  background: rgba(238, 238, 238, 0.1882352941);
+  border-bottom: 1px solid;
   color: #00828f;
+  margin-right: 1rem;
+}
+section.previous-records table tr td.sample-no label {
+  cursor: pointer;
 }
 section.previous-records table tr td.vendors {
   color: #444;

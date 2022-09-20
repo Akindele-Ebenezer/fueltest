@@ -327,9 +327,7 @@ class FuelTestController extends Controller
                         'VendorNo' => $VendorNo,
                         'Remarks' => $Remarks,
                         'ApprovalForUse ' => $ApprovalForUse,
-                    ]);
-        
-                $create_record->save();
+                    ]);  
                 
             if(Session::has('email')) { 
                 
@@ -1429,8 +1427,7 @@ class FuelTestController extends Controller
 
             foreach ($VendorEdit as $VendorName) {
                 $VendorName = $VendorName->VendorName;
-            } 
-        // dd($VendorName);
+            }  
 
         $edit = FuelTestRecord::where('SampleNo', $SampleNo)->update([
             'SampleNo' => $request->SampleNo,

@@ -22,7 +22,8 @@ class FuelTestRecord extends Model
                             'uid',
                             'MadeBy',
                             'DeliveredTo',
-                            'Remarks'
+                            'Remarks',
+                            'ApprovalForUse',
                         ]; 
     use HasFactory;
 }

@@ -225,6 +225,10 @@ section {
                         border: none;
                         outline: none;
                         text-align: center;
+
+                        &.Certificate {
+                            display: none;
+                        }
                     }
                     
                     .Muddy {
@@ -256,9 +260,16 @@ section {
                         color: #00bccf;
                     }
 
-                    &.sample-no {
+                    &.sample-no {              
+                        background: #eeeeee30;
+                        border-bottom: 1px solid; 
                         color: #00828f;
-                    } 
+                        margin-right: 1rem;
+
+                        label {
+                            cursor: pointer;
+                        }
+                    }  
 
                     &.vendors {
                         color: #444;
