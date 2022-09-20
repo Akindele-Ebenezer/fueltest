@@ -171,6 +171,11 @@ button {
     position: absolute;
 }
 
+.records-tooltip {
+    @extend .tooltip;
+    translate: 12rem;
+}
+
 ul {
     list-style: none;
 }

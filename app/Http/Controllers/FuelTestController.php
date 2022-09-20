@@ -48,72 +48,89 @@ class FuelTestController extends Controller
         $vendors = Vendor::all();
         $number_of_vendors = count($vendors); 
 
-        $PassedRecords = FuelTestRecord::whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
-        ->where('Color', '<=', '2.5')
-        ->whereBetween('Density', ['0.82', '0.855']) 
-        ->whereBetween('FlashPoint', ['52', '92']) 
-        ->where('WaterSediment', '<=', '0.050')        
-        ->where(function($query) {
-                    $query->whereBetween('Cleanliness', ['12', '15']) 
-                            ->orWhere('Cleanliness', 'LIKE', 'OK');
-        })    
-        ->orderBy('SampleNo', 'DESC')
-        ->get(); 
+        // $PassedRecords = FuelTestRecord::whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
+        // ->where('Color', '<=', '2.5')
+        // ->whereBetween('Density', ['0.82', '0.855']) 
+        // ->whereBetween('FlashPoint', ['52', '92']) 
+        // ->where('WaterSediment', '<=', '0.050')        
+        // ->where(function($query) {
+        //             $query->whereBetween('Cleanliness', ['12', '15']) 
+        //                     ->orWhere('Cleanliness', 'LIKE', 'OK');
+        // })    
+        // ->orderBy('SampleNo', 'DESC')
+        // ->get(); 
 
+        $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->get();
         $number_of_passed_records = count($PassedRecords);  
-  
+        
+        // $PassedRecords_ = FuelTestRecord::where('uid', $id)
+        // ->whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
+        // ->where('Color', '<=', '2.5')
+        // ->whereBetween('Density', ['0.82', '0.855']) 
+        // ->whereBetween('FlashPoint', ['52', '92']) 
+        // ->where('WaterSediment', '<=', '0.050')        
+        // ->where(function($query) {
+        //     $query->whereBetween('Cleanliness', ['12', '15']) 
+        //     ->orWhere('Cleanliness', 'LIKE', 'OK');
+        // })    
+        // ->orderBy('SampleNo', 'DESC')
+        // ->get();   
+        
         $PassedRecords_ = FuelTestRecord::where('uid', $id)
-        ->whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
-        ->where('Color', '<=', '2.5')
-        ->whereBetween('Density', ['0.82', '0.855']) 
-        ->whereBetween('FlashPoint', ['52', '92']) 
-        ->where('WaterSediment', '<=', '0.050')        
-        ->where(function($query) {
-                    $query->whereBetween('Cleanliness', ['12', '15']) 
-                            ->orWhere('Cleanliness', 'LIKE', 'OK');
-        })    
-        ->orderBy('SampleNo', 'DESC')
-        ->get(); ;  
-
+                                        ->where('ApprovalForUse', 'APPROVED')
+                                        ->get();
         $number_of_passed_records_ = count($PassedRecords_);  
+        
+        // $FailedRecords = DB::select("SELECT * FROM fuel_test_records
+        // WHERE NOT 
+        // AppearanceResult IN ('Bright', 'Clear', 'BRIGHT') 
+        // OR	
+        // Color > 2.5  
+        // OR	NOT	
+        // Density BETWEEN 0.82 AND 0.855
+        // OR NOT	
+        // Flashpoint BETWEEN 52 AND 92
+        // OR	
+        // WaterSediment > 0.050 
+        // OR NOT	
+        // (Cleanliness BETWEEN 12 AND 15 OR Cleanliness LIKE 'OK')
+        // ORDER BY
+        // SampleNo DESC");  
 
-        $FailedRecords = DB::select("SELECT * FROM fuel_test_records
-        WHERE NOT 
-        AppearanceResult IN ('Bright', 'Clear', 'BRIGHT') 
-        OR	
-        Color > 2.5  
-        OR	NOT	
-        Density BETWEEN 0.82 AND 0.855
-        OR NOT	
-        Flashpoint BETWEEN 52 AND 92
-        OR	
-        WaterSediment > 0.050 
-        OR NOT	
-        (Cleanliness BETWEEN 12 AND 15 OR Cleanliness LIKE 'OK')
-        ORDER BY
-        SampleNo DESC");  
-
+        $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->get();
         $number_of_failed_records = count($FailedRecords); 
         
-        $FailedRecords_ = DB::select("SELECT * FROM fuel_test_records
-        WHERE uid = ?
-        AND 	
-        (NOT (AppearanceResult IN ('Bright', 'Clear', 'BRIGHT'))
-        OR	
-        Color > 2.5  
-        OR	NOT	
-        Density BETWEEN 0.82 AND 0.855
-        OR NOT	
-        Flashpoint BETWEEN 52 AND 92
-        OR	
-        WaterSediment > 0.050 
-        OR NOT	
-        (Cleanliness BETWEEN 12 AND 15 OR Cleanliness LIKE 'OK'))
-        ORDER BY
-        SampleNo DESC", [$id]);  
+        // $FailedRecords_ = DB::select("SELECT * FROM fuel_test_records
+        // WHERE uid = ?
+        // AND 	
+        // (NOT (AppearanceResult IN ('Bright', 'Clear', 'BRIGHT'))
+        // OR	
+        // Color > 2.5  
+        // OR	NOT	
+        // Density BETWEEN 0.82 AND 0.855
+        // OR NOT	
+        // Flashpoint BETWEEN 52 AND 92
+        // OR	
+        // WaterSediment > 0.050 
+        // OR NOT	
+        // (Cleanliness BETWEEN 12 AND 15 OR Cleanliness LIKE 'OK'))
+        // ORDER BY
+        // SampleNo DESC", [$id]);  
 
-        $number_of_failed_records_ = count($FailedRecords_);  
- 
+        $FailedRecords_ = FuelTestRecord::where('uid', $id)
+                                        ->where('ApprovalForUse', 'REJECTED')
+                                        ->get();
+        $number_of_failed_records_ = count($FailedRecords_);
+
+        $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                        ->get();
+        $number_of_waved_records = count($WavedRecords);  
+
+        $WavedRecords_ = FuelTestRecord::where('uid', $id)
+                                        ->where('ApprovalForUse', 'WAVED')
+                                        ->get();
+        $number_of_waved_records_ = count($WavedRecords_);  
+         
         return [ 
             'id' => $id,
             'name' => $name,
@@ -134,6 +151,10 @@ class FuelTestController extends Controller
             'FailedRecords' => $FailedRecords,
             'PassedRecords_' => $PassedRecords_,
             'FailedRecords_' => $FailedRecords_,
+            'WavedRecords_' => $WavedRecords_,
+            'WavedRecords' => $WavedRecords,
+            'number_of_waved_records' => $number_of_waved_records,
+            'number_of_waved_records_' => $number_of_waved_records_,
             'number_of_passed_records_' => $number_of_passed_records_,
             'number_of_failed_records_' => $number_of_failed_records_,
         ]; 
@@ -493,6 +514,13 @@ class FuelTestController extends Controller
                 $title = 'Passed Tests';
                 $number_of_all_records = count($all_records);
             }
+
+            if (isset($_GET['FilterWavedTests'])) {   
+                $all_records = $WavedRecords; 
+                
+                $title = 'Waved Tests';
+                $number_of_all_records = count($previous_records);
+            } 
 
             if (isset($_GET['FilterFailedTests'])) {   
                 $all_records = $FailedRecords; 
@@ -993,6 +1021,13 @@ class FuelTestController extends Controller
                 $title = 'Passed Tests';
                 $number_of_previous_records = count($previous_records);  
             }
+
+            if (isset($_GET['FilterWavedTests'])) {   
+                $previous_records = $WavedRecords_; 
+                
+                $title = 'Waved Tests';
+                $number_of_previous_records = count($previous_records);
+            } 
 
             if (isset($_GET['FilterFailedTests'])) {   
                 $previous_records = $FailedRecords_; 

@@ -56,10 +56,17 @@ section {
                 overflow: unset;
                 width: unset;
 
-                form {
-                    text-decoration: underline 1px;
-                    
-                    label input { display: none; }
+                form { 
+                    label {
+                        img {
+                            translate: 0 0.6rem;
+                            width: 2rem;
+                        }
+
+                        input {
+                            display: none;
+                        }
+                    }
 
                     svg {
                         border: 1px solid #333;
@@ -85,13 +92,12 @@ section {
         }
  
         .Passed,
-        .Failed {
-            font-family: "Bitter", serif;
-            font-size: 1.4rem;
-            margin-left: 2rem;
+        .Failed,
+        .Waved {  
+            margin-left: .75rem; 
 
-            span {
-                margin-inline: 2rem;
+            label {
+                cursor: pointer;
             }
         }
 
@@ -101,6 +107,10 @@ section {
         
         .Failed {
             color: $error;
+        }
+
+        .Waved {
+            color: rgb(156, 156, 0);
         }
 
         div { 
@@ -257,6 +267,14 @@ section {
                     &.pdf-and-edit {
                         display: flex; 
                         height: 1rem;
+                        position: relative;
+                        width: 10rem;
+
+                        img {
+                            height: 1.75rem;
+                            translate: .5rem 0.6rem;
+                            width: 1.75rem;
+                        }
                     }
                       
                     &.vendor-name {

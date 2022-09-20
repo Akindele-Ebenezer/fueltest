@@ -118,7 +118,7 @@ button:hover {
   display: block !important;
 }
 
-.tooltip {
+.tooltip, .records-tooltip {
   background: #222;
   border-radius: 0.5rem;
   box-shadow: 1px 2px 19px #aaa;
@@ -126,6 +126,10 @@ button:hover {
   display: none;
   padding: 0.5rem;
   position: absolute;
+}
+
+.records-tooltip {
+  translate: 12rem;
 }
 
 ul {
@@ -730,8 +734,9 @@ section.previous-records center div {
   overflow: unset;
   width: unset;
 }
-section.previous-records center div form {
-  text-decoration: underline 1px;
+section.previous-records center div form label img {
+  translate: 0 0.6rem;
+  width: 2rem;
 }
 section.previous-records center div form label input {
   display: none;
@@ -755,20 +760,23 @@ section.previous-records center h1 {
   -webkit-text-fill-color: transparent;
 }
 section.previous-records .Passed,
-section.previous-records .Failed {
-  font-family: "Bitter", serif;
-  font-size: 1.4rem;
-  margin-left: 2rem;
+section.previous-records .Failed,
+section.previous-records .Waved {
+  margin-left: 0.75rem;
 }
-section.previous-records .Passed span,
-section.previous-records .Failed span {
-  margin-inline: 2rem;
+section.previous-records .Passed label,
+section.previous-records .Failed label,
+section.previous-records .Waved label {
+  cursor: pointer;
 }
 section.previous-records .Passed {
   color: #00592e;
 }
 section.previous-records .Failed {
   color: red;
+}
+section.previous-records .Waved {
+  color: rgb(156, 156, 0);
 }
 section.previous-records div {
   height: 68vh;
@@ -902,6 +910,13 @@ section.previous-records table tr td.vendors {
 section.previous-records table tr td.pdf-and-edit {
   display: flex;
   height: 1rem;
+  position: relative;
+  width: 10rem;
+}
+section.previous-records table tr td.pdf-and-edit img {
+  height: 1.75rem;
+  translate: 0.5rem 0.6rem;
+  width: 1.75rem;
 }
 section.previous-records table tr td.vendor-name {
   text-align: left;

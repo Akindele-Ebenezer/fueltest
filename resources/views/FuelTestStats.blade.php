@@ -44,10 +44,10 @@
 let FuelTestResults = new Chart("myChart", {
     type: "horizontalBar",
     data: {
-            labels: ["Failed", "Passed", "Previous Records", "Total Records"],
+            labels: ["Failed", "Passed", "Waved", "Previous Records", "Total Records"],
             datasets: [{
-                backgroundColor: ["#ea5545", "#6cd4c5","#beb9db","#9080ff"],
-                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
+                backgroundColor: ["#ea5545", "#6cd4c5","#beb9db","#9080ff", "#ddd"],
+                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
             }]
         },
         options: {
