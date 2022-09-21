@@ -19,7 +19,7 @@
             @include('ApprovedWavedRejected')
         </center>
         <section>
-            <input type="text" placeholder="Search..">
+            <!-- <input type="text" placeholder="Search.."> -->
         </section>
         <div>
             <table>
