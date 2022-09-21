@@ -62,7 +62,7 @@ class FuelTestController extends Controller
 
         $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->get();
         $number_of_passed_records = count($PassedRecords);  
-        
+         
         // $PassedRecords_ = FuelTestRecord::where('uid', $id)
         // ->whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
         // ->where('Color', '<=', '2.5')
@@ -207,9 +207,7 @@ class FuelTestController extends Controller
                 'DeliveredToErrorMessage' => Session::get('DeliveredToErrorMessage'), 
                 'RemarksErrorMessage' => Session::get('RemarksErrorMessage'), 
                 'TestResultErrorMessage' => Session::get('TestResultErrorMessage'),  
-                'ApprovalForUseErrorMessage' => Session::get('ApprovalForUseErrorMessage'),  
-                'number_of_failed_records' => $number_of_failed_records_,  
-                'number_of_passed_records' => $number_of_passed_records_,  
+                'ApprovalForUseErrorMessage' => Session::get('ApprovalForUseErrorMessage'), 
             ];
      
             $ViewData = [...$Config, ...$ViewData];   
