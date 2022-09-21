@@ -3,19 +3,22 @@
     flex-wrap: wrap;
     height: 70vh;
     overflow: scroll;
-    padding: 1rem;
-    max-width: 120rem;
+    padding: 1rem; 
 
     &-inner {
         border-radius: 1rem;
         box-shadow: 1px 2px 19px #ddd;
-        margin: 1rem;
-        max-width: 420px  !important;
+        margin: 1rem; 
         padding: 2rem; 
         
         canvas {    
             height: 200px  !important;
             width: 100% !important; 
+
+            &#myChart6 {
+                height: 70rem !important;
+                width: 100% !important;
+            }
         }
 
         h1 {

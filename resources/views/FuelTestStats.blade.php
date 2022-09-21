@@ -5,10 +5,23 @@
 @section('header_info', $title)
 @section('title', $title)
 @section('content') 
+ 
+<style>
+    .fuel-test-dashboard-inner canvas#myChart6 {
+        width: unset !important;
+    }
+    .fuel-test-left-nav {
+        display: none;   
+    } 
+</style>
 
 <div class="insights"> 
     @include('PageTitle')
-    <div class="fuel-test-dashboard"> 
+    <div class="fuel-test-dashboard">
+        <div class="fuel-test-dashboard-inner">
+            <h1>VENDORS</h1>
+            <canvas id="myChart6"></canvas>
+        </div> 
         <div class="fuel-test-dashboard-inner">
             <div class="inner">
                 <h1>Diesel FUEL TEST Report</h1>
@@ -125,6 +138,51 @@ let FuelTestResults = new Chart("myChart", {
             title: {
                 display: true, 
             }
+        }
+    });
+ 
+    let Labels = [];
+    
+    @foreach($vendors as $vendor)
+        Labels.push('{{ $vendor->VendorName }}'); 
+
+        @php 
+            $FuelTestStatsVendorName = \App\Models\FuelTestRecord::whereIn('VendorName', [$vendor->VendorName])
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->get()->toArray();
+              
+            foreach ($FuelTestStatsVendorName as $Vendor) {
+                $FuelTestStatsVendorName_ = $Vendor['VendorName'];
+            }                                             
+        @endphp
+    @endforeach 
+                    
+        {{ $FuelTestStatsVendorName_ }}
+    let FuelTestResults6 = new Chart("myChart6", {
+        type: "horizontalBar",
+        data: {
+            labels: [...Labels],
+            datasets: [{ 
+                data: [60,40,60],
+                backgroundColor: "#F5D6D0",
+                fill: false,
+                label: 'Waved',
+            }, 
+            { 
+                data: [30,00,70],
+                backgroundColor: "#CE050F",
+                fill: false,
+                label: 'Rejected',
+            }, 
+            { 
+                data: [30,70,20],
+                backgroundColor: "#2BC5AE",
+                fill: false,
+                label: 'Approved',
+            }]
+        },
+        options: {
+            legend: {display: false}
         }
     });
 </script>

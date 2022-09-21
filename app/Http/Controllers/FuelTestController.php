@@ -60,7 +60,7 @@ class FuelTestController extends Controller
         // ->orderBy('SampleNo', 'DESC')
         // ->get(); 
 
-        $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->get();
+        $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')->get();
         $number_of_passed_records = count($PassedRecords);  
          
         // $PassedRecords_ = FuelTestRecord::where('uid', $id)
@@ -77,7 +77,7 @@ class FuelTestController extends Controller
         // ->get();   
         
         $PassedRecords_ = FuelTestRecord::where('uid', $id)
-                                        ->where('ApprovalForUse', 'APPROVED')
+                                        ->where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')
                                         ->get();
         $number_of_passed_records_ = count($PassedRecords_);  
         
@@ -97,7 +97,7 @@ class FuelTestController extends Controller
         // ORDER BY
         // SampleNo DESC");  
 
-        $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->get();
+        $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')->get();
         $number_of_failed_records = count($FailedRecords); 
         
         // $FailedRecords_ = DB::select("SELECT * FROM fuel_test_records
@@ -118,19 +118,19 @@ class FuelTestController extends Controller
         // SampleNo DESC", [$id]);  
 
         $FailedRecords_ = FuelTestRecord::where('uid', $id)
-                                        ->where('ApprovalForUse', 'REJECTED')
+                                        ->where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')
                                         ->get();
         $number_of_failed_records_ = count($FailedRecords_);
 
-        $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')
+        $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')->orderBy('SampleNo', 'DESC')
                                         ->get();
         $number_of_waved_records = count($WavedRecords);  
 
-        $WavedRecords_ = FuelTestRecord::where('uid', $id)
+        $WavedRecords_ = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', 'DESC')
                                         ->where('ApprovalForUse', 'WAVED')
                                         ->get();
         $number_of_waved_records_ = count($WavedRecords_);  
-         
+                                                                         
         return [ 
             'id' => $id,
             'name' => $name,
@@ -156,7 +156,7 @@ class FuelTestController extends Controller
             'number_of_waved_records' => $number_of_waved_records,
             'number_of_waved_records_' => $number_of_waved_records_,
             'number_of_passed_records_' => $number_of_passed_records_,
-            'number_of_failed_records_' => $number_of_failed_records_,
+            'number_of_failed_records_' => $number_of_failed_records_, 
         ]; 
     }
 
@@ -515,7 +515,7 @@ class FuelTestController extends Controller
                 $all_records = $WavedRecords; 
                 
                 $title = 'Waved Tests';
-                $number_of_all_records = count($previous_records);
+                $number_of_all_records = count($all_records);
             } 
 
             if (isset($_GET['FilterFailedTests'])) {   

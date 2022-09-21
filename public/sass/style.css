@@ -1082,17 +1082,19 @@ section input[placeholder="Search.."] {
   height: 70vh;
   overflow: scroll;
   padding: 1rem;
-  max-width: 120rem;
 }
 .fuel-test-dashboard-inner {
   border-radius: 1rem;
   box-shadow: 1px 2px 19px #ddd;
   margin: 1rem;
-  max-width: 420px !important;
   padding: 2rem;
 }
 .fuel-test-dashboard-inner canvas {
   height: 200px !important;
+  width: 100% !important;
+}
+.fuel-test-dashboard-inner canvas#myChart6 {
+  height: 70rem !important;
   width: 100% !important;
 }
 .fuel-test-dashboard-inner h1 {
