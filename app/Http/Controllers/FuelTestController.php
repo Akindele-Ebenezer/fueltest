@@ -323,12 +323,12 @@ class FuelTestController extends Controller
                         'uid' => $uid,
                         'MadeBy' => $MadeBy,
                         'DeliveredTo' => $DeliveredTo,
+                        'Remarks' => $Remarks,
                         'VendorName' => $VendorName,
                         'VendorNo' => $VendorNo,
-                        'Remarks' => $Remarks,
-                        'ApprovalForUse ' => $ApprovalForUse,
+                        'ApprovalForUse' => $ApprovalForUse,
                     ]);  
-                
+                    
             if(Session::has('email')) { 
                 
                 $VendorNo_ = $request->VendorNo; 

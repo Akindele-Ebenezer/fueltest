@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FuelTestRecord extends Model
 {
-    protected $fillable = ['SampleNo',
+    protected $fillable = [
+                            'SampleNo',
                             'SampleCollectionDate',
                             'TruckPlateNo',
                             'TankNo',
@@ -23,7 +24,10 @@ class FuelTestRecord extends Model
                             'MadeBy',
                             'DeliveredTo',
                             'Remarks',
+                            'VendorName',
+                            'VendorNo',
                             'ApprovalForUse',
                         ]; 
+                        
     use HasFactory;
 }
