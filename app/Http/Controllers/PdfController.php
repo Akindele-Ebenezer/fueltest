@@ -264,7 +264,7 @@ class PdfController extends Controller
                 $CleanlinessResult = 'PASSED';
                 break;      
                 
-            case $Cleanliness = 'OK':
+            case $Cleanliness === 'OK':
                 $CleanlinessResult = 'PASSED';
                 break;         
 
@@ -334,7 +334,7 @@ class PdfController extends Controller
         $VendorNo = $request->VendorNo; 
             
         $ApprovalForUse = $request->ApprovalForUse; 
-
+         
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetLeftMargin(9);  
@@ -561,13 +561,13 @@ class PdfController extends Controller
         $pdf->Cell(25, 10,'Mins', 1, 0, 'C');
         $pdf->Cell(33, 10,'   12                 15   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D2068', 1, 0, 'C');
- 
+         
         switch ($Cleanliness) {
             case $Cleanliness <= 15 && $Cleanliness >= 12:
                 $CleanlinessResult = 'PASSED';
                 break;  
                 
-                case $Cleanliness = 'OK':
+                case $Cleanliness === 'OK':
                     $CleanlinessResult = 'PASSED';
                     break;               
 
@@ -575,7 +575,6 @@ class PdfController extends Controller
                 $CleanlinessResult = 'FAILED';
                 break;   
         } 
-
         $pdf->Cell(34.9, 10, $Cleanliness, 1, 0, 'C'); 
         $pdf->Cell(24.9, 10, $CleanlinessResult, 1, 1, 'C');
         $pdf->SetTextColor(89, 74, 74); 
