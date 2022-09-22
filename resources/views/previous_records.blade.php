@@ -1,3 +1,36 @@
+@php
+
+    if(isset($_GET['FilterVendorName'])) {
+        $FilteredRecords[] = $_GET['CheckVendorName']; 
+
+        foreach ($FilteredRecords as $VendorName) {
+            $title = $VendorName[0];
+            $previous_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                            ->where('uid', $id)
+                                                            ->orderBy('SampleNo', 'DESC')
+                                                            ->get();  
+            
+            $number_of_previous_records = count($previous_records);
+
+            $number_of_passed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('uid', $id)
+                                            ->where('ApprovalForUse', "APPROVED")
+                                            ->orderBy('SampleNo', 'DESC')->count(); 
+            
+            $number_of_failed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('uid', $id)
+                                            ->where('ApprovalForUse', "REJECTED")
+                                            ->orderBy('SampleNo', 'DESC')->count(); 
+            
+            $number_of_waved_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('uid', $id)
+                                            ->where('ApprovalForUse', "WAVED")
+                                            ->orderBy('SampleNo', 'DESC')->count(); 
+        }
+    }
+
+@endphp
+
 @extends('layouts.layout_1')
  
 @section('name', $name)
@@ -44,7 +77,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Vendors 
+                    <th class="vendors-th">Vendors 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByVendorName">

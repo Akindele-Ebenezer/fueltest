@@ -130,7 +130,20 @@ class FuelTestController extends Controller
                                         ->where('ApprovalForUse', 'WAVED')
                                         ->get();
         $number_of_waved_records_ = count($WavedRecords_);  
-                                                                         
+                  
+        $FuelStatsVendors = [];
+
+        foreach ($vendors as $vendor) {
+            array_push($FuelStatsVendors, $vendor['VendorName']);
+        }
+
+        $ApprovedTestsForEachVendor = FuelTestRecord::whereIn('VendorName', $FuelStatsVendors)
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->toArray();
+        // print_r($ApprovedTestsForEachVendor);
+
         return [ 
             'id' => $id,
             'name' => $name,
@@ -157,6 +170,7 @@ class FuelTestController extends Controller
             'number_of_waved_records_' => $number_of_waved_records_,
             'number_of_passed_records_' => $number_of_passed_records_,
             'number_of_failed_records_' => $number_of_failed_records_, 
+            'ApprovedTestsForEachVendor' => $ApprovedTestsForEachVendor, 
         ]; 
     }
 
@@ -418,7 +432,7 @@ class FuelTestController extends Controller
                 'FilterMadeBy' => $FilterMadeBy,
                 'FilterDeliveredTo' => $FilterDeliveredTo,
                 'FilterRemarks' => $FilterRemarks,   
-                'FilterVendorName' => $FilterVendorName,   
+                'FilterVendorName' => $FilterVendorName,       
             ];
 
             $ViewData = [...$Config, ...$ViewData]; 
@@ -434,17 +448,7 @@ class FuelTestController extends Controller
                     
                     Session::put('SortOrder', $SortOrder); 
                 }
-            }
-
-            if(isset($_GET['FilterVendorName'])) {
-                $FilteredRecords[] = $request->CheckVendorName;  
-                
-                foreach ($FilteredRecords as $VendorName) {
-                    $all_records = FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->get();
-                   
-                    $number_of_all_records = count($all_records);
-                } 
-            }
+            } 
 
             if (isset($_GET['FilterRecordsOfToday'])) {
                 $RecordsOfToday = $request->RecordsOfToday; 
@@ -936,17 +940,7 @@ class FuelTestController extends Controller
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
                 }
-            }
-
-            if(isset($_GET['FilterVendorName'])) {
-                $FilteredRecords[] = $request->CheckVendorName; 
- 
-                foreach ($FilteredRecords as $VendorName) {
-                    $previous_records = FuelTestRecord::whereIn('VendorName', $VendorName)->where('uid', $id)->orderBy('SampleNo', 'DESC')->get();  
-                 
-                    $number_of_previous_records = count($previous_records);
-                }
-            }
+            } 
 
             if (isset($_GET['FilterRecordsOfToday'])) {
                 $RecordsOfToday = $request->RecordsOfToday; 

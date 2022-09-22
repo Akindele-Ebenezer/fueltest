@@ -273,6 +273,11 @@ section {
 
                     &.vendors {
                         color: #444;
+                        font-family: arial;
+                        font-size: 0.85rem;
+                        font-style: italic;
+                        font-weight: bold;
+                        text-align: right;
                     } 
 
                     &.pdf-and-edit {
@@ -463,6 +468,9 @@ section {
                         text-align: left;
                     }
 
+                    &.vendors-th {
+                        text-align: right;
+                    }
                 }
             }
         }

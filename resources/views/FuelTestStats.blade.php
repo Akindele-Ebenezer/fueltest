@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-
+<input type="hidden" id="Labels" name="Labels">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script> 
 
@@ -141,44 +141,61 @@ let FuelTestResults = new Chart("myChart", {
         }
     });
  
-    let Labels = [];
-    
-    @foreach($vendors as $vendor)
-        Labels.push('{{ $vendor->VendorName }}'); 
+    let Labels = []; 
+    let ApprovedTestsForEachVendor = []; 
+    let RejectedTestsForEachVendor = []; 
+    let WavedTestsForEachVendor = []; 
 
-        @php 
-            $FuelTestStatsVendorName = \App\Models\FuelTestRecord::whereIn('VendorName', [$vendor->VendorName])
-                                                        ->where('ApprovalForUse', 'APPROVED')
-                                                        ->get()->toArray();
-              
-            foreach ($FuelTestStatsVendorName as $Vendor) {
-                $FuelTestStatsVendorName_ = $Vendor['VendorName'];
-            }                                             
-        @endphp
+    let LabelData = document.getElementById('Labels').value.split(); 
+
+    @foreach($vendors as $vendor)
+        Labels.push('{{ $vendor->VendorName }}');   
+    @endforeach
+
+    @foreach($all_records as $ApprovedRecords)   
+          
+        // @if($ApprovedRecords->ApprovalForUse === "APPROVED" && $ApprovedRecords->VendorName === $ApprovedRecords->VendorName)            
+        //     ApprovedTestsForEachVendor.push('{{ $loop->count }}');  
+        // @endif     
+            
+            // {{ $ApprovedRecords->VendorName }}
     @endforeach 
-                    
-        {{ $FuelTestStatsVendorName_ }}
+
+    @foreach($all_records as $RejectedRecords) 
+        @if($RejectedRecords->ApprovalForUse === "REJECTED")            
+            RejectedTestsForEachVendor.push('{{ $RejectedRecords->ApprovalForUse === "REJECTED" ? $RejectedRecords->ApprovalForUse : "" }}');  
+        @endif   
+    @endforeach
+
+    @foreach($all_records as $WavedRecords) 
+        @if($WavedRecords->ApprovalForUse === "WAVED")            
+            WavedTestsForEachVendor.push('{{ $WavedRecords->ApprovalForUse === "WAVED" ? $WavedRecords->ApprovalForUse : "" }}');  
+        @endif   
+    @endforeach
+ 
+    let NumberOfApprovedTests = ApprovedTestsForEachVendor.length;
+    
     let FuelTestResults6 = new Chart("myChart6", {
         type: "horizontalBar",
         data: {
-            labels: [...Labels],
-            datasets: [{ 
-                data: [60,40,60],
+            labels: [...Labels], 
+            datasets: [{  
+                data: [...WavedTestsForEachVendor],
                 backgroundColor: "#F5D6D0",
                 fill: false,
                 label: 'Waved',
             }, 
             { 
-                data: [30,00,70],
+                data: [...RejectedTestsForEachVendor],
                 backgroundColor: "#CE050F",
                 fill: false,
                 label: 'Rejected',
             }, 
             { 
-                data: [30,70,20],
+                data: [NumberOfApprovedTests],
                 backgroundColor: "#2BC5AE",
                 fill: false,
-                label: 'Approved',
+                label: 'Approved', 
             }]
         },
         options: {

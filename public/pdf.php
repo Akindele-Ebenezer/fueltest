@@ -38,7 +38,7 @@
          
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
-        $pdf->Cell(45, 10,'SAMPLE OF', 1, 0, 'C');
+        $pdf->Cell(45, 10,'SAMPLE NO', 1, 0, 'C');
         $pdf->SetFont('Arial','B', 8);
         $pdf->Cell(22, 10, $sample_no, 1, 0, 'C');
         $pdf->Cell(22.9, 10,'', 0, 0, '');

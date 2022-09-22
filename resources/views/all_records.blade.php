@@ -1,3 +1,29 @@
+@php
+
+    if(isset($_GET['FilterVendorName'])) {
+        $FilteredRecords[] = $_GET['CheckVendorName'];  
+        
+        foreach ($FilteredRecords as $VendorName) {
+            $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->get();
+            
+            $number_of_all_records = count($all_records);
+            
+            $number_of_passed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('ApprovalForUse', "APPROVED")
+                                            ->orderBy('SampleNo', 'DESC')->count(); 
+            
+            $number_of_failed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('ApprovalForUse', "REJECTED")
+                                            ->orderBy('SampleNo', 'DESC')->count(); 
+            
+            $number_of_waved_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('ApprovalForUse', "WAVED")
+                                            ->orderBy('SampleNo', 'DESC')->count(); 
+        } 
+    }
+
+@endphp
+ 
 @extends('layouts.layout_1')
 
 @section('name', $name)
@@ -49,7 +75,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Vendors 
+                    <th class="vendors-th">Vendors 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByVendorName">
