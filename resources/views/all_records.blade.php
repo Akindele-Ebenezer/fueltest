@@ -20,6 +20,10 @@
             $number_of_waved_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
                                             ->where('ApprovalForUse', "WAVED")
                                             ->orderBy('SampleNo', 'DESC')->count(); 
+            
+            $number_of_diff_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('ApprovalForUse', NULL)
+                                            ->count(); 
         } 
     }
 
@@ -528,15 +532,19 @@
                                 @include('AllRecordsCertificateData')                                
                             </form> 
                             @if($record->ApprovalForUse === 'APPROVED')
-                            <img src="images/approved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Passed ]</section>  
+                                <img src="images/approved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Passed ]</section>  
                             @endif
 
                             @if($record->ApprovalForUse === 'REJECTED')
-                            <img src="images/rejected.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Failed ]</section>  
+                                <img src="images/rejected.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Failed ]</section>  
                             @endif
 
                             @if($record->ApprovalForUse === 'WAVED')
-                            <img src="images/waved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Waved ]</section>  
+                                <img src="images/waved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Waved ]</section>  
+                            @endif
+
+                            @if($record->ApprovalForUse === NULL)
+                                <img src="images/diff.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Diff ]</section>  
                             @endif
                         </td> 
                         <td class="sample-no">

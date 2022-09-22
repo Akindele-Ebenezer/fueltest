@@ -97,6 +97,14 @@ class FuelTestController extends Controller
         // ORDER BY
         // SampleNo DESC");  
 
+        $DiffRecords = FuelTestRecord::where('ApprovalForUse', NULL)->get();
+        $number_of_diff_records = count($DiffRecords); 
+        
+        $DiffRecords_ = FuelTestRecord::where('uid', $id)
+                                        ->where('ApprovalForUse', NULL)
+                                        ->get();
+        $number_of_diff_records_ = count($DiffRecords_); 
+        
         $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')->get();
         $number_of_failed_records = count($FailedRecords); 
         
@@ -166,6 +174,10 @@ class FuelTestController extends Controller
             'FailedRecords_' => $FailedRecords_,
             'WavedRecords_' => $WavedRecords_,
             'WavedRecords' => $WavedRecords,
+            'DiffRecords' => $DiffRecords,
+            'DiffRecords_' => $DiffRecords_,
+            'number_of_diff_records' => $number_of_diff_records,
+            'number_of_diff_records_' => $number_of_diff_records_,
             'number_of_waved_records' => $number_of_waved_records,
             'number_of_waved_records_' => $number_of_waved_records_,
             'number_of_passed_records_' => $number_of_passed_records_,
@@ -514,6 +526,13 @@ class FuelTestController extends Controller
                 $title = 'Passed Tests';
                 $number_of_all_records = count($all_records);
             }
+
+            if (isset($_GET['FilterDiffTests'])) {   
+                $all_records = $DiffRecords; 
+                
+                $title = 'Diff Tests';
+                $number_of_all_records = count($all_records);
+            } 
 
             if (isset($_GET['FilterWavedTests'])) {   
                 $all_records = $WavedRecords; 
@@ -1011,6 +1030,13 @@ class FuelTestController extends Controller
                 $title = 'Passed Tests';
                 $number_of_previous_records = count($previous_records);  
             }
+
+            if (isset($_GET['FilterDiffTests'])) {   
+                $previous_records = $DiffRecords_; 
+                
+                $title = 'Diff Tests';
+                $number_of_previous_records = count($previous_records);
+            } 
 
             if (isset($_GET['FilterWavedTests'])) {   
                 $previous_records = $WavedRecords_; 
@@ -1540,6 +1566,8 @@ class FuelTestController extends Controller
              
         $PercentageOfPassedRecords = $number_of_passed_records / $number_of_all_records * 100; 
         $PercentageOfFailedRecords = $number_of_failed_records / $number_of_all_records * 100;
+        $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
+        $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
  
         $FirstDayOfLastMonth = date("Y-0n-j", strtotime("first day of previous month"));  
         $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
@@ -1704,6 +1732,8 @@ class FuelTestController extends Controller
             'number_of_six_days_ago_records' => $number_of_two_days_ago_records,
             'PercentageOfFailedRecords' => $PercentageOfFailedRecords,
             'PercentageOfPassedRecords' => $PercentageOfPassedRecords,
+            'PercentageOfWavedRecords' => $PercentageOfWavedRecords,
+            'PercentageOfDiffRecords' => $PercentageOfDiffRecords,
             'January' => $January,
             'February' => $February,
             'March' => $March,

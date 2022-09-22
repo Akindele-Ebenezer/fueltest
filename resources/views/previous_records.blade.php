@@ -26,6 +26,11 @@
                                             ->where('uid', $id)
                                             ->where('ApprovalForUse', "WAVED")
                                             ->orderBy('SampleNo', 'DESC')->count(); 
+            
+            $number_of_diff_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                            ->where('uid', $id)
+                                            ->where('ApprovalForUse', NULL)
+                                            ->count(); 
         }
     }
 
@@ -514,6 +519,10 @@
 
                             @if($previous_record->ApprovalForUse === 'WAVED')
                                 <img src="images/waved.png"> <section class="records-tooltip">{{ $previous_record->SampleNo }} <br> [ Waved ]</section>  
+                            @endif
+                            
+                            @if($previous_record->ApprovalForUse === NULL)
+                                <img src="images/diff.png"> <section class="records-tooltip">{{ $previous_record->SampleNo }} <br> [ Diff ]</section>  
                             @endif
                     </td>
                     <td class="sample-no">

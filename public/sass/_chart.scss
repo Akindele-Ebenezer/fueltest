@@ -42,10 +42,19 @@
                     
                     &:first-of-type {
                         border: 8px solid #ea5545;
+                    }                    
+                    
+                    &:nth-of-type(2) {
+                        border: 8px solid #6cd4c5;
+                    }
+                    
+                    
+                    &:nth-of-type(3) {
+                        border: 8px solid #e6d817;
                     }
                     
                     &:last-of-type {
-                        border: 8px solid #6cd4c5;
+                        border: 8px solid #a4a2a8;
                     }
                 }
             }

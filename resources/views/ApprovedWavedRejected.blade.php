@@ -1,4 +1,3 @@
-
 <div>
     <form action="" class="Passed">
         <label>
@@ -24,4 +23,12 @@
         </label>
         <section class="tooltip">{{ $number_of_failed_records }} DIESEL Tests = Rejected</section> 
     </form> 
+    <form action="" class="Diff">
+        <label>
+            <input type="submit" name="FilterDiffTests">
+            <img src="images/diff.png">
+            DIFF [{{ Route::is('previous_records') ? $number_of_diff_records_ : '' }}{{ Route::is('all_records') ? $number_of_diff_records : '' }}]
+        </label>
+        <section class="tooltip">{{ $number_of_diff_records }} Non DIESEL Tests = Diff</section> 
+    </form>  
 </div>

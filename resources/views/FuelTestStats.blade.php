@@ -24,10 +24,12 @@
         </div> 
         <div class="fuel-test-dashboard-inner">
             <div class="inner">
-                <h1>Diesel FUEL TEST Report</h1>
+                <h1>FUEL LAB Report</h1>
                 <div>
                     <h2>{{ round($PercentageOfFailedRecords) }}%</h2>
                     <h2>{{ round($PercentageOfPassedRecords) }}%</h2>
+                    <h2>{{ round($PercentageOfWavedRecords) }}%</h2>
+                    <h2>{{ round($PercentageOfDiffRecords) }}%</h2>
                 </div>
             </div>
             <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
@@ -57,10 +59,10 @@
 let FuelTestResults = new Chart("myChart", {
     type: "horizontalBar",
     data: {
-            labels: ["Failed", "Passed", "Waved", "Previous Records", "Total Records"],
+            labels: ["Failed", "Passed", "Waved", "Diff", "Previous Records", "Total Records"],
             datasets: [{
-                backgroundColor: ["#ea5545", "#6cd4c5","#beb9db","#9080ff", "#ddd"],
-                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
+                backgroundColor: ["#ea5545", "#6cd4c5","#e6d817","#a4a2a8","#9080ff", "#ddd"],
+                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, {{ $number_of_diff_records }}, {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
             }]
         },
         options: {

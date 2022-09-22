@@ -93,7 +93,8 @@ section {
  
         .Passed,
         .Failed,
-        .Waved {  
+        .Waved,
+        .Diff {  
             margin-left: .75rem; 
 
             label {
@@ -101,6 +102,10 @@ section {
             }
         }
 
+        .Diff {
+            color: #00828f;
+        }
+        
         .Passed {
             color: $color-2;
         }
