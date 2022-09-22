@@ -4,6 +4,7 @@
         $FilteredRecords[] = $_GET['CheckVendorName'];  
         
         foreach ($FilteredRecords as $VendorName) {
+            $title = $VendorName[0];
             $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->get();
             
             $number_of_all_records = count($all_records);
