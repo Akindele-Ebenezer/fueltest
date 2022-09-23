@@ -7,6 +7,8 @@ let ToolTipsParent6 = document.querySelectorAll('.Passed');
 let ToolTipsParent7 = document.querySelectorAll('.Waved');
 let ToolTipsParent8 = document.querySelectorAll('.Failed');
 let ToolTipsParent9 = document.querySelectorAll('.Diff');
+let ToolTipsParent10 = document.querySelectorAll('.vendor-no');  
+let ToolTipsParent11 = document.querySelectorAll('.vendor-name');  
 
 let ToolTipsArray = [
     ToolTipsParent1,
@@ -17,7 +19,9 @@ let ToolTipsArray = [
     ToolTipsParent6,
     ToolTipsParent7,
     ToolTipsParent8,
-    ToolTipsParent9,
+    ToolTipsParent9, 
+    ToolTipsParent10, 
+    ToolTipsParent11, 
 ]; 
 
 ToolTipsArray.forEach(ToolTipParentElement => {

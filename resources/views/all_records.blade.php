@@ -55,8 +55,8 @@
         <div>
             <table>
                 <tr> 
-                    <th>Days/Weeks/Months </th> 
-                    <th>Sample No.
+                    <th class="resizable">Days/Weeks/Months </th> 
+                    <th class="resizable">Sample No.
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortBySampleNo">
@@ -80,7 +80,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th class="vendors-th">Vendors 
+                    <th class="vendors resizable">Vendors 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByVendorName">
@@ -102,7 +102,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Sample Collection Date 
+                    <th class="resizable">Sample Collection Date 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortBySampleCollectionDate">
@@ -150,7 +150,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Truck Plate No. 
+                    <th class="resizable">Truck Plate No. 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByTruckPlateNo">
@@ -174,7 +174,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Tank No. 
+                    <th class="resizable">Tank No. 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByTankNo">
@@ -198,7 +198,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Appearance Result
+                    <th class="resizable">Appearance Result
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByAppearanceResult">
@@ -222,7 +222,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Color
+                    <th class="resizable">Color
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByColor">
@@ -246,7 +246,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Density in Kg/m<sup>3</sup>
+                    <th class="resizable">Density in Kg/m<sup>3</sup>
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByDensity">
@@ -270,7 +270,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Flash Point 
+                    <th class="resizable">Flash Point 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByFlashPoint">
@@ -294,7 +294,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Temp °C
+                    <th class="resizable">Temp °C
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByTemp">
@@ -318,7 +318,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Water/Sediment % 
+                    <th class="resizable">Water/Sediment % 
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByWaterSediment">
@@ -342,7 +342,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Cleanliness
+                    <th class="resizable">Cleanliness
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByCleanliness">
@@ -366,7 +366,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Date Of Test
+                    <th class="resizable">Date Of Test
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByDateOfTest">
@@ -390,7 +390,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Made By (Name)
+                    <th class="resizable">Made By (Name)
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByMadeBy">
@@ -414,7 +414,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Delivered To
+                    <th class="resizable">Delivered To
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByDeliveredTo">
@@ -438,7 +438,7 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th>Remarks
+                    <th class="resizable">Remarks
                     <form action="" method="get">
                         <label>
                             <input type="submit" name="SortByRemarks">
@@ -581,6 +581,7 @@
     </section>
 
     <script src="JS/Tooltips.js"></script>
+    <script src="JS/Resizable.js"></script>
 
     <script>
  

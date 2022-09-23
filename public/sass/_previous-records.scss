@@ -154,6 +154,10 @@ section {
                             color: #00828f;
                         }
                         
+                        .hide {
+                            display: none;
+                        }
+
                         &.vendor-no,
                         &.user-email {
                             color: $color-2;
@@ -265,7 +269,8 @@ section {
                         color: #00bccf;
                     }
 
-                    &.sample-no {              
+                    &.sample-no,
+                    &.vendor-no {              
                         background: #eeeeee30;
                         border-bottom: 1px solid; 
                         color: #00828f;
@@ -276,13 +281,22 @@ section {
                         }
                     }  
 
-                    &.vendors {
+                    &.vendors,
+                    &.vendor-name label,
+                    &.vendor-name {
                         color: #444;
+                        cursor: pointer;
                         font-family: arial;
                         font-size: 0.85rem;
                         font-style: italic;
                         font-weight: bold;
                         text-align: right;
+                    } 
+                    
+                    &.vendor-name {
+                        label {                            
+                            color: unset;
+                        }
                     } 
 
                     &.pdf-and-edit {
@@ -296,11 +310,7 @@ section {
                             translate: .5rem 0.6rem;
                             width: 1.75rem;
                         }
-                    }
-                      
-                    &.vendor-name {
-                        text-align: left;
-                    }
+                    } 
 
                     button {
                         margin-top: unset; 

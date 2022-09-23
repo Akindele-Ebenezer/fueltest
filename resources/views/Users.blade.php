@@ -23,9 +23,9 @@
         <div> 
             <table class="users"> 
                 <tr>  
-                    <th>#</th>
-                    <th>Email</th>
-                    <th class="user-name">User Name</th> 
+                    <th class="resizable">#</th>
+                    <th class="resizable">Email</th>
+                    <th class="resizable user-name">User Name</th> 
                 </tr>  
                 @foreach($fuel_test_users as $User)
                 <tr> 
@@ -38,4 +38,5 @@
             <!-- Pagination links -->
         </div>
     </section>
+    <script src="JS/Resizable.js"></script>
 @endsection

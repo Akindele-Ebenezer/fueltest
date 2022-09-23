@@ -21,19 +21,39 @@
         <div> 
             <table class="vendors"> 
                 <tr>  
-                    <th>#</th>
-                    <th>Vendor No.</th>
-                    <th class="vendor-name">Vendor Name</th> 
+                    <th class="resizable">#</th>
+                    <th class="resizable">Vendor No.</th>
+                    <th class="vendor-name resizable">Vendor Name</th> 
                 </tr>  
                 @foreach($vendors as $Vendor)
                 <tr> 
                     <td class="vendor-id">{{ $Vendor->id }}</td>
-                    <td class="vendor-no">{{ $Vendor->VendorNo }}</td>
-                    <td class="vendor-name">{{ $Vendor->VendorName }}</td>  
+                    <td class="vendor-no" id="Vend">
+                        <form action="{{ route('all_records') }}">
+                            <label>
+                                <input type="hidden" class="hide" name="FilterVendorName">
+                                <input type="submit" class="hide" name="CheckVendorName[]" value="{{ $Vendor->VendorName }}">
+                                {{ $Vendor->VendorNo }}
+                            </label>
+                        </form>  
+                        <section class="records-tooltip">{{ $Vendor->VendorNo }} <br> [ ]</section>                      
+                    </td>
+                    <td class="vendor-name">
+                        <form action="{{ route('all_records') }}">
+                            <label>
+                                <input type="hidden" class="hide" name="FilterVendorName">
+                                <input type="submit" class="hide" name="CheckVendorName[]" value="{{ $Vendor->VendorName }}">
+                                {{ $Vendor->VendorName }}
+                            </label>
+                        </form>  
+                        <section class="records-tooltip">{{ $Vendor->VendorName }} <br> [ ]</section> 
+                    </td>  
                 </tr>  
                 @endforeach
             </table> 
             <!-- Pagination links -->
         </div>
-    </section>
+    </section> 
+
+    <script src="JS/Resizable.js"></script>
 @endsection

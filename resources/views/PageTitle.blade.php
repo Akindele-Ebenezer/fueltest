@@ -32,5 +32,5 @@
     </div> 
 </div> 
 
-<script src="JS/Tooltips.js"></script>
+<script src="JS/Tooltips.js" defer></script>
     

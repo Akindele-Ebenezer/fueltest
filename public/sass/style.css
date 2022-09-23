@@ -133,6 +133,11 @@ button:hover {
   translate: 12rem;
 }
 
+.resizable {
+  max-width: 400px;
+  min-width: 100px;
+}
+
 ul {
   list-style: none;
 }
@@ -810,6 +815,9 @@ section.previous-records table.vendors tr td.vendor-id, section.previous-records
 section.previous-records table.vendors tr td.vendor-name, section.previous-records table.vendors tr td.user-name, section.previous-records table.users tr td.vendor-name, section.previous-records table.users tr td.user-name {
   color: #00828f;
 }
+section.previous-records table.vendors tr td .hide, section.previous-records table.users tr td .hide {
+  display: none;
+}
 section.previous-records table.vendors tr td.vendor-no, section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.vendor-no, section.previous-records table.users tr td.user-email {
   color: #00592e;
   width: 10rem;
@@ -910,22 +918,26 @@ section.previous-records table tr td.temp {
 section.previous-records table tr td.truck-plate-no {
   color: #00bccf;
 }
-section.previous-records table tr td.sample-no {
+section.previous-records table tr td.sample-no, section.previous-records table tr td.vendor-no {
   background: rgba(238, 238, 238, 0.1882352941);
   border-bottom: 1px solid;
   color: #00828f;
   margin-right: 1rem;
 }
-section.previous-records table tr td.sample-no label {
+section.previous-records table tr td.sample-no label, section.previous-records table tr td.vendor-no label {
   cursor: pointer;
 }
-section.previous-records table tr td.vendors {
+section.previous-records table tr td.vendors, section.previous-records table tr td.vendor-name label, section.previous-records table tr td.vendor-name {
   color: #444;
+  cursor: pointer;
   font-family: arial;
   font-size: 0.85rem;
   font-style: italic;
   font-weight: bold;
   text-align: right;
+}
+section.previous-records table tr td.vendor-name label {
+  color: unset;
 }
 section.previous-records table tr td.pdf-and-edit {
   display: flex;
@@ -937,9 +949,6 @@ section.previous-records table tr td.pdf-and-edit img {
   height: 1.75rem;
   translate: 0.5rem 0.6rem;
   width: 1.75rem;
-}
-section.previous-records table tr td.vendor-name {
-  text-align: left;
 }
 section.previous-records table tr td button {
   margin-top: unset;

@@ -177,6 +177,11 @@ button {
     translate: 12rem;
 }
 
+.resizable {
+    max-width: 400px;
+    min-width: 100px;
+}
+
 ul {
     list-style: none;
 }
