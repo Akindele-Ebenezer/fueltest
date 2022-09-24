@@ -130,37 +130,42 @@ section {
             margin-block: 1rem;
             text-align: center;
             width: max-content;
-            
+
+            td {
+                &:not(td.pdf-and-edit) {
+                    border-bottom: 1px solid #eee;
+                }
+            }
+
+            tr {                                  
+                &:nth-child(odd) {
+                    background: #fdfdfd;
+                }
+            }
+
             &.vendors,
             &.users { 
                 text-align: left;
 
-                tr {
+                tr {   
                     td {
                         padding-block: .5rem;
-                        
+
                         &.user-email {
                             width: 25rem !important;
                         }
 
                         &.vendor-id,
-                        &.user-id {
-                            // color: $color-3;
+                        &.user-id { 
                             width: 2rem;
-                        }
-                        
-                        &.vendor-name,
-                        &.user-name {
-                            color: #00828f;
-                        }
+                        } 
                         
                         .hide {
                             display: none;
                         }
 
                         &.vendor-no,
-                        &.user-email {
-                            color: $color-2;
+                        &.user-email { 
                             width: 10rem;
                         }
                     }
@@ -175,7 +180,7 @@ section {
 
             tr {
                 border-bottom: 1px solid #eee;
-                color: #222;
+                color: #444;
                 
                 &.history {
                     display: none; 
@@ -218,18 +223,8 @@ section {
                         @include AppearanceResult();
                         background: rgb(191 191 1 / 17%);
                         color: #abab00;
-                    }
-                    
-                    &.density {
-                        color: green; 
-                        font-weight: bold;
-                    }
-                    
-                    &.flash-point {
-                        background: #00828f1c;
-                        color: #00bccf;
-                    }
-                    
+                    } 
+
                     input {
                         border: none;
                         outline: none;
@@ -250,30 +245,10 @@ section {
                         &.Appearance {
                             text-transform: uppercase;
                         }
-                    }
-                    
-                    &.sample-collection-date { 
-                        color: #f33f3f;
-                    }
-                    
-                    &.tank-no { 
-                        background: #ff8c8c2e;
-                        color: #f33f3f;
-                    }
-                    
-                    &.temp {   
-                        color: #f33f3f;
-                    }
-                    
-                    &.truck-plate-no { 
-                        color: #00bccf;
-                    }
+                    } 
 
                     &.sample-no,
-                    &.vendor-no {              
-                        background: #eeeeee30;
-                        border-bottom: 1px solid; 
-                        color: #00828f;
+                    &.vendor-no {        
                         margin-right: 1rem;
 
                         label {
@@ -283,8 +258,7 @@ section {
 
                     &.vendors,
                     &.vendor-name label,
-                    &.vendor-name {
-                        color: #444;
+                    &.vendor-name { 
                         cursor: pointer;
                         font-family: arial;
                         font-size: 0.85rem;

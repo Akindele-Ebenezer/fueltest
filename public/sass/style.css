@@ -800,6 +800,12 @@ section.previous-records table {
   text-align: center;
   width: max-content;
 }
+section.previous-records table td:not(td.pdf-and-edit) {
+  border-bottom: 1px solid #eee;
+}
+section.previous-records table tr:nth-child(odd) {
+  background: #fdfdfd;
+}
 section.previous-records table.vendors, section.previous-records table.users {
   text-align: left;
 }
@@ -812,14 +818,10 @@ section.previous-records table.vendors tr td.user-email, section.previous-record
 section.previous-records table.vendors tr td.vendor-id, section.previous-records table.vendors tr td.user-id, section.previous-records table.users tr td.vendor-id, section.previous-records table.users tr td.user-id {
   width: 2rem;
 }
-section.previous-records table.vendors tr td.vendor-name, section.previous-records table.vendors tr td.user-name, section.previous-records table.users tr td.vendor-name, section.previous-records table.users tr td.user-name {
-  color: #00828f;
-}
 section.previous-records table.vendors tr td .hide, section.previous-records table.users tr td .hide {
   display: none;
 }
 section.previous-records table.vendors tr td.vendor-no, section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.vendor-no, section.previous-records table.users tr td.user-email {
-  color: #00592e;
   width: 10rem;
 }
 section.previous-records table.vendors tr th:first-of-type, section.previous-records table.users tr th:first-of-type {
@@ -827,7 +829,7 @@ section.previous-records table.vendors tr th:first-of-type, section.previous-rec
 }
 section.previous-records table tr {
   border-bottom: 1px solid #eee;
-  color: #222;
+  color: #444;
 }
 section.previous-records table tr.history {
   display: none;
@@ -876,14 +878,6 @@ section.previous-records table tr td .Clear {
   background: rgba(191, 191, 1, 0.17);
   color: #abab00;
 }
-section.previous-records table tr td.density {
-  color: green;
-  font-weight: bold;
-}
-section.previous-records table tr td.flash-point {
-  background: rgba(0, 130, 143, 0.1098039216);
-  color: #00bccf;
-}
 section.previous-records table tr td input {
   border: none;
   outline: none;
@@ -905,30 +899,13 @@ section.previous-records table tr td .Muddy {
 section.previous-records table tr td p.Appearance {
   text-transform: uppercase;
 }
-section.previous-records table tr td.sample-collection-date {
-  color: #f33f3f;
-}
-section.previous-records table tr td.tank-no {
-  background: rgba(255, 140, 140, 0.1803921569);
-  color: #f33f3f;
-}
-section.previous-records table tr td.temp {
-  color: #f33f3f;
-}
-section.previous-records table tr td.truck-plate-no {
-  color: #00bccf;
-}
 section.previous-records table tr td.sample-no, section.previous-records table tr td.vendor-no {
-  background: rgba(238, 238, 238, 0.1882352941);
-  border-bottom: 1px solid;
-  color: #00828f;
   margin-right: 1rem;
 }
 section.previous-records table tr td.sample-no label, section.previous-records table tr td.vendor-no label {
   cursor: pointer;
 }
 section.previous-records table tr td.vendors, section.previous-records table tr td.vendor-name label, section.previous-records table tr td.vendor-name {
-  color: #444;
   cursor: pointer;
   font-family: arial;
   font-size: 0.85rem;
