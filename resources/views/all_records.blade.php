@@ -36,6 +36,7 @@
 @section('header_info', $title)
 @section('title', $title)
 @section('content')
+    @include('ShowRecord')
     <section class="previous-records">
         <center>  
             <div>
@@ -555,7 +556,14 @@
                                 </label>
                             </form>
                         </td>
-                        <td class="vendors">{{ $record->VendorName }}</td>
+                        <td class="vendors">
+                            <form action="">
+                                <label>
+                                    @include('AllRecordsCertificateData')
+                                    {{ $record->VendorName }} 
+                                </label>
+                            </form>
+                        </td>
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
                         <td class="truck-plate-no">{{ $record->TruckPlateNo  }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>

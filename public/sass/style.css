@@ -318,22 +318,22 @@ section.fuel-test .fuel-test-left-nav center img {
   margin-top: 3rem;
 }
 section.fuel-test .fuel-test-left-nav ul a {
-  color: antiquewhite;
+  color: #eee;
 }
 section.fuel-test .fuel-test-left-nav ul a li {
   align-items: center;
   display: flex;
-  padding: 2rem;
 }
 section.fuel-test .fuel-test-left-nav ul a li:hover {
   background: #004f29;
   border-radius: 0 0.5rem 1rem 0;
   cursor: pointer;
 }
+section.fuel-test .fuel-test-left-nav ul a li em {
+  margin-left: 1rem;
+}
 section.fuel-test .fuel-test-left-nav ul li {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-family: "Poppins", sans-serif;
   letter-spacing: 0.09rem;
   padding: 1rem;
 }
@@ -344,8 +344,9 @@ section.fuel-test .fuel-test-left-nav ul li.active-dashboard {
 }
 section.fuel-test .fuel-test-left-nav ul li svg {
   fill: #f4d4aa;
+  height: 1.4rem;
   margin-right: 1.5rem;
-  width: 2rem;
+  width: 1.4rem;
 }
 section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
   height: 90vh;
@@ -452,10 +453,9 @@ section.fuel-test .fuel-test-main .form div section ul li.Waved {
 }
 section.fuel-test .fuel-test-main .form div section ul li.Bright {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
   border-radius: unset;
 }
@@ -464,10 +464,9 @@ section.fuel-test .fuel-test-main .form div section ul li.Bright span {
 }
 section.fuel-test .fuel-test-main .form div section ul li.Clear {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
   background: rgba(191, 191, 1, 0.17);
   border-radius: unset;
@@ -485,10 +484,9 @@ section.fuel-test .fuel-test-main .form div section ul li:hover {
 }
 section.fuel-test .fuel-test-main .form div section ul li.Muddy {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
   background: rgba(0, 130, 143, 0.1098039216);
   border-radius: unset;
@@ -796,15 +794,27 @@ section.previous-records div {
   width: 75vw;
 }
 section.previous-records table {
+  border-collapse: collapse;
   margin-block: 1rem;
-  text-align: center;
   width: max-content;
 }
 section.previous-records table td:not(td.pdf-and-edit) {
+  border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
+  padding: 0.4rem 2rem;
 }
 section.previous-records table tr:nth-child(odd) {
   background: #fdfdfd;
+}
+section.previous-records table tr.history, section.previous-records table tr.history td {
+  border: none;
+  padding-inline: 0.5rem;
+}
+section.previous-records table tr.history {
+  border-bottom: 1px solid #eee;
+  border-left: 5px solid #ddd;
+  border-radius: 0 0.5rem 1rem 0;
+  margin-top: 1rem;
 }
 section.previous-records table.vendors, section.previous-records table.users {
   text-align: left;
@@ -825,7 +835,8 @@ section.previous-records table.vendors tr td.vendor-no, section.previous-records
   width: 10rem;
 }
 section.previous-records table.vendors tr th:first-of-type, section.previous-records table.users tr th:first-of-type {
-  width: 3rem;
+  min-width: 2rem;
+  max-width: 4rem;
 }
 section.previous-records table tr {
   border-bottom: 1px solid #eee;
@@ -836,6 +847,8 @@ section.previous-records table tr.history {
   padding-block: 1rem;
 }
 section.previous-records table tr.history td {
+  align-items: center;
+  display: flex;
   font-family: "Bitter", serif;
   font-size: 1.4rem;
 }
@@ -846,34 +859,27 @@ section.previous-records table tr.history td span {
 section.previous-records table tr:hover {
   background: #eee;
 }
-section.previous-records table tr td.appearance-result {
-  display: flex;
-  justify-content: center;
-}
 section.previous-records table tr td .Bright {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
 }
 section.previous-records table tr td .CM {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
   background: rgba(255, 140, 140, 0.1803921569);
   color: #f33f3f;
 }
 section.previous-records table tr td .Clear {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
   background: rgba(191, 191, 1, 0.17);
   color: #abab00;
@@ -888,16 +894,18 @@ section.previous-records table tr td input.Certificate {
 }
 section.previous-records table tr td .Muddy {
   background: rgba(98, 217, 98, 0.1803921569);
-  border-radius: 0.5rem;
   color: green;
   height: unset;
-  padding: 0.5rem 3rem;
+  text-align: center;
   width: 10rem;
   background: rgba(0, 130, 143, 0.1098039216);
   color: #00bccf;
 }
 section.previous-records table tr td p.Appearance {
+  font-size: 0.9rem;
+  margin: auto;
   text-transform: uppercase;
+  width: 5rem;
 }
 section.previous-records table tr td.sample-no, section.previous-records table tr td.vendor-no {
   margin-right: 1rem;
@@ -911,7 +919,6 @@ section.previous-records table tr td.vendors, section.previous-records table tr 
   font-size: 0.85rem;
   font-style: italic;
   font-weight: bold;
-  text-align: right;
 }
 section.previous-records table tr td.vendor-name label {
   color: unset;
@@ -923,9 +930,9 @@ section.previous-records table tr td.pdf-and-edit {
   width: 10rem;
 }
 section.previous-records table tr td.pdf-and-edit img {
-  height: 1.75rem;
-  translate: 0.5rem 0.6rem;
-  width: 1.75rem;
+  height: 1.45rem;
+  translate: 0 0.5rem;
+  width: 1.45rem;
 }
 section.previous-records table tr td button {
   margin-top: unset;
@@ -936,7 +943,7 @@ section.previous-records table tr td button:hover {
 }
 section.previous-records table tr td input[type=image] {
   margin-inline: 1rem;
-  transform: translateY(0.5rem);
+  translate: 0 0.2rem;
   width: 2rem;
 }
 section.previous-records table tr th {
@@ -1057,6 +1064,56 @@ section.previous-records table tr th.vendor-name, section.previous-records table
 }
 section.previous-records table tr th.vendors-th {
   text-align: right;
+}
+section.show-record {
+  background: #fff;
+  border-left: 1px solid #eee;
+  height: 90vh;
+  overflow: scroll;
+  padding: 2rem;
+  position: absolute;
+  right: 0;
+  width: 30rem;
+  z-index: 1000;
+}
+section.show-record div:first-child {
+  background: #fff;
+  cursor: pointer;
+  color: red;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-block: 1rem;
+  position: fixed;
+  right: 1rem;
+  top: 0;
+  text-align: right;
+}
+section.show-record div:last-child {
+  margin-top: 2rem;
+}
+section.show-record div svg {
+  border: 1px solid #333;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  fill: #333;
+  margin-right: 1rem;
+  padding: 0.25rem;
+  transform: translate(-0.2rem, 0.55rem);
+  width: 1.5rem;
+}
+section.show-record center {
+  color: #00592e;
+  font-size: 1.2rem;
+  text-align: center;
+}
+section.show-record ul li {
+  border-bottom: 1px solid #eee;
+}
+section.show-record ul li span:first-child {
+  color: #00592e;
+}
+section.show-record ul li span:last-child {
+  margin-left: 2.8rem;
 }
 section input[placeholder="Search.."] {
   margin-left: 2rem;

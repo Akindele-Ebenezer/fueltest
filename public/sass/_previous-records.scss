@@ -126,20 +126,34 @@ section {
         }
 
         table {
-            // border-collapse: collapse;
-            margin-block: 1rem;
-            text-align: center;
+            border-collapse: collapse;
+            margin-block: 1rem; 
             width: max-content;
 
             td {
                 &:not(td.pdf-and-edit) {
+                    border-top: 1px solid #eee;
                     border-bottom: 1px solid #eee;
-                }
+                    padding: .4rem 2rem;
+                } 
             }
 
             tr {                                  
                 &:nth-child(odd) {
                     background: #fdfdfd;
+                }
+                
+                &.history,
+                &.history td {
+                    border: none;
+                    padding-inline: .5rem; 
+                }
+                
+                &.history { 
+                    border-bottom: 1px solid #eee;
+                    border-left: 5px solid #ddd;
+                    border-radius: 0 .5rem 1rem 0; 
+                    margin-top: 1rem; 
                 }
             }
 
@@ -172,7 +186,8 @@ section {
 
                     th {                
                         &:first-of-type {
-                            width: 3rem;
+                            min-width: 2rem;
+                            max-width: 4rem;
                         }
                     }
                 }
@@ -187,6 +202,8 @@ section {
                     padding-block: 1rem;
                     
                     td {
+                        align-items: center;
+                        display: flex;
                         font-family: "Bitter", serif;
                         font-size: 1.4rem;
 
@@ -201,12 +218,8 @@ section {
                     background: #eee;
                 } 
 
-                td { 
-                    // padding-block: 1rem;
-                    
-                    &.appearance-result {
-                        display: flex;
-                        justify-content: center;
+                td {  
+                    &.appearance-result {  
                     }    
                     
                     .Bright {
@@ -243,7 +256,10 @@ section {
                     
                     p {
                         &.Appearance {
+                            font-size: 0.9rem;
+                            margin: auto;
                             text-transform: uppercase;
+                            width: 5rem;
                         }
                     } 
 
@@ -263,8 +279,7 @@ section {
                         font-family: arial;
                         font-size: 0.85rem;
                         font-style: italic;
-                        font-weight: bold;
-                        text-align: right;
+                        font-weight: bold; 
                     } 
                     
                     &.vendor-name {
@@ -280,9 +295,9 @@ section {
                         width: 10rem;
 
                         img {
-                            height: 1.75rem;
-                            translate: .5rem 0.6rem;
-                            width: 1.75rem;
+                            height: 1.45rem;
+                            translate: 0 0.5rem;
+                            width: 1.45rem;
                         }
                     } 
 
@@ -296,8 +311,8 @@ section {
                     }
 
                     input[type="image"] {
-                        margin-inline: 1rem;
-                        transform: translateY(.5rem);
+                        margin-inline: 1rem; 
+                        translate: 0 0.2rem;
                         width: 2rem;
                     }
 
@@ -459,6 +474,70 @@ section {
 
                     &.vendors-th {
                         text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    &.show-record {
+        background: #fff;
+        border-left: 1px solid #eee;
+        height: 90vh;
+        overflow: scroll;
+        padding: 2rem;
+        position: absolute;
+        right: 0;
+        width: 30rem;
+        z-index: 1000;
+
+        div {
+            &:first-child {
+                background: #fff;
+                cursor: pointer;
+                color: red;
+                font-size: 2rem;
+                font-weight: bold;
+                margin-block: 1rem;
+                position: fixed;
+                right: 1rem;
+                top: 0;
+                text-align: right; 
+            }
+
+            &:last-child { 
+                margin-top: 2rem; 
+            }
+
+            svg {
+                border: 1px solid #333;
+                border-radius: .2rem;
+                cursor: pointer;
+                fill: #333; 
+                margin-right: 1rem;
+                padding: 0.25rem;
+                transform: translate(-0.2rem, 0.55rem);
+                width: 1.5rem;
+            }
+        }
+
+        center {
+            color: $color-2;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        ul {
+            li {
+                border-bottom: 1px solid #eee; 
+
+                span {
+                    &:first-child {
+                        color: $color-2;
+                    }
+
+                    &:last-child {
+                        margin-left: 2.8rem;
                     }
                 }
             }

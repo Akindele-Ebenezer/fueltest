@@ -19,38 +19,40 @@ section {
                 
                 ul {
                     a {
-                        color: $color-1;
+                        color: #eee;
 
                         li {
                             align-items: center;
-                            display: flex;
-                            padding: 2rem;
+                            display: flex; 
     
                             &:hover {
                                 background: darken($color: $color-2, $amount: 2);
                                 border-radius: 0 0.5rem 1rem 0;
                                 cursor: pointer;
                             }
+                            
+                            em {
+                                margin-left: 1rem;
+                            }
                         }
                     }
 
                     li {  
-                        font-family: 'Roboto', sans-serif;
-                        font-size: 1.1rem;
-                        font-weight: bold;
+                        font-family: "Poppins", sans-serif;
                         letter-spacing: .09rem; 
                         padding: 1rem;
     
                         &.active-dashboard {
                             background: darken($color: $color-2, $amount: 2); 
                             border-left: 7px solid;
-                            border-radius: 0 0.5rem 1rem 0;
+                            border-radius: 0 0.5rem 1rem 0; 
                         }
 
                         svg {
                             fill: darken($color: $color-1, $amount: 10);
+                            height: 1.4rem;
                             margin-right: 1.5rem;
-                            width: 2rem;
+                            width: 1.4rem;
                         }
                     }
                 }

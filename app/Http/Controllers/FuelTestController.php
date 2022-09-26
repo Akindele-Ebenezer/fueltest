@@ -426,6 +426,50 @@ class FuelTestController extends Controller
             $Config = $this->config(); 
              
             extract($Config);    
+            
+            $SampleNo = ''; 
+            $SampleCollectionDate = ''; 
+            $TruckPlateNo = ''; 
+            $TankNo = ''; 
+            $AppearanceResult = ''; 
+            $Color = ''; 
+            $Density = ''; 
+            $FlashPoint = ''; 
+            $Temp = ''; 
+            $WaterSediment = ''; 
+            $Cleanliness = ''; 
+            $DateOfTest = ''; 
+            $uid = ''; 
+            $MadeBy = ''; 
+            $DeliveredTo = ''; 
+            $Remarks = ''; 
+            $ApprovalForUse = '';  
+            $VendorNo = ''; 
+            $VendorName = ''; 
+
+            if (isset($_GET['SampleNo'])) {
+
+                $SampleNo = $request->SampleNo; 
+                $SampleCollectionDate = $request->SampleCollectionDate; 
+                $TruckPlateNo = $request->TruckPlateNo; 
+                $TankNo = $request->TankNo; 
+                $AppearanceResult = $request->AppearanceResult; 
+                $Color = $request->Color; 
+                $Density = $request->Density; 
+                $FlashPoint = $request->FlashPoint; 
+                $Temp = $request->Temp; 
+                $WaterSediment = $request->WaterSediment; 
+                $Cleanliness = $request->Cleanliness; 
+                $DateOfTest = $request->DateOfTest; 
+                $uid = $request->uid; 
+                $MadeBy = $request->MadeBy; 
+                $DeliveredTo = $request->DeliveredTo; 
+                $Remarks = $request->Remarks; 
+                $ApprovalForUse = $request->ApprovalForUse;  
+                $VendorNo = $request->VendorNo; 
+                $VendorName = $request->VendorName; 
+
+            }
  
             $ViewData = [   
                 'title' => $title,    
@@ -444,11 +488,30 @@ class FuelTestController extends Controller
                 'FilterMadeBy' => $FilterMadeBy,
                 'FilterDeliveredTo' => $FilterDeliveredTo,
                 'FilterRemarks' => $FilterRemarks,   
-                'FilterVendorName' => $FilterVendorName,       
+                'FilterVendorName' => $FilterVendorName,        
+                'SampleNo' => $SampleNo,       
+                'SampleCollectionDate' => $SampleCollectionDate,       
+                'TruckPlateNo' => $TruckPlateNo,       
+                'TankNo' => $TankNo,       
+                'AppearanceResult' => $AppearanceResult,       
+                'Color' => $Color,       
+                'Density' => $Density,       
+                'FlashPoint' => $FlashPoint,       
+                'Temp' => $Temp,       
+                'WaterSediment' => $WaterSediment,       
+                'Cleanliness' => $Cleanliness,       
+                'DateOfTest' => $DateOfTest,       
+                'uid' => $uid,       
+                'MadeBy' => $MadeBy,       
+                'DeliveredTo' => $DeliveredTo,       
+                'Remarks' => $Remarks,       
+                'ApprovalForUse' => $ApprovalForUse,       
+                'VendorNo' => $VendorNo,
+                'VendorName' => $VendorName,        
             ];
 
             $ViewData = [...$Config, ...$ViewData]; 
-            
+
             if (isset($_GET['SortByVendorName'])) {
                 $FilteredRecords[] = $request->CheckVendorName; 
  

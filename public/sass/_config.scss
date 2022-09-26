@@ -50,11 +50,10 @@ button {
 }
 
 @mixin AppearanceResult {
-    background: #62d9622e;
-    border-radius: .5rem;
+    background: #62d9622e; 
     color: green; 
     height: unset; 
-    padding: 0.5rem 3rem; 
+    text-align: center;
     width: 10rem;
 }
  
