@@ -126,7 +126,7 @@ section {
         }
 
         table {
-            border-collapse: collapse;
+            // border-collapse: collapse;
             margin-block: 1rem; 
             width: max-content;
 
@@ -272,19 +272,23 @@ section {
                         }
                     }  
 
+                    &.vendors {
+                        label {                            
+                            cursor: pointer; 
+                        }
+                    }
+
                     &.vendors,
                     &.vendor-name label,
                     &.vendor-name { 
-                        cursor: pointer;
                         font-family: arial;
                         font-size: 0.85rem;
-                        font-style: italic;
-                        font-weight: bold; 
+                        font-style: italic; 
                     } 
                     
                     &.vendor-name {
-                        label {                            
-                            color: unset;
+                        label {       
+                            color: unset;                   
                         }
                     } 
 
@@ -480,40 +484,83 @@ section {
         }
     }
 
-    &.show-record {
-        background: #fff;
-        border-left: 1px solid #eee;
+    &.hide-record {
+        display: none;
+    }
+
+    &.show-record-side-bar {
+        right: 0 !important; 
+    }
+
+    &.show-record { 
+        background: rgba(0, 0, 0, .5);
         height: 90vh;
-        overflow: scroll;
-        padding: 2rem;
         position: absolute;
-        right: 0;
-        width: 30rem;
+        width: 100vw;
         z-index: 1000;
 
+        section {
+            background-image: linear-gradient(to bottom, lighten(#00592e, 3), #111); 
+            color: #ddd;
+            height: 90vh;
+            overflow: scroll;
+            padding: 2rem;
+            position: absolute;
+            right: -100%;
+            width: 30rem;
+            z-index: 1000;
+        }
+
         div {
-            &:first-child {
-                background: #fff;
-                cursor: pointer;
-                color: red;
-                font-size: 2rem;
-                font-weight: bold;
-                margin-block: 1rem;
-                position: fixed;
-                right: 1rem;
-                top: 0;
-                text-align: right; 
+            &:first-child { 
+                display: flex;
+                gap: .4rem;
+                
+                a {
+                    cursor: pointer;
+                    color: red;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    margin-block: 1rem;
+                    position: fixed;
+                    right: 1rem;
+                    top: 0;
+                    text-align: right; 
+                }
+                
+                .pdf-and-edit { 
+                    background: #000;
+                    position: fixed;
+                    translate: -2rem 0;
+                    z-index: 10;
+
+                    form { 
+                        padding: 1rem;
+                    }
+
+                    label {
+                        cursor: pointer;
+                    }
+                }
+
+                form {
+                    input {
+                        width: 3rem;
+
+                        &[type='submit'] {
+                            display: none;
+                        }
+                    }
+                }
             }
 
             &:last-child { 
-                margin-top: 2rem; 
+                margin-top: 4rem; 
             }
 
-            svg {
-                border: 1px solid #333;
-                border-radius: .2rem;
+            svg { 
                 cursor: pointer;
-                fill: #333; 
+                fill: antiquewhite; 
                 margin-right: 1rem;
                 padding: 0.25rem;
                 transform: translate(-0.2rem, 0.55rem);
@@ -521,25 +568,26 @@ section {
             }
         }
 
-        center {
-            color: $color-2;
+        center { 
             font-size: 1.2rem;
             text-align: center;
         }
 
         ul {
-            li {
-                border-bottom: 1px solid #eee; 
+            h2, h3 {margin-bottom: .5rem;}
 
+            li {  
                 span {
-                    &:first-child {
-                        color: $color-2;
+                    &:first-child { 
                     }
 
                     &:last-child {
                         margin-left: 2.8rem;
                     }
                 }
+            }
+
+            .top-info { 
             }
         }
     }

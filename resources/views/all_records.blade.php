@@ -1,34 +1,3 @@
-@php
-
-    if(isset($_GET['FilterVendorName'])) {
-        $FilteredRecords[] = $_GET['CheckVendorName'];  
-        
-        foreach ($FilteredRecords as $VendorName) {
-            $title = $VendorName[0];
-            $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->get();
-            
-            $number_of_all_records = count($all_records);
-            
-            $number_of_passed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('ApprovalForUse', "APPROVED")
-                                            ->orderBy('SampleNo', 'DESC')->count(); 
-            
-            $number_of_failed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('ApprovalForUse', "REJECTED")
-                                            ->orderBy('SampleNo', 'DESC')->count(); 
-            
-            $number_of_waved_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('ApprovalForUse', "WAVED")
-                                            ->orderBy('SampleNo', 'DESC')->count(); 
-            
-            $number_of_diff_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('ApprovalForUse', NULL)
-                                            ->count(); 
-        } 
-    }
-
-@endphp
- 
 @extends('layouts.layout_1')
 
 @section('name', $name)
@@ -93,12 +62,15 @@
                         <ul>
                             <form action="" method="get">
                                 <center>
-                                    <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterVendorName">Filter</button>
+                                    <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterVendorName">Filter</button>
                                 </center>
                                 @foreach($FilterVendorName as $filter)
-                                    <li>
-                                        <input type="checkbox" name="CheckVendorName[]" value="{{ $filter->VendorName }}"> {{ $filter->VendorName }}
-                                    </li>   
+                                    @if ($filter->VendorName === NULL)
+                                        @continue
+                                    @endif
+                                        <li>
+                                            <input type="checkbox" name="CheckVendorName[]" value="{{ $filter->VendorName }}"> {{ $filter->VendorName }}
+                                        </li>   
                                 @endforeach
                             </form>
                         </ul>
@@ -589,7 +561,7 @@
     </section>
 
     <script src="JS/Tooltips.js"></script>
-    <script src="JS/Resizable.js"></script>
+    <script src="JS/Resizable.js"></script> 
 
     <script>
  

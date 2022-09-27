@@ -1,41 +1,3 @@
-@php
-
-    if(isset($_GET['FilterVendorName'])) {
-        $FilteredRecords[] = $_GET['CheckVendorName']; 
-
-        foreach ($FilteredRecords as $VendorName) {
-            $title = $VendorName[0];
-            $previous_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                                            ->where('uid', $id)
-                                                            ->orderBy('SampleNo', 'DESC')
-                                                            ->get();  
-            
-            $number_of_previous_records = count($previous_records);
-
-            $number_of_passed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('uid', $id)
-                                            ->where('ApprovalForUse', "APPROVED")
-                                            ->orderBy('SampleNo', 'DESC')->count(); 
-            
-            $number_of_failed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('uid', $id)
-                                            ->where('ApprovalForUse', "REJECTED")
-                                            ->orderBy('SampleNo', 'DESC')->count(); 
-            
-            $number_of_waved_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('uid', $id)
-                                            ->where('ApprovalForUse', "WAVED")
-                                            ->orderBy('SampleNo', 'DESC')->count(); 
-            
-            $number_of_diff_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                            ->where('uid', $id)
-                                            ->where('ApprovalForUse', NULL)
-                                            ->count(); 
-        }
-    }
-
-@endphp
-
 @extends('layouts.layout_1')
  
 @section('name', $name)
@@ -43,6 +5,7 @@
 @section('header_info', $title)
 @section('title', $title)
 @section('content')
+    @include('ShowRecord')
     <section class="previous-records">
         <center>
             <div>
@@ -96,7 +59,10 @@
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterVendorName">Filter</button>
                                 </center>
-                                @foreach($FilterVendorName as $filter)
+                                @foreach($FilterVendorName as $filter) 
+                                    @if ($filter->VendorName === NULL)
+                                        @continue
+                                    @endif
                                     <li>
                                         <input type="checkbox" name="CheckVendorName[]" value="{{ $filter->VendorName }}"> {{ $filter->VendorName }}
                                     </li>   
@@ -534,7 +500,14 @@
                             </form>
                         </td> 
                     </td>
-                    <td class="vendors">{{ $previous_record->VendorName }}</td> 
+                    <td class="vendors">
+                        <form action="">
+                            <label>
+                                @include('PreviousRecordsCertificateData')
+                                {{ $previous_record->VendorName }} 
+                            </label>
+                        </form>
+                    </td> 
                     <td class="sample-collection-date">{{ $previous_record->SampleCollectionDate }}</td> 
                     <td class="truck-plate-no">{{ $previous_record->TruckPlateNo  }}</td>
                     <td class="tank-no">{{ $previous_record->TankNo }}</td>

@@ -446,8 +446,8 @@ class FuelTestController extends Controller
             $ApprovalForUse = '';  
             $VendorNo = ''; 
             $VendorName = ''; 
-
-            if (isset($_GET['SampleNo'])) {
+ 
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                 $SampleNo = $request->SampleNo; 
                 $SampleCollectionDate = $request->SampleCollectionDate; 
@@ -511,6 +511,34 @@ class FuelTestController extends Controller
             ];
 
             $ViewData = [...$Config, ...$ViewData]; 
+
+            if(isset($_GET['FilterVendorName'])) {
+                $FilteredRecords[] = $_GET['CheckVendorName'];   
+                foreach ($FilteredRecords as $VendorName) {
+                    $title = $VendorName[0];
+                    $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->get();
+                    
+                    $number_of_all_records = count($all_records);
+                    
+                    $number_of_passed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', "APPROVED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_failed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', "REJECTED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_waved_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', "WAVED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_diff_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', NULL)
+                                                    ->count(); 
+                } 
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records);
+            }
 
             if (isset($_GET['SortByVendorName'])) {
                 $FilteredRecords[] = $request->CheckVendorName; 
@@ -967,6 +995,26 @@ class FuelTestController extends Controller
             $Config = $this->config();
             extract($Config); 
 
+            $SampleNo = ''; 
+            $SampleCollectionDate = ''; 
+            $TruckPlateNo = ''; 
+            $TankNo = ''; 
+            $AppearanceResult = ''; 
+            $Color = ''; 
+            $Density = ''; 
+            $FlashPoint = ''; 
+            $Temp = ''; 
+            $WaterSediment = ''; 
+            $Cleanliness = ''; 
+            $DateOfTest = ''; 
+            $uid = ''; 
+            $MadeBy = ''; 
+            $DeliveredTo = ''; 
+            $Remarks = ''; 
+            $ApprovalForUse = '';  
+            $VendorNo = ''; 
+            $VendorName = ''; 
+ 
             $title = 'Previous Records'; 
               
             $FilterSampleNo = FuelTestRecord::where('uid', $id)->distinct()->get(['SampleNo']);
@@ -986,6 +1034,30 @@ class FuelTestController extends Controller
             $FilterRemarks = FuelTestRecord::where('uid', $id)->distinct()->get(['Remarks']); 
             $FilterVendorName = FuelTestRecord::where('uid', $id)->distinct()->get(['VendorName']); 
   
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+                $SampleNo = $request->SampleNo; 
+                $SampleCollectionDate = $request->SampleCollectionDate; 
+                $TruckPlateNo = $request->TruckPlateNo; 
+                $TankNo = $request->TankNo; 
+                $AppearanceResult = $request->AppearanceResult; 
+                $Color = $request->Color; 
+                $Density = $request->Density; 
+                $FlashPoint = $request->FlashPoint; 
+                $Temp = $request->Temp; 
+                $WaterSediment = $request->WaterSediment; 
+                $Cleanliness = $request->Cleanliness; 
+                $DateOfTest = $request->DateOfTest; 
+                $uid = $request->uid; 
+                $MadeBy = $request->MadeBy; 
+                $DeliveredTo = $request->DeliveredTo; 
+                $Remarks = $request->Remarks; 
+                $ApprovalForUse = $request->ApprovalForUse;  
+                $VendorNo = $request->VendorNo; 
+                $VendorName = $request->VendorName; 
+                
+            }
+ 
             $ViewData = [   
                 'title' => $title,    
                 'FilterSampleNo' => $FilterSampleNo,
@@ -1007,11 +1079,66 @@ class FuelTestController extends Controller
                 'PassedRecords' => $PassedRecords_,
                 'FailedRecords' => $FailedRecords_,
                 'number_of_passed_records' => $number_of_passed_records_,
-                'number_of_failed_records' => $number_of_failed_records_,
+                'number_of_failed_records' => $number_of_failed_records_,       
+                'SampleNo' => $SampleNo,       
+                'SampleCollectionDate' => $SampleCollectionDate,       
+                'TruckPlateNo' => $TruckPlateNo,       
+                'TankNo' => $TankNo,       
+                'AppearanceResult' => $AppearanceResult,       
+                'Color' => $Color,       
+                'Density' => $Density,       
+                'FlashPoint' => $FlashPoint,       
+                'Temp' => $Temp,       
+                'WaterSediment' => $WaterSediment,       
+                'Cleanliness' => $Cleanliness,       
+                'DateOfTest' => $DateOfTest,       
+                'uid' => $uid,       
+                'MadeBy' => $MadeBy,       
+                'DeliveredTo' => $DeliveredTo,       
+                'Remarks' => $Remarks,       
+                'ApprovalForUse' => $ApprovalForUse,       
+                'VendorNo' => $VendorNo,
+                'VendorName' => $VendorName, 
             ]; 
             
             $ViewData = [...$Config, ...$ViewData];  
             
+            if(isset($_GET['FilterVendorName'])) {
+                $FilteredRecords[] = $_GET['CheckVendorName']; 
+        
+                foreach ($FilteredRecords as $VendorName) {
+                    $title = $VendorName[0];
+                    $previous_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                                    ->where('uid', $id)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                    ->get();  
+                    
+                    $number_of_previous_records = count($previous_records);
+        
+                    $number_of_passed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('uid', $id)
+                                                    ->where('ApprovalForUse', "APPROVED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_failed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('uid', $id)
+                                                    ->where('ApprovalForUse', "REJECTED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_waved_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('uid', $id)
+                                                    ->where('ApprovalForUse', "WAVED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_diff_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->where('uid', $id)
+                                                    ->where('ApprovalForUse', NULL)
+                                                    ->count();  
+ 
+                    return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records);
+                }
+            }
+
             if (isset($_GET['SortByVendorName'])) {
                 $FilteredRecords[] = $request->CheckVendorName; 
  
