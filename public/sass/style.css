@@ -954,6 +954,7 @@ section.previous-records table tr th {
   padding: 0.3rem;
   position: sticky;
   top: 0;
+  width: fit-content !important;
   z-index: 102;
 }
 section.previous-records table tr th .filter {
