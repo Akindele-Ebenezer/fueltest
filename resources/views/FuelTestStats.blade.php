@@ -143,58 +143,30 @@ let FuelTestResults = new Chart("myChart", {
         }
     });
  
-    let Labels = []; 
-    let ApprovedTestsForEachVendor = []; 
-    let RejectedTestsForEachVendor = []; 
-    let WavedTestsForEachVendor = []; 
-
-    let LabelData = document.getElementById('Labels').value.split(); 
+    let Labels = [];   
 
     @foreach($vendors as $vendor)
         Labels.push('{{ $vendor->VendorName }}');   
-    @endforeach
-
-    @foreach($all_records as $ApprovedRecords)   
-          
-        // @if($ApprovedRecords->ApprovalForUse === "APPROVED" && $ApprovedRecords->VendorName === $ApprovedRecords->VendorName)            
-        //     ApprovedTestsForEachVendor.push('{{ $loop->count }}');  
-        // @endif     
-            
-            // {{ $ApprovedRecords->VendorName }}
-    @endforeach 
-
-    @foreach($all_records as $RejectedRecords) 
-        @if($RejectedRecords->ApprovalForUse === "REJECTED")            
-            RejectedTestsForEachVendor.push('{{ $RejectedRecords->ApprovalForUse === "REJECTED" ? $RejectedRecords->ApprovalForUse : "" }}');  
-        @endif   
-    @endforeach
-
-    @foreach($all_records as $WavedRecords) 
-        @if($WavedRecords->ApprovalForUse === "WAVED")            
-            WavedTestsForEachVendor.push('{{ $WavedRecords->ApprovalForUse === "WAVED" ? $WavedRecords->ApprovalForUse : "" }}');  
-        @endif   
-    @endforeach
- 
-    let NumberOfApprovedTests = ApprovedTestsForEachVendor.length;
+    @endforeach   
     
     let FuelTestResults6 = new Chart("myChart6", {
         type: "horizontalBar",
         data: {
             labels: [...Labels], 
             datasets: [{  
-                data: [...WavedTestsForEachVendor],
+                data: [{{ $WavedTestsForBLUEFINENERGYLIMITED }}, {{ $WavedTestsForDAUZGLOBALVENTURES }}, {{ $WavedTestsForFOURPOINTSINTEGRATEDSOLUTIONS }}, {{ $WavedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED }}, {{ $WavedTestsForJESSICONGLOBAL }}, {{ $WavedTestsForLEKSYDENERGYLTD }}, {{ $WavedTestsForMATRIXENERGYRESOURCESLTD }}, {{ $WavedTestsForNAVAHOPETROLEUMLIMITED }}, {{ $WavedTestsForNIPCOPLC }}, {{ $WavedTestsForPRACTICENERGYSOLUTIONSLIMITED }}, {{ $WavedTestsForSADESHENERGYLIMITED }}, {{ $WavedTestsForSKIDGLOBALRESOURCESLTD }}, {{ $WavedTestsForTOTALNIGERIAPLC }}, {{ $WavedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED }}, {{ $WavedTestsForYURTENERGYLTD }}, {{ $WavedTestsForZLURTOYOILGASLTD }}],
                 backgroundColor: "#F5D6D0",
                 fill: false,
                 label: 'Waved',
             }, 
             { 
-                data: [...RejectedTestsForEachVendor],
+                data: [{{ $RejectedTestsForBLUEFINENERGYLIMITED }}, {{ $RejectedTestsForDAUZGLOBALVENTURES }}, {{ $RejectedTestsForFOURPOINTSINTEGRATEDSOLUTIONS }}, {{ $RejectedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED }}, {{ $RejectedTestsForJESSICONGLOBAL }}, {{ $RejectedTestsForLEKSYDENERGYLTD }}, {{ $RejectedTestsForMATRIXENERGYRESOURCESLTD }}, {{ $RejectedTestsForNAVAHOPETROLEUMLIMITED }}, {{ $RejectedTestsForNIPCOPLC }}, {{ $RejectedTestsForPRACTICENERGYSOLUTIONSLIMITED }}, {{ $RejectedTestsForSADESHENERGYLIMITED }}, {{ $RejectedTestsForSKIDGLOBALRESOURCESLTD }}, {{ $RejectedTestsForTOTALNIGERIAPLC }}, {{ $RejectedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED }}, {{ $RejectedTestsForYURTENERGYLTD }}, {{ $RejectedTestsForZLURTOYOILGASLTD }}],
                 backgroundColor: "#CE050F",
                 fill: false,
                 label: 'Rejected',
             }, 
             { 
-                data: [NumberOfApprovedTests],
+                data: [{{ $ApprovedTestsForBLUEFINENERGYLIMITED }}, {{ $ApprovedTestsForDAUZGLOBALVENTURES }}, {{ $ApprovedTestsForFOURPOINTSINTEGRATEDSOLUTIONS }}, {{ $ApprovedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED }}, {{ $ApprovedTestsForJESSICONGLOBAL }}, {{ $ApprovedTestsForLEKSYDENERGYLTD }}, {{ $ApprovedTestsForMATRIXENERGYRESOURCESLTD }}, {{ $ApprovedTestsForNAVAHOPETROLEUMLIMITED }}, {{ $ApprovedTestsForNIPCOPLC }}, {{ $ApprovedTestsForPRACTICENERGYSOLUTIONSLIMITED }}, {{ $ApprovedTestsForSADESHENERGYLIMITED }}, {{ $ApprovedTestsForSKIDGLOBALRESOURCESLTD }}, {{ $ApprovedTestsForTOTALNIGERIAPLC }}, {{ $ApprovedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED }}, {{ $ApprovedTestsForYURTENERGYLTD }}, {{ $ApprovedTestsForZLURTOYOILGASLTD }}],
                 backgroundColor: "#2BC5AE",
                 fill: false,
                 label: 'Approved', 

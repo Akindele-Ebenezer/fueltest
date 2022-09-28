@@ -1,7 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
  
-
 use Illuminate\Http\Request; 
 use App\Models\FuelTestUser;
 use App\Models\FuelTestRecord;
@@ -137,20 +137,297 @@ class FuelTestController extends Controller
         $WavedRecords_ = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', 'DESC')
                                         ->where('ApprovalForUse', 'WAVED')
                                         ->get();
-        $number_of_waved_records_ = count($WavedRecords_);  
-                  
-        $FuelStatsVendors = [];
+        $number_of_waved_records_ = count($WavedRecords_);   
 
-        foreach ($vendors as $vendor) {
-            array_push($FuelStatsVendors, $vendor['VendorName']);
-        }
-
-        $ApprovedTestsForEachVendor = FuelTestRecord::whereIn('VendorName', $FuelStatsVendors)
+        $ApprovedTestsForBLUEFINENERGYLIMITED   = FuelTestRecord::where('VendorName', 'BLUEFIN ENERGY LIMITED')
                                                         ->where('ApprovalForUse', 'APPROVED')
                                                         ->orderBy('VendorName')
                                                         ->get()
-                                                        ->toArray();
-        // print_r($ApprovedTestsForEachVendor);
+                                                        ->count();
+
+        $RejectedTestsForBLUEFINENERGYLIMITED  = FuelTestRecord::where('VendorName', 'BLUEFIN ENERGY LIMITED')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForBLUEFINENERGYLIMITED  = FuelTestRecord::where('VendorName', 'BLUEFIN ENERGY LIMITED')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForDAUZGLOBALVENTURES  = FuelTestRecord::where('VendorName', 'DAUZ GLOBAL VENTURES')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForDAUZGLOBALVENTURES  = FuelTestRecord::where('VendorName', 'DAUZ GLOBAL VENTURES')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForDAUZGLOBALVENTURES  = FuelTestRecord::where('VendorName', 'DAUZ GLOBAL VENTURES')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForFOURPOINTSINTEGRATEDSOLUTIONS  = FuelTestRecord::where('VendorName', 'FOURPOINTS INTEGRATED SOLUTIONS')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForFOURPOINTSINTEGRATEDSOLUTIONS  = FuelTestRecord::where('VendorName', 'FOURPOINTS INTEGRATED SOLUTIONS')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForFOURPOINTSINTEGRATEDSOLUTIONS  = FuelTestRecord::where('VendorName', 'FOURPOINTS INTEGRATED SOLUTIONS')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED  = FuelTestRecord::where('VendorName', 'INTEGRATED OSMOSIS CONCEPT LIMITED')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED  = FuelTestRecord::where('VendorName', 'INTEGRATED OSMOSIS CONCEPT LIMITED')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED  = FuelTestRecord::where('VendorName', 'INTEGRATED OSMOSIS CONCEPT LIMITED')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForJESSICONGLOBAL  = FuelTestRecord::where('VendorName', 'JESSICON GLOBAL')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForJESSICONGLOBAL  = FuelTestRecord::where('VendorName', 'JESSICON GLOBAL')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForJESSICONGLOBAL  = FuelTestRecord::where('VendorName', 'JESSICON GLOBAL')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForLEKSYDENERGYLTD  = FuelTestRecord::where('VendorName', 'LEKSYD ENERGY LTD')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForLEKSYDENERGYLTD  = FuelTestRecord::where('VendorName', 'LEKSYD ENERGY LTD')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForLEKSYDENERGYLTD  = FuelTestRecord::where('VendorName', 'LEKSYD ENERGY LTD')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForMATRIXENERGYRESOURCESLTD  = FuelTestRecord::where('VendorName', 'MATRIX ENERGY RESOURCES LTD')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForMATRIXENERGYRESOURCESLTD  = FuelTestRecord::where('VendorName', 'MATRIX ENERGY RESOURCES LTD')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForMATRIXENERGYRESOURCESLTD  = FuelTestRecord::where('VendorName', 'MATRIX ENERGY RESOURCES LTD')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForNAVAHOPETROLEUMLIMITED  = FuelTestRecord::where('VendorName', 'NAVAHO PETROLEUM LIMITED')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForNAVAHOPETROLEUMLIMITED  = FuelTestRecord::where('VendorName', 'NAVAHO PETROLEUM LIMITED')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForNAVAHOPETROLEUMLIMITED  = FuelTestRecord::where('VendorName', 'NAVAHO PETROLEUM LIMITED')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForNIPCOPLC  = FuelTestRecord::where('VendorName', 'NIPCO PLC')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForNIPCOPLC  = FuelTestRecord::where('VendorName', 'NIPCO PLC')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForNIPCOPLC  = FuelTestRecord::where('VendorName', 'NIPCO PLC')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForPRACTICENERGYSOLUTIONSLIMITED  = FuelTestRecord::where('VendorName', 'PRACTIC ENERGY SOLUTIONS LIMITED')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForPRACTICENERGYSOLUTIONSLIMITED  = FuelTestRecord::where('VendorName', 'PRACTIC ENERGY SOLUTIONS LIMITED')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForPRACTICENERGYSOLUTIONSLIMITED  = FuelTestRecord::where('VendorName', 'PRACTIC ENERGY SOLUTIONS LIMITED')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForSADESHENERGYLIMITED  = FuelTestRecord::where('VendorName', 'SADESH ENERGY LIMITED')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForSADESHENERGYLIMITED  = FuelTestRecord::where('VendorName', 'SADESH ENERGY LIMITED')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForSADESHENERGYLIMITED  = FuelTestRecord::where('VendorName', 'SADESH ENERGY LIMITED')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForSKIDGLOBALRESOURCESLTD  = FuelTestRecord::where('VendorName', 'SKID GLOBAL RESOURCES LTD')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForSKIDGLOBALRESOURCESLTD  = FuelTestRecord::where('VendorName', 'SKID GLOBAL RESOURCES LTD')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForSKIDGLOBALRESOURCESLTD  = FuelTestRecord::where('VendorName', 'SKID GLOBAL RESOURCES LTD')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForTOTALNIGERIAPLC  = FuelTestRecord::where('VendorName', 'TOTAL NIGERIA PLC (LAGOS)')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForTOTALNIGERIAPLC  = FuelTestRecord::where('VendorName', 'TOTAL NIGERIA PLC (LAGOS)')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForTOTALNIGERIAPLC  = FuelTestRecord::where('VendorName', 'TOTAL NIGERIA PLC (LAGOS)')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED  = FuelTestRecord::where('VendorName', 'WHITEHILL INTEGRATED SERVICES LIMITED')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED  = FuelTestRecord::where('VendorName', 'WHITEHILL INTEGRATED SERVICES LIMITED')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED  = FuelTestRecord::where('VendorName', 'WHITEHILL INTEGRATED SERVICES LIMITED')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForYURTENERGYLTD  = FuelTestRecord::where('VendorName', 'YURT ENERGY LTD')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForYURTENERGYLTD  = FuelTestRecord::where('VendorName', 'YURT ENERGY LTD')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForYURTENERGYLTD  = FuelTestRecord::where('VendorName', 'YURT ENERGY LTD')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $ApprovedTestsForZLURTOYOILGASLTD  = FuelTestRecord::where('VendorName', 'Z\'LURTOY OIL & GAS LTD')
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $RejectedTestsForZLURTOYOILGASLTD  = FuelTestRecord::where('VendorName', 'Z\'LURTOY OIL & GAS LTD')
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        $WavedTestsForZLURTOYOILGASLTD  = FuelTestRecord::where('VendorName', 'Z\'LURTOY OIL & GAS LTD')
+                                                        ->where('ApprovalForUse', 'WAVED')
+                                                        ->orderBy('VendorName')
+                                                        ->get()
+                                                        ->count();
+
+        // dd($RejectedTestsForDAUZGLOBALVENTURES);
 
         return [ 
             'id' => $id,
@@ -182,7 +459,54 @@ class FuelTestController extends Controller
             'number_of_waved_records_' => $number_of_waved_records_,
             'number_of_passed_records_' => $number_of_passed_records_,
             'number_of_failed_records_' => $number_of_failed_records_, 
-            'ApprovedTestsForEachVendor' => $ApprovedTestsForEachVendor, 
+            'ApprovedTestsForBLUEFINENERGYLIMITED' => $ApprovedTestsForBLUEFINENERGYLIMITED, 
+            'RejectedTestsForBLUEFINENERGYLIMITED' => $RejectedTestsForBLUEFINENERGYLIMITED, 
+            'WavedTestsForBLUEFINENERGYLIMITED' => $WavedTestsForBLUEFINENERGYLIMITED, 
+            'ApprovedTestsForDAUZGLOBALVENTURES' => $ApprovedTestsForDAUZGLOBALVENTURES, 
+            'RejectedTestsForDAUZGLOBALVENTURES' => $RejectedTestsForDAUZGLOBALVENTURES, 
+            'WavedTestsForDAUZGLOBALVENTURES' => $WavedTestsForDAUZGLOBALVENTURES, 
+            'ApprovedTestsForFOURPOINTSINTEGRATEDSOLUTIONS' => $ApprovedTestsForFOURPOINTSINTEGRATEDSOLUTIONS, 
+            'RejectedTestsForFOURPOINTSINTEGRATEDSOLUTIONS' => $RejectedTestsForFOURPOINTSINTEGRATEDSOLUTIONS, 
+            'WavedTestsForFOURPOINTSINTEGRATEDSOLUTIONS' => $WavedTestsForFOURPOINTSINTEGRATEDSOLUTIONS, 
+            'ApprovedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED' => $ApprovedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED, 
+            'RejectedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED' => $RejectedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED, 
+            'WavedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED' => $WavedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED, 
+            'ApprovedTestsForJESSICONGLOBAL' => $ApprovedTestsForJESSICONGLOBAL, 
+            'RejectedTestsForJESSICONGLOBAL' => $RejectedTestsForJESSICONGLOBAL, 
+            'WavedTestsForJESSICONGLOBAL' => $WavedTestsForJESSICONGLOBAL, 
+            'ApprovedTestsForLEKSYDENERGYLTD' => $ApprovedTestsForLEKSYDENERGYLTD, 
+            'RejectedTestsForLEKSYDENERGYLTD' => $RejectedTestsForLEKSYDENERGYLTD, 
+            'WavedTestsForLEKSYDENERGYLTD' => $WavedTestsForLEKSYDENERGYLTD, 
+            'ApprovedTestsForMATRIXENERGYRESOURCESLTD' => $ApprovedTestsForMATRIXENERGYRESOURCESLTD, 
+            'RejectedTestsForMATRIXENERGYRESOURCESLTD' => $RejectedTestsForMATRIXENERGYRESOURCESLTD, 
+            'WavedTestsForMATRIXENERGYRESOURCESLTD' => $WavedTestsForMATRIXENERGYRESOURCESLTD, 
+            'ApprovedTestsForNAVAHOPETROLEUMLIMITED' => $ApprovedTestsForNAVAHOPETROLEUMLIMITED, 
+            'RejectedTestsForNAVAHOPETROLEUMLIMITED' => $RejectedTestsForNAVAHOPETROLEUMLIMITED, 
+            'WavedTestsForNAVAHOPETROLEUMLIMITED' => $WavedTestsForNAVAHOPETROLEUMLIMITED, 
+            'ApprovedTestsForNIPCOPLC' => $ApprovedTestsForNIPCOPLC, 
+            'RejectedTestsForNIPCOPLC' => $RejectedTestsForNIPCOPLC, 
+            'WavedTestsForNIPCOPLC' => $WavedTestsForNIPCOPLC, 
+            'ApprovedTestsForPRACTICENERGYSOLUTIONSLIMITED' => $ApprovedTestsForPRACTICENERGYSOLUTIONSLIMITED, 
+            'RejectedTestsForPRACTICENERGYSOLUTIONSLIMITED' => $RejectedTestsForPRACTICENERGYSOLUTIONSLIMITED, 
+            'WavedTestsForPRACTICENERGYSOLUTIONSLIMITED' => $WavedTestsForPRACTICENERGYSOLUTIONSLIMITED, 
+            'ApprovedTestsForSADESHENERGYLIMITED' => $ApprovedTestsForSADESHENERGYLIMITED, 
+            'RejectedTestsForSADESHENERGYLIMITED' => $RejectedTestsForSADESHENERGYLIMITED, 
+            'WavedTestsForSADESHENERGYLIMITED' => $WavedTestsForSADESHENERGYLIMITED, 
+            'ApprovedTestsForSKIDGLOBALRESOURCESLTD' => $ApprovedTestsForSKIDGLOBALRESOURCESLTD, 
+            'RejectedTestsForSKIDGLOBALRESOURCESLTD' => $RejectedTestsForSKIDGLOBALRESOURCESLTD, 
+            'WavedTestsForSKIDGLOBALRESOURCESLTD' => $WavedTestsForSKIDGLOBALRESOURCESLTD, 
+            'ApprovedTestsForTOTALNIGERIAPLC' => $ApprovedTestsForTOTALNIGERIAPLC, 
+            'RejectedTestsForTOTALNIGERIAPLC' => $RejectedTestsForTOTALNIGERIAPLC, 
+            'WavedTestsForTOTALNIGERIAPLC' => $WavedTestsForTOTALNIGERIAPLC, 
+            'ApprovedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED' => $ApprovedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED, 
+            'RejectedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED' => $RejectedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED, 
+            'WavedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED' => $WavedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED, 
+            'ApprovedTestsForYURTENERGYLTD' => $ApprovedTestsForYURTENERGYLTD, 
+            'RejectedTestsForYURTENERGYLTD' => $RejectedTestsForYURTENERGYLTD, 
+            'WavedTestsForYURTENERGYLTD' => $WavedTestsForYURTENERGYLTD, 
+            'ApprovedTestsForZLURTOYOILGASLTD' => $ApprovedTestsForZLURTOYOILGASLTD, 
+            'RejectedTestsForZLURTOYOILGASLTD' => $RejectedTestsForZLURTOYOILGASLTD, 
+            'WavedTestsForZLURTOYOILGASLTD' => $WavedTestsForZLURTOYOILGASLTD, 
         ]; 
     }
 
