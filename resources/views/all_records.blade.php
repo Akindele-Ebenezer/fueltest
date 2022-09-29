@@ -443,7 +443,7 @@
                     </td>
                 </tr>
                 @endif  
-                    @foreach($all_records as $record)  
+                    @foreach($all_records as $record)     
                         @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
                             <tr class="Yesterday history">
                                 <td>Yesterday <span></span> </td>  
@@ -507,7 +507,7 @@
                             @if($record->ApprovalForUse === 'APPROVED')
                                 <img src="images/approved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Passed ]</section>  
                             @endif
-
+                            
                             @if($record->ApprovalForUse === 'REJECTED')
                                 <img src="images/rejected.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Failed ]</section>  
                             @endif
@@ -535,9 +535,13 @@
                                     {{ $record->VendorName }} 
                                 </label>
                             </form>
+                            <section class="records-tooltip">  
+                                @include('SwitchCases.SwitchCasesForVendors')
+                               
+                            </section>
                         </td>
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
-                        <td class="truck-plate-no">{{ $record->TruckPlateNo  }}</td>
+                        <td class="truck-plate-no">{{ $record->TruckPlateNo }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>
                         <td class="appearance-result"><p class="{{ $record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $record->AppearanceResult }} </p></td>
                         <td>{{ str_replace("Choose Color...", "null", $record->Color) }}</td>

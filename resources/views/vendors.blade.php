@@ -26,6 +26,13 @@
                     <th class="vendor-name resizable">Vendor Name</th> 
                 </tr>  
                 @foreach($vendors as $Vendor)
+                @php 
+
+                    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                        ->get()
+                                                        ->count(); 
+
+                @endphp
                 <tr> 
                     <td class="vendor-id">{{ $Vendor->id }}</td>
                     <td class="vendor-no" id="Vend">
@@ -33,10 +40,10 @@
                             <label>
                                 <input type="hidden" class="hide" name="FilterVendorName">
                                 <input type="submit" class="hide" name="CheckVendorName[]" value="{{ $Vendor->VendorName }}">
-                                {{ $Vendor->VendorNo }}
+                                {{ $Vendor->VendorNo }} 
                             </label>
                         </form>  
-                        <section class="records-tooltip">{{ $Vendor->VendorNo }} <br> [ ]</section>                      
+                        <section class="records-tooltip">{{ $Vendor->VendorNo }} <br> [{{ $NumberOfTotalRecordsForEachVendor }}]</section>                      
                     </td>
                     <td class="vendor-name">
                         <form action="{{ route('all_records') }}">
@@ -46,7 +53,12 @@
                                 {{ $Vendor->VendorName }}
                             </label>
                         </form>  
-                        <section class="records-tooltip">{{ $Vendor->VendorName }} <br> [ ]</section> 
+                        <section class="records-tooltip">
+
+                            {{ $Vendor->VendorName }} ({{ $NumberOfTotalRecordsForEachVendor }})<br> 
+                            
+                            @include('SwitchCases.SwitchCasesForVendors') 
+                        </section> 
                     </td>  
                 </tr>  
                 @endforeach

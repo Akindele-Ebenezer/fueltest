@@ -9,6 +9,7 @@ let ToolTipsParent8 = document.querySelectorAll('.Failed');
 let ToolTipsParent9 = document.querySelectorAll('.Diff');
 let ToolTipsParent10 = document.querySelectorAll('.vendor-no');  
 let ToolTipsParent11 = document.querySelectorAll('.vendor-name');  
+let ToolTipsParent12 = document.querySelectorAll('td.vendors');  
 
 let ToolTipsArray = [
     ToolTipsParent1,
@@ -22,6 +23,7 @@ let ToolTipsArray = [
     ToolTipsParent9, 
     ToolTipsParent10, 
     ToolTipsParent11, 
+    ToolTipsParent12, 
 ]; 
 
 ToolTipsArray.forEach(ToolTipParentElement => {

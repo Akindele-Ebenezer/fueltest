@@ -507,6 +507,9 @@
                                 {{ $previous_record->VendorName }} 
                             </label>
                         </form>
+                        <section class="records-tooltip">
+                            @include('SwitchCases.SwitchCasesForVendors') 
+                        </section>
                     </td> 
                     <td class="sample-collection-date">{{ $previous_record->SampleCollectionDate }}</td> 
                     <td class="truck-plate-no">{{ $previous_record->TruckPlateNo  }}</td>

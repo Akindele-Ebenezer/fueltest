@@ -131,6 +131,8 @@ section {
             width: max-content;
 
             td {
+                position: relative;
+                
                 &:not(td.pdf-and-edit) {
                     border-top: 1px solid #eee;
                     border-bottom: 1px solid #eee;
@@ -288,7 +290,8 @@ section {
                     
                     &.vendor-name {
                         label {       
-                            color: unset;                   
+                            color: unset;  
+                            cursor: pointer;                 
                         }
                     } 
 
@@ -330,7 +333,7 @@ section {
                     padding: .3rem;
                     position: sticky;
                     top: 0;
-                    width: fit-content !important;
+                    // width: fit-content !important;
                     z-index: 102;
 
                     .filter {
@@ -471,7 +474,11 @@ section {
                             padding: .2rem;
                         }
                     }
-                      
+                     
+                    &.vendors {
+                        width: 222px;
+                    }
+
                     &.vendor-name,
                     &.user-name {
                         text-align: left;

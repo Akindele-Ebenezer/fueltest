@@ -136,7 +136,6 @@ button:hover {
 .resizable {
   max-width: 400px;
   min-width: 100px;
-  width: 222px;
 }
 
 ul {
@@ -798,6 +797,9 @@ section.previous-records table {
   margin-block: 1rem;
   width: max-content;
 }
+section.previous-records table td {
+  position: relative;
+}
 section.previous-records table td:not(td.pdf-and-edit) {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -923,6 +925,7 @@ section.previous-records table tr td.vendors, section.previous-records table tr 
 }
 section.previous-records table tr td.vendor-name label {
   color: unset;
+  cursor: pointer;
 }
 section.previous-records table tr td.pdf-and-edit {
   display: flex;
@@ -954,7 +957,6 @@ section.previous-records table tr th {
   padding: 0.3rem;
   position: sticky;
   top: 0;
-  width: fit-content !important;
   z-index: 102;
 }
 section.previous-records table tr th .filter {
@@ -1060,6 +1062,9 @@ section.previous-records table tr th svg:last-of-type {
   border: 1px solid antiquewhite;
   border-radius: 0.2rem;
   padding: 0.2rem;
+}
+section.previous-records table tr th.vendors {
+  width: 222px;
 }
 section.previous-records table tr th.vendor-name, section.previous-records table tr th.user-name {
   text-align: left;

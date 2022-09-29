@@ -234,7 +234,7 @@ class FuelTestController extends Controller
                                                         ->orderBy('VendorName')
                                                         ->get()
                                                         ->count();
-
+ 
         $RejectedTestsForLEKSYDENERGYLTD  = FuelTestRecord::where('VendorName', 'LEKSYD ENERGY LTD')
                                                         ->where('ApprovalForUse', 'REJECTED')
                                                         ->orderBy('VendorName')
@@ -426,8 +426,12 @@ class FuelTestController extends Controller
                                                         ->orderBy('VendorName')
                                                         ->get()
                                                         ->count();
+//////////////////////////////////////////////////
 
-        // dd($RejectedTestsForDAUZGLOBALVENTURES);
+        $VendorNamesArr = [];
+        $VendorApprovalArr = []; 
+        
+//////////////////////////////////////////////////
 
         return [ 
             'id' => $id,
