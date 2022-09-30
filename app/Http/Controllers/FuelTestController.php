@@ -42,6 +42,8 @@ class FuelTestController extends Controller
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->get(); 
         $number_of_previous_records = count($previous_records);
 
+        $all_records_for_insights = FuelTestRecord::orderBy('SampleNo', 'DESC')->get()->toArray(); 
+        
         $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
         $number_of_all_records = count($all_records);
 

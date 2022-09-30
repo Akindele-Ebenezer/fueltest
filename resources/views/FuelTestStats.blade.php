@@ -144,42 +144,81 @@ let FuelTestResults = new Chart("myChart", {
     });
  
     let Labels = [];   
+    let AvailableVendorNames = [];   
     let NumberOfTotalRecordsForEachVendor = [];   
+    let NumberOfApprovedRecordsForEachVendor = [];   
+    let NumberOfWavedRecordsForEachVendor = [];   
+    let NumberOfRejectedRecordsForEachVendor = [];   
+    
+    @php 
+        $AvailableVendorNames = [];
+    @endphp
 
-    @foreach($vendors as $vendor)
-        Labels.push('{{ $vendor->VendorName }}'); 
+    @foreach($vendors as $vendor) 
 
         @php 
-    
+        
             $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+        
+            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                ->where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+        
+            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                                ->where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+        
+            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
                                                 
         @endphp
+        
+        @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
+            @continue;
+        @endif
+        
+        Labels.push('{{ $vendor->VendorNo }}');
 
-        NumberOfTotalRecordsForEachVendor.push('{{ $NumberOfTotalRecordsForEachVendor }}');  
-    @endforeach   
+        @php 
+            array_push($AvailableVendorNames, $vendor->VendorName);
+        @endphp
+
+        AvailableVendorNames.push('{{ $vendor->VendorName }}'); 
+        NumberOfTotalRecordsForEachVendor.push('{{ $NumberOfTotalRecordsForEachVendor }}'); 
+        NumberOfApprovedRecordsForEachVendor.push('{{ $NumberOfApprovedRecordsForEachVendor }}');  
+        NumberOfWavedRecordsForEachVendor.push('{{ $NumberOfWavedRecordsForEachVendor }}');  
+        NumberOfRejectedRecordsForEachVendor.push('{{ $NumberOfRejectedRecordsForEachVendor }}');  
+
+    @endforeach 
     
-    Labels.push('Total');   
-
+        @php 
+            // print_r($AvailableVendorNames);
+        @endphp
+        
     let FuelTestResults6 = new Chart("myChart6", {
         type: "horizontalBar",
-        data: {
+        data: { 
             labels: [...Labels], 
             datasets: [{  
-                data: [{{ $WavedTestsForBLUEFINENERGYLIMITED }}, {{ $WavedTestsForDAUZGLOBALVENTURES }}, {{ $WavedTestsForFOURPOINTSINTEGRATEDSOLUTIONS }}, {{ $WavedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED }}, {{ $WavedTestsForJESSICONGLOBAL }}, {{ $WavedTestsForLEKSYDENERGYLTD }}, {{ $WavedTestsForMATRIXENERGYRESOURCESLTD }}, {{ $WavedTestsForNAVAHOPETROLEUMLIMITED }}, {{ $WavedTestsForNIPCOPLC }}, {{ $WavedTestsForPRACTICENERGYSOLUTIONSLIMITED }}, {{ $WavedTestsForSADESHENERGYLIMITED }}, {{ $WavedTestsForSKIDGLOBALRESOURCESLTD }}, {{ $WavedTestsForTOTALNIGERIAPLC }}, {{ $WavedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED }}, {{ $WavedTestsForYURTENERGYLTD }}, {{ $WavedTestsForZLURTOYOILGASLTD }}],
+                data: [...NumberOfWavedRecordsForEachVendor],
                 backgroundColor: "#F5D6D0",
                 fill: false,
-                label: 'Waved',
+                label: 'Waved', 
             }, 
             { 
-                data: [{{ $RejectedTestsForBLUEFINENERGYLIMITED }}, {{ $RejectedTestsForDAUZGLOBALVENTURES }}, {{ $RejectedTestsForFOURPOINTSINTEGRATEDSOLUTIONS }}, {{ $RejectedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED }}, {{ $RejectedTestsForJESSICONGLOBAL }}, {{ $RejectedTestsForLEKSYDENERGYLTD }}, {{ $RejectedTestsForMATRIXENERGYRESOURCESLTD }}, {{ $RejectedTestsForNAVAHOPETROLEUMLIMITED }}, {{ $RejectedTestsForNIPCOPLC }}, {{ $RejectedTestsForPRACTICENERGYSOLUTIONSLIMITED }}, {{ $RejectedTestsForSADESHENERGYLIMITED }}, {{ $RejectedTestsForSKIDGLOBALRESOURCESLTD }}, {{ $RejectedTestsForTOTALNIGERIAPLC }}, {{ $RejectedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED }}, {{ $RejectedTestsForYURTENERGYLTD }}, {{ $RejectedTestsForZLURTOYOILGASLTD }}],
+                data: [...NumberOfRejectedRecordsForEachVendor],
                 backgroundColor: "#CE050F",
                 fill: false,
                 label: 'Rejected',
             }, 
             { 
-                data: [{{ $ApprovedTestsForBLUEFINENERGYLIMITED }}, {{ $ApprovedTestsForDAUZGLOBALVENTURES }}, {{ $ApprovedTestsForFOURPOINTSINTEGRATEDSOLUTIONS }}, {{ $ApprovedTestsForINTEGRATEDOSMOSISCONCEPTLIMITED }}, {{ $ApprovedTestsForJESSICONGLOBAL }}, {{ $ApprovedTestsForLEKSYDENERGYLTD }}, {{ $ApprovedTestsForMATRIXENERGYRESOURCESLTD }}, {{ $ApprovedTestsForNAVAHOPETROLEUMLIMITED }}, {{ $ApprovedTestsForNIPCOPLC }}, {{ $ApprovedTestsForPRACTICENERGYSOLUTIONSLIMITED }}, {{ $ApprovedTestsForSADESHENERGYLIMITED }}, {{ $ApprovedTestsForSKIDGLOBALRESOURCESLTD }}, {{ $ApprovedTestsForTOTALNIGERIAPLC }}, {{ $ApprovedTestsForWHITEHILLINTEGRATEDSERVICESLIMITED }}, {{ $ApprovedTestsForYURTENERGYLTD }}, {{ $ApprovedTestsForZLURTOYOILGASLTD }}],
+                data: [...NumberOfApprovedRecordsForEachVendor],
                 backgroundColor: "#2BC5AE",
                 fill: false,
                 label: 'Approved', 
@@ -192,7 +231,19 @@ let FuelTestResults = new Chart("myChart", {
             }]
         },
         options: {
-            legend: {display: false}
+            legend: {
+                display: true, 
+            }, 
+            tooltips: {
+                mode: 'index',
+                // intersect: true,
+                // callbacks: {
+                //     title: 
+                //     function(tooltipItem, data) {  
+                //             // return AvailableVendorNames[0];
+                //         }
+                // }
+            }
         }
     });
 </script>

@@ -1,4 +1,5 @@
 .fuel-test-dashboard { 
+    align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
     // height: 70vh;
@@ -16,8 +17,8 @@
             width: 100% !important; 
 
             &#myChart6 {
-                height: 70rem !important;
-                width: 100% !important;
+                height: 40rem !important;
+                width: unset !important;
             }
         }
 
