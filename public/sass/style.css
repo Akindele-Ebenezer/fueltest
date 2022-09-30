@@ -1107,7 +1107,7 @@ section.show-record div:first-child a {
   font-weight: bold;
   margin-block: 1rem;
   position: fixed;
-  right: 1rem;
+  right: 2rem;
   top: 0;
   text-align: right;
 }
@@ -1171,7 +1171,6 @@ section input[placeholder="Search.."] {
 .fuel-test-dashboard {
   display: flex;
   flex-wrap: wrap;
-  height: 70vh;
   overflow: scroll;
   padding: 1rem;
 }
