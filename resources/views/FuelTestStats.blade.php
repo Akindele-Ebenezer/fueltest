@@ -144,11 +144,24 @@ let FuelTestResults = new Chart("myChart", {
     });
  
     let Labels = [];   
+    let NumberOfTotalRecordsForEachVendor = [];   
 
     @foreach($vendors as $vendor)
-        Labels.push('{{ $vendor->VendorName }}');   
+        Labels.push('{{ $vendor->VendorName }}'); 
+
+        @php 
+    
+            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+                                                
+        @endphp
+
+        NumberOfTotalRecordsForEachVendor.push('{{ $NumberOfTotalRecordsForEachVendor }}');  
     @endforeach   
     
+    Labels.push('Total');   
+
     let FuelTestResults6 = new Chart("myChart6", {
         type: "horizontalBar",
         data: {
@@ -170,6 +183,12 @@ let FuelTestResults = new Chart("myChart", {
                 backgroundColor: "#2BC5AE",
                 fill: false,
                 label: 'Approved', 
+            }, 
+            { 
+                data: [...NumberOfTotalRecordsForEachVendor],
+                backgroundColor: "#afb5AE",
+                fill: false,
+                label: 'Total', 
             }]
         },
         options: {
