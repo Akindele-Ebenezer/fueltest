@@ -144,6 +144,7 @@ let FuelTestResults = new Chart("myChart", {
     });
  
     let Labels = [];   
+    let NewLabels = [];  
     let AvailableVendorNames = [];   
     let NumberOfTotalRecordsForEachVendor = [];   
     let NumberOfApprovedRecordsForEachVendor = [];   
@@ -183,7 +184,7 @@ let FuelTestResults = new Chart("myChart", {
             @continue;
         @endif
         
-        Labels.push('{{ $vendor->VendorNo }}');
+        Labels.push('{{ $vendor->VendorNo }} {{ $vendor->VendorName }}');
 
         @php 
             array_push($AvailableVendorNames, $vendor->VendorName);
@@ -195,16 +196,16 @@ let FuelTestResults = new Chart("myChart", {
         NumberOfWavedRecordsForEachVendor.push('{{ $NumberOfWavedRecordsForEachVendor }}');  
         NumberOfRejectedRecordsForEachVendor.push('{{ $NumberOfRejectedRecordsForEachVendor }}');  
 
-    @endforeach 
-    
-        @php 
-            // print_r($AvailableVendorNames);
-        @endphp
+    @endforeach   
         
+    Labels.forEach(Label => {
+        NewLabels.push(Label.substring(1, 6));
+    });
+
     let FuelTestResults6 = new Chart("myChart6", {
         type: "horizontalBar",
         data: { 
-            labels: [...Labels], 
+            labels: [...NewLabels], 
             datasets: [{  
                 data: [...NumberOfWavedRecordsForEachVendor],
                 backgroundColor: "#F5D6D0",
@@ -236,15 +237,14 @@ let FuelTestResults = new Chart("myChart", {
             }, 
             tooltips: {
                 mode: 'index',
-                // intersect: true,
-                // callbacks: {
-                //     title: 
-                //     function(tooltipItem, data) {  
-                //             // return AvailableVendorNames[0];
-                //         }
-                // }
-            }
+                callbacks: {
+                    title: 
+                    function(tooltipItem, data) {   
+                        return AvailableVendorNames[tooltipItem[0].index];   
+                    }
+                }
+            },
         }
-    });
+    }); 
 </script>
 @endsection    
