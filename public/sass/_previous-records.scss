@@ -328,6 +328,7 @@ section {
 
                 th {
                     background: $color-4;
+                    border-radius: 0.3rem;
                     color: #fff;
                     font-weight: unset; 
                     padding: .3rem;
@@ -485,6 +486,7 @@ section {
                     }
 
                     &.vendors-th {
+                        padding-inline: 1rem;
                         text-align: right;
                     }
                 }

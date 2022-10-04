@@ -492,12 +492,12 @@
                             @endif
                     </td>
                     <td class="sample-no">
-                            <form action="/GenerateCertificate/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf
+                            <form action="">
                                 <label>
                                     @include('PreviousRecordsCertificateData')
-                                    {{ $previous_record->SampleNo }}  
+                                    {{ $previous_record->SampleNo }} 
                                 </label>
-                            </form>
+                            </form>  
                         </td> 
                     </td>
                     <td class="vendors">

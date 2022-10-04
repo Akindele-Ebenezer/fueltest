@@ -16,6 +16,6 @@ Columns.forEach(Column => {
 
     Column.addEventListener('mouseenter', () => { 
         Column.style.cursor = 'col-resize' ; 
-        Column.removeEventListener('mousemove', Resize) ; 
+        Column.removeEventListener('mousemove', Resize); 
     }); 
 });
