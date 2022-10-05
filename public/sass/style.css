@@ -1170,56 +1170,27 @@ section input[placeholder="Search.."] {
     width: 100vw;
   }
 }
-.fuel-test-dashboard {
-  align-items: flex-end;
+.analysis {
+  margin-top: 10rem !important;
+}
+
+.date {
+  top: 6rem;
+}
+
+#fuel-test-dashboard {
   display: flex;
   flex-wrap: wrap;
-  overflow: scroll;
-  padding: 1rem;
+  justify-content: space-around;
 }
+
 .fuel-test-dashboard-inner {
-  border-radius: 1rem;
-  box-shadow: 1px 2px 19px #ddd;
-  margin: 1rem;
-  padding: 2rem;
+  background: #fff;
+  margin-block: 5rem;
 }
-.fuel-test-dashboard-inner canvas {
-  height: 200px !important;
-  width: 100% !important;
-}
-.fuel-test-dashboard-inner canvas#myChart6 {
-  height: 40rem !important;
-  width: unset !important;
-}
-.fuel-test-dashboard-inner h1 {
-  color: #555;
-  font-size: 2rem;
-}
-.fuel-test-dashboard-inner .inner {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-.fuel-test-dashboard-inner .inner div {
-  display: flex;
-}
-.fuel-test-dashboard-inner .inner div h2 {
-  border-radius: 50%;
-  color: #444;
-  margin-inline: 0.5rem;
-  padding: 1rem;
-}
-.fuel-test-dashboard-inner .inner div h2:first-of-type {
-  border: 8px solid #ea5545;
-}
-.fuel-test-dashboard-inner .inner div h2:nth-of-type(2) {
-  border: 8px solid #6cd4c5;
-}
-.fuel-test-dashboard-inner .inner div h2:nth-of-type(3) {
-  border: 8px solid #e6d817;
-}
-.fuel-test-dashboard-inner .inner div h2:last-of-type {
-  border: 8px solid #a4a2a8;
+
+.insights {
+  background: #f9f9f9;
 }
 
 /*# sourceMappingURL=style.css.map */

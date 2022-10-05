@@ -1,64 +1,23 @@
-.fuel-test-dashboard { 
-    align-items: flex-end;
+.analysis {
+    margin-top: 10rem !important;
+}
+
+.date {
+    top: 6rem;
+} 
+ 
+#fuel-test-dashboard {
     display: flex;
     flex-wrap: wrap;
-    // height: 70vh;
-    overflow: scroll;
-    padding: 1rem; 
+    justify-content: space-around;
 
-    &-inner {
-        border-radius: 1rem;
-        box-shadow: 1px 2px 19px #ddd;
-        margin: 1rem; 
-        padding: 2rem; 
-        
-        canvas {    
-            height: 200px  !important;
-            width: 100% !important; 
+}
 
-            &#myChart6 {
-                height: 40rem !important;
-                width: unset !important;
-            }
-        }
+.fuel-test-dashboard-inner {
+    background: #fff;
+    margin-block: 5rem;
+}
 
-        h1 {
-            color: #555;
-            font-size: 2rem;
-        }
-
-        .inner {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-
-            div {
-                display: flex;
-
-                h2 {
-                    border-radius: 50%;
-                    color: #444;
-                    margin-inline: .5rem;
-                    padding: 1rem;
-                    
-                    &:first-of-type {
-                        border: 8px solid #ea5545;
-                    }                    
-                    
-                    &:nth-of-type(2) {
-                        border: 8px solid #6cd4c5;
-                    }
-                    
-                    
-                    &:nth-of-type(3) {
-                        border: 8px solid #e6d817;
-                    }
-                    
-                    &:last-of-type {
-                        border: 8px solid #a4a2a8;
-                    }
-                }
-            }
-        }
-    }
+.insights {
+    background: #f9f9f9;
 }

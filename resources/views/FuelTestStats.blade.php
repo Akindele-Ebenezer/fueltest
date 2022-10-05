@@ -7,24 +7,29 @@
 @section('content') 
  
 <style>
-    .fuel-test-dashboard-inner canvas#myChart6 {
+    .fuel-test {
+        display: contents !important;
+    } 
+    
+    .fuel-test-dashboard-inner canvas {
         width: unset !important;
     }
+
     .fuel-test-left-nav {
         display: none;   
     } 
 </style>
 
 <div class="insights"> 
-    @include('PageTitle')
-    <div class="fuel-test-dashboard">
-        <div class="fuel-test-dashboard-inner">
-            <h1>VENDORS</h1>
-            <canvas id="myChart6"></canvas>
-        </div> 
+@include('PageTitle')
+    <div class="fuel-test-dashboard-inner analysis">
+        <!-- <h1>VENDORS</h1> -->
+        <canvas id="myChart6"></canvas>
+    </div> 
+    <div id="fuel-test-dashboard">
         <div class="fuel-test-dashboard-inner">
             <div class="inner">
-                <h1>FUEL LAB Report</h1>
+                <!-- <h1>FUEL LAB Report</h1> -->
                 <div>
                     <h2>{{ round($PercentageOfFailedRecords) }}%</h2>
                     <h2>{{ round($PercentageOfPassedRecords) }}%</h2>
@@ -32,23 +37,23 @@
                     <h2>{{ round($PercentageOfDiffRecords) }}%</h2>
                 </div>
             </div>
-            <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            <canvas id="myChart" style="width:100%;min-width:700px"></canvas>
         </div>    
         <div class="fuel-test-dashboard-inner">
-            <h1>Monthly</h1>
-            <canvas id="myChart3" style="width:100%;max-width:700px"></canvas>
+            <!-- <h1>Monthly</h1> -->
+            <canvas id="myChart3" style="width:100%;min-width:700px"></canvas>
         </div>
         <div class="fuel-test-dashboard-inner">
-            <h1>Recent</h1>
-            <canvas id="myChart2" style="width:100%;max-width:700px"></canvas>
+            <!-- <h1>Recent</h1> -->
+            <canvas id="myChart2" style="width:100%;min-width:700px"></canvas>
         </div>
         <div class="fuel-test-dashboard-inner">
-            <h1>Daily/Recent</h1>
-            <canvas id="myChart4" style="width:100%;max-width:700px"></canvas>
+            <!-- <h1>Daily/Recent</h1> -->
+            <canvas id="myChart4" style="width:100%;min-width:700px"></canvas>
         </div>
         <div class="fuel-test-dashboard-inner">
-            <h1>Daily/Recent</h1>
-            <canvas id="myChart5" style="width:100%;max-width:700px"></canvas>
+            <!-- <h1>Daily/Recent</h1> -->
+            <canvas id="myChart5" style="width:100%;min-width:700px"></canvas>
         </div>
     </div>
 </div>
@@ -61,15 +66,44 @@ let FuelTestResults = new Chart("myChart", {
     data: {
             labels: ["Failed", "Passed", "Waved", "Diff", "Previous Records", "Total Records"],
             datasets: [{
-                backgroundColor: ["#ea5545", "#6cd4c5","#e6d817","#a4a2a8","#9080ff", "#ddd"],
+                backgroundColor: [
+                    'rgb(255, 30, 30, 0.3)',
+                    'rgb(0, 255, 209, 0.3)',
+                    'rgb(255, 255, 0, 0.3)',
+                    'rgb(49, 198, 212, 0.3)',
+                    'rgb(219, 200, 172, 0.3)',
+                    'rgb(162, 181, 187, 0.3)',
+                ],
+                borderColor: [
+                    "rgb(255, 30, 30, 0.3)",
+                    "rgb(0, 255, 209)",
+                    "rgb(255, 255, 0)",
+                    "rgb(49, 198, 212)",
+                    "rgb(219, 200, 172)",
+                    "rgb(162, 181, 187)",
+                ],
+                borderWidth: 1,
                 data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, {{ $number_of_diff_records }}, {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
             }]
         },
         options: {
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },            
             legend: {display: false},
             title: { 
                 display: true,  
-            }
+            },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'FUEL LAB Report',
+            }            
         }
     });
   
@@ -84,10 +118,23 @@ let FuelTestResults = new Chart("myChart", {
             }]
         },
         options: {
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },            
             legend: {display: false},
             title: {
                 display: true, 
-            }
+            },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'Recent',
+            }            
         }
     });
  
@@ -102,10 +149,23 @@ let FuelTestResults = new Chart("myChart", {
             }]
         },
         options: {
-            legend: {display: false},
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },            
+            legend: {display: false}, 
             title: {
                 display: true, 
-            }
+            },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'Monthly',
+            }            
         }
     });
  
@@ -119,27 +179,62 @@ let FuelTestResults = new Chart("myChart", {
             }]
         },
         options: {
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },            
             legend: {display: false},
             title: {
                 display: true, 
-            }
+            },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'Daily/Recent',
+            }            
         }
     });
  
     let FuelTestResults5 = new Chart("myChart5", {
-        type: "pie",
+        type: "bar",
         data: {
             labels: ['Today', 'Yesterday', 'Day Before', '3 Days', '4 Days', '5 Days', '6 Days', 'One Week'],
-            datasets: [{
+            datasets: [{ 
                 backgroundColor: ['#9b19f5', '#8bd3c7', '#edbf33', '#fdcce5', '#b2e061', '#bd7ebe', '#fd7f6f', '#d7e1ee'],
-                data: [{{ $number_of_todays_records }}, {{ $number_of_yesterday_records }}, {{ $number_of_two_days_ago_records }}, {{ $number_of_three_days_ago_records }}, {{ $number_of_four_days_ago_records }}, {{ $number_of_five_days_ago_records }}, {{ $number_of_six_days_ago_records }}, {{ $number_of_all_records_last_seven_days }}]
+                data: [
+                    {{ $number_of_todays_records }},
+                    {{ $number_of_yesterday_records }},
+                    {{ $number_of_two_days_ago_records }},
+                    {{ $number_of_three_days_ago_records }},
+                    {{ $number_of_four_days_ago_records }},
+                    {{ $number_of_five_days_ago_records }}, 
+                    {{ $number_of_six_days_ago_records }}, 
+                    {{ $number_of_all_records_last_seven_days }},
+                ]
             }]
         },
         options: {
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },            
             legend: {display: false},
             title: {
                 display: true, 
-            }
+            },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'Daily/Recent',
+            }            
         }
     });
  
@@ -208,32 +303,49 @@ let FuelTestResults = new Chart("myChart", {
             labels: [...NewLabels], 
             datasets: [{  
                 data: [...NumberOfWavedRecordsForEachVendor],
-                backgroundColor: "#F5D6D0",
+                backgroundColor: "rgb(255, 255, 0, 0.3)",
+                borderColor: "rgb(255, 233, 0, 0.3)",
+                borderWidth: 1,
                 fill: false,
                 label: 'Waved', 
             }, 
             { 
                 data: [...NumberOfRejectedRecordsForEachVendor],
-                backgroundColor: "#CE050F",
+                backgroundColor: "rgb(255, 30, 30, 0.3)",
+                borderColor: "rgb(255, 29, 30, 0.3)",
+                borderWidth: 1,
                 fill: false,
                 label: 'Rejected',
             }, 
             { 
                 data: [...NumberOfApprovedRecordsForEachVendor],
-                backgroundColor: "#2BC5AE",
+                backgroundColor: "rgb(0, 255, 209, 0.3)",
+                borderColor: "rgb(0, 295, 209, 0.3)",
+                borderWidth: 1,
                 fill: false,
                 label: 'Approved', 
             }, 
             { 
                 data: [...NumberOfTotalRecordsForEachVendor],
-                backgroundColor: "#afb5AE",
+                backgroundColor: "rgb(55, 41, 72, 0.2)",
+                borderColor: "rgb(55, 41, 72, 0.3)",
+                borderWidth: 1,
                 fill: false,
                 label: 'Total', 
             }]
         },
         options: {
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },
             legend: {
                 display: true, 
+                position: 'right', 
             }, 
             tooltips: {
                 mode: 'index',
@@ -244,6 +356,18 @@ let FuelTestResults = new Chart("myChart", {
                     }
                 }
             },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'Diesel Test Analysis (VENDORS)',
+            },
+            scales: {
+                x: {
+                    grid: {
+                    offset: true
+                    }
+                }
+            }
         }
     }); 
 </script>
