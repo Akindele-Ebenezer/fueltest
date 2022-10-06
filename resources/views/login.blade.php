@@ -16,7 +16,7 @@
             <form action="/login" method="post">
                 @csrf
                 <span>{{ $WrongCredentials }}</span>
-                <p>Create active records! &nbsp;&nbsp;&nbsp; <button>Log In</button> </p>
+                <p>Create active records! &nbsp;&nbsp;&nbsp; <button class="log-in-button">Log In</button> </p>
                 <br>
                 <h2>Log In</h2>
                 <span>{{ $EmailError }}</span><br>
@@ -26,7 +26,7 @@
                 <label for="Password">Password</label> <br>
                 <input type="password" name="Password" placeholder="8+ Characters..">
                 <br>
-                <button type="submit" name="Submit">Log In</button>
+                <button type="submit" class="log-in-button" name="Submit">Log In</button>
             </form>
         </div>
     </section>

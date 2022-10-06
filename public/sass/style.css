@@ -26,15 +26,16 @@ h4 {
 
 button {
   background: #00592e;
-  border: 3px solid #fff;
-  border-radius: 0.5rem 1rem;
+  border: 1px solid #fff;
+  border-radius: 0.2rem;
+  box-shadow: 1px 2px 19px #eee;
   color: #fff;
-  padding: 1rem;
+  padding: 0.4rem;
   transition: 0.5s;
 }
 button:hover {
   background: #fff;
-  border: 3px solid #00592e;
+  border: 1px solid #00592e;
   color: #00592e;
   cursor: pointer;
 }
@@ -112,6 +113,11 @@ button:hover {
   max-width: 50rem;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.log-in-button {
+  border-radius: 0.5rem 1rem;
+  padding: 1rem;
 }
 
 .show {
@@ -689,6 +695,9 @@ section.fuel-test .fuel-test-main center form input {
   width: 5rem;
 }
 
+section.previous-records {
+  background: #f4f4f4;
+}
 section.previous-records .add-vendor,
 section.previous-records .add-user {
   margin: 3rem 3rem 0;
@@ -715,15 +724,18 @@ section.previous-records .date div {
 }
 section.previous-records center {
   align-items: center;
+  background: #fff;
+  border-radius: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 5rem 1rem 0;
+  padding: 1rem 1rem 1rem 0;
 }
 section.previous-records center a button {
   background: unset;
   border: 1px solid #00592e;
-  border-radius: 0.5rem 1.5rem;
+  border-radius: 0.2rem;
   color: #00592e;
   margin-left: 0.5rem;
 }
@@ -794,7 +806,10 @@ section.previous-records div {
   width: 75vw;
 }
 section.previous-records table {
+  background: #fff;
+  border-radius: 0.5rem;
   margin-block: 1rem;
+  padding: 0.5rem;
   width: max-content;
 }
 section.previous-records table td {
@@ -813,9 +828,10 @@ section.previous-records table tr.history, section.previous-records table tr.his
   padding-inline: 0.5rem;
 }
 section.previous-records table tr.history {
+  background: #f9f9f9;
   border-bottom: 1px solid #eee;
   border-left: 5px solid #ddd;
-  border-radius: 0 0.5rem 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
   margin-top: 1rem;
 }
 section.previous-records table.vendors, section.previous-records table.users {
@@ -846,7 +862,6 @@ section.previous-records table tr {
 }
 section.previous-records table tr.history {
   display: none;
-  padding-block: 1rem;
 }
 section.previous-records table tr.history td {
   align-items: center;
@@ -994,7 +1009,7 @@ section.previous-records table tr th .filter ul button:first-of-type a {
   color: #fff;
 }
 section.previous-records table tr th .filter ul button:first-of-type:hover {
-  border: 3px solid #fff;
+  border: 1px solid #fff;
   color: #fff;
 }
 section.previous-records table tr th .filter ul center {
