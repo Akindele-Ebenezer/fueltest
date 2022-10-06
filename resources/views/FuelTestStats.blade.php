@@ -58,6 +58,10 @@
     </div>
 </div>
 <input type="hidden" id="Labels" name="Labels">
+<form action="{{ route('all_records') }}" class="Passed">
+    <input type="text" name="FilterPassedTests" value="Value">
+</form>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script> 
 
@@ -102,7 +106,7 @@ let FuelTestResults = new Chart("myChart", {
             title: {
                 display: true,
                 fontSize: 20, 
-                text: 'FUEL LAB Report',
+                text: 'Fuel Tests',
             }            
         }
     });
@@ -303,32 +307,32 @@ let FuelTestResults = new Chart("myChart", {
             labels: [...NewLabels], 
             datasets: [{  
                 data: [...NumberOfWavedRecordsForEachVendor],
-                backgroundColor: "rgb(255, 255, 0, 0.3)",
-                borderColor: "rgb(255, 233, 0, 0.3)",
+                backgroundColor: "rgb(255, 255, 0, 0.7)",
+                borderColor: "rgb(255, 233, 0, 0.7)",
                 borderWidth: 1,
                 fill: false,
                 label: 'Waved', 
             }, 
             { 
                 data: [...NumberOfRejectedRecordsForEachVendor],
-                backgroundColor: "rgb(255, 30, 30, 0.3)",
-                borderColor: "rgb(255, 29, 30, 0.3)",
+                backgroundColor: "rgb(255, 30, 30, 0.7)",
+                borderColor: "rgb(255, 29, 30, 0.7)",
                 borderWidth: 1,
                 fill: false,
                 label: 'Rejected',
             }, 
             { 
                 data: [...NumberOfApprovedRecordsForEachVendor],
-                backgroundColor: "rgb(0, 255, 209, 0.3)",
-                borderColor: "rgb(0, 295, 209, 0.3)",
+                backgroundColor: "rgb(0, 255, 209, 0.7)",
+                borderColor: "rgb(0, 295, 209, 0.7)",
                 borderWidth: 1,
                 fill: false,
-                label: 'Approved', 
+                label: 'Approved',
             }, 
             { 
                 data: [...NumberOfTotalRecordsForEachVendor],
-                backgroundColor: "rgb(55, 41, 72, 0.2)",
-                borderColor: "rgb(55, 41, 72, 0.3)",
+                backgroundColor: "rgb(55, 41, 72, 0.7)",
+                borderColor: "rgb(55, 41, 72, 0.7)",
                 borderWidth: 1,
                 fill: false,
                 label: 'Total', 
@@ -360,14 +364,19 @@ let FuelTestResults = new Chart("myChart", {
                 display: true,
                 fontSize: 20, 
                 text: 'Diesel Test Analysis (VENDORS)',
-            },
-            scales: {
-                x: {
-                    grid: {
-                    offset: true
-                    }
-                }
-            }
+            }, 
+            // onClick: (a, b) => { 
+                // let PassedTests = document.querySelector('.Passed');
+                
+                // console.log(b[b[0]._index]);
+                // console.log(b);
+                // console.log(b[0]._index);
+                // if (b._index == 2) {
+                    
+                //     console.log(b);
+                    // PassedTests.submit();
+                // }
+            // }
         }
     }); 
 </script>
