@@ -1004,6 +1004,7 @@ section.previous-records table tr th .filter ul button {
 }
 section.previous-records table tr th .filter ul button:first-of-type {
   background: #bbb;
+  border: 1px solid #eee;
 }
 section.previous-records table tr th .filter ul button:first-of-type a {
   color: #fff;
