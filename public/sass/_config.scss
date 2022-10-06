@@ -35,7 +35,7 @@ $headings: 1, 2, 3, 4;
 
 button {
     background: $color-2;
-    border: 1px solid #fff;
+    border: 1px solid $color-2;
     border-radius: .2rem;
     box-shadow: 1px 2px 19px #eee;
     color: #fff;
