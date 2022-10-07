@@ -19,7 +19,7 @@
             </div> 
             @include('ApprovedWavedRejected')
         </center>
-        <div>
+        <div class="table">
             <table>
                 <tr>
                     <th class="resizable">Days/Weeks/Months </th>

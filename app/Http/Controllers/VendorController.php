@@ -18,20 +18,76 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FuelTestController $FuelTestController)
+    public function index(FuelTestController $FuelTestController, Request $request)
     {  
         $Config = $FuelTestController->config();  
         extract($Config);  
         
         if(Session::has('email')) { 
-            $title = 'VENDORS';  
+            $title = 'VENDORS';     
+            $FilterVendorName = FuelTestRecord::distinct()->get(['VendorName']); 
+            $FilterVendorNo = FuelTestRecord::distinct()->get(['VendorNo']); 
             
             $ViewData = [ 
                 'title' => $title,   
+                'FilterVendorName' => $FilterVendorName,   
+                'FilterVendorNo' => $FilterVendorNo,   
             ];
+            
+           if (isset($_GET['SortByVendorNo'])) {
+
+                $SortOrder = Session::get('SortOrder', 'ASC');
+                $vendors = Vendor::orderBy('VendorNo', $SortOrder)->get(); 
+
+                $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
+                
+                Session::put('SortOrder', $SortOrder); 
+
+                $ViewData = [...$Config, ...$ViewData]; 
+
+                return view('vendors', $ViewData)->with('vendors', $vendors); 
+
+           }
 
             $ViewData = [...$Config, ...$ViewData]; 
-             
+
+            if (isset($_GET['SortByVendorName'])) { 
+
+                    $SortOrder = Session::get('SortOrder', 'ASC');
+                    $vendors = Vendor::orderBy('VendorName', $SortOrder)->get(); 
+
+                    $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
+                    
+                    Session::put('SortOrder', $SortOrder); 
+
+                    return view('vendors', $ViewData)->with('vendors', $vendors); 
+            
+            } 
+
+            if(isset($_GET['FilterVendorName'])) {
+                $FilteredRecords[] = $request->CheckVendorName;  
+                
+                foreach ($FilteredRecords as $VendorName) {
+                    $vendors = Vendor::whereIn('VendorName', $VendorName)->orderBy('VendorName', 'DESC')->get();
+                   
+                    $number_of_vendors = count($vendors); 
+
+                    return view('vendors', $ViewData)->with('vendors', $vendors)->with('number_of_vendors', $number_of_vendors); 
+                } 
+            }
+
+            if(isset($_GET['FilterVendorNo'])) {
+                $FilteredRecords[] = $request->CheckVendorNo;  
+                
+                foreach ($FilteredRecords as $VendorNo) {
+                    $vendors = Vendor::whereIn('VendorNo', $VendorNo)->orderBy('VendorNo', 'DESC')->get();
+                   
+                    $number_of_vendors = count($vendors); 
+
+                    return view('vendors', $ViewData)->with('vendors', $vendors)->with('number_of_vendors', $number_of_vendors); 
+                } 
+            }
+
             return view('vendors', $ViewData);
         } else {                                       
             return redirect('/');        

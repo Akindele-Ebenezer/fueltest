@@ -22,7 +22,7 @@
         <section>
             <!-- <input type="text" placeholder="Search.."> -->
         </section>
-        <div>
+        <div class="table">
             <table>
                 <tr> 
                     <th class="resizable">Days/Weeks/Months </th> 

@@ -144,6 +144,10 @@ button:hover {
   min-width: 100px;
 }
 
+.th-min-width {
+  min-width: 145px;
+}
+
 ul {
   list-style: none;
 }
@@ -1097,6 +1101,9 @@ section.previous-records table tr th.vendor-name, section.previous-records table
 section.previous-records table tr th.vendors-th {
   padding-inline: 1rem;
   text-align: right;
+}
+section.previous-records .table {
+  padding-bottom: 8rem;
 }
 section.hide-record {
   display: none;
