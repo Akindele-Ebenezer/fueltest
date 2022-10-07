@@ -716,6 +716,7 @@ section.previous-records .add-user form input {
   border: none;
   border-bottom: 1px solid #bbb;
   margin-inline: 1rem;
+  margin-bottom: 1rem;
   outline: none;
   padding: 1rem;
 }
