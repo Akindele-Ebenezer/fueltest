@@ -131,11 +131,11 @@ section {
         }
 
         table {
-            // border-collapse: collapse;
+            border-collapse: collapse;
             background: #fff;
             border-radius: .5rem;
             margin-block: 1rem; 
-            padding: 0.5rem;
+            padding: 0.5rem 0.5rem 5rem;
             width: max-content;
 
             td {
@@ -149,9 +149,9 @@ section {
             }
 
             tr {                                  
-                &:nth-child(odd) {
-                    background: #fdfdfd;
-                }
+                // &:nth-child(odd) {
+                //     background: #fdfdfd;
+                // }
                 
                 &.history,
                 &.history td {
@@ -160,7 +160,7 @@ section {
                 }
                 
                 &.history { 
-                    background: #f9f9f9;
+                    // background: #f9f9f9;
                     border-bottom: 1px solid #eee;
                     border-left: 5px solid #ddd;
                     border-radius: 0 .5rem .5rem 0; 
@@ -205,14 +205,27 @@ section {
             }
 
             tr {
-                border-bottom: 1px solid #eee;
+                // border-bottom: 1px solid #eee;
                 color: #444;
                 
+                &:not(.history):nth-of-type(even) {
+                    background: #f4f4f4 !important;
+                }
+
+                &.rows {
+                    background: #f4f4f4;
+                }
+
+                &.rows:nth-of-type(3n) {
+                    background: #fff !important;
+                }
+ 
                 &.history {
                     display: none;  
                     
                     td {
                         align-items: center;
+                        border: none !important;
                         display: flex;
                         font-family: "Bitter", serif;
                         font-size: 1.4rem;
@@ -229,6 +242,8 @@ section {
                 } 
 
                 td {  
+                    border: 1px solid #ddd !important;
+
                     &.appearance-result {  
                     }    
                     
@@ -304,10 +319,11 @@ section {
                     } 
 
                     &.pdf-and-edit {
+                        border: none !important;
                         display: flex; 
-                        height: 1rem;
+                        // height: 1rem;
                         position: relative;
-                        width: 10rem;
+                        // width: 10rem;
 
                         img {
                             height: 1.45rem;
@@ -336,7 +352,8 @@ section {
 
                 th {
                     background: $color-4;
-                    border-radius: 0.3rem;
+                    border: 1px solid #ddd;
+                    // border-radius: 0.3rem;
                     color: #fff;
                     font-weight: unset; 
                     padding: .3rem;

@@ -356,7 +356,7 @@ section.fuel-test .fuel-test-left-nav ul li svg {
 }
 section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
   height: 90vh;
-  padding: 1rem;
+  padding: 1rem 1rem 7rem;
 }
 section.fuel-test .fuel-test-left-nav a, section.fuel-test .fuel-test-main a {
   font-family: "Roboto", sans-serif;
@@ -806,10 +806,11 @@ section.previous-records div {
   width: 75vw;
 }
 section.previous-records table {
+  border-collapse: collapse;
   background: #fff;
   border-radius: 0.5rem;
   margin-block: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 5rem;
   width: max-content;
 }
 section.previous-records table td {
@@ -820,15 +821,11 @@ section.previous-records table td:not(td.pdf-and-edit) {
   border-bottom: 1px solid #eee;
   padding: 0.4rem 2rem;
 }
-section.previous-records table tr:nth-child(odd) {
-  background: #fdfdfd;
-}
 section.previous-records table tr.history, section.previous-records table tr.history td {
   border: none;
   padding-inline: 0.5rem;
 }
 section.previous-records table tr.history {
-  background: #f9f9f9;
   border-bottom: 1px solid #eee;
   border-left: 5px solid #ddd;
   border-radius: 0 0.5rem 0.5rem 0;
@@ -857,14 +854,23 @@ section.previous-records table.vendors tr th:first-of-type, section.previous-rec
   max-width: 4rem;
 }
 section.previous-records table tr {
-  border-bottom: 1px solid #eee;
   color: #444;
+}
+section.previous-records table tr:not(.history):nth-of-type(even) {
+  background: #f4f4f4 !important;
+}
+section.previous-records table tr.rows {
+  background: #f4f4f4;
+}
+section.previous-records table tr.rows:nth-of-type(3n) {
+  background: #fff !important;
 }
 section.previous-records table tr.history {
   display: none;
 }
 section.previous-records table tr.history td {
   align-items: center;
+  border: none !important;
   display: flex;
   font-family: "Bitter", serif;
   font-size: 1.4rem;
@@ -875,6 +881,9 @@ section.previous-records table tr.history td span {
 }
 section.previous-records table tr:hover {
   background: #eee;
+}
+section.previous-records table tr td {
+  border: 1px solid #ddd !important;
 }
 section.previous-records table tr td .Bright {
   background: rgba(98, 217, 98, 0.1803921569);
@@ -943,10 +952,9 @@ section.previous-records table tr td.vendor-name label {
   cursor: pointer;
 }
 section.previous-records table tr td.pdf-and-edit {
+  border: none !important;
   display: flex;
-  height: 1rem;
   position: relative;
-  width: 10rem;
 }
 section.previous-records table tr td.pdf-and-edit img {
   height: 1.45rem;
@@ -967,7 +975,7 @@ section.previous-records table tr td input[type=image] {
 }
 section.previous-records table tr th {
   background: #444;
-  border-radius: 0.3rem;
+  border: 1px solid #ddd;
   color: #fff;
   font-weight: unset;
   padding: 0.3rem;

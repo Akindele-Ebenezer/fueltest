@@ -498,7 +498,7 @@
                             </tr>
                         @endif   
 
-                    <tr>  
+                    <tr class="rows">  
                         <td class="pdf-and-edit">
                             <form action="/GenerateCertificate/{{ $record->SampleNo }}" method="post" target="_blank">@csrf
                                 <input type="image" src="/images/pdf.png"> 
