@@ -10,7 +10,9 @@ section {
                 color: #00592e;
                 
                 input {
-                    border: 1px solid #ccc;
+                    background: #eee;
+                    border: none;
+                    border-bottom: 1px solid #bbb;
                     border-radius: 0.5rem 1rem;
                     margin-inline: 1rem;
                     outline: none;
