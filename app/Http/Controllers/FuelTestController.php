@@ -841,7 +841,121 @@ class FuelTestController extends Controller
             ];
 
             $ViewData = [...$Config, ...$ViewData]; 
+            
+            if(isset($_GET['FilterDiffTestsForCurrentVendor'])) {
+                
+                $title = $VendorName = $_GET['Title'];
+                $all_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->orderBy('SampleNo', 'DESC')->get();
+                
+                $number_of_all_records = count($all_records);
+                
+                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count(); 
 
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
+            }
+        
+            
+            if(isset($_GET['FilterWavedTestsForCurrentVendor'])) {
+                
+                $title = $VendorName = $_GET['Title'];
+                $all_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', 'WAVED')
+                                                ->orderBy('SampleNo', 'DESC')->get();
+                
+                $number_of_all_records = count($all_records);
+                
+                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count(); 
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
+            }
+        
+            
+            if(isset($_GET['FilterFailedTestsForCurrentVendor'])) {
+                
+                $title = $VendorName = $_GET['Title'];
+                $all_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', 'REJECTED')
+                                                ->orderBy('SampleNo', 'DESC')->get();
+                
+                $number_of_all_records = count($all_records);
+                
+                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count(); 
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
+            }
+        
+            if(isset($_GET['FilterPassedTestsForCurrentVendor'])) {
+                
+                    $title = $VendorName = $_GET['Title'];
+                    $all_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', 'APPROVED')
+                                                    ->orderBy('SampleNo', 'DESC')->get();
+                    
+                    $number_of_all_records = count($all_records);
+                    
+                    $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', "APPROVED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', "REJECTED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', "WAVED")
+                                                    ->orderBy('SampleNo', 'DESC')->count(); 
+                    
+                    $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', NULL)
+                                                    ->count(); 
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
+            }
+            
             if(isset($_GET['FilterVendorName'])) {
                 $FilteredRecords[] = $_GET['CheckVendorName'];   
                 foreach ($FilteredRecords as $VendorName) {
@@ -867,7 +981,7 @@ class FuelTestController extends Controller
                                                     ->count(); 
                 } 
 
-                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records);
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
             }
 
             if (isset($_GET['SortByVendorName'])) {
@@ -1433,6 +1547,137 @@ class FuelTestController extends Controller
             
             $ViewData = [...$Config, ...$ViewData];  
             
+            if(isset($_GET['FilterDiffTestsForCurrentVendor'])) {
+                
+            $title = $VendorName = $_GET['Title'];
+            $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                            ->where('uid', $id)
+                                            ->where('ApprovalForUse', NULL)
+                                            ->orderBy('SampleNo', 'DESC')->get();
+            
+            $number_of_previous_records = count($previous_records);
+            
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count();  
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
+            }
+        
+            
+            if(isset($_GET['FilterWavedTestsForCurrentVendor'])) {
+                
+            $title = $VendorName = $_GET['Title'];
+            $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                            ->where('ApprovalForUse', 'WAVED')
+                                            ->orderBy('SampleNo', 'DESC')->get();
+            
+            $number_of_previous_records = count($previous_records);
+            
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count();  
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
+            }
+        
+            
+            if(isset($_GET['FilterFailedTestsForCurrentVendor'])) {
+                
+            $title = $VendorName = $_GET['Title'];
+            $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                            ->where('ApprovalForUse', 'REJECTED')
+                                            ->orderBy('SampleNo', 'DESC')->get();
+            
+            $number_of_previous_records = count($previous_records);
+            
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count();  
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
+            }
+        
+            if(isset($_GET['FilterPassedTestsForCurrentVendor'])) {
+                
+                $title = $VendorName = $_GET['Title'];
+                $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', 'APPROVED')
+                                                ->orderBy('SampleNo', 'DESC')->get();
+                
+                $number_of_previous_records = count($previous_records);
+                
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count();  
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
+            }
+            
             if(isset($_GET['FilterVendorName'])) {
                 $FilteredRecords[] = $_GET['CheckVendorName']; 
         
@@ -1465,7 +1710,7 @@ class FuelTestController extends Controller
                                                     ->where('ApprovalForUse', NULL)
                                                     ->count();  
  
-                    return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records);
+                    return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
                 }
             }
 

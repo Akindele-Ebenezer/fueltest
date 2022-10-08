@@ -1,7 +1,8 @@
 <div>
     <form action="" class="Passed">
         <label>
-            <input type="submit" name="FilterPassedTests">
+            <input type="hidden" name="Title" value="{{ $title }}">
+            <input type="submit" name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterPassedTestsForCurrentVendor' : 'FilterPassedTests' }}">
             <img src="images/approved.png">
             APPROVED [{{ Route::is('previous_records') ? $number_of_passed_records_ : '' }}{{ Route::is('all_records') ? $number_of_passed_records : '' }}]
         </label>
@@ -9,7 +10,8 @@
     </form> 
     <form action="" class="Waved">
         <label>
-            <input type="submit" name="FilterWavedTests">
+            <input type="hidden" name="Title" value="{{ $title }}">
+            <input type="submit" name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterWavedTestsForCurrentVendor' : 'FilterWavedTests' }}">
             <img src="images/waved.png">
             WAVED [{{ Route::is('previous_records') ? $number_of_waved_records_ : '' }}{{ Route::is('all_records') ? $number_of_waved_records : '' }}]
         </label>
@@ -17,7 +19,8 @@
     </form> 
     <form action="" class="Failed">
         <label>
-            <input type="submit" name="FilterFailedTests">
+            <input type="hidden" name="Title" value="{{ $title }}">
+            <input type="submit" name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterFailedTestsForCurrentVendor' : 'FilterFailedTests' }}">
             <img src="images/rejected.png">
             REJECTED [{{ Route::is('previous_records') ? $number_of_failed_records_ : '' }}{{ Route::is('all_records') ? $number_of_failed_records : '' }}]
         </label>
@@ -25,7 +28,8 @@
     </form> 
     <form action="" class="Diff">
         <label>
-            <input type="submit" name="FilterDiffTests">
+            <input type="hidden" name="Title" value="{{ $title }}">
+            <input type="submit" name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterDiffTestsForCurrentVendor' : 'FilterDiffTests' }}">
             <img src="images/diff.png">
             DIFF [{{ Route::is('previous_records') ? $number_of_diff_records_ : '' }}{{ Route::is('all_records') ? $number_of_diff_records : '' }}]
         </label>
