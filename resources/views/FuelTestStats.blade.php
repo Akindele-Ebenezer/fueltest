@@ -365,18 +365,18 @@ let FuelTestResults = new Chart("myChart", {
                 fontSize: 20, 
                 text: 'Diesel Test Analysis (VENDORS)',
             }, 
-            // onClick: (a, b) => { 
-                // let PassedTests = document.querySelector('.Passed');
+            onClick: (a, b) => { 
+                let PassedTests = document.querySelector('.Passed');
                 
-                // console.log(b[b[0]._index]);
-                // console.log(b);
-                // console.log(b[0]._index);
-                // if (b._index == 2) {
+                console.log(b[b[0]._index]);
+                console.log(b);
+                console.log(b[0]._index);
+                if (b._index == 2) {
                     
-                //     console.log(b);
-                    // PassedTests.submit();
-                // }
-            // }
+                    console.log(b);
+                    PassedTests.submit();
+                }
+            }
         }
     }); 
 </script>

@@ -1083,6 +1083,39 @@ class FuelTestController extends Controller
                 $number_of_all_records = count($all_records);
             }
  
+            if (isset($_GET['FilterDateBetweenForCurrentVendor'])) {
+                $title = $VendorName = $_GET['Title'];
+
+                $DateFrom = $request->DateFrom;
+                $DateTo = $request->DateTo;
+                
+                $all_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get(); 
+                
+                $title = 'From ' . $DateFrom . ' to ' . $DateTo;
+                $number_of_all_records = count($all_records);
+                    
+                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', "WAVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count(); 
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);                                                
+            }
+ 
             if (isset($_GET['FilterDateBetween'])) {
                 $DateFrom = $request->DateFrom;
                 $DateTo = $request->DateTo;
