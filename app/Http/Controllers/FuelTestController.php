@@ -548,6 +548,7 @@ class FuelTestController extends Controller
                 'title' => $title, 
                 'VendorNo' => Session::get('VendorNo'), 
                 'VendorName' => $VendorName, 
+                'VendorNameErrorMessage' => Session::get('VendorNameErrorMessage'), 
                 'SampleCollectionDateErrorMessage' => Session::get('SampleCollectionDateErrorMessage'), 
                 'TruckPlateNoErrorMessage' => Session::get('TruckPlateNoErrorMessage'), 
                 'TankNoErrorMessage' => Session::get('TankNoErrorMessage'), 
@@ -618,6 +619,9 @@ class FuelTestController extends Controller
         if(empty($SampleCollectionDate)) {
             $SampleCollectionDateErrorMessage = 'Enter Date for Sample Collection';
             return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('SampleCollectionDateErrorMessage', $SampleCollectionDateErrorMessage)->withInput();
+        } elseif(empty($VendorName)) { 
+            $VendorNameErrorMessage = 'Vendor Name is required';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('VendorNameErrorMessage', $VendorNameErrorMessage)->withInput();
         } elseif(empty($TruckPlateNo)) { 
             $TruckPlateNoErrorMessage = 'Truck Plate No is required';
             return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('TruckPlateNoErrorMessage', $TruckPlateNoErrorMessage)->withInput();
@@ -1584,9 +1588,9 @@ class FuelTestController extends Controller
                 
             $title = $VendorName = $_GET['Title'];
             $previous_records = FuelTestRecord::where('VendorName', $VendorName)
-                                            ->where('uid', $id)
-                                            ->where('ApprovalForUse', NULL)
-                                            ->orderBy('SampleNo', 'DESC')->get();
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->orderBy('SampleNo', 'DESC')->get();
             
             $number_of_previous_records = count($previous_records);
             
@@ -1618,8 +1622,9 @@ class FuelTestController extends Controller
                 
             $title = $VendorName = $_GET['Title'];
             $previous_records = FuelTestRecord::where('VendorName', $VendorName)
-                                            ->where('ApprovalForUse', 'WAVED')
-                                            ->orderBy('SampleNo', 'DESC')->get();
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', 'WAVED')
+                                                ->orderBy('SampleNo', 'DESC')->get();
             
             $number_of_previous_records = count($previous_records);
             
@@ -1651,8 +1656,9 @@ class FuelTestController extends Controller
                 
             $title = $VendorName = $_GET['Title'];
             $previous_records = FuelTestRecord::where('VendorName', $VendorName)
-                                            ->where('ApprovalForUse', 'REJECTED')
-                                            ->orderBy('SampleNo', 'DESC')->get();
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', 'REJECTED')
+                                                ->orderBy('SampleNo', 'DESC')->get();
             
             $number_of_previous_records = count($previous_records);
             
@@ -1683,6 +1689,7 @@ class FuelTestController extends Controller
                 
                 $title = $VendorName = $_GET['Title'];
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
                                                 ->where('ApprovalForUse', 'APPROVED')
                                                 ->orderBy('SampleNo', 'DESC')->get();
                 
