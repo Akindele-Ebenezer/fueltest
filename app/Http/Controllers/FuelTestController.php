@@ -19,7 +19,7 @@ class FuelTestController extends Controller
     
     public function export() 
     {
-        return Excel::download(new FuelTestsExport, 'fueltest.xlsx');
+        return Excel::download(new FuelTestsExport, 'FuelTest.xlsx');
     }
     /**
      * Display a listing of the resource.
