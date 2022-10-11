@@ -58,8 +58,8 @@
     </div>
 </div>
 <input type="hidden" id="Labels" name="Labels">
-<form action="{{ route('all_records') }}" class="Passed">
-    <input type="text" name="FilterPassedTests" value="Value">
+<form action="" class="CurrentVendor">
+    <input type="text" class="GenerateChartForCurrentVendor" name="GenerateChartForCurrentVendor">
 </form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -366,16 +366,13 @@ let FuelTestResults = new Chart("myChart", {
                 text: 'Diesel Test Analysis (VENDORS)',
             }, 
             onClick: (a, b) => { 
-                let PassedTests = document.querySelector('.Passed');
+                let CurrentVendorForm = document.querySelector('.CurrentVendor');
+                let CurrentVendorNoInput = document.querySelector('.GenerateChartForCurrentVendor'); 
                 
-                console.log(b[b[0]._index]);
-                console.log(b);
-                console.log(b[0]._index);
-                if (b._index == 2) {
-                    
-                    console.log(b);
-                    PassedTests.submit();
-                }
+                CurrentVendorNoInput.value = b[0]._view.label; 
+                CurrentVendorForm.submit(); 
+                
+                console.log(CurrentVendorNoInput.value);
             }
         }
     }); 
