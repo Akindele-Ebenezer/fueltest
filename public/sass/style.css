@@ -115,6 +115,10 @@ button:hover {
   -webkit-text-fill-color: transparent;
 }
 
+.hide {
+  display: none !important;
+}
+
 .log-in-button {
   border-radius: 0.5rem 1rem;
   padding: 1rem;
@@ -1220,6 +1224,13 @@ section input[placeholder="Search.."] {
 .fuel-test-dashboard-inner {
   background: #fff;
   margin-block: 5rem;
+}
+.fuel-test-dashboard-inner div p {
+  display: flex;
+}
+.fuel-test-dashboard-inner div p span:nth-of-type(1) {
+  margin-right: 2rem;
+  width: 6rem;
 }
 
 .insights {

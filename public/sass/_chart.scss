@@ -16,6 +16,19 @@
 .fuel-test-dashboard-inner {
     background: #fff;
     margin-block: 5rem;
+
+    div {
+        p {
+            display: flex;
+
+            span {
+                &:nth-of-type(1) {
+                    margin-right: 2rem;
+                    width: 6rem;
+                }
+            }
+        }
+    }
 }
 
 .insights {

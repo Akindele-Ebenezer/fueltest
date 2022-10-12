@@ -24,7 +24,7 @@
 @include('PageTitle')
     <div class="fuel-test-dashboard-inner analysis">
         <!-- <h1>VENDORS</h1> -->
-        <canvas id="myChart6"></canvas>
+        <canvas id="myChart6" class="{{ $Visibility }}"></canvas>
     </div> 
     <div id="fuel-test-dashboard">
         <div class="fuel-test-dashboard-inner">
@@ -38,6 +38,11 @@
                 </div>
             </div>
             <canvas id="myChart" style="width:100%;min-width:700px"></canvas>
+            <div>
+                <p><span>Rejected</span> : <span>23</span></p> 
+                <p><span>Approved</span> : <span>53</span></p>
+                <p><span>Waved</span> : <span>2</span></p>
+            </div>
         </div>    
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Monthly</h1> -->
@@ -112,7 +117,7 @@ let FuelTestResults = new Chart("myChart", {
     });
   
     let FuelTestResults2 = new Chart("myChart2", {
-        type: "line",
+        type: "horizontalBar",
         data: {
             labels: ['Last Month', 'This Month', 'Last Seven Days'],
             datasets: [{
@@ -133,6 +138,13 @@ let FuelTestResults = new Chart("myChart", {
             legend: {display: false},
             title: {
                 display: true, 
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             },
             title: {
                 display: true,
@@ -298,7 +310,7 @@ let FuelTestResults = new Chart("myChart", {
     @endforeach   
         
     Labels.forEach(Label => {
-        NewLabels.push(Label.substring(1, 6));
+        NewLabels.push(Label.substring(0, 6));
     });
 
     let FuelTestResults6 = new Chart("myChart6", {
