@@ -76,6 +76,9 @@
                             </ul>
                         </div>                        
                     </th> 
+                    <th>
+                        ..
+                    </th>
                 </tr>  
                 @foreach($vendors as $Vendor)
                 @php 
@@ -112,6 +115,14 @@
                             @include('SwitchCases.SwitchCasesForVendors') 
                         </section> 
                     </td>  
+                    <td> 
+                        <form class="GenerateChart" action="{{ route('fuel_test_stats') }}" method="get">
+                            <label>
+                                <input class="hide" type="submit" src="/images/approved.png" name="GenerateChartForCurrentVendor" value="{{ $Vendor->VendorNo }}"> 
+                                <img class="icon" src="/images/chart.png">
+                            </label>
+                        </form>
+                    </td>
                 </tr>  
                 @endforeach
             </table> 

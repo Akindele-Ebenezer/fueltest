@@ -313,6 +313,12 @@ section {
                         font-style: italic; 
                     } 
                     
+                    img {
+                        height: 1.45rem;
+                        translate: 0 0.5rem;
+                        width: 1.45rem;
+                    }
+                    
                     &.vendor-name {
                         label {       
                             color: unset;  
@@ -331,7 +337,7 @@ section {
                             height: 1.45rem;
                             translate: 0 0.5rem;
                             width: 1.45rem;
-                        }
+                        } 
                     } 
 
                     button {

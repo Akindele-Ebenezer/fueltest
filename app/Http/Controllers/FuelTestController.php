@@ -2560,240 +2560,316 @@ class FuelTestController extends Controller
         if (isset($_GET['GenerateChartForCurrentVendor'])) {
             
             $CurrentVendorNo = $_GET['GenerateChartForCurrentVendor'];
-
-            $number_of_all_records = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
-                                                        ->orderBy('SampleNo', 'DESC')
-                                                        ->count();
-
-            $number_of_previous_records = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
-                                                        ->orderBy('SampleNo', 'DESC')
-                                                        ->count();
-
-            $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+            $CurrentVendorName = FuelTestRecord::select('VendorName')
                                                 ->where('VendorNo', $CurrentVendorNo)
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->get();
-
-            $number_of_passed_records = count($PassedRecords);     
-
-            $DiffRecords = FuelTestRecord::where('ApprovalForUse', NULL)
-                                                ->where('VendorNo', $CurrentVendorNo)
-                                                ->get();
-
-            $number_of_diff_records = count($DiffRecords);  
-            
-            $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
-                                                ->where('VendorNo', $CurrentVendorNo)
-                                                ->orderBy('SampleNo', 'DESC')
-                                                ->get();
-
-            $number_of_failed_records = count($FailedRecords);  
-
-            $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')
-                                                ->where('VendorNo', $CurrentVendorNo)
-                                                ->orderBy('SampleNo', 'DESC')
-                                                ->get();
-
-            $number_of_waved_records = count($WavedRecords);  
-            
-            $FirstDayOfLastMonth = date("Y-0n-0j", strtotime("first day of previous month"));  
-            $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
+                                                ->first();
+             
+            if($CurrentVendorName == null) { 
+                $CurrentVendorName = '<big style="color: red; font-family: arial;">This Vendor has NO RECORDS yet !</big>'; 
+                $PercentageOfPassedRecords = 0; 
+                $PercentageOfFailedRecords = 0; 
+                $PercentageOfWavedRecords = 0; 
                
-            $AllRecordsLastMonthForCurrentVendor = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
-                                                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+                return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
+                                                        ->with('CurrentVendorNo', $CurrentVendorNo)   
+                                                        ->with('CurrentVendorName', $CurrentVendorName)   
+                                                        ->with('FirstSupplyDate', '')   
+                                                        ->with('RecentSupplyDate', '')   
+                                                        ->with('PercentageOfPassedRecords', $PercentageOfPassedRecords)   
+                                                        ->with('PercentageOfWavedRecords', $PercentageOfWavedRecords)   
+                                                        ->with('PercentageOfFailedRecords', $PercentageOfFailedRecords)   
+                                                        ->with('PercentageOfDiffRecords', '')   
+                                                        ->with('number_of_passed_records', '')   
+                                                        ->with('number_of_diff_records', '')
+                                                        ->with('number_of_failed_records', '')
+                                                        ->with('number_of_waved_records', '')
+                                                        ->with('number_of_all_records_last_month', '')
+                                                        ->with('number_of_all_records_this_month', '')
+                                                        ->with('number_of_all_records_last_seven_days', '')
+                                                        ->with('number_of_yesterday_records', '')
+                                                        ->with('number_of_todays_records', '')
+                                                        ->with('number_of_two_days_ago_records', '')
+                                                        ->with('number_of_three_days_ago_records', '')
+                                                        ->with('number_of_four_days_ago_records', '')
+                                                        ->with('number_of_five_days_ago_records', '')
+                                                        ->with('number_of_six_days_ago_records', '')
+                                                        ->with('number_of_all_records', '')
+                                                        ->with('number_of_previous_records', '')
+                                                        ->with('January', '')
+                                                        ->with('February', '')
+                                                        ->with('March', '')
+                                                        ->with('April', '')
+                                                        ->with('May', '')
+                                                        ->with('June', '')
+                                                        ->with('July', '')
+                                                        ->with('August', '')
+                                                        ->with('September', '')
+                                                        ->with('October', '')
+                                                        ->with('November', '')
+                                                        ->with('December', '');
+            } else {
+                $CurrentVendorName = $CurrentVendorName->VendorName;  
+
+                $number_of_all_records = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
+                                                            ->orderBy('SampleNo', 'DESC')
+                                                            ->count();
+    
+                $number_of_previous_records = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
+                                                            ->orderBy('SampleNo', 'DESC')
+                                                            ->count();
+    
+                $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                $number_of_passed_records = count($PassedRecords);     
+    
+                $DiffRecords = FuelTestRecord::where('ApprovalForUse', NULL)
+                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                    ->get();
+    
+                $number_of_diff_records = count($DiffRecords);  
+                
+                $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                $number_of_failed_records = count($FailedRecords);  
+    
+                $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                $number_of_waved_records = count($WavedRecords);  
+                
+                $PercentageOfPassedRecords = $number_of_passed_records / $number_of_all_records * 100; 
+                $PercentageOfFailedRecords = $number_of_failed_records / $number_of_all_records * 100;
+                $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
+                $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
+     
+                $FirstDayOfLastMonth = date("Y-0n-0j", strtotime("first day of previous month"));  
+                $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
+                   
+                $AllRecordsLastMonthForCurrentVendor = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
+                                                                        ->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+                                                                        ->orderBy('SampleNo', 'DESC')
+                                                                        ->get();
+    
+                $number_of_all_records_last_month = count($AllRecordsLastMonthForCurrentVendor);
+    
+                $FirstDayOfThisMonth = date('Y-m-01'); 
+                $TodaysDate = date('Y-m-d'); 
+                
+                $AllRecordsThisMonthForCurrentVendor = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])                                                                    
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                        ->get();
+     
+                $number_of_all_records_this_month = count($AllRecordsThisMonthForCurrentVendor);
+     
+                $LastSevenDays = date('Y-m-d', strtotime( '-7 day' )); 
+                 
+                $AllRecordsLastSevenDaysForCurrentVendor = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])                                                                        
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                            ->get();
+                 
+                $number_of_all_records_last_seven_days = count($AllRecordsLastSevenDaysForCurrentVendor);
+    
+                $RecordsOfYesterdayForCurrentVendor = date('Y-m-d',strtotime("-1 day")); 
+                    
+                $yesterday_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterdayForCurrentVendor)                                                    
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                        ->get();
+                        
+                $number_of_yesterday_records = count($yesterday_records);
+    
+                $RecordsOfToday = date('Y-m-d'); 
+                    
+                $RecordsOfTodayForCurrentVendor = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday)                                                                
+                                                                    ->where('VendorNo', $CurrentVendorNo)
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->get();
-
-            $number_of_all_records_last_month = count($AllRecordsLastMonthForCurrentVendor);
-
-            $FirstDayOfThisMonth = date('Y-m-01'); 
-            $TodaysDate = date('Y-m-d'); 
+                 
+                $number_of_todays_records = count($RecordsOfTodayForCurrentVendor); 
             
-            $AllRecordsThisMonthForCurrentVendor = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])                                                                    
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                    ->get();
- 
-            $number_of_all_records_this_month = count($AllRecordsThisMonthForCurrentVendor);
- 
-            $LastSevenDays = date('Y-m-d', strtotime( '-7 day' )); 
-             
-            $AllRecordsLastSevenDaysForCurrentVendor = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])                                                                        
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                        ->get();
-             
-            $number_of_all_records_last_seven_days = count($AllRecordsLastSevenDaysForCurrentVendor);
-
-            $RecordsOfYesterdayForCurrentVendor = date('Y-m-d',strtotime("-1 day")); 
+                $RecordsOfTwoDaysAgo = date('Y-m-d', strtotime("-2 day"));   
+                $number_of_two_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfTwoDaysAgo)                                                                
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                    ->count(); 
+                                
+                      
+                $RecordsOfThreeDaysAgo = date('Y-m-d', strtotime("-3 day"));   
+                $number_of_three_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfThreeDaysAgo)                                                                
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                    ->count(); 
+                                
+                      
+                $RecordsOfFourDaysAgo = date('Y-m-d', strtotime("-4 day"));   
+                $number_of_four_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFourDaysAgo)                                                                
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                    ->count(); 
+                                
+                      
+                $RecordsOfFiveDaysAgo = date('Y-m-d', strtotime("-5 day"));   
+                $number_of_five_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFiveDaysAgo)                                                                
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                    ->count(); 
+                                
+                      
+                $RecordsOfSixDaysAgo = date('Y-m-d', strtotime("-6 day"));   
+                $number_of_six_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfSixDaysAgo)                                                                
+                                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                                    ->orderBy('SampleNo', 'DESC')
+                                                                    ->count(); 
+    
+                $Month1 = '01';                        
+                $FirstDayOfJanuary = date('Y-' . $Month1 . '-01'); 
+                $LastDayOfJanuary = date('Y-' . $Month1 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 1, 2022));                        
+                $January = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
                 
-            $yesterday_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterdayForCurrentVendor)                                                    
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                    ->get();
-                    
-            $number_of_yesterday_records = count($yesterday_records);
-
-            $RecordsOfToday = date('Y-m-d'); 
+                $Month2 = '02';                        
+                $FirstDayOfFebruary = date('Y-' . $Month2 . '-01'); 
+                $LastDayOfFebruary = date('Y-' . $Month2 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 2, 2022));                        
+                $February = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
                 
-            $RecordsOfTodayForCurrentVendor = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday)                                                                
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                ->get();
-             
-            $number_of_todays_records = count($RecordsOfTodayForCurrentVendor); 
-        
-            $RecordsOfTwoDaysAgo = date('Y-m-d', strtotime("-2 day"));   
-            $number_of_two_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfTwoDaysAgo)                                                                
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                ->count(); 
-                            
-                  
-            $RecordsOfThreeDaysAgo = date('Y-m-d', strtotime("-3 day"));   
-            $number_of_three_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfThreeDaysAgo)                                                                
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                ->count(); 
-                            
-                  
-            $RecordsOfFourDaysAgo = date('Y-m-d', strtotime("-4 day"));   
-            $number_of_four_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFourDaysAgo)                                                                
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                ->count(); 
-                            
-                  
-            $RecordsOfFiveDaysAgo = date('Y-m-d', strtotime("-5 day"));   
-            $number_of_five_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFiveDaysAgo)                                                                
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                ->count(); 
-                            
-                  
-            $RecordsOfSixDaysAgo = date('Y-m-d', strtotime("-6 day"));   
-            $number_of_six_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfSixDaysAgo)                                                                
-                                                                ->where('VendorNo', $CurrentVendorNo)
-                                                                ->orderBy('SampleNo', 'DESC')
-                                                                ->count(); 
-
-            $Month1 = '01';                        
-            $FirstDayOfJanuary = date('Y-' . $Month1 . '-01'); 
-            $LastDayOfJanuary = date('Y-' . $Month1 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 1, 2022));                        
-            $January = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
+                $Month3 = '03';                        
+                $FirstDayOfMarch = date('Y-' . $Month3 . '-01'); 
+                $LastDayOfMarch = date('Y-' . $Month3 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 3, 2022));                        
+                $March = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
+                
+                $Month4 = '04';                        
+                $FirstDayOfApril = date('Y-' . $Month4 . '-01'); 
+                $LastDayOfApril = date('Y-' . $Month4 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 4, 2022));                        
+                $April = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
+                
+                $Month5 = '05';                        
+                $FirstDayOfMay = date('Y-' . $Month5 . '-01'); 
+                $LastDayOfMay = date('Y-' . $Month5 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 5, 2022));                        
+                $May = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
+                
+                $Month6 = '06';                        
+                $FirstDayOfJune = date('Y-' . $Month6 . '-01'); 
+                $LastDayOfJune = date('Y-' . $Month6 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 6, 2022));                        
+                $June = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
+                
+                $Month7 = '07';                        
+                $FirstDayOfJuly = date('Y-' . $Month7 . '-01'); 
+                $LastDayOfJuly = date('Y-' . $Month7 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 7, 2022));                        
+                $July = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
             
-            $Month2 = '02';                        
-            $FirstDayOfFebruary = date('Y-' . $Month2 . '-01'); 
-            $LastDayOfFebruary = date('Y-' . $Month2 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 2, 2022));                        
-            $February = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
+                $Month8 = '08';                        
+                $FirstDayOfAugust = date('Y-' . $Month8 . '-01'); 
+                $LastDayOfAugust = date('Y-' . $Month8 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 8, 2022));                        
+                $August = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
             
-            $Month3 = '03';                        
-            $FirstDayOfMarch = date('Y-' . $Month3 . '-01'); 
-            $LastDayOfMarch = date('Y-' . $Month3 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 3, 2022));                        
-            $March = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
             
-            $Month4 = '04';                        
-            $FirstDayOfApril = date('Y-' . $Month4 . '-01'); 
-            $LastDayOfApril = date('Y-' . $Month4 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 4, 2022));                        
-            $April = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
+                $Month9 = '09';                        
+                $FirstDayOfSeptember = date('Y-' . $Month9 . '-01'); 
+                $LastDayOfSeptember = date('Y-' . $Month9 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 9, 2022));                        
+                $September = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
             
-            $Month5 = '05';                        
-            $FirstDayOfMay = date('Y-' . $Month5 . '-01'); 
-            $LastDayOfMay = date('Y-' . $Month5 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 5, 2022));                        
-            $May = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
             
-            $Month6 = '06';                        
-            $FirstDayOfJune = date('Y-' . $Month6 . '-01'); 
-            $LastDayOfJune = date('Y-' . $Month6 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 6, 2022));                        
-            $June = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
+                $Month10 = '10';                        
+                $FirstDayOfOctober = date('Y-' . $Month10 . '-01'); 
+                $LastDayOfOctober = date('Y-' . $Month10 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 10, 2022));                        
+                $October = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
             
-            $Month7 = '07';                        
-            $FirstDayOfJuly = date('Y-' . $Month7 . '-01'); 
-            $LastDayOfJuly = date('Y-' . $Month7 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 7, 2022));                        
-            $July = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
-        
-            $Month8 = '08';                        
-            $FirstDayOfAugust = date('Y-' . $Month8 . '-01'); 
-            $LastDayOfAugust = date('Y-' . $Month8 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 8, 2022));                        
-            $August = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
-        
-        
-            $Month9 = '09';                        
-            $FirstDayOfSeptember = date('Y-' . $Month9 . '-01'); 
-            $LastDayOfSeptember = date('Y-' . $Month9 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 9, 2022));                        
-            $September = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
-        
-        
-            $Month10 = '10';                        
-            $FirstDayOfOctober = date('Y-' . $Month10 . '-01'); 
-            $LastDayOfOctober = date('Y-' . $Month10 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 10, 2022));                        
-            $October = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
-        
-        
-            $Month11 = '11';                        
-            $FirstDayOfNovember = date('Y-' . $Month11 . '-01'); 
-            $LastDayOfNovember = date('Y-' . $Month11 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 11, 2022));                        
-            $November = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
-        
-        
-            $Month12 = '12';                        
-            $FirstDayOfDecember = date('Y-' . $Month12 . '-01'); 
-            $LastDayOfDecember = date('Y-' . $Month12 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 12, 2022));                        
-            $December = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])                                                                
-                                        ->where('VendorNo', $CurrentVendorNo)
-                                        ->count();                        
-                                                        
-            return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
-                                                    ->with('number_of_passed_records', $number_of_passed_records)   
-                                                    ->with('number_of_diff_records', $number_of_diff_records)
-                                                    ->with('number_of_failed_records', $number_of_failed_records)
-                                                    ->with('number_of_waved_records', $number_of_waved_records)
-                                                    ->with('number_of_all_records_last_month', $number_of_all_records_last_month)
-                                                    ->with('number_of_all_records_this_month', $number_of_all_records_this_month)
-                                                    ->with('number_of_all_records_last_seven_days', $number_of_all_records_last_seven_days)
-                                                    ->with('number_of_yesterday_records', $number_of_yesterday_records)
-                                                    ->with('number_of_todays_records', $number_of_todays_records)
-                                                    ->with('number_of_two_days_ago_records', $number_of_two_days_ago_records)
-                                                    ->with('number_of_three_days_ago_records', $number_of_three_days_ago_records)
-                                                    ->with('number_of_four_days_ago_records', $number_of_four_days_ago_records)
-                                                    ->with('number_of_five_days_ago_records', $number_of_five_days_ago_records)
-                                                    ->with('number_of_six_days_ago_records', $number_of_six_days_ago_records)
-                                                    ->with('number_of_all_records', $number_of_all_records)
-                                                    ->with('number_of_previous_records', $number_of_previous_records)
-                                                    ->with('January', $January)
-                                                    ->with('February', $February)
-                                                    ->with('March', $March)
-                                                    ->with('April', $April)
-                                                    ->with('May', $May)
-                                                    ->with('June', $June)
-                                                    ->with('July', $July)
-                                                    ->with('August', $August)
-                                                    ->with('September', $September)
-                                                    ->with('October', $October)
-                                                    ->with('November', $November)
-                                                    ->with('December', $December);
+            
+                $Month11 = '11';                        
+                $FirstDayOfNovember = date('Y-' . $Month11 . '-01'); 
+                $LastDayOfNovember = date('Y-' . $Month11 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 11, 2022));                        
+                $November = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
+            
+            
+                $Month12 = '12';                        
+                $FirstDayOfDecember = date('Y-' . $Month12 . '-01'); 
+                $LastDayOfDecember = date('Y-' . $Month12 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 12, 2022));                        
+                $December = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])                                                                
+                                            ->where('VendorNo', $CurrentVendorNo)
+                                            ->count();                        
+                                                 
+                $FirstSupplyDate = FuelTestRecord::select('SampleCollectionDate')                                                                
+                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                    ->first();         
+                                                 
+                $RecentSupplyDate = FuelTestRecord::select('SampleCollectionDate')                                                                
+                                                    ->where('VendorNo', $CurrentVendorNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->first();         
+    
+                $FirstSupplyDate = $FirstSupplyDate->SampleCollectionDate;
+                $RecentSupplyDate = $RecentSupplyDate->SampleCollectionDate;
+     
+                return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
+                                                        ->with('CurrentVendorNo', $CurrentVendorNo)   
+                                                        ->with('CurrentVendorName', $CurrentVendorName)   
+                                                        ->with('FirstSupplyDate', $FirstSupplyDate)   
+                                                        ->with('RecentSupplyDate', $RecentSupplyDate)   
+                                                        ->with('PercentageOfPassedRecords', $PercentageOfPassedRecords)   
+                                                        ->with('PercentageOfWavedRecords', $PercentageOfWavedRecords)   
+                                                        ->with('PercentageOfFailedRecords', $PercentageOfFailedRecords)   
+                                                        ->with('PercentageOfDiffRecords', $PercentageOfDiffRecords)   
+                                                        ->with('number_of_passed_records', $number_of_passed_records)   
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_all_records_last_month', $number_of_all_records_last_month)
+                                                        ->with('number_of_all_records_this_month', $number_of_all_records_this_month)
+                                                        ->with('number_of_all_records_last_seven_days', $number_of_all_records_last_seven_days)
+                                                        ->with('number_of_yesterday_records', $number_of_yesterday_records)
+                                                        ->with('number_of_todays_records', $number_of_todays_records)
+                                                        ->with('number_of_two_days_ago_records', $number_of_two_days_ago_records)
+                                                        ->with('number_of_three_days_ago_records', $number_of_three_days_ago_records)
+                                                        ->with('number_of_four_days_ago_records', $number_of_four_days_ago_records)
+                                                        ->with('number_of_five_days_ago_records', $number_of_five_days_ago_records)
+                                                        ->with('number_of_six_days_ago_records', $number_of_six_days_ago_records)
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('January', $January)
+                                                        ->with('February', $February)
+                                                        ->with('March', $March)
+                                                        ->with('April', $April)
+                                                        ->with('May', $May)
+                                                        ->with('June', $June)
+                                                        ->with('July', $July)
+                                                        ->with('August', $August)
+                                                        ->with('September', $September)
+                                                        ->with('October', $October)
+                                                        ->with('November', $November)
+                                                        ->with('December', $December);    
+            }
 
         }
 

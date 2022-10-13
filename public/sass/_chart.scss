@@ -1,11 +1,21 @@
 .analysis {
-    margin-top: 10rem !important;
+    margin-top: 8rem;
 }
 
 .chart-date {
     top: 6rem;
 } 
  
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+
+    p {
+        width: 70rem;
+    }
+}
+
 #fuel-test-dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -15,22 +25,50 @@
 
 .fuel-test-dashboard-inner {
     background: #fff;
-    margin-block: 5rem;
+    padding-inline: 1rem;
+    margin-bottom: 5rem;
 
     div {
+        color: #333;
+        padding-block: 1rem;
+
         p {
             display: flex;
 
             span {
                 &:nth-of-type(1) {
                     margin-right: 2rem;
-                    width: 6rem;
+                    width: 16rem;
                 }
+    
+                &.Failed { color:rgb(255, 30, 30, 0.8); }     
+                &.Passed { color:rgba(58, 204, 177, 0.8); } 
+                &.Waved { color:rgba(173, 173, 49, 0.95); } 
             }
         }
     }
+      
+    h1 {
+        font-family: initial;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }  
 }
 
 .insights {
     background: #f9f9f9;
+}
+
+.Title {
+    margin-top: 8rem;
+    text-align: center;
+
+    h1 {
+        font-family: arial;
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-family: initial;
+    }
 }

@@ -115,6 +115,13 @@ button:hover {
   -webkit-text-fill-color: transparent;
 }
 
+.GenerateChart {
+  margin-right: 1rem;
+}
+.GenerateChart label {
+  cursor: pointer;
+}
+
 .hide {
   display: none !important;
 }
@@ -957,6 +964,11 @@ section.previous-records table tr td.vendors, section.previous-records table tr 
   font-size: 0.85rem;
   font-style: italic;
 }
+section.previous-records table tr td img {
+  height: 1.45rem;
+  translate: 0 0.5rem;
+  width: 1.45rem;
+}
 section.previous-records table tr td.vendor-name label {
   color: unset;
   cursor: pointer;
@@ -1208,11 +1220,20 @@ section input[placeholder="Search.."] {
   }
 }
 .analysis {
-  margin-top: 10rem !important;
+  margin-top: 8rem;
 }
 
 .chart-date {
   top: 6rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+footer p {
+  width: 70rem;
 }
 
 #fuel-test-dashboard {
@@ -1223,18 +1244,49 @@ section input[placeholder="Search.."] {
 
 .fuel-test-dashboard-inner {
   background: #fff;
-  margin-block: 5rem;
+  padding-inline: 1rem;
+  margin-bottom: 5rem;
+}
+.fuel-test-dashboard-inner div {
+  color: #333;
+  padding-block: 1rem;
 }
 .fuel-test-dashboard-inner div p {
   display: flex;
 }
 .fuel-test-dashboard-inner div p span:nth-of-type(1) {
   margin-right: 2rem;
-  width: 6rem;
+  width: 16rem;
+}
+.fuel-test-dashboard-inner div p span.Failed {
+  color: rgba(255, 30, 30, 0.8);
+}
+.fuel-test-dashboard-inner div p span.Passed {
+  color: rgba(58, 204, 177, 0.8);
+}
+.fuel-test-dashboard-inner div p span.Waved {
+  color: rgba(173, 173, 49, 0.95);
+}
+.fuel-test-dashboard-inner h1 {
+  font-family: initial;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .insights {
   background: #f9f9f9;
+}
+
+.Title {
+  margin-top: 8rem;
+  text-align: center;
+}
+.Title h1 {
+  font-family: arial;
+  font-size: 2rem;
+}
+.Title h2 {
+  font-family: initial;
 }
 
 /*# sourceMappingURL=style.css.map */

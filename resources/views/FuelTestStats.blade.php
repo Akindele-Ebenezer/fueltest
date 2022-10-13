@@ -22,49 +22,113 @@
 
 <div class="insights"> 
 @include('PageTitle')
-    <div class="fuel-test-dashboard-inner analysis">
+    @isset($_GET['GenerateChartForCurrentVendor'])
+        <div class="Title">
+            <h1>DIESEL FUEL ANALYSIS REPORT</h1>
+    <img src="/images/depasa-logo.png">
+            <h2>{!! $CurrentVendorName !!}</h2>
+            <h2>{{ $CurrentVendorNo }}</h2>
+        </div>
+    @endisset       
+    <div class="fuel-test-dashboard-inner {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}">
         <!-- <h1>VENDORS</h1> -->
         <canvas id="myChart6" class="{{ $Visibility }}"></canvas>
     </div> 
     <div id="fuel-test-dashboard">
         <div class="fuel-test-dashboard-inner">
-            <div class="inner">
-                <!-- <h1>FUEL LAB Report</h1> -->
-                <div>
-                    <h2>{{ round($PercentageOfFailedRecords) }}%</h2>
-                    <h2>{{ round($PercentageOfPassedRecords) }}%</h2>
-                    <h2>{{ round($PercentageOfWavedRecords) }}%</h2>
-                    <h2>{{ round($PercentageOfDiffRecords) }}%</h2>
-                </div>
-            </div>
             <canvas id="myChart" style="width:100%;min-width:700px"></canvas>
-            <div>
-                <p><span>Rejected</span> : <span>23</span></p> 
-                <p><span>Approved</span> : <span>53</span></p>
-                <p><span>Waved</span> : <span>2</span></p>
-            </div>
-        </div>    
-        <div class="fuel-test-dashboard-inner">
-            <!-- <h1>Monthly</h1> -->
-            <canvas id="myChart3" style="width:100%;min-width:700px"></canvas>
+            @isset($_GET['GenerateChartForCurrentVendor'])
+                <div>
+                    <h1>BREAKDOWN</h1>
+                    <p><span>Total Number of FUEL Supplied</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records }} (100%)</span></p> 
+                    <p><span>Tests with FAILED Results</span> => &nbsp;&nbsp; <span class="Failed">{{ $number_of_failed_records }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
+                    <p><span>Tests with PASSED Results</span> => &nbsp;&nbsp; <span class="Passed">{{ $number_of_passed_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p>
+                    <p><span>Tests Approved on a WAIVER</span> => &nbsp;&nbsp; <span class="Waved">{{ $number_of_waved_records }} ({{ round($PercentageOfWavedRecords) }}%)</span></p>
+                    <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
+                    <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
+                    <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
+                </div> 
+            @endisset
         </div>
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Recent</h1> -->
             <canvas id="myChart2" style="width:100%;min-width:700px"></canvas>
+            @isset($_GET['GenerateChartForCurrentVendor'])
+                <div>
+                    <h1>BREAKDOWN</h1>
+                    <p><span>FUEL Supplied Last Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month }} (100%)</span></p> 
+                    <p><span>FUEL Supplied This Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_this_month }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
+                    <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
+                    <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
+                </div> 
+            @endisset
+        </div>    
+        <div class="fuel-test-dashboard-inner">
+            <!-- <h1>Monthly</h1> -->
+            <canvas id="myChart3" style="width:100%;min-width:700px"></canvas>
+            @isset($_GET['GenerateChartForCurrentVendor'])
+                <div>
+                    <h1>BREAKDOWN</h1>
+                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $January }} (100%)</span></p> 
+                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $February }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
+                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $March }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $April }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $May }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $June }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $July }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $August }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $September }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $October }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $November }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $December }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
+                    <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
+                    <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
+                </div> 
+            @endisset
         </div>
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Daily/Recent</h1> -->
             <canvas id="myChart4" style="width:100%;min-width:700px"></canvas>
+            @isset($_GET['GenerateChartForCurrentVendor'])
+                <div>
+                    <h1>BREAKDOWN</h1>
+                    <p><span>FUEL Supplied Today</span> => &nbsp;&nbsp; <span>{{ $number_of_todays_records }} (100%)</span></p> 
+                    <p><span>FUEL Supplied Yesterday</span> => &nbsp;&nbsp; <span>{{ $number_of_yesterday_records }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied Day Before</span> => &nbsp;&nbsp; <span>{{ $number_of_two_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied 3 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_three_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied 4 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_four_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied 5 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_five_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied 6 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_six_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied 1 week Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
+                    <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
+                    <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
+                </div> 
+            @endisset
         </div>
-        <div class="fuel-test-dashboard-inner">
+        <!-- <div class="fuel-test-dashboard-inner"> -->
             <!-- <h1>Daily/Recent</h1> -->
-            <canvas id="myChart5" style="width:100%;min-width:700px"></canvas>
-        </div>
+            <!-- <canvas id="myChart5" style="width:100%;min-width:700px"></canvas> -->
+        <!-- </div> -->
     </div>
 </div>
+
+@isset($_GET['GenerateChartForCurrentVendor'])
+    <footer>
+        <p>
+            <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ $CurrentVendorName }} and the quality of sample supplied.
+            This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
+            Recommendations are provided as a guide only.
+        </p>
+    </footer>   
+    <img src="/images/depasa-logo.png">
+@endisset
 <input type="hidden" id="Labels" name="Labels">
 <form action="" class="CurrentVendor">
-    <input type="text" class="GenerateChartForCurrentVendor" name="GenerateChartForCurrentVendor">
+    <input type="hidden" class="GenerateChartForCurrentVendor" name="GenerateChartForCurrentVendor">
 </form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -210,7 +274,7 @@ let FuelTestResults = new Chart("myChart", {
             title: {
                 display: true,
                 fontSize: 20, 
-                text: 'Daily/Recent',
+                text: 'Recently',
             }            
         }
     });

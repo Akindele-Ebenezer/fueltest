@@ -505,6 +505,12 @@
                                 <input type="image" src="/images/pdf.png"> 
                                 @include('AllRecordsCertificateData')                                
                             </form> 
+                            <form class="GenerateChart" action="{{ route('fuel_test_stats') }}" method="get">
+                                <label>
+                                    <input class="hide" type="submit" src="/images/approved.png" name="GenerateChartForCurrentVendor" value="{{ $record->VendorNo }}"> 
+                                    <img src="/images/chart.png">
+                                </label>
+                            </form>
                             @if($record->ApprovalForUse === 'APPROVED')
                                 <img src="images/approved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Passed ]</section>  
                             @endif
