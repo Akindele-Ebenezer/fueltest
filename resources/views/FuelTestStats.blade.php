@@ -71,18 +71,18 @@
             @isset($_GET['GenerateChartForCurrentVendor'])
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $January }} (100%)</span></p> 
-                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $February }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
-                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $March }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $April }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $May }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $June }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $July }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $August }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $September }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $October }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $November }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $December }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $January }} ({{ round($PercentageOfAllRecordsInJanuary, 1) }}%)</span></p> 
+                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $February }} ({{ round($PercentageOfAllRecordsInFebruary, 1) }}%)</span></p> 
+                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $March }} ({{ round($PercentageOfAllRecordsInMarch, 1) }}%)</span></p> 
+                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $April }} ({{ round($PercentageOfAllRecordsInApril, 1) }}%)</span></p> 
+                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $May }} ({{ round($PercentageOfAllRecordsInMay, 1) }}%)</span></p> 
+                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $June }} ({{ round($PercentageOfAllRecordsInJune, 1) }}%)</span></p> 
+                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $July }} ({{ round($PercentageOfAllRecordsInJuly, 1) }}%)</span></p> 
+                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $August }} ({{ round($PercentageOfAllRecordsInAugust, 1) }}%)</span></p> 
+                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $September }} ({{ round($PercentageOfAllRecordsInSeptember, 1) }}%)</span></p> 
+                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $October }} ({{ round($PercentageOfAllRecordsInOctober, 1) }}%)</span></p> 
+                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $November }} ({{ round($PercentageOfAllRecordsInNovember, 1) }}%)</span></p> 
+                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $December }} ({{ round($PercentageOfAllRecordsInDecember, 1) }}%)</span></p> 
                     <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>

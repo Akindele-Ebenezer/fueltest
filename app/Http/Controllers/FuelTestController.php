@@ -2836,18 +2836,37 @@ class FuelTestController extends Controller
                 $PercentageOfNumberOfRecordsLastMonth = $number_of_all_records_last_month / $number_of_all_records * 100; 
                 $PercentageOfAllRecordsThisMonth = $number_of_all_records_this_month / $number_of_all_records * 100;
                 $PercentageOfNumberOfRecordsLastSevenDays = $number_of_all_records_last_seven_days / $number_of_all_records * 100;
-                $PercentageOfNumberOfRecordsLastMonth = $number_of_diff_records / $number_of_all_records * 100;
-     
-                $PercentageOfPassedRecords = $number_of_passed_records / $number_of_all_records * 100; 
-                $PercentageOfFailedRecords = $number_of_failed_records / $number_of_all_records * 100;
-                $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
-                $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
+
+                $PercentageOfAllRecordsInJanuary = $January / $number_of_all_records * 100;     
+                $PercentageOfAllRecordsInFebruary = $February / $number_of_all_records * 100; 
+                $PercentageOfAllRecordsInMarch = $March / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInApril = $April / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInMay = $May / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInJune = $June / $number_of_all_records * 100;     
+                $PercentageOfAllRecordsInJuly = $July / $number_of_all_records * 100; 
+                $PercentageOfAllRecordsInAugust = $August / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInSeptember = $September / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInOctober = $October / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInNovember = $November / $number_of_all_records * 100;
+                $PercentageOfAllRecordsInDecember = $December / $number_of_all_records * 100;
 
                 return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
                                                         ->with('CurrentVendorNo', $CurrentVendorNo)   
                                                         ->with('CurrentVendorName', $CurrentVendorName)   
                                                         ->with('FirstSupplyDate', $FirstSupplyDate)   
                                                         ->with('RecentSupplyDate', $RecentSupplyDate)   
+                                                        ->with('PercentageOfAllRecordsInJanuary', $PercentageOfAllRecordsInJanuary)   
+                                                        ->with('PercentageOfAllRecordsInFebruary', $PercentageOfAllRecordsInFebruary)   
+                                                        ->with('PercentageOfAllRecordsInMarch', $PercentageOfAllRecordsInMarch)   
+                                                        ->with('PercentageOfAllRecordsInApril', $PercentageOfAllRecordsInApril)   
+                                                        ->with('PercentageOfAllRecordsInMay', $PercentageOfAllRecordsInMay)   
+                                                        ->with('PercentageOfAllRecordsInJune', $PercentageOfAllRecordsInJune)   
+                                                        ->with('PercentageOfAllRecordsInJuly', $PercentageOfAllRecordsInJuly)   
+                                                        ->with('PercentageOfAllRecordsInAugust', $PercentageOfAllRecordsInAugust)   
+                                                        ->with('PercentageOfAllRecordsInSeptember', $PercentageOfAllRecordsInSeptember)   
+                                                        ->with('PercentageOfAllRecordsInOctober', $PercentageOfAllRecordsInOctober)   
+                                                        ->with('PercentageOfAllRecordsInNovember', $PercentageOfAllRecordsInNovember)   
+                                                        ->with('PercentageOfAllRecordsInDecember', $PercentageOfAllRecordsInDecember)   
                                                         ->with('PercentageOfAllRecordsThisMonth', $PercentageOfAllRecordsThisMonth)   
                                                         ->with('PercentageOfNumberOfRecordsLastSevenDays', $PercentageOfNumberOfRecordsLastSevenDays)   
                                                         ->with('PercentageOfNumberOfRecordsLastMonth', $PercentageOfNumberOfRecordsLastMonth)   
