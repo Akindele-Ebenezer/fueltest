@@ -95,14 +95,14 @@
             @isset($_GET['GenerateChartForCurrentVendor'])
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>FUEL Supplied Today</span> => &nbsp;&nbsp; <span>{{ $number_of_todays_records }} (100%)</span></p> 
-                    <p><span>FUEL Supplied Yesterday</span> => &nbsp;&nbsp; <span>{{ $number_of_yesterday_records }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied Day Before</span> => &nbsp;&nbsp; <span>{{ $number_of_two_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied 3 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_three_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied 4 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_four_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied 5 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_five_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied 6 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_six_days_ago_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied 1 week Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied Today</span> => &nbsp;&nbsp; <span>{{ $number_of_todays_records }} ({{ round($PercentageOfAllRecordsToday, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied Yesterday</span> => &nbsp;&nbsp; <span>{{ $number_of_yesterday_records }} ({{ round($PercentageOfAllRecordsYesterday, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied Day Before</span> => &nbsp;&nbsp; <span>{{ $number_of_two_days_ago_records }} ({{ round($PercentageOfAllRecordsTwoDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 3 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_three_days_ago_records }} ({{ round($PercentageOfAllRecordsThreeDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 4 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_four_days_ago_records }} ({{ round($PercentageOfAllRecordsFourDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 5 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_five_days_ago_records }} ({{ round($PercentageOfAllRecordsFiveDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 6 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_six_days_ago_records }} ({{ round($PercentageOfAllRecordsSixDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 1 week Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfAllRecordsSevenDaysAgo, 3) }}%)</span></p> 
                     <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>

@@ -2850,6 +2850,15 @@ class FuelTestController extends Controller
                 $PercentageOfAllRecordsInNovember = $November / $number_of_all_records * 100;
                 $PercentageOfAllRecordsInDecember = $December / $number_of_all_records * 100;
 
+                $PercentageOfAllRecordsToday = $number_of_todays_records / $number_of_all_records * 100; 
+                $PercentageOfAllRecordsYesterday = $number_of_yesterday_records / $number_of_all_records * 100;
+                $PercentageOfAllRecordsTwoDaysAgo = $number_of_two_days_ago_records / $number_of_all_records * 100;
+                $PercentageOfAllRecordsThreeDaysAgo = $number_of_three_days_ago_records / $number_of_all_records * 100;
+                $PercentageOfAllRecordsFourDaysAgo = $number_of_four_days_ago_records / $number_of_all_records * 100;
+                $PercentageOfAllRecordsFiveDaysAgo = $number_of_five_days_ago_records / $number_of_all_records * 100;
+                $PercentageOfAllRecordsSixDaysAgo = $number_of_six_days_ago_records / $number_of_all_records * 100;
+                $PercentageOfAllRecordsSevenDaysAgo = $number_of_all_records_last_seven_days / $number_of_all_records * 100;
+
                 return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
                                                         ->with('CurrentVendorNo', $CurrentVendorNo)   
                                                         ->with('CurrentVendorName', $CurrentVendorName)   
@@ -2870,6 +2879,14 @@ class FuelTestController extends Controller
                                                         ->with('PercentageOfAllRecordsThisMonth', $PercentageOfAllRecordsThisMonth)   
                                                         ->with('PercentageOfNumberOfRecordsLastSevenDays', $PercentageOfNumberOfRecordsLastSevenDays)   
                                                         ->with('PercentageOfNumberOfRecordsLastMonth', $PercentageOfNumberOfRecordsLastMonth)   
+                                                        ->with('PercentageOfAllRecordsToday', $PercentageOfAllRecordsToday)   
+                                                        ->with('PercentageOfAllRecordsYesterday', $PercentageOfAllRecordsYesterday)   
+                                                        ->with('PercentageOfAllRecordsTwoDaysAgo', $PercentageOfAllRecordsTwoDaysAgo)   
+                                                        ->with('PercentageOfAllRecordsThreeDaysAgo', $PercentageOfAllRecordsThreeDaysAgo)   
+                                                        ->with('PercentageOfAllRecordsFourDaysAgo', $PercentageOfAllRecordsFourDaysAgo)   
+                                                        ->with('PercentageOfAllRecordsFiveDaysAgo', $PercentageOfAllRecordsFiveDaysAgo)   
+                                                        ->with('PercentageOfAllRecordsSixDaysAgo', $PercentageOfAllRecordsSixDaysAgo)   
+                                                        ->with('PercentageOfAllRecordsSevenDaysAgo', $PercentageOfAllRecordsSevenDaysAgo)   
                                                         ->with('PercentageOfPassedRecords', $PercentageOfPassedRecords)   
                                                         ->with('PercentageOfWavedRecords', $PercentageOfWavedRecords)   
                                                         ->with('PercentageOfFailedRecords', $PercentageOfFailedRecords)   
