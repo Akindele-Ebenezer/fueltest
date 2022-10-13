@@ -1268,6 +1268,7 @@ footer p {
   color: rgba(173, 173, 49, 0.95);
 }
 .fuel-test-dashboard-inner h1 {
+  border-bottom: 1px solid #eee;
   font-family: initial;
   font-size: 2rem;
   margin-bottom: 1rem;

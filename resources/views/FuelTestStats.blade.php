@@ -25,7 +25,7 @@
     @isset($_GET['GenerateChartForCurrentVendor'])
         <div class="Title">
             <h1>DIESEL FUEL ANALYSIS REPORT</h1>
-    <img src="/images/depasa-logo.png">
+            <img src="/images/depasa-logo.png">
             <h2>{!! $CurrentVendorName !!}</h2>
             <h2>{{ $CurrentVendorNo }}</h2>
         </div>
