@@ -2651,6 +2651,7 @@ class FuelTestController extends Controller
                 $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
                 $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
      
+     
                 $FirstDayOfLastMonth = date("Y-0n-0j", strtotime("first day of previous month"));  
                 $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
                    
@@ -2832,11 +2833,24 @@ class FuelTestController extends Controller
                 $FirstSupplyDate = $FirstSupplyDate->SampleCollectionDate;
                 $RecentSupplyDate = $RecentSupplyDate->SampleCollectionDate;
      
+                $PercentageOfNumberOfRecordsLastMonth = $number_of_all_records_last_month / $number_of_all_records * 100; 
+                $PercentageOfAllRecordsThisMonth = $number_of_all_records_this_month / $number_of_all_records * 100;
+                $PercentageOfNumberOfRecordsLastSevenDays = $number_of_all_records_last_seven_days / $number_of_all_records * 100;
+                $PercentageOfNumberOfRecordsLastMonth = $number_of_diff_records / $number_of_all_records * 100;
+     
+                $PercentageOfPassedRecords = $number_of_passed_records / $number_of_all_records * 100; 
+                $PercentageOfFailedRecords = $number_of_failed_records / $number_of_all_records * 100;
+                $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
+                $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
+
                 return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
                                                         ->with('CurrentVendorNo', $CurrentVendorNo)   
                                                         ->with('CurrentVendorName', $CurrentVendorName)   
                                                         ->with('FirstSupplyDate', $FirstSupplyDate)   
                                                         ->with('RecentSupplyDate', $RecentSupplyDate)   
+                                                        ->with('PercentageOfAllRecordsThisMonth', $PercentageOfAllRecordsThisMonth)   
+                                                        ->with('PercentageOfNumberOfRecordsLastSevenDays', $PercentageOfNumberOfRecordsLastSevenDays)   
+                                                        ->with('PercentageOfNumberOfRecordsLastMonth', $PercentageOfNumberOfRecordsLastMonth)   
                                                         ->with('PercentageOfPassedRecords', $PercentageOfPassedRecords)   
                                                         ->with('PercentageOfWavedRecords', $PercentageOfWavedRecords)   
                                                         ->with('PercentageOfFailedRecords', $PercentageOfFailedRecords)   

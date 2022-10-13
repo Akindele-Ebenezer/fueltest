@@ -56,9 +56,9 @@
             @isset($_GET['GenerateChartForCurrentVendor'])
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>FUEL Supplied Last Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month }} (100%)</span></p> 
-                    <p><span>FUEL Supplied This Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_this_month }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
-                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfPassedRecords) }}%)</span></p> 
+                    <p><span>FUEL Supplied Last Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month }} ({{ round($PercentageOfNumberOfRecordsLastMonth, 2) }}%)</span></p> 
+                    <p><span>FUEL Supplied This Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_this_month }} ({{ round($PercentageOfAllRecordsThisMonth, 2) }}%)</span></p> 
+                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfNumberOfRecordsLastSevenDays, 2) }}%)</span></p> 
                     <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
