@@ -162,17 +162,16 @@
         <!-- </div> -->
     </div>
 </div>
+ 
+<footer>
+    <p>
+        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? 'all Vendors' : $CurrentVendorName }} and the quality of sample supplied.
+        This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
+        Recommendations are provided as a guide only.
+    </p>
+</footer>   
+<img src="/images/depasa-logo.png"> 
 
-@isset($_GET['GenerateChartForCurrentVendor'])
-    <footer>
-        <p>
-            <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ $CurrentVendorName }} and the quality of sample supplied.
-            This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
-            Recommendations are provided as a guide only.
-        </p>
-    </footer>   
-    <img src="/images/depasa-logo.png">
-@endisset
 <input type="hidden" id="Labels" name="Labels">
 <form action="" class="CurrentVendor">
     <input type="hidden" class="GenerateChartForCurrentVendor" name="GenerateChartForCurrentVendor">
