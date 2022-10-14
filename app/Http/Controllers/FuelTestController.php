@@ -49,29 +49,35 @@ class FuelTestController extends Controller
 
         $vendors = Vendor::all();
         $number_of_vendors = count($vendors); 
-//////////////////////////////////////////////////////
-        // $NumberOfTotalRecordsForEachVendorArr = [];
-        // $NamesOfEachVendorArr = [];
+////////////////////////////////////////////////////// 
+        $VendorWithTheHighestSupply = FuelTestRecord::select('VendorName') 
+                                                    ->groupBy('VendorName') 
+                                                    ->limit(1)
+                                                    ->get()
+                                                    ->toArray(); 
+                                                    
+        $VendorWithTheLowestSupply = FuelTestRecord::select('VendorName')
+                                                    ->groupBy('VendorName') 
+                                                    ->orderBy('VendorName', 'DESC')
+                                                    ->limit(2)
+                                                    ->get()
+                                                    ->toArray(); 
 
-        // foreach ($vendors as $vendor) {
+        $VendorWithTheHighestSupply = $VendorWithTheHighestSupply[0]['VendorName']; 
+        $VendorWithTheLowestSupply = $VendorWithTheLowestSupply[1]['VendorName'];  
 
-        //     $NumberOfTotalRecordsForEachVendor = FuelTestRecord::where('VendorNo', $vendor->VendorNo)
-        //                                                         ->get()
-        //                                                         ->count();      
-                                                  
-        //     $NamesOfEachVendor = Vendor::select('VendorName')
-        //                                 ->where('VendorNo', $vendor->VendorNo) 
-        //                                 ->get()
-        //                                 ->toArray();     
-                                                  
-        //     array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);   
-        //     array_push($NamesOfEachVendorArr, $NamesOfEachVendor);   
-            
-        // } 
-        // print_r($NamesOfEachVendorArr);
+        $PercentageForVendorWithTheHighestSupply = FuelTestRecord::select('VendorName') 
+                                                    ->where('VendorName', $VendorWithTheHighestSupply) 
+                                                    ->limit(1)
+                                                    ->count(); 
 
-        // $VendorWithTheHighestSupply = 
-        // print_r($NumberOfTotalRecordsForEachVendorArr);
+        $PercentageForVendorWithTheLowestSupply = FuelTestRecord::select('VendorName') 
+                                                    ->where('VendorName', $VendorWithTheLowestSupply) 
+                                                    ->limit(1)
+                                                    ->count(); 
+
+        $PercentageForVendorWithTheHighestSupply = $PercentageForVendorWithTheHighestSupply / $number_of_all_records * 100;
+        $PercentageForVendorWithTheLowestSupply = $PercentageForVendorWithTheLowestSupply / $number_of_all_records * 100;
 /////////////////////////////////////////////////////
 
         // $PassedRecords = FuelTestRecord::whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
@@ -484,6 +490,10 @@ class FuelTestController extends Controller
             'WavedRecords' => $WavedRecords,
             'DiffRecords' => $DiffRecords,
             'DiffRecords_' => $DiffRecords_,
+            'PercentageForVendorWithTheLowestSupply' => $PercentageForVendorWithTheLowestSupply,
+            'PercentageForVendorWithTheHighestSupply' => $PercentageForVendorWithTheHighestSupply,
+            'VendorWithTheHighestSupply' => $VendorWithTheHighestSupply,
+            'VendorWithTheLowestSupply' => $VendorWithTheLowestSupply,
             'number_of_diff_records' => $number_of_diff_records,
             'number_of_diff_records_' => $number_of_diff_records_,
             'number_of_waved_records' => $number_of_waved_records,

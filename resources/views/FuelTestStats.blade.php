@@ -72,7 +72,7 @@
                     <h1>BREAKDOWN</h1>
                     <p><span>FUEL Supplied Last Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month }} ({{ round($PercentageOfNumberOfRecordsLastMonth, 2) }}%)</span></p> 
                     <p><span>FUEL Supplied This Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_this_month }} ({{ round($PercentageOfAllRecordsThisMonth, 2) }}%)</span></p> 
-                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfNumberOfRecordsLastSevenDays, 2) }}%)</span></p>  
+                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfNumberOfRecordsLastSevenDays, 2) }}%)</span></p>                      
                 </div> 
             @endif
             @isset($_GET['GenerateChartForCurrentVendor'])
@@ -174,6 +174,9 @@
                 <p>
                     <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_todays_records + $number_of_yesterday_records + $number_of_two_days_ago_records + $number_of_three_days_ago_records + $number_of_four_days_ago_records + $number_of_five_days_ago_records + $number_of_six_days_ago_records + $number_of_all_records_last_seven_days }}</span>
                 </p>
+                <br><br>
+                <p><span>Vendor with MAXIMUM Supplies</span> => &nbsp;&nbsp; <span>{{ $VendorWithTheHighestSupply }} <span  class="Passed">({{ round($PercentageForVendorWithTheHighestSupply, 2) }}%)</span></span></p>  
+                <p><span>Vendor with MINIMUM Supplies</span> => &nbsp;&nbsp; <span>{{ $VendorWithTheLowestSupply }} <span  class="Failed">({{ round($PercentageForVendorWithTheLowestSupply, 2) }}%)</span></span></p>  
             </div>
         </div>
         <!-- <div class="fuel-test-dashboard-inner"> -->
