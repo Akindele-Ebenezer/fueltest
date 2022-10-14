@@ -49,6 +49,30 @@ class FuelTestController extends Controller
 
         $vendors = Vendor::all();
         $number_of_vendors = count($vendors); 
+//////////////////////////////////////////////////////
+        // $NumberOfTotalRecordsForEachVendorArr = [];
+        // $NamesOfEachVendorArr = [];
+
+        // foreach ($vendors as $vendor) {
+
+        //     $NumberOfTotalRecordsForEachVendor = FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+        //                                                         ->get()
+        //                                                         ->count();      
+                                                  
+        //     $NamesOfEachVendor = Vendor::select('VendorName')
+        //                                 ->where('VendorNo', $vendor->VendorNo) 
+        //                                 ->get()
+        //                                 ->toArray();     
+                                                  
+        //     array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);   
+        //     array_push($NamesOfEachVendorArr, $NamesOfEachVendor);   
+            
+        // } 
+        // print_r($NamesOfEachVendorArr);
+
+        // $VendorWithTheHighestSupply = 
+        // print_r($NumberOfTotalRecordsForEachVendorArr);
+/////////////////////////////////////////////////////
 
         // $PassedRecords = FuelTestRecord::whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
         // ->where('Color', '<=', '2.5')
@@ -2668,7 +2692,7 @@ class FuelTestController extends Controller
                                                     ->where('VendorNo', $CurrentVendorNo)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
-    
+
                 $number_of_passed_records = count($PassedRecords);     
     
                 $DiffRecords = FuelTestRecord::where('ApprovalForUse', NULL)

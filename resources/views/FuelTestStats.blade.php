@@ -58,6 +58,11 @@
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
             @endisset
+            <div>
+                <p>
+                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_failed_records + $number_of_passed_records + $number_of_waved_records }}</span>
+                </p>
+            </div>
         </div>
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Recent</h1> -->
@@ -81,6 +86,11 @@
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
             @endisset
+            <div>
+                <p>
+                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month + $number_of_all_records_this_month + $number_of_all_records_last_seven_days }}</span>
+                </p>
+            </div>
         </div>    
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Monthly</h1> -->
@@ -122,6 +132,11 @@
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
             @endisset
+            <div>
+                <p>
+                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $January + $February + $March + $April + $May + $June + $July + $August + $September + $October + $November + $December }}</span>
+                </p>
+            </div>
         </div>
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Daily/Recent</h1> -->
@@ -155,6 +170,11 @@
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
             @endisset
+            <div>
+                <p>
+                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_todays_records + $number_of_yesterday_records + $number_of_two_days_ago_records + $number_of_three_days_ago_records + $number_of_four_days_ago_records + $number_of_five_days_ago_records + $number_of_six_days_ago_records + $number_of_all_records_last_seven_days }}</span>
+                </p>
+            </div>
         </div>
         <!-- <div class="fuel-test-dashboard-inner"> -->
             <!-- <h1>Daily/Recent</h1> -->
