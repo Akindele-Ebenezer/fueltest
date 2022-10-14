@@ -2383,6 +2383,7 @@ class FuelTestController extends Controller
                         ->get();
          
         $number_of_all_records_last_month = count($last_month_records); 
+        $PercentageOfNumberOfRecordsLastMonth = $number_of_all_records_last_month / $number_of_all_records * 100; 
         
         $FirstDayOfThisMonth = date('Y-m-1'); 
         $TodaysDate = date('Y-m-d'); 
@@ -2392,6 +2393,7 @@ class FuelTestController extends Controller
                         ->get();
          
         $number_of_all_records_this_month = count($this_records);
+        $PercentageOfAllRecordsThisMonth = $number_of_all_records_this_month / $number_of_all_records * 100; 
 
         $TodaysDate = date('Y-m-d'); 
         $LastSevenDays = date('Y-m-d', strtotime( '-1 week' )); 
@@ -2401,6 +2403,7 @@ class FuelTestController extends Controller
                         ->get();
          
         $number_of_all_records_last_seven_days = count($last_seven_days_records);
+        $PercentageOfAllRecordsSevenDaysAgo = $PercentageOfNumberOfRecordsLastSevenDays = $number_of_all_records_last_seven_days / $number_of_all_records * 100; 
         
         $RecordsOfYesterday = date('Y-m-d',strtotime("-1 day")); 
                 
@@ -2409,6 +2412,7 @@ class FuelTestController extends Controller
                                         ->get();
          
         $number_of_yesterday_records = count($yesterday_records);
+        $PercentageOfAllRecordsYesterday = $number_of_yesterday_records / $number_of_all_records * 100; 
 
         $RecordsOfToday = date('Y-m-d'); 
                 
@@ -2417,84 +2421,98 @@ class FuelTestController extends Controller
                         ->get();
          
         $number_of_todays_records = count($todays_records); 
+        $PercentageOfAllRecordsToday = $number_of_todays_records / $number_of_all_records * 100; 
 
               
         $RecordsOfTwoDaysAgo = date('Y-m-d', strtotime("-2 day"));   
         $number_of_two_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfTwoDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
+        $PercentageOfAllRecordsTwoDaysAgo = $number_of_two_days_ago_records / $number_of_all_records * 100;                       
                         
               
         $RecordsOfThreeDaysAgo = date('Y-m-d', strtotime("-3 day"));   
         $number_of_three_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfThreeDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
+        $PercentageOfAllRecordsThreeDaysAgo = $number_of_three_days_ago_records / $number_of_all_records * 100;                       
                         
               
         $RecordsOfFourDaysAgo = date('Y-m-d', strtotime("-4 day"));   
         $number_of_four_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFourDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
+        $PercentageOfAllRecordsFourDaysAgo = $number_of_four_days_ago_records / $number_of_all_records * 100;                       
                         
               
         $RecordsOfFiveDaysAgo = date('Y-m-d', strtotime("-5 day"));   
         $number_of_five_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFiveDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
+        $PercentageOfAllRecordsFiveDaysAgo = $number_of_five_days_ago_records / $number_of_all_records * 100;                       
                         
               
         $RecordsOfSixDaysAgo = date('Y-m-d', strtotime("-6 day"));   
         $number_of_six_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfSixDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
+        $PercentageOfAllRecordsSixDaysAgo = $number_of_six_days_ago_records / $number_of_all_records * 100;                       
 
         $Month1 = '01';                        
         $FirstDayOfJanuary = date('Y-' . $Month1 . '-01'); 
         $LastDayOfJanuary = date('Y-' . $Month1 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 1, 2022));                        
         $January = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])
-                                    ->count();                        
+                                    ->count();   
+        $PercentageOfAllRecordsInJanuary = $January / $number_of_all_records * 100;                      
       
         $Month2 = '02';                        
         $FirstDayOfFebruary = date('Y-' . $Month2 . '-01'); 
         $LastDayOfFebruary = date('Y-' . $Month2 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 2, 2022));                        
         $February = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])
                                     ->count();                        
+        $PercentageOfAllRecordsInFebruary = $February / $number_of_all_records * 100;  
       
         $Month3 = '03';                        
         $FirstDayOfMarch = date('Y-' . $Month3 . '-01'); 
         $LastDayOfMarch = date('Y-' . $Month3 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 3, 2022));                        
         $March = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])
                                     ->count();                        
+        $PercentageOfAllRecordsInMarch = $March / $number_of_all_records * 100;  
       
         $Month4 = '04';                        
         $FirstDayOfApril = date('Y-' . $Month4 . '-01'); 
         $LastDayOfApril = date('Y-' . $Month4 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 4, 2022));                        
         $April = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])
                                     ->count();                        
+        $PercentageOfAllRecordsInApril = $April / $number_of_all_records * 100;  
       
         $Month5 = '05';                        
         $FirstDayOfMay = date('Y-' . $Month5 . '-01'); 
         $LastDayOfMay = date('Y-' . $Month5 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 5, 2022));                        
         $May = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])
                                     ->count();                        
+        $PercentageOfAllRecordsInMay = $May / $number_of_all_records * 100;  
       
         $Month6 = '06';                        
         $FirstDayOfJune = date('Y-' . $Month6 . '-01'); 
         $LastDayOfJune = date('Y-' . $Month6 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 6, 2022));                        
         $June = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])
                                     ->count();                        
+        $PercentageOfAllRecordsInJune = $June / $number_of_all_records * 100;  
      
         $Month7 = '07';                        
         $FirstDayOfJuly = date('Y-' . $Month7 . '-01'); 
         $LastDayOfJuly = date('Y-' . $Month7 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 7, 2022));                        
         $July = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])
                                     ->count();                        
+        $PercentageOfAllRecordsInJuly = $July / $number_of_all_records * 100;  
     
         $Month8 = '08';                        
         $FirstDayOfAugust = date('Y-' . $Month8 . '-01'); 
         $LastDayOfAugust = date('Y-' . $Month8 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 8, 2022));                        
         $August = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])
                                     ->count();                        
+        $PercentageOfAllRecordsInAugust = $August / $number_of_all_records * 100;  
   
     
         $Month9 = '09';                        
@@ -2502,6 +2520,7 @@ class FuelTestController extends Controller
         $LastDayOfSeptember = date('Y-' . $Month9 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 9, 2022));                        
         $September = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])
                                     ->count();                        
+        $PercentageOfAllRecordsInSeptember = $September / $number_of_all_records * 100;  
   
     
         $Month10 = '10';                        
@@ -2509,6 +2528,7 @@ class FuelTestController extends Controller
         $LastDayOfOctober = date('Y-' . $Month10 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 10, 2022));                        
         $October = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])
                                     ->count();                        
+        $PercentageOfAllRecordsInOctober = $October / $number_of_all_records * 100;  
   
     
         $Month11 = '11';                        
@@ -2516,6 +2536,7 @@ class FuelTestController extends Controller
         $LastDayOfNovember = date('Y-' . $Month11 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 11, 2022));                        
         $November = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])
                                     ->count();                        
+        $PercentageOfAllRecordsInNovember = $November / $number_of_all_records * 100;  
   
     
         $Month12 = '12';                        
@@ -2523,6 +2544,7 @@ class FuelTestController extends Controller
         $LastDayOfDecember = date('Y-' . $Month12 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 12, 2022));                        
         $December = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])
                                     ->count();                        
+        $PercentageOfAllRecordsInDecember = $December / $number_of_all_records * 100;  
 
         $ViewData = [  
             'title' => $title,  
@@ -2540,6 +2562,29 @@ class FuelTestController extends Controller
             'PercentageOfPassedRecords' => $PercentageOfPassedRecords,
             'PercentageOfWavedRecords' => $PercentageOfWavedRecords,
             'PercentageOfDiffRecords' => $PercentageOfDiffRecords,
+            'PercentageOfNumberOfRecordsLastMonth' => $PercentageOfNumberOfRecordsLastMonth,
+            'PercentageOfAllRecordsThisMonth' => $PercentageOfAllRecordsThisMonth,
+            'PercentageOfAllRecordsInJanuary' => $PercentageOfAllRecordsInJanuary,
+            'PercentageOfAllRecordsInFebruary' => $PercentageOfAllRecordsInFebruary,
+            'PercentageOfAllRecordsInMarch' => $PercentageOfAllRecordsInMarch,
+            'PercentageOfAllRecordsInApril' => $PercentageOfAllRecordsInApril,
+            'PercentageOfAllRecordsInMay' => $PercentageOfAllRecordsInMay,
+            'PercentageOfAllRecordsInJune' => $PercentageOfAllRecordsInJune,
+            'PercentageOfAllRecordsInJuly' => $PercentageOfAllRecordsInJuly,
+            'PercentageOfAllRecordsInAugust' => $PercentageOfAllRecordsInAugust,
+            'PercentageOfAllRecordsInSeptember' => $PercentageOfAllRecordsInSeptember,
+            'PercentageOfAllRecordsInOctober' => $PercentageOfAllRecordsInOctober,
+            'PercentageOfAllRecordsInNovember' => $PercentageOfAllRecordsInNovember,
+            'PercentageOfAllRecordsInDecember' => $PercentageOfAllRecordsInDecember,
+            'PercentageOfNumberOfRecordsLastSevenDays' => $PercentageOfNumberOfRecordsLastSevenDays,
+            'PercentageOfAllRecordsToday' => $PercentageOfAllRecordsToday,
+            'PercentageOfAllRecordsYesterday' => $PercentageOfAllRecordsYesterday,
+            'PercentageOfAllRecordsTwoDaysAgo' => $PercentageOfAllRecordsTwoDaysAgo,
+            'PercentageOfAllRecordsThreeDaysAgo' => $PercentageOfAllRecordsThreeDaysAgo,
+            'PercentageOfAllRecordsFourDaysAgo' => $PercentageOfAllRecordsFourDaysAgo,
+            'PercentageOfAllRecordsFiveDaysAgo' => $PercentageOfAllRecordsFiveDaysAgo,
+            'PercentageOfAllRecordsSixDaysAgo' => $PercentageOfAllRecordsSixDaysAgo,
+            'PercentageOfAllRecordsSevenDaysAgo' => $PercentageOfAllRecordsSevenDaysAgo,
             'January' => $January,
             'February' => $February,
             'March' => $March,
