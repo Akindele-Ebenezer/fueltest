@@ -2707,7 +2707,7 @@ class FuelTestController extends Controller
 
                 $number_of_passed_records = count($PassedRecords);     
     
-                $DiffRecords = FuelTestRecord::where('ApprovalForUse', NULL)
+                $DiffRecords = FuelTestRecord::where('VendorName', NULL)
                                                     ->where('VendorNo', $CurrentVendorNo)
                                                     ->get();
     
