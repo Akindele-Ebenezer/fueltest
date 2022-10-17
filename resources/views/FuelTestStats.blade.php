@@ -57,12 +57,12 @@
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
+                <div>
+                    <p>
+                        <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_failed_records + $number_of_passed_records + $number_of_waved_records }}</span>
+                    </p>
+                </div>
             @endisset
-            <div>
-                <p>
-                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_failed_records + $number_of_passed_records + $number_of_waved_records }}</span>
-                </p>
-            </div>
         </div>
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Recent</h1> -->
@@ -85,12 +85,12 @@
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
+                <div>
+                    <p>
+                        <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month + $number_of_all_records_this_month + $number_of_all_records_last_seven_days }}</span>
+                    </p>
+                </div>
             @endisset
-            <div>
-                <p>
-                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month + $number_of_all_records_this_month + $number_of_all_records_last_seven_days }}</span>
-                </p>
-            </div>
         </div>    
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Monthly</h1> -->
@@ -131,12 +131,12 @@
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
                 </div> 
+                <div>
+                    <p>
+                        <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $January + $February + $March + $April + $May + $June + $July + $August + $September + $October + $November + $December }}</span>
+                    </p>
+                </div>
             @endisset
-            <div>
-                <p>
-                    <span class='aggregate'>AGGREGATE [Overall Supply]</span> : : : &nbsp;&nbsp; <span>{{ $January + $February + $March + $April + $May + $June + $July + $August + $September + $October + $November + $December }}</span>
-                </p>
-            </div>
         </div>
         <div class="fuel-test-dashboard-inner">
             <!-- <h1>Daily/Recent</h1> -->
@@ -188,7 +188,7 @@
  
 <footer>
     <p>
-        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? 'all Vendors' : $CurrentVendorName }} and the quality of sample supplied.
+        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? 'all Vendors' : $CurrentVendorName = 'all Vendors' }} and the quality of sample supplied.
         This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
         Recommendations are provided as a guide only.
     </p>
