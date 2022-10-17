@@ -186,20 +186,12 @@
     </div>
 </div>
  
-<footer>
-    @if(isset($_GET['GenerateChartForCurrentVendor']))
+<footer> 
     <p>
-        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ $CurrentVendorName }} and the quality of sample supplied.
+        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ !(isset($_GET['GenerateChartForCurrentVendor'])) || $CurrentVendorName == '<big style="color: red; font-family: arial;">This Vendor has NO RECORDS yet !</big>' ? 'all Vendors' : $CurrentVendorName }} and the quality of sample supplied.
         This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
         Recommendations are provided as a guide only.
-    </p>
-    @else 
-    <p>
-        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from all Vendors and the quality of sample supplied.
-        This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
-        Recommendations are provided as a guide only.
-    </p>
-    @endif
+    </p> 
 </footer>   
 <img src="/images/depasa-logo.png"> 
 
