@@ -136,6 +136,7 @@ class FuelTestController extends Controller
         
         $DiffRecords_ = FuelTestRecord::where('uid', $id)
                                         ->where('ApprovalForUse', NULL)
+                                        ->where('VendorName', NULL)
                                         ->get();
         $number_of_diff_records_ = count($DiffRecords_); 
         
