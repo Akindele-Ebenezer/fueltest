@@ -206,7 +206,7 @@
 let FuelTestResults = new Chart("myChart", {
     type: "horizontalBar",
     data: {
-            labels: ["Failed", "Passed", "Waved", "Diff", "Previous Records", "Total Records"],
+            labels: ["Failed", "Passed", "Waved", @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif "Previous Records", "Total Records"],
             datasets: [{
                 backgroundColor: [
                     'rgb(255, 30, 30, 0.3)',
@@ -225,7 +225,7 @@ let FuelTestResults = new Chart("myChart", {
                     "rgb(162, 181, 187)",
                 ],
                 borderWidth: 1,
-                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, {{ $number_of_diff_records }}, {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
+                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  {{ $number_of_diff_records }}, @endif {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
             }]
         },
         options: {
