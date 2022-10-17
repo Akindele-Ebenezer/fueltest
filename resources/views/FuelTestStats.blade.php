@@ -188,7 +188,7 @@
  
 <footer>
     <p>
-        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? 'all Vendors' : $CurrentVendorName = 'all Vendors' }} and the quality of sample supplied.
+        <strong>Notice :</strong> This analysis provided is based upon thorough testing and sample information received from {{ $CurrentVendorName == '<big style="color: red; font-family: arial;">This Vendor has NO RECORDS yet !</big>' ? 'all Vendors' : $CurrentVendorName }} and the quality of sample supplied.
         This is to ensure continuous supply from the supplier of clean fuel to engine fuel system components for our Vessels.
         Recommendations are provided as a guide only.
     </p>
