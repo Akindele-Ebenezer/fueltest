@@ -2580,7 +2580,7 @@ class FuelTestController extends Controller
         $LastDayOfDecember = date('Y-' . $Month12 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 12, 2022));                        
         $December = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])
                                     ->count();                        
-        $PercentageOfAllRecordsInDecember = $December / $number_of_all_records * 100;  
+        $PercentageOfAllRecordsInDecember = $December / $number_of_all_records * 100;    
 
         $ViewData = [  
             'title' => $title,  

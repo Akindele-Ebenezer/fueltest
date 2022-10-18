@@ -183,6 +183,38 @@
             <!-- <h1>Daily/Recent</h1> -->
             <!-- <canvas id="myChart5" style="width:100%;min-width:700px"></canvas> -->
         <!-- </div> -->
+        @foreach ($vendors as $vendor)
+            @php 
+            
+                $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+            
+                $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                    ->where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+            
+                $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                                    ->where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+            
+                $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                    ->where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+                                                    
+            @endphp
+        
+            @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
+                @continue;
+            @endif
+
+            <div class="fuel-test-dashboard-inner"> 
+                <canvas id="VendorChart{{ $vendor->id }}" style="width:100%;min-width:700px"></canvas>  
+            </div>            
+        @endforeach
     </div>
 </div>
  
@@ -521,5 +553,176 @@ let FuelTestResults = new Chart("myChart", {
             }
         }
     }); 
+
+    @foreach($vendors as $vendor) 
+
+        @php 
+            
+            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+        
+            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                ->where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+        
+            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                                ->where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+        
+            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                ->where('VendorNo', $vendor->VendorNo)
+                                                ->get()
+                                                ->count(); 
+
+            $Appearance = App\Models\FuelTestRecord::whereIn('AppearanceResult', ['BRIGHT', 'CLEAR']) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfGoodAppearace = $Appearance; 
+
+            $BadAppearance = App\Models\FuelTestRecord::whereNotIn('AppearanceResult', ['BRIGHT', 'CLEAR']) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfBadAppearace = $BadAppearance; 
+
+            $Color = App\Models\FuelTestRecord::where('Color', '<=', 2.5) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfGoodColor = $Color; 
+
+            $BadColor = App\Models\FuelTestRecord::where('Color', '>', 2.5) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfBadColor = $BadColor; 
+
+            $Density = App\Models\FuelTestRecord::whereBetween('Density', [0.82, 0.855]) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfGoodDensity = $Density; 
+
+            $BadDensity = App\Models\FuelTestRecord::whereNotBetween('Density', [0.82, 0.855])   
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfBadDensity = $BadDensity; 
+
+            $FlashPoint = App\Models\FuelTestRecord::whereBetween('Density', [52, 92]) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfGoodFlashPoint = $FlashPoint;
+
+            $BadFlashPoint = App\Models\FuelTestRecord::whereNotBetween('Density', [52, 92]) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfBadFlashPoint = $BadFlashPoint; 
+
+            $WaterSediment = App\Models\FuelTestRecord::whereBetween('WaterSediment', [0, 0.050]) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfGoodWaterSediment = $WaterSediment; 
+
+            $BadWaterSediment = App\Models\FuelTestRecord::where('WaterSediment', '>', 0.050) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfBadWaterSediment = $BadWaterSediment; 
+
+            $Cleanliness = App\Models\FuelTestRecord::whereBetween('Cleanliness', [12, 15]) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfGoodCleanliness = $Cleanliness; 
+                  
+            $BadCleanliness = App\Models\FuelTestRecord::whereNotBetween('Cleanliness', [12, 15]) 
+                                            ->where('VendorNo', $vendor->VendorNo)
+                                            ->count();
+
+            $NumberOfBadCleanliness = $BadCleanliness; 
+                              
+        @endphp
+    
+        @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
+            @continue;
+        @endif
+        
+        let VendorChartResults{{ $vendor->id }} = new Chart("VendorChart{{ $vendor->id }}", {
+            type: "bar",
+            data: {
+                labels: [
+                    'APPERANCE', 
+                    'COLOR', 
+                    'DENSITY', 
+                    'FLASH POINT', 
+                    'WATER / SEDIMEMT',
+                    'CLEANLINESS',
+                ],
+                datasets: [{
+                    backgroundColor: [                            
+                        'rgb(255, 30, 30, 0.6)',
+                        'rgb(0, 255, 209, 0.6)',
+                        'rgb(255, 255, 0, 0.6)',
+                        'rgb(49, 198, 212, 0.6)',
+                        'rgb(219, 200, 172, 0.6)',
+                        'rgb(162, 181, 187, 0.6)',
+                    ],
+                    data: [
+                        {{ $NumberOfGoodAppearace }}, 
+                        {{ $NumberOfGoodColor }}, 
+                        {{ $NumberOfGoodDensity }},
+                        {{ $NumberOfGoodFlashPoint }},
+                        {{ $NumberOfGoodWaterSediment }},
+                        {{ $NumberOfGoodCleanliness }},
+                    ]
+                }, {
+                    backgroundColor: [                            
+                        'rgb(255, 30, 30, 0.6)',
+                        'rgb(0, 255, 209, 0.6)',
+                        'rgb(255, 255, 0, 0.6)',
+                        'rgb(49, 198, 212, 0.6)',
+                        'rgb(219, 200, 172, 0.6)',
+                        'rgb(162, 181, 187, 0.6)',
+                    ],
+                    data: [
+                        {{ $NumberOfBadAppearace }}, 
+                        {{ $NumberOfBadColor }}, 
+                        {{ $NumberOfBadDensity }},
+                        {{ $NumberOfBadFlashPoint }},
+                        {{ $NumberOfBadWaterSediment }},
+                        {{ $NumberOfBadCleanliness }},
+                    ]
+                }]
+            },
+            options: {
+                layout: {
+                    padding: {
+                        left: 5,
+                        right: 5,
+                        top: 5,
+                        bottom: 5,
+                    }
+                },            
+                legend: {display: false},
+                title: {
+                    display: true, 
+                },
+                title: {
+                    display: true,
+                    fontSize: 20, 
+                    text: '{{ $vendor->VendorName }}',
+                },           
+            }
+        });
+
+    @endforeach
 </script>
 @endsection    
