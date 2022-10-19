@@ -32,7 +32,7 @@
     @endisset 
     @isset($_GET['RevealVendors'])
         <div class="Title">
-            <h1>ACTIVE VENDORS</h1>
+            <h1>{{ $_GET['RevealVendors'] }} ACTIVE VENDORS</h1>
             <img src="/images/depasa-logo.png"> 
         </div>
     @endisset 
@@ -85,7 +85,7 @@
                     <h1>VENDOR STATS</h1>
                     <form action="">
                         <label>
-                            <input type="hidden" name="RevealVendors"> 
+                            <input type="hidden" value="{{ $VendorsWithSupplyStatus }}" name="RevealVendors"> 
                             <input class="hide" type="submit">   
                             <span class="reveal-vendors">Reveal Vendors</span>
                         </label>
@@ -617,7 +617,7 @@ let FuelTestResults = new Chart("myChart", {
                 }
             },
             legend: {
-                display: true, 
+                display: true,  
                 position: 'right', 
             }, 
             tooltips: {
@@ -637,11 +637,9 @@ let FuelTestResults = new Chart("myChart", {
             onClick: (a, b) => { 
                 let CurrentVendorForm = document.querySelector('.CurrentVendor');
                 let CurrentVendorNoInput = document.querySelector('.GenerateChartForCurrentVendor'); 
-                console.log(a);
-                // CurrentVendorNoInput.value = b[0]._view.label; 
-                // CurrentVendorForm.submit(); 
-                
-                // console.log(CurrentVendorNoInput.value);
+                 
+                CurrentVendorNoInput.value = b[0]._xScale.ticks[b[0]._index]; 
+                CurrentVendorForm.submit();  
             }
         }
     }); 
