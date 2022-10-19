@@ -20,7 +20,21 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: auto;
 
+    &.reveal-vendors-padding-top {
+        padding-top: 1rem;
+    }
+
+    .reveal-vendors {
+        cursor: pointer;
+        font-style: italic;
+        text-decoration: underline;
+
+        &:hover {
+            color: #999;
+        }
+    }
 }
 
 .fuel-test-dashboard-inner {
@@ -71,5 +85,11 @@ footer {
 
     h2 {
         font-family: initial;
+    }
+}
+
+@media (min-width: 1825px) {
+    #fuel-test-dashboard {
+        width: 90%;
     }
 }

@@ -1240,6 +1240,18 @@ footer p {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin: auto;
+}
+#fuel-test-dashboard.reveal-vendors-padding-top {
+  padding-top: 1rem;
+}
+#fuel-test-dashboard .reveal-vendors {
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: underline;
+}
+#fuel-test-dashboard .reveal-vendors:hover {
+  color: #999;
 }
 
 .fuel-test-dashboard-inner {
@@ -1288,6 +1300,12 @@ footer p {
 }
 .Title h2 {
   font-family: initial;
+}
+
+@media (min-width: 1825px) {
+  #fuel-test-dashboard {
+    width: 90%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

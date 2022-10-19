@@ -29,17 +29,78 @@
             <h2>{!! $CurrentVendorName !!}</h2>
             <h2>{{ $CurrentVendorNo }}</h2>
         </div>
-    @endisset       
-    <div class="fuel-test-dashboard-inner {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}">
-        <!-- <h1>VENDORS</h1> -->
-        <canvas id="myChart6" class="{{ $Visibility }}"></canvas>
-    </div> 
-    <div id="fuel-test-dashboard">
-        <div class="fuel-test-dashboard-inner">
+    @endisset 
+    @isset($_GET['RevealVendors'])
+        <div class="Title">
+            <h1>ACTIVE VENDORS</h1>
+            <img src="/images/depasa-logo.png"> 
+        </div>
+    @endisset 
+    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}">              
+        @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
+            <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}">
+                <!-- <h1>VENDORS</h1> -->
+                <canvas width="1000" height="550" id="myChart6" class="{{ $Visibility }}"></canvas> 
+                <div>
+                    @php                    
+                        $NumberOfTotalRecordsForEachVendorArr = [];
+                    @endphp
+
+                    @foreach ($vendors as $Vendor)
+                        @php
+                        
+                            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                                                            ->get()
+                                                                                            ->count();  
+
+                            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                                ->where('VendorNo', $Vendor->VendorNo)
+                                                                ->get()
+                                                                ->count(); 
+                        
+                            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                                                ->where('VendorNo', $Vendor->VendorNo)
+                                                                ->get()
+                                                                ->count(); 
+                        
+                            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                                ->where('VendorNo', $Vendor->VendorNo)
+                                                                ->get()
+                                                                ->count(); 
+                                    
+                            if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0) {  
+                                continue;
+                            }  
+    
+                            array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);    
+                        @endphp 
+                    @endforeach
+
+                    @php 
+                        $VendorsWithSupplyStatus = count($NumberOfTotalRecordsForEachVendorArr); 
+                        $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
+
+                    @endphp
+
+                    <h1>VENDOR STATS</h1>
+                    <form action="">
+                        <label>
+                            <input type="hidden" name="RevealVendors"> 
+                            <input class="hide" type="submit">   
+                            <span class="reveal-vendors">Reveal Vendors</span>
+                        </label>
+                    </form>
+
+                    <p><span>Total Number of Vendors</span> => &nbsp;&nbsp; <span>{{ $number_of_vendors }} (100%)</span></p> 
+                    <p><span>Vendors with Supply Status *</span> => &nbsp;&nbsp; <span>{{ $VendorsWithSupplyStatus }} ({{ round($PercentageOfVendorsWithSupplyStatus) }}%)</span></p>  
+                </div> 
+            </div>
+        @endif 
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
             <canvas id="myChart" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
-                    <h1>BREAKDOWN</h1>
+                    <h1>OVERALL SUPPLY</h1>
                     <p><span>Total Number of FUEL Supplied</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records }} (100%)</span></p> 
                     <p><span>Tests with FAILED Results</span> => &nbsp;&nbsp; <span class="Failed">{{ $number_of_failed_records }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
                     <p><span>Tests with PASSED Results</span> => &nbsp;&nbsp; <span class="Passed">{{ $number_of_passed_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p>
@@ -64,7 +125,7 @@
                 </div>
             @endisset
         </div>
-        <div class="fuel-test-dashboard-inner">
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
             <!-- <h1>Recent</h1> -->
             <canvas id="myChart2" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
@@ -92,7 +153,7 @@
                 </div>
             @endisset
         </div>    
-        <div class="fuel-test-dashboard-inner">
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
             <!-- <h1>Monthly</h1> -->
             <canvas id="myChart3" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
@@ -138,7 +199,7 @@
                 </div>
             @endisset
         </div>
-        <div class="fuel-test-dashboard-inner">
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
             <!-- <h1>Daily/Recent</h1> -->
             <canvas id="myChart4" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
@@ -183,38 +244,69 @@
             <!-- <h1>Daily/Recent</h1> -->
             <!-- <canvas id="myChart5" style="width:100%;min-width:700px"></canvas> -->
         <!-- </div> -->
-        @foreach ($vendors as $vendor)
-            @php 
+        @if (isset($_GET['RevealVendors']))
+            @foreach ($vendors as $vendor)
+                @php 
+                
+                    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                                                        ->get()
+                                                        ->count(); 
+                
+                    $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->get()
+                                                        ->count(); 
+                
+                    $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->get()
+                                                        ->count(); 
+                
+                    $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->get()
+                                                        ->count(); 
+                                        
+                @endphp
             
-                $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
-                                                    ->get()
-                                                    ->count(); 
-            
-                $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
-                                                    ->where('VendorNo', $vendor->VendorNo)
-                                                    ->get()
-                                                    ->count(); 
-            
-                $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
-                                                    ->where('VendorNo', $vendor->VendorNo)
-                                                    ->get()
-                                                    ->count(); 
-            
-                $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
-                                                    ->where('VendorNo', $vendor->VendorNo)
-                                                    ->get()
-                                                    ->count(); 
-                                                    
-            @endphp
-        
-            @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
-                @continue;
-            @endif
+                @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
+                    @continue;
+                @endif
 
-            <div class="fuel-test-dashboard-inner"> 
-                <canvas id="VendorChart{{ $vendor->id }}" style="width:100%;min-width:700px"></canvas>  
-            </div>            
-        @endforeach
+                @php
+                
+                    $PercentageOfNumberOfApprovedRecordsForEachVendor = $NumberOfApprovedRecordsForEachVendor / $NumberOfTotalRecordsForEachVendor * 100;
+                    
+                    $PercentageOfNumberOfWavedRecordsForEachVendor = $NumberOfWavedRecordsForEachVendor / $NumberOfTotalRecordsForEachVendor * 100;
+                
+                    $PercentageOfNumberOfRejectedRecordsForEachVendor = $NumberOfRejectedRecordsForEachVendor / $NumberOfTotalRecordsForEachVendor * 100;
+                                                                        
+                    $FirstSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')                                                                
+                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->first();         
+                                                    
+                    $RecentSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')                                                                
+                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->orderBy('SampleNo', 'DESC')
+                                                        ->first();         
+                
+                @endphp
+
+                <div class="fuel-test-dashboard-inner"> 
+                    <canvas id="VendorChart{{ $vendor->id }}" style="width:100%;min-width:700px"></canvas>  
+                    <div>
+                        <h1>BREAKDOWN</h1>
+                        <p><span>Total Number of FUEL Supplied</span> => &nbsp;&nbsp; <span>{{ $NumberOfTotalRecordsForEachVendor }} (100%)</span></p> 
+                        <p><span>Tests with FAILED Results</span> => &nbsp;&nbsp; <span class="Failed">{{ $NumberOfRejectedRecordsForEachVendor }} ({{ round($PercentageOfNumberOfRejectedRecordsForEachVendor) }}%)</span></p> 
+                        <p><span>Tests with PASSED Results</span> => &nbsp;&nbsp; <span class="Passed">{{ $NumberOfApprovedRecordsForEachVendor }} ({{ round($PercentageOfNumberOfApprovedRecordsForEachVendor) }}%)</span></p>
+                        <p><span>Tests Approved on a WAIVER</span> => &nbsp;&nbsp; <span class="Waved">{{ $NumberOfWavedRecordsForEachVendor }} ({{ round($PercentageOfNumberOfWavedRecordsForEachVendor) }}%)</span></p> 
+                        <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $vendor->VendorNo }}</span></p>
+                        <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate->SampleCollectionDate }}</span></p>
+                        <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate->SampleCollectionDate }}</span></p>
+                    </div> 
+                </div>            
+            @endforeach            
+        @endif
     </div>
 </div>
  
@@ -479,7 +571,7 @@ let FuelTestResults = new Chart("myChart", {
     });
 
     let FuelTestResults6 = new Chart("myChart6", {
-        type: "horizontalBar",
+        type: "line",
         data: { 
             labels: [...NewLabels], 
             datasets: [{  
@@ -545,11 +637,11 @@ let FuelTestResults = new Chart("myChart", {
             onClick: (a, b) => { 
                 let CurrentVendorForm = document.querySelector('.CurrentVendor');
                 let CurrentVendorNoInput = document.querySelector('.GenerateChartForCurrentVendor'); 
+                console.log(a);
+                // CurrentVendorNoInput.value = b[0]._view.label; 
+                // CurrentVendorForm.submit(); 
                 
-                CurrentVendorNoInput.value = b[0]._view.label; 
-                CurrentVendorForm.submit(); 
-                
-                console.log(CurrentVendorNoInput.value);
+                // console.log(CurrentVendorNoInput.value);
             }
         }
     }); 
@@ -666,15 +758,7 @@ let FuelTestResults = new Chart("myChart", {
                     'WATER / SEDIMEMT',
                     'CLEANLINESS',
                 ],
-                datasets: [{
-                    backgroundColor: [                            
-                        'rgb(255, 30, 30, 0.6)',
-                        'rgb(0, 255, 209, 0.6)',
-                        'rgb(255, 255, 0, 0.6)',
-                        'rgb(49, 198, 212, 0.6)',
-                        'rgb(219, 200, 172, 0.6)',
-                        'rgb(162, 181, 187, 0.6)',
-                    ],
+                datasets: [{ 
                     data: [
                         {{ $NumberOfGoodAppearace }}, 
                         {{ $NumberOfGoodColor }}, 
@@ -682,16 +766,27 @@ let FuelTestResults = new Chart("myChart", {
                         {{ $NumberOfGoodFlashPoint }},
                         {{ $NumberOfGoodWaterSediment }},
                         {{ $NumberOfGoodCleanliness }},
-                    ]
-                }, {
-                    backgroundColor: [                            
-                        'rgb(255, 30, 30, 0.6)',
-                        'rgb(0, 255, 209, 0.6)',
-                        'rgb(255, 255, 0, 0.6)',
-                        'rgb(49, 198, 212, 0.6)',
-                        'rgb(219, 200, 172, 0.6)',
-                        'rgb(162, 181, 187, 0.6)',
+                    ], 
+                    fill: false,
+                    label: 'Good Tests',  
+                    backgroundColor: [
+                        "rgb(55, 41, 72, 0.7)",
+                        "rgb(123, 55, 30, 0.7)",
+                        "rgb(0, 225, 209, 0.7)",
+                        "rgb(0, 255, 209, 0.7)",
+                        "rgb(255, 30, 30, 0.7)",
+                        "rgb(255, 233, 0, 0.7)",
                     ],
+                    borderWidth: 1,
+                    borderColor: [
+                        "rgb(55, 41, 72, 0.7)",
+                        "rgb(123, 55, 30, 0.7)",
+                        "rgb(0, 225, 209, 0.7)",
+                        "rgb(0, 255, 209, 0.7)",
+                        "rgb(255, 30, 30, 0.7)",
+                        "rgb(255, 233, 0, 0.7)",
+                    ],
+                }, { 
                     data: [
                         {{ $NumberOfBadAppearace }}, 
                         {{ $NumberOfBadColor }}, 
@@ -699,7 +794,26 @@ let FuelTestResults = new Chart("myChart", {
                         {{ $NumberOfBadFlashPoint }},
                         {{ $NumberOfBadWaterSediment }},
                         {{ $NumberOfBadCleanliness }},
-                    ]
+                    ], 
+                    fill: false,
+                    label: 'Bad Tests',  
+                    backgroundColor: [
+                        "#2C3639",
+                        "#5F7161",
+                        "#CEAB93",
+                        "#7882A4",
+                        "#A3DA8D",
+                        "#AE431E",
+                    ],
+                    borderWidth: 1,
+                    borderColor: [
+                        "#2C3639",
+                        "#5F7161",
+                        "#CEAB93",
+                        "#7882A4",
+                        "#A3DA8D",
+                        "#AE431E",
+                    ],
                 }]
             },
             options: {
@@ -711,7 +825,7 @@ let FuelTestResults = new Chart("myChart", {
                         bottom: 5,
                     }
                 },            
-                legend: {display: false},
+                legend: {display: true},
                 title: {
                     display: true, 
                 },
