@@ -177,6 +177,9 @@ header {
   width: 100%;
   z-index: 10;
 }
+header a {
+  color: antiquewhite;
+}
 header div {
   padding: 1rem;
 }

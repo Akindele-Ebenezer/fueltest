@@ -7,6 +7,10 @@ header {
     width: 100%;
     z-index: 10;
 
+    a {
+        color: $color-1;
+    }
+
     div {
         padding: 1rem;
     }

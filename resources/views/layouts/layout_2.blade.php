@@ -17,9 +17,9 @@
 </head>
 <body>
     <header>
-        <div>FUEL TEST</div>
+        <div><a href="{{ route('fuel_test') }}">FUEL TEST</a></div>
         <div>@yield('header_info')</div>
-        <div>DEPASA</div>
+        <div><a href="/">DEPASA</a></div>
     </header> 
     
     @if(!(route('login')))
