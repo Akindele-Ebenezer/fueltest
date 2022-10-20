@@ -2404,7 +2404,7 @@ class FuelTestController extends Controller
         $Config = $this->config();
         extract($Config); 
  
-        $title = 'FUEL TEST INSIGHTS';
+        $title = 'INSIGHTS';
 
         $PercentageOfPassedRecords = $number_of_passed_records / $number_of_all_records * 100; 
         $PercentageOfFailedRecords = $number_of_failed_records / $number_of_all_records * 100;
