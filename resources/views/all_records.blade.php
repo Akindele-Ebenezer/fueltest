@@ -503,7 +503,7 @@
                         <td class="pdf-and-edit">
                             <form action="/GenerateCertificate/{{ $record->SampleNo }}" method="post" target="_blank">@csrf
                                 <input type="image" src="/images/pdf.png"> 
-                                @include('AllRecordsCertificateData')                                
+                                @include('DATA.CertificateData')                            
                             </form> 
                             <form class="GenerateChart" action="{{ route('fuel_test_stats') }}" method="get">
                                 <label>
@@ -530,7 +530,7 @@
                         <td class="sample-no">
                             <form action="">
                                 <label>
-                                    @include('AllRecordsCertificateData')
+                                    @include('DATA.CertificateData')
                                     {{ $record->SampleNo }} 
                                 </label>
                             </form> 
@@ -538,7 +538,7 @@
                         <td class="vendors">
                             <form action="">
                                 <label>
-                                    @include('AllRecordsCertificateData')
+                                    @include('DATA.CertificateData')
                                     {{ $record->VendorName }} 
                                 </label>
                             </form>

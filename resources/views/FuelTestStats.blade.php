@@ -4,9 +4,9 @@
 @section('email', $email)
 @section('header_info', $title)
 @section('title', $title)
-@section('content') 
- 
+@section('content')  
 <style>
+
     .fuel-test {
         display: contents !important;
     } 
@@ -14,14 +14,15 @@
     .fuel-test-dashboard-inner canvas {
         width: unset !important;
     }
-
+    
     .fuel-test-left-nav {
         display: none;   
     } 
+
 </style>
 
 <div class="insights"> 
-@include('PageTitle')
+    @include('PageTitle')
     @isset($_GET['GenerateChartForCurrentVendor'])
         <div class="Title">
             <h1>DIESEL FUEL ANALYSIS REPORT</h1>
@@ -38,8 +39,7 @@
     @endisset 
     <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}">              
         @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
-            <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}">
-                <!-- <h1>VENDORS</h1> -->
+            <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
                 <canvas width="1000" height="550" id="myChart6" class="{{ $Visibility }}"></canvas> 
                 <div>
                     @php                    
@@ -48,35 +48,18 @@
 
                     @foreach ($vendors as $Vendor)
                         @php
-                        
-                            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
-                                                                                            ->get()
-                                                                                            ->count();  
+                            include('../resources/views/DATA/Queries/NumberOfRecordsData.php'); 
 
-                            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
-                                                                ->where('VendorNo', $Vendor->VendorNo)
-                                                                ->get()
-                                                                ->count(); 
-                        
-                            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
-                                                                ->where('VendorNo', $Vendor->VendorNo)
-                                                                ->get()
-                                                                ->count(); 
-                        
-                            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
-                                                                ->where('VendorNo', $Vendor->VendorNo)
-                                                                ->get()
-                                                                ->count(); 
-                                    
                             if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0) {  
                                 continue;
                             }  
-    
+
                             array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);    
                         @endphp 
                     @endforeach
 
                     @php 
+                    
                         $VendorsWithSupplyStatus = count($NumberOfTotalRecordsForEachVendorArr); 
                         $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
 
@@ -199,8 +182,7 @@
                 </div>
             @endisset
         </div>
-        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
-            <!-- <h1>Daily/Recent</h1> -->
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}"> 
             <canvas id="myChart4" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
@@ -239,39 +221,17 @@
                 <p><span>Vendor with MAXIMUM Supplies</span> => &nbsp;&nbsp; <span>{{ $VendorWithTheHighestSupply }} <span  class="Passed">({{ round($PercentageForVendorWithTheHighestSupply, 2) }}%)</span></span></p>  
                 <p><span>Vendor with MINIMUM Supplies</span> => &nbsp;&nbsp; <span>{{ $VendorWithTheLowestSupply }} <span  class="Failed">({{ round($PercentageForVendorWithTheLowestSupply, 2) }}%)</span></span></p>  
             </div>
-        </div>
-        <!-- <div class="fuel-test-dashboard-inner"> -->
-            <!-- <h1>Daily/Recent</h1> -->
-            <!-- <canvas id="myChart5" style="width:100%;min-width:700px"></canvas> -->
-        <!-- </div> -->
+        </div> 
         @if (isset($_GET['RevealVendors']))
-            @foreach ($vendors as $vendor)
+            @foreach ($vendors as $Vendor)
                 @php 
-                
-                    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
-                                                        ->get()
-                                                        ->count(); 
-                
-                    $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
-                                                        ->where('VendorNo', $vendor->VendorNo)
-                                                        ->get()
-                                                        ->count(); 
-                
-                    $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
-                                                        ->where('VendorNo', $vendor->VendorNo)
-                                                        ->get()
-                                                        ->count(); 
-                
-                    $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
-                                                        ->where('VendorNo', $vendor->VendorNo)
-                                                        ->get()
-                                                        ->count(); 
-                                        
+                    include('../resources/views/DATA/Queries/NumberOfRecordsData.php'); 
+                    
+                    if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0) {  
+                        continue;
+                    }              
                 @endphp
-            
-                @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
-                    @continue;
-                @endif
+             
 
                 @php
                 
@@ -282,25 +242,25 @@
                     $PercentageOfNumberOfRejectedRecordsForEachVendor = $NumberOfRejectedRecordsForEachVendor / $NumberOfTotalRecordsForEachVendor * 100;
                                                                         
                     $FirstSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')                                                                
-                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->where('VendorNo', $Vendor->VendorNo)
                                                         ->first();         
                                                     
                     $RecentSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')                                                                
-                                                        ->where('VendorNo', $vendor->VendorNo)
+                                                        ->where('VendorNo', $Vendor->VendorNo)
                                                         ->orderBy('SampleNo', 'DESC')
                                                         ->first();         
                 
                 @endphp
 
                 <div class="fuel-test-dashboard-inner"> 
-                    <canvas id="VendorChart{{ $vendor->id }}" style="width:100%;min-width:700px"></canvas>  
+                    <canvas id="VendorChart{{ $Vendor->id }}" style="width:100%;min-width:700px"></canvas>  
                     <div>
                         <h1>BREAKDOWN</h1>
                         <p><span>Total Number of FUEL Supplied</span> => &nbsp;&nbsp; <span>{{ $NumberOfTotalRecordsForEachVendor }} (100%)</span></p> 
                         <p><span>Tests with FAILED Results</span> => &nbsp;&nbsp; <span class="Failed">{{ $NumberOfRejectedRecordsForEachVendor }} ({{ round($PercentageOfNumberOfRejectedRecordsForEachVendor) }}%)</span></p> 
                         <p><span>Tests with PASSED Results</span> => &nbsp;&nbsp; <span class="Passed">{{ $NumberOfApprovedRecordsForEachVendor }} ({{ round($PercentageOfNumberOfApprovedRecordsForEachVendor) }}%)</span></p>
                         <p><span>Tests Approved on a WAIVER</span> => &nbsp;&nbsp; <span class="Waved">{{ $NumberOfWavedRecordsForEachVendor }} ({{ round($PercentageOfNumberOfWavedRecordsForEachVendor) }}%)</span></p> 
-                        <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $vendor->VendorNo }}</span></p>
+                        <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $Vendor->VendorNo }}</span></p>
                         <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate->SampleCollectionDate }}</span></p>
                         <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate->SampleCollectionDate }}</span></p>
                     </div> 
@@ -349,7 +309,15 @@ let FuelTestResults = new Chart("myChart", {
                     "rgb(162, 181, 187)",
                 ],
                 borderWidth: 1,
-                data: [{{ $number_of_failed_records }}, {{ $number_of_passed_records }}, {{ $number_of_waved_records }}, @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  {{ $number_of_diff_records }}, @endif {{ $number_of_previous_records }}, {{ $number_of_all_records }}],
+                data: [
+                    {{ $number_of_failed_records }},
+                    {{ $number_of_passed_records }}, 
+                    {{ $number_of_waved_records }}, 
+                    @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  
+                    {{ $number_of_diff_records }}, @endif 
+                    {{ $number_of_previous_records }}, 
+                    {{ $number_of_all_records }}
+                ],
             }]
         },
         options: {

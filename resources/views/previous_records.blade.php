@@ -469,11 +469,11 @@
                     <td class="pdf-and-edit">
                         <form action="/GenerateCertificate/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf
                             <input type="image" src="/images/pdf.png"> 
-                            @include('PreviousRecordsCertificateData')                            
+                                    @include('DATA.CertificateData')
                         </form> 
                         <form action="/Edit/{{ $previous_record->SampleNo }}" > 
                             <input type="image" src="/images/edit.png"> 
-                            @include('PreviousRecordsCertificateData')   
+                                    @include('DATA.CertificateData')
                         </form> 
                         <form class="GenerateChart" action="{{ route('fuel_test_stats') }}" method="get">
                             <label>
@@ -500,7 +500,7 @@
                     <td class="sample-no">
                             <form action="">
                                 <label>
-                                    @include('PreviousRecordsCertificateData')
+                                    @include('DATA.CertificateData')
                                     {{ $previous_record->SampleNo }} 
                                 </label>
                             </form>  
@@ -509,7 +509,7 @@
                     <td class="vendors">
                         <form action="">
                             <label>
-                                @include('PreviousRecordsCertificateData')
+                                    @include('DATA.CertificateData')
                                 {{ $previous_record->VendorName }} 
                             </label>
                         </form>

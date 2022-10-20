@@ -7,31 +7,8 @@
 @section('content')
     <div class="fuel-test-main">
         @include('PageTitle') 
-        <div class="record-updated-alert">This Record is Updated {{ $SampleNo }}</div> 
-        <center>
-            <form action="/ShowCertificate/{{ $SampleNo }}" method="post" target="_blank">@csrf  
-                <input type="image" src="/images/pdf.png">
-                <input name="SampleNo" type="hidden" value="{{ $SampleNo }}">
-                <input name="SampleCollectionDate" type="hidden" value="{{ $SampleCollectionDate }}">
-                <input name="Color" type="hidden" value="{{ $Color }}">
-                <input name="AppearanceResult" type="hidden" value="{{ $AppearanceResult }}">
-                <input name="TruckPlateNo" type="hidden" placeholder="Enter Plate No." value="{{ $TruckPlateNo }}">
-                <input name="TankNo" type="hidden" placeholder="Input Plate No." value="{{ $TankNo }}">
-                <input name="uid" type="hidden" value="{{ $id }}">
-                <input name="Density" type="hidden" placeholder="Input Density..." value="{{ $Density }}">
-                <input name="FlashPoint" type="hidden" placeholder="Enter Flash Point..." value="{{ $FlashPoint }}">
-                <input name="Temp" type="hidden" placeholder="Temperature..." value="{{ $Temp }}">
-                <input name="WaterSediment" type="hidden" placeholder="Required..." value="{{ $WaterSediment }}">
-                <input name="Cleanliness" type="hidden" placeholder="Cleanliness..." value="{{ $Cleanliness }}">
-                <input name="DateOfTest" type="hidden" placeholder="Date..." value="{{ $DateOfTest }}"> 
-                <input name="MadeBy" type="hidden" list="MadeBy" name="MadeBy" value="{{ $MadeBy }}">
-                <input name="DeliveredTo" type="hidden" placeholder="Delivered To..." value="{{ $DeliveredTo }}">
-                <input name="Remarks" type="hidden" placeholder="Remarks..." value="{{ $Remarks }}">
-                <input name="VendorName" type="hidden" value="{{ $VendorName }}"> 
-                <input name="VendorNo" type="hidden" value="{{ $VendorNo }}"> 
-                <input name="ApprovalForUse" type="hidden" value="{{ $ApprovalForUse }}"> 
-            </form>
-        </center>
+        <div class="record-updated-alert alert">This Record is Updated {{ $SampleNo }}</div>
+        @include('DATA.EditUpdateData')
         <br>
         <h1>MADE BY : {{ $MadeBy }}</h1>
         <h1>Sample no : {{ $SampleNo }}</h1>
@@ -199,15 +176,6 @@
         </div>
     </div>
     
-    <script src="/JS/Scripts.js"></script> 
-
-    <script>
-
-        let RecordUpdatedAlert = document.querySelector('section.fuel-test .fuel-test-main .record-updated-alert'); 
-
-        setTimeout(() => {
-            RecordUpdatedAlert.style.display = 'none';
-        }, 4000); 
-        
-    </script>
+    <script src="/JS/Scripts.js"></script>
+    <script src="/JS/Alert.js"></script>  
 @endsection

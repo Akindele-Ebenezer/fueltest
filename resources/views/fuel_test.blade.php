@@ -12,7 +12,7 @@
         @include('PageTitle')
 
         @if(app('router')->getRoutes()->match(app('request')->create(URL::previous()))->getName() == 'login_page')
-            <div class="log-in-alert">You are LOGGED IN</div>
+            <div class="log-in-alert alert">You are LOGGED IN</div>
         @endif
         <div class="form"> 
             <form action="{{ route('record_success') }}">
@@ -181,14 +181,5 @@
     </div>
 
     <script src="/JS/Scripts.js"></script> 
-
-    <script>
-
-        let LogInAlert = document.querySelector('section.fuel-test .fuel-test-main .log-in-alert');
- 
-        setTimeout(() => {
-            LogInAlert.style.display = 'none';
-        }, 4000); 
-        
-    </script>
+    <script src="/JS/Alert.js"></script>  
 @endsection
