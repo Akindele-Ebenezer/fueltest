@@ -80,14 +80,7 @@
                         ..
                     </th>
                 </tr>  
-                @foreach($vendors as $Vendor)
-                @php 
-
-                    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
-                                                        ->get()
-                                                        ->count(); 
-
-                @endphp
+                @foreach($vendors as $Vendor) 
                 <tr> 
                     <td class="vendor-id">{{ $Vendor->id }}</td>
                     <td class="vendor-no" id="Vend">
@@ -98,7 +91,7 @@
                                 {{ $Vendor->VendorNo }} 
                             </label>
                         </form>  
-                        <section class="records-tooltip">{{ $Vendor->VendorNo }} <br> [{{ $NumberOfTotalRecordsForEachVendor }}]</section>                      
+                        <section class="records-tooltip">{{ $Vendor->VendorNo }}</section>                      
                     </td>
                     <td class="vendor-name">
                         <form action="{{ route('all_records') }}">
@@ -108,10 +101,7 @@
                                 {{ $Vendor->VendorName }}
                             </label>
                         </form>  
-                        <section class="records-tooltip">
-
-                            {{ $Vendor->VendorName }} ({{ $NumberOfTotalRecordsForEachVendor }})<br> 
-                            
+                        <section class="records-tooltip"> 
                             @include('SwitchCases.SwitchCasesForVendors') 
                         </section> 
                     </td>  

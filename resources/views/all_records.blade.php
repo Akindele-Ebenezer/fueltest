@@ -543,8 +543,7 @@
                                 </label>
                             </form>
                             <section class="records-tooltip">  
-                                @include('SwitchCases.SwitchCasesForVendors')
-                               
+                                @include('SwitchCases.SwitchCasesForVendors')  
                             </section>
                         </td>
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
