@@ -9,7 +9,7 @@
                                                                         ->get()
                                                                         ->count(); 
 
-    $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+    $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
                                                                     ->where('VendorNo', $Vendor->VendorNo)
                                                                     ->get()
                                                                     ->count(); 

@@ -23,7 +23,7 @@
                                                                                                                                                                                                                         ->count();
 
         ${"WavedTestsFor" . str_replace(' ', '', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))}  = App\Models\FuelTestRecord::where('VendorName', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))
-                                                                                                                                                                                                                        ->where('ApprovalForUse', 'WAVED')
+                                                                                                                                                                                                                        ->where('ApprovalForUse', 'WAIVED')
                                                                                                                                                                                                                         ->orderBy('VendorName')
                                                                                                                                                                                                                         ->get()
                                                                                                                                                                                                                         ->count();
@@ -41,11 +41,11 @@
 
 @if(Route::is('previous_records'))
 
-    [{{ $previous_record->ApprovalForUse === 'APPROVED' ? 'Test for this record is Passed' : '' }}{{ $previous_record->ApprovalForUse === 'REJECTED' ? 'Test for this record is Rejected' : '' }}{{ $previous_record->ApprovalForUse === 'WAVED' ? 'Test for this record is Waved' : '' }}] <br> 
+    [{{ $previous_record->ApprovalForUse === 'APPROVED' ? 'Test for this record is Passed' : '' }}{{ $previous_record->ApprovalForUse === 'REJECTED' ? 'Test for this record is Rejected' : '' }}{{ $previous_record->ApprovalForUse === 'WAIVED' ? 'Test for this record is Waived' : '' }}] <br> 
 
     @elseif(Route::is('all_records'))
 
-    [{{ $record->ApprovalForUse === 'APPROVED' ? 'Test for this record is Passed' : '' }}{{ $record->ApprovalForUse === 'REJECTED' ? 'Test for this record is Rejected' : '' }}{{ $record->ApprovalForUse === 'WAVED' ? 'Test for this record is Waved' : '' }}] <br> 
+    [{{ $record->ApprovalForUse === 'APPROVED' ? 'Test for this record is Passed' : '' }}{{ $record->ApprovalForUse === 'REJECTED' ? 'Test for this record is Rejected' : '' }}{{ $record->ApprovalForUse === 'WAIVED' ? 'Test for this record is Waived' : '' }}] <br> 
 
 @endif
  

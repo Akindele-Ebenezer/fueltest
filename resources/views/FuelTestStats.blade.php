@@ -290,7 +290,7 @@
 let FuelTestResults = new Chart("myChart", {
     type: "horizontalBar",
     data: {
-            labels: ["Failed", "Passed", "Waved", @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif "Previous Records", "Total Records"],
+            labels: ["Failed", "Passed", "Waived", @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif "Previous Records", "Total Records"],
             datasets: [{
                 backgroundColor: [
                     'rgb(255, 30, 30, 0.3)',
@@ -504,7 +504,7 @@ let FuelTestResults = new Chart("myChart", {
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
@@ -548,7 +548,7 @@ let FuelTestResults = new Chart("myChart", {
                 borderColor: "rgb(255, 233, 0, 0.7)",
                 borderWidth: 1,
                 fill: false,
-                label: 'Waved', 
+                label: 'Waived', 
             }, 
             { 
                 data: [...NumberOfRejectedRecordsForEachVendor],
@@ -625,7 +625,7 @@ let FuelTestResults = new Chart("myChart", {
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAVED')
+            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 

@@ -13,9 +13,9 @@
             <input type="hidden" name="Title" value="{{ $title }}">
             <input type="submit" name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) || isset($_GET['FilterDateBetweenForCurrentVendor']) ? 'FilterWavedTestsForCurrentVendor' : 'FilterWavedTests' }}">
             <img src="images/waved.png">
-            WAVED [{{ Route::is('previous_records') ? $number_of_waved_records_ : '' }}{{ Route::is('all_records') ? $number_of_waved_records : '' }}]
+            WAIVED [{{ Route::is('previous_records') ? $number_of_waved_records_ : '' }}{{ Route::is('all_records') ? $number_of_waved_records : '' }}]
         </label>
-        <section class="tooltip">{{ Route::is('previous_records') ? $number_of_waved_records_ : '' }}{{ Route::is('all_records') ? $number_of_waved_records : '' }} DIESEL Tests = Waved</section> 
+        <section class="tooltip">{{ Route::is('previous_records') ? $number_of_waved_records_ : '' }}{{ Route::is('all_records') ? $number_of_waved_records : '' }} DIESEL Tests = Waived</section> 
     </form> 
     <form action="" class="Failed">
         <label>

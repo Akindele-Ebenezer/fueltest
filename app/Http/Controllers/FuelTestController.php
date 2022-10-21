@@ -164,12 +164,12 @@ class FuelTestController extends Controller
                                         ->get();
         $number_of_failed_records_ = count($FailedRecords_);
 
-        $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')->orderBy('SampleNo', 'DESC')
+        $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAIVED')->orderBy('SampleNo', 'DESC')
                                         ->get();
         $number_of_waved_records = count($WavedRecords);  
 
         $WavedRecords_ = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', 'DESC')
-                                        ->where('ApprovalForUse', 'WAVED')
+                                        ->where('ApprovalForUse', 'WAIVED')
                                         ->get();
         $number_of_waved_records_ = count($WavedRecords_);   
  
@@ -559,7 +559,7 @@ class FuelTestController extends Controller
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -574,7 +574,7 @@ class FuelTestController extends Controller
                 
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
-                                                ->where('ApprovalForUse', 'WAVED')
+                                                ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')->get();
                 
                 $number_of_all_records = count($all_records);
@@ -588,7 +588,7 @@ class FuelTestController extends Controller
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -617,7 +617,7 @@ class FuelTestController extends Controller
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -645,7 +645,7 @@ class FuelTestController extends Controller
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
                     $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
-                                                    ->where('ApprovalForUse', "WAVED")
+                                                    ->where('ApprovalForUse', "WAIVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
                     $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -672,7 +672,7 @@ class FuelTestController extends Controller
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
                     $number_of_waved_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
-                                                    ->where('ApprovalForUse', "WAVED")
+                                                    ->where('ApprovalForUse', "WAIVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
                     $number_of_diff_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
@@ -771,7 +771,7 @@ class FuelTestController extends Controller
             if (isset($_GET['FilterWavedTests'])) {   
                 $all_records = $WavedRecords; 
                 
-                $title = 'Waved Tests';
+                $title = 'Waived Tests';
                 $number_of_all_records = count($all_records);
             } 
 
@@ -805,7 +805,7 @@ class FuelTestController extends Controller
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -1301,7 +1301,7 @@ class FuelTestController extends Controller
                 
                 $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -1318,7 +1318,7 @@ class FuelTestController extends Controller
             $title = $VendorName = $_GET['Title'];
             $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
-                                                ->where('ApprovalForUse', 'WAVED')
+                                                ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')->get();
             
             $number_of_previous_records = count($previous_records);
@@ -1335,7 +1335,7 @@ class FuelTestController extends Controller
                 
                 $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -1369,7 +1369,7 @@ class FuelTestController extends Controller
                 
                 $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -1402,7 +1402,7 @@ class FuelTestController extends Controller
                 
                 $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
-                                                ->where('ApprovalForUse', "WAVED")
+                                                ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
                 $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
@@ -1437,7 +1437,7 @@ class FuelTestController extends Controller
                     
                     $number_of_waved_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
                                                     ->where('uid', $id)
-                                                    ->where('ApprovalForUse', "WAVED")
+                                                    ->where('ApprovalForUse', "WAIVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
                     $number_of_diff_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
@@ -1541,7 +1541,7 @@ class FuelTestController extends Controller
             if (isset($_GET['FilterWavedTests'])) {   
                 $previous_records = $WavedRecords_; 
                 
-                $title = 'Waved Tests';
+                $title = 'Waived Tests';
                 $number_of_previous_records = count($previous_records);
             } 
 
@@ -2378,7 +2378,7 @@ class FuelTestController extends Controller
     
                 $number_of_failed_records = count($FailedRecords);  
     
-                $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAVED')
+                $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
                                                     ->where('VendorNo', $CurrentVendorNo)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();

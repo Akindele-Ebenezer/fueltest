@@ -519,8 +519,8 @@
                                 <img src="images/rejected.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Failed ]</section>  
                             @endif
 
-                            @if($record->ApprovalForUse === 'WAVED')
-                                <img src="images/waved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Waved ]</section>  
+                            @if($record->ApprovalForUse === 'WAIVED')
+                                <img src="images/waved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Waived ]</section>  
                             @endif
 
                             @if($record->ApprovalForUse === NULL)
