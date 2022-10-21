@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
-use App\Models\FuelTestUser;
-use App\Models\FuelTest;
+use App\Models\FuelTestUser; 
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
@@ -15,7 +14,10 @@ class AuthController extends Controller
             $username = $request->Email;
             $password = $request->Password; 
 
-            $query = DB::table('fuel_test_users')->where('Email', $username)->where('Password', $password)->get();
+            $query = DB::table('fuel_test_users')
+                        ->where('Email', $username)
+                        ->where('Password', $password)
+                        ->get();
             
             if(count($query) == 1) {
                 
@@ -30,11 +32,13 @@ class AuthController extends Controller
                     Session::put('name', $current_user->Name); 
                 
                     if(Session::has('email')) {
-                        return redirect('FuelTest'); 
+                        return redirect('AllRecords'); 
                     } else {                                       
                         return redirect('/');        
                     }  
+                    
                 } 
+
             } elseif(empty($username)) {
                 $EmailError = 'Enter Email..';
 
