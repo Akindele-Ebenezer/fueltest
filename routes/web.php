@@ -29,9 +29,7 @@ Route::post('/update/{SampleNo}', [FuelTestController::class, 'update']);
 
 Route::get('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
  
-Route::post('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']);
-
-Route::post('/ShowCertificate/{SampleNo}', [PdfController::class, 'show']);
+Route::post('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']); 
  
 Route::get('/export', [FuelTestController::class, 'export']);
 

@@ -1,5 +1,5 @@
 <center>
-    <form action="/ShowCertificate/{{ $SampleNo }}" target="_blank" method="post">@csrf
+    <form action="/GenerateCertificate/{{ $SampleNo }}" target="_blank" method="post">@csrf
         <input type="image" src="/images/pdf.png">
         <input name="SampleNo" type="hidden" value="{{ $SampleNo }}">
         <input name="SampleCollectionDate" type="hidden" value="{{ $SampleCollectionDate }}">

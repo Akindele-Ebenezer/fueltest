@@ -2082,11 +2082,11 @@ class FuelTestController extends Controller
         $FirstDayOfThisMonth = date('Y-m-1'); 
         $TodaysDate = date('Y-m-d'); 
         
-        $this_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
-                        ->orderBy('SampleNo', 'DESC')
-                        ->get();
+        $this_month_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+                                ->orderBy('SampleNo', 'DESC')
+                                ->get();
          
-        $number_of_all_records_this_month = count($this_records);
+        $number_of_all_records_this_month = count($this_month_records);
         $PercentageOfAllRecordsThisMonth = $number_of_all_records_this_month / $number_of_all_records * 100; 
 
         $TodaysDate = date('Y-m-d'); 
@@ -2305,19 +2305,40 @@ class FuelTestController extends Controller
                                                 ->first();
              
             if($CurrentVendorName == null) { 
-                $CurrentVendorName = '<big style="color: red; font-family: arial;">This Vendor has NO RECORDS yet !</big>'; 
-                $PercentageOfPassedRecords = 0; 
-                $PercentageOfFailedRecords = 0; 
-                $PercentageOfWavedRecords = 0;  
+                $CurrentVendorName = '<big style="color: red; font-family: arial;">This Vendor has NO RECORDS yet !</big>';  
 
                 return view('FuelTestStats', $ViewData)->with('Visibility', 'hide')
                                                         ->with('CurrentVendorNo', $CurrentVendorNo)   
                                                         ->with('CurrentVendorName', $CurrentVendorName)   
                                                         ->with('FirstSupplyDate', '')   
-                                                        ->with('RecentSupplyDate', '')   
-                                                        ->with('PercentageOfPassedRecords', $PercentageOfPassedRecords)   
-                                                        ->with('PercentageOfWavedRecords', $PercentageOfWavedRecords)   
-                                                        ->with('PercentageOfFailedRecords', $PercentageOfFailedRecords)   
+                                                        ->with('RecentSupplyDate', '')    
+                                                        ->with('PercentageOfFailedRecords', 0)
+                                                        ->with('PercentageOfPassedRecords', 0)
+                                                        ->with('PercentageOfWavedRecords', 0)
+                                                        ->with('PercentageOfDiffRecords', 0)
+                                                        ->with('PercentageOfNumberOfRecordsLastMonth', 0)
+                                                        ->with('PercentageOfAllRecordsThisMonth', 0)
+                                                        ->with('PercentageOfAllRecordsInJanuary', 0)
+                                                        ->with('PercentageOfAllRecordsInFebruary', 0)
+                                                        ->with('PercentageOfAllRecordsInMarch', 0)
+                                                        ->with('PercentageOfAllRecordsInApril', 0)
+                                                        ->with('PercentageOfAllRecordsInMay', 0)
+                                                        ->with('PercentageOfAllRecordsInJune', 0)
+                                                        ->with('PercentageOfAllRecordsInJuly', 0)
+                                                        ->with('PercentageOfAllRecordsInAugust', 0)
+                                                        ->with('PercentageOfAllRecordsInSeptember', 0)
+                                                        ->with('PercentageOfAllRecordsInOctober', 0)
+                                                        ->with('PercentageOfAllRecordsInNovember', 0)
+                                                        ->with('PercentageOfAllRecordsInDecember', 0)
+                                                        ->with('PercentageOfNumberOfRecordsLastSevenDays', 0)
+                                                        ->with('PercentageOfAllRecordsToday', 0)
+                                                        ->with('PercentageOfAllRecordsYesterday', 0)
+                                                        ->with('PercentageOfAllRecordsTwoDaysAgo', 0)
+                                                        ->with('PercentageOfAllRecordsThreeDaysAgo', 0)
+                                                        ->with('PercentageOfAllRecordsFourDaysAgo', 0)
+                                                        ->with('PercentageOfAllRecordsFiveDaysAgo', 0)
+                                                        ->with('PercentageOfAllRecordsSixDaysAgo', 0)
+                                                        ->with('PercentageOfAllRecordsSevenDaysAgo', 0)  
                                                         ->with('PercentageOfDiffRecords', 0)   
                                                         ->with('number_of_passed_records', 0)   
                                                         ->with('number_of_diff_records', 0)
