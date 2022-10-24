@@ -41,11 +41,11 @@
 
 @if(Route::is('previous_records'))
 
-    [{{ $previous_record->ApprovalForUse === 'APPROVED' ? 'Test for this record is Passed' : '' }}{{ $previous_record->ApprovalForUse === 'REJECTED' ? 'Test for this record is Rejected' : '' }}{{ $previous_record->ApprovalForUse === 'WAIVED' ? 'Test for this record is Waived' : '' }}] <br> 
+    [{{ $previous_record->ApprovalForUse === 'APPROVED' ? 'Test for this record created on ' . $previous_record->created_at . ' is Passed' : '' }}{{ $previous_record->ApprovalForUse === 'REJECTED' ? 'Test for this record created on ' . $previous_record->created_at . ' is Rejected' : '' }}{{ $previous_record->ApprovalForUse === 'WAIVED' ? 'Test for this record created on ' . $previous_record->created_at . ' is Waived' : '' }}] <br> 
 
     @elseif(Route::is('all_records'))
 
-    [{{ $record->ApprovalForUse === 'APPROVED' ? 'Test for this record is Passed' : '' }}{{ $record->ApprovalForUse === 'REJECTED' ? 'Test for this record is Rejected' : '' }}{{ $record->ApprovalForUse === 'WAIVED' ? 'Test for this record is Waived' : '' }}] <br> 
+    [{{ $record->ApprovalForUse === 'APPROVED' ? 'Test for this record created on ' . $record->created_at . ' is Passed' : '' }}{{ $record->ApprovalForUse === 'REJECTED' ? 'Test for this record created on ' . $record->created_at . ' is Rejected' : '' }}{{ $record->ApprovalForUse === 'WAIVED' ? 'Test for this record created on ' . $record->created_at . ' is Waived' : '' }}] <br> 
 
 @endif
  

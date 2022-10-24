@@ -482,19 +482,19 @@
                             </label>
                         </form>
                             @if($previous_record->ApprovalForUse === 'APPROVED')
-                                <img src="images/approved.png"> <section class="records-tooltip">{{ $previous_record->SampleNo }} <br> [ Passed ]</section> 
+                                <img src="images/approved.png"> <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> [ Passed ]</section> 
                             @endif
 
                             @if($previous_record->ApprovalForUse === 'REJECTED')
-                                <img src="images/rejected.png"> <section class="records-tooltip">{{ $previous_record->SampleNo }} <br> [ Rejected ]</section>  
+                                <img src="images/rejected.png"> <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> [ Rejected ]</section>  
                             @endif
 
                             @if($previous_record->ApprovalForUse === 'WAIVED')
-                                <img src="images/waved.png"> <section class="records-tooltip">{{ $previous_record->SampleNo }} <br> [ Waived ]</section>  
+                                <img src="images/waved.png"> <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> [ Waived ]</section>  
                             @endif
                             
                             @if($previous_record->ApprovalForUse === NULL)
-                                <img src="images/diff.png"> <section class="records-tooltip">{{ $previous_record->SampleNo }} <br> [ Diff ]</section>  
+                                <img src="images/diff.png"> <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> [ Diff ]</section>  
                             @endif
                     </td>
                     <td class="sample-no">
@@ -503,6 +503,7 @@
                                     @include('DATA.CertificateData')
                                     {{ $previous_record->SampleNo }} 
                                 </label>
+                                <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> <hr> Created on {{ $previous_record->created_at }}</section> 
                             </form>  
                         </td> 
                     </td>
@@ -513,7 +514,7 @@
                                 {{ $previous_record->VendorName }} 
                             </label>
                         </form>
-                        <section class="records-tooltip">
+                        <section class="records-tooltip tooltip">
                             @include('SwitchCases.SwitchCasesForVendors') 
                         </section>
                     </td> 

@@ -24,6 +24,21 @@ h4 {
   font-family: "Bitter", serif;
 }
 
+.log-in-alert {
+  border-radius: 1rem;
+  background: #d3ffd3;
+  color: green;
+  padding: 2rem;
+  position: absolute;
+  right: 2rem;
+  top: 10rem;
+  width: max-content;
+  z-index: 2000;
+  padding: 1rem;
+  right: 6rem;
+  top: 2.5rem;
+}
+
 button {
   background: #00592e;
   border: 1px solid #00592e;
@@ -385,17 +400,6 @@ section.fuel-test .fuel-test-main {
   overflow: scroll;
   position: relative;
   width: 80vw;
-}
-section.fuel-test .fuel-test-main .log-in-alert {
-  border-radius: 1rem;
-  background: #d3ffd3;
-  color: green;
-  padding: 2rem;
-  position: absolute;
-  right: 2rem;
-  top: 10rem;
-  width: max-content;
-  z-index: 2000;
 }
 section.fuel-test .fuel-test-main .form {
   border-radius: 0.3rem;

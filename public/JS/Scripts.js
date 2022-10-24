@@ -10,32 +10,9 @@ document.addEventListener('click', () => {
         SelectFields[i].nextElementSibling.classList.remove('ToggleList');
     }
 });
-
-let VendorNoInputBox = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]');
-let ChooseColorBox = document.querySelector('section.fuel-test .fuel-test-main .form .choose-color');
-let ChooseAppearanceResult = document.querySelector('section.fuel-test .fuel-test-main .form .appearance-result');
-let ChooseMadeBy = document.querySelector('section.fuel-test .fuel-test-main .form .made-by');
-let ApprovalForUse = document.querySelector('section.fuel-test .fuel-test-main .form .approval-for-use');
  
-let SelectFields = [
-    VendorNoInputBox,
-    ChooseColorBox,
-    ChooseAppearanceResult,
-    ChooseMadeBy, 
-    ApprovalForUse, 
-];
-    
-let VendorsList = document.querySelectorAll('section.fuel-test .fuel-test-main .form div section ul li'); 
-let ColorList = document.querySelectorAll('section.fuel-test .fuel-test-main .form .Colors ul li');
-let AppearanceResultList = document.querySelectorAll('section.fuel-test .fuel-test-main .form .AppearanceResult ul li');
-let MadeByList = document.querySelectorAll('section.fuel-test .fuel-test-main .form .MadeBy ul li');
-
-let SelectDropdownArray = [
-    VendorsList,
-    ColorList,
-    AppearanceResultList,
-    MadeByList,
-];
+let SelectFields = document.querySelectorAll('.select')  
+let SelectDropdownArray = document.querySelectorAll('.dropdown-list');
 
 for (let i = 0; i < SelectFields.length; i++) {       
              
@@ -56,25 +33,24 @@ for (let i = 0; i < SelectFields.length; i++) {
 
 } 
 
-SelectDropdownArray.forEach(SelectDropdown => {
-    SelectDropdown.forEach(SelectDropdownLi => {
-        SelectDropdownLi.addEventListener('click', () => {
-            if (SelectDropdownLi.parentElement.parentElement.previousElementSibling.getAttribute("name") === 'VendorNo') {
-                SelectDropdownLi.parentElement.parentElement.previousElementSibling.value = SelectDropdownLi.lastElementChild.textContent; 
-                SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 
-            } else {
-                SelectDropdownLi.parentElement.parentElement.previousElementSibling.value = SelectDropdownLi.textContent;
-                SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 
-            } 
-        });
-
-        SelectDropdownLi.parentElement.parentElement.addEventListener('mouseleave', () => {
+SelectDropdownArray.forEach(SelectDropdownLi => { 
+    SelectDropdownLi.addEventListener('click', () => {
+        if (SelectDropdownLi.parentElement.parentElement.previousElementSibling.getAttribute("name") === 'VendorNo') {
+            SelectDropdownLi.parentElement.parentElement.previousElementSibling.value = SelectDropdownLi.lastElementChild.textContent; 
             SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 
-        }); 
-    })   
+        } else {
+            SelectDropdownLi.parentElement.parentElement.previousElementSibling.value = SelectDropdownLi.textContent;
+            SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 
+        } 
+    });
+
+    SelectDropdownLi.parentElement.parentElement.addEventListener('mouseleave', () => {
+        SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 
+    });   
 })
 
 let VendorNames = document.querySelectorAll('section.fuel-test .fuel-test-main .form .VendorList li');
+let VendorNoInputBox = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]');
 
 VendorNoInputBox.addEventListener('input', (VendorNo) => { 
     for (let i = 0; i < VendorNames.length; i++) { 

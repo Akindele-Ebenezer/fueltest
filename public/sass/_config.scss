@@ -33,6 +33,14 @@ $headings: 1, 2, 3, 4;
     z-index: 2000;
 }
 
+ 
+.log-in-alert {
+    @include alert();
+    padding: 1rem;
+    right: 6rem;
+    top: 2.5rem;
+}
+
 button {
     background: $color-2;
     border: 1px solid $color-2;

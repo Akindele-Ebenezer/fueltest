@@ -32,12 +32,16 @@
                 <div>  
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>
                     <label for="VendorNo">Vendor No.</label><br>
-                    <input type="text" placeholder="Vendor No..." name="VendorNo" value="{{ $VendorNo_ }}"><input type="text" placeholder="Name of VENDOR..." name="VendorName" id="EditVendorName" value="{{ $VendorName_ }}">
-                    <datalist id="Vendors">
-                        @foreach($vendors as $vendor)
-                            <option value="{{ $vendor->VendorNo }}"> 
-                        @endforeach
-                    </datalist> 
+                    <input class="select" type="text" placeholder="Vendor No..." name="VendorNo" value="{{ $VendorNo_ }}" autocomplete="off">
+                    <section class="VendorList">
+                        <ul>
+                            <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>VENDORS List <span>{{ $number_of_vendors }}</span></h2>
+                            @foreach($vendors as $vendor)
+                                <li class="dropdown-list"><p>{{ $vendor->VendorName }}</p> <span>{{ $vendor->VendorNo }}</span></li> 
+                            @endforeach
+                        </ul>
+                    </section>
+                    <input type="text" placeholder="Name of VENDOR..." name="VendorName" value="{{ $VendorName_ }}">
                 </div> 
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M55.1 56.04C55.1 42.78 66.74 32.04 79.1 32.04H111.1C125.3 32.04 135.1 42.78 135.1 56.04V176H151.1C165.3 176 175.1 186.8 175.1 200C175.1 213.3 165.3 224 151.1 224H71.1C58.74 224 47.1 213.3 47.1 200C47.1 186.8 58.74 176 71.1 176H87.1V80.04H79.1C66.74 80.04 55.1 69.29 55.1 56.04V56.04zM118.7 341.2C112.1 333.8 100.4 334.3 94.65 342.4L83.53 357.9C75.83 368.7 60.84 371.2 50.05 363.5C39.26 355.8 36.77 340.8 44.47 330.1L55.59 314.5C79.33 281.2 127.9 278.8 154.8 309.6C176.1 333.1 175.6 370.5 153.7 394.3L118.8 432H152C165.3 432 176 442.7 176 456C176 469.3 165.3 480 152 480H64C54.47 480 45.84 474.4 42.02 465.6C38.19 456.9 39.9 446.7 46.36 439.7L118.4 361.7C123.7 355.9 123.8 347.1 118.7 341.2L118.7 341.2zM512 64C529.7 64 544 78.33 544 96C544 113.7 529.7 128 512 128H256C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H512zM512 224C529.7 224 544 238.3 544 256C544 273.7 529.7 288 512 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224H512zM512 384C529.7 384 544 398.3 544 416C544 433.7 529.7 448 512 448H256C238.3 448 224 433.7 224 416C224 398.3 238.3 384 256 384H512z"/></svg>
@@ -66,9 +70,9 @@
                     <section class="AppearanceResult">
                         <ul>
                             <h2>APPEARANCE Result <span> </span></h2>
-                            <li>BRIGHT</li>
-                            <li>CLEAR</li>
-                            <li>MUDDY</li> 
+                            <li class="dropdown-list">BRIGHT</li>
+                            <li class="dropdown-list">CLEAR</li>
+                            <li class="dropdown-list">MUDDY</li> 
                         </ul>
                     </section>
                 </div>
@@ -79,22 +83,22 @@
                     <section class="Colors">
                         <ul>
                             <h2>COLORS Palette <span> </span></h2>
-                            <li>0.5</li>
-                            <li>1.0</li>
-                            <li>1.5</li>
-                            <li>2.0</li>
-                            <li>2.5</li>
-                            <li>3.0</li>
-                            <li>3.5</li>
-                            <li>4.0</li>
-                            <li>4.5</li>
-                            <li>5.0</li>
-                            <li>5.5</li>
-                            <li>6.0</li>
-                            <li>6.5</li>
-                            <li>7.0</li>
-                            <li>7.5</li>
-                            <li>8.0</li> 
+                            <li class="dropdown-list">0.5</li>
+                            <li class="dropdown-list">1.0</li>
+                            <li class="dropdown-list">1.5</li>
+                            <li class="dropdown-list">2.0</li>
+                            <li class="dropdown-list">2.5</li>
+                            <li class="dropdown-list">3.0</li>
+                            <li class="dropdown-list">3.5</li>
+                            <li class="dropdown-list">4.0</li>
+                            <li class="dropdown-list">4.5</li>
+                            <li class="dropdown-list">5.0</li>
+                            <li class="dropdown-list">5.5</li>
+                            <li class="dropdown-list">6.0</li>
+                            <li class="dropdown-list">6.5</li>
+                            <li class="dropdown-list">7.0</li>
+                            <li class="dropdown-list">7.5</li>
+                            <li class="dropdown-list">8.0</li> 
                         </ul>
                     </section>
                 </div>
@@ -137,7 +141,7 @@
                         <ul>
                             <h2>Made By <span>(Name)</span></h2>
                             @foreach($fuel_test_users as $fuel_test_user)
-                                <li>{{ $fuel_test_user->Name }}</li>  
+                                <li class="dropdown-list">{{ $fuel_test_user->Name }}</li>  
                             @endforeach
                         </ul>
                     </section>
@@ -154,9 +158,9 @@
                     <section class="ApprovalForUse">
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96.2 200.1C96.07 197.4 96 194.7 96 192C96 103.6 167.6 32 256 32C315.3 32 367 64.25 394.7 112.2C409.9 101.1 428.3 96 448 96C501 96 544 138.1 544 192C544 204.2 541.7 215.8 537.6 226.6C596 238.4 640 290.1 640 352C640 422.7 582.7 480 512 480H144C64.47 480 0 415.5 0 336C0 273.2 40.17 219.8 96.2 200.1z"/></svg>Test Approval<span> </span></h2>
-                            <li class="Rejected">REJECTED</li>
-                            <li class="Approved">APPROVED</li>
-                            <li class="Waved">WAIVED</li> 
+                            <li class="Rejected dropdown-list">REJECTED</li>
+                            <li class="Approved dropdown-list">APPROVED</li>
+                            <li class="Waved dropdown-list">WAIVED</li> 
                         </ul>
                     </section> 
                 </div>

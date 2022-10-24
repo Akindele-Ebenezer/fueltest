@@ -6,6 +6,10 @@
 @section('title', $title)
 @section('content')
     @include('ShowRecord')
+    
+    @if(app('router')->getRoutes()->match(app('request')->create(URL::previous()))->getName() == 'login_page')
+        <div class="log-in-alert alert">You are LOGGED IN</div>
+    @endif
     <section class="previous-records">
         <center>  
             <div>
@@ -512,19 +516,19 @@
                                 </label>
                             </form>
                             @if($record->ApprovalForUse === 'APPROVED')
-                                <img src="images/approved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Passed ]</section>  
+                                <img src="images/approved.png"> <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> [ Passed ]</section>  
                             @endif
                             
                             @if($record->ApprovalForUse === 'REJECTED')
-                                <img src="images/rejected.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Failed ]</section>  
+                                <img src="images/rejected.png"> <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> [ Failed ]</section>  
                             @endif
 
                             @if($record->ApprovalForUse === 'WAIVED')
-                                <img src="images/waved.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Waived ]</section>  
+                                <img src="images/waved.png"> <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> [ Waived ]</section>  
                             @endif
 
                             @if($record->ApprovalForUse === NULL)
-                                <img src="images/diff.png"> <section class="records-tooltip">{{ $record->SampleNo }} <br> [ Diff ]</section>  
+                                <img src="images/diff.png"> <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> [ Diff ]</section>  
                             @endif
                         </td> 
                         <td class="sample-no">
@@ -533,6 +537,7 @@
                                     @include('DATA.CertificateData')
                                     {{ $record->SampleNo }} 
                                 </label>
+                                <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created on {{ $record->created_at }}</section> 
                             </form> 
                         </td>
                         <td class="vendors">
@@ -542,7 +547,7 @@
                                     {{ $record->VendorName }} 
                                 </label>
                             </form>
-                            <section class="records-tooltip">  
+                            <section class="records-tooltip tooltip">  
                                 @include('SwitchCases.SwitchCasesForVendors')  
                             </section>
                         </td>
@@ -570,6 +575,7 @@
         </div>
     </section>
 
+    <script src="/JS/Alert.js"></script>  
     <script src="JS/Tooltips.js"></script>
     <script src="JS/Resizable.js"></script> 
     <script src="JS/Records/Scripts.js"></script> 

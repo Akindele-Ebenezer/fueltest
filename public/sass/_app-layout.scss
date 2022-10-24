@@ -80,10 +80,6 @@ section {
                 overflow: scroll;
                 position: relative;
                 width: 80vw;
- 
-                .log-in-alert {
-                    @include alert();
-                }
 
                 .form {
                     border-radius: .3rem;

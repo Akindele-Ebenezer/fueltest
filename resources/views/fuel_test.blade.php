@@ -31,12 +31,12 @@
                 <div>  
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>
                     <label for="VendorNo">Vendor No.</label><br>
-                    <input type="text" placeholder="Vendor No..." name="VendorNo" value="{{ $VendorNo }}" autocomplete="off">
+                    <input class="select" type="text" placeholder="Vendor No..." name="VendorNo" value="{{ $VendorNo }}" autocomplete="off">
                     <section class="VendorList">
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>VENDORS List <span>{{ $number_of_vendors }}</span></h2>
                             @foreach($vendors as $vendor)
-                                <li><p>{{ $vendor->VendorName }}</p> <span>{{ $vendor->VendorNo }}</span></li> 
+                                <li class="dropdown-list"><p>{{ $vendor->VendorName }}</p> <span>{{ $vendor->VendorNo }}</span></li> 
                             @endforeach
                         </ul>
                     </section>
@@ -63,9 +63,9 @@
                     <section class="AppearanceResult">
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96.2 200.1C96.07 197.4 96 194.7 96 192C96 103.6 167.6 32 256 32C315.3 32 367 64.25 394.7 112.2C409.9 101.1 428.3 96 448 96C501 96 544 138.1 544 192C544 204.2 541.7 215.8 537.6 226.6C596 238.4 640 290.1 640 352C640 422.7 582.7 480 512 480H144C64.47 480 0 415.5 0 336C0 273.2 40.17 219.8 96.2 200.1z"/></svg>APPEARANCE Result <span> </span></h2>
-                            <li class="Bright"><span></span> BRIGHT</li>
-                            <li class="Clear"><span></span> CLEAR</li>
-                            <li class="Muddy"><span></span> MUDDY</li> 
+                            <li class="Bright dropdown-list"><span></span> BRIGHT</li>
+                            <li class="Clear dropdown-list"><span></span> CLEAR</li>
+                            <li class="Muddy dropdown-list"><span></span> MUDDY</li> 
                         </ul>
                     </section> 
                 </div>
@@ -77,22 +77,22 @@
                     <section class="Colors">
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 255.1C512 256.9 511.1 257.8 511.1 258.7C511.6 295.2 478.4 319.1 441.9 319.1H344C317.5 319.1 296 341.5 296 368C296 371.4 296.4 374.7 297 377.9C299.2 388.1 303.5 397.1 307.9 407.8C313.9 421.6 320 435.3 320 449.8C320 481.7 298.4 510.5 266.6 511.8C263.1 511.9 259.5 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256V255.1zM96 255.1C78.33 255.1 64 270.3 64 287.1C64 305.7 78.33 319.1 96 319.1C113.7 319.1 128 305.7 128 287.1C128 270.3 113.7 255.1 96 255.1zM128 191.1C145.7 191.1 160 177.7 160 159.1C160 142.3 145.7 127.1 128 127.1C110.3 127.1 96 142.3 96 159.1C96 177.7 110.3 191.1 128 191.1zM256 63.1C238.3 63.1 224 78.33 224 95.1C224 113.7 238.3 127.1 256 127.1C273.7 127.1 288 113.7 288 95.1C288 78.33 273.7 63.1 256 63.1zM384 191.1C401.7 191.1 416 177.7 416 159.1C416 142.3 401.7 127.1 384 127.1C366.3 127.1 352 142.3 352 159.1C352 177.7 366.3 191.1 384 191.1z"/></svg>COLORS Palette <span> </span></h2>
-                            <li>0.5</li>
-                            <li>1.0</li>
-                            <li>1.5</li>
-                            <li>2.0</li>
-                            <li>2.5</li>
-                            <li>3.0</li>
-                            <li>3.5</li>
-                            <li>4.0</li>
-                            <li>4.5</li>
-                            <li>5.0</li>
-                            <li>5.5</li>
-                            <li>6.0</li>
-                            <li>6.5</li>
-                            <li>7.0</li>
-                            <li>7.5</li>
-                            <li>8.0</li> 
+                            <li class="dropdown-list">0.5</li>
+                            <li class="dropdown-list">1.0</li>
+                            <li class="dropdown-list">1.5</li>
+                            <li class="dropdown-list">2.0</li>
+                            <li class="dropdown-list">2.5</li>
+                            <li class="dropdown-list">3.0</li>
+                            <li class="dropdown-list">3.5</li>
+                            <li class="dropdown-list">4.0</li>
+                            <li class="dropdown-list">4.5</li>
+                            <li class="dropdown-list">5.0</li>
+                            <li class="dropdown-list">5.5</li>
+                            <li class="dropdown-list">6.0</li>
+                            <li class="dropdown-list">6.5</li>
+                            <li class="dropdown-list">7.0</li>
+                            <li class="dropdown-list">7.5</li>
+                            <li class="dropdown-list">8.0</li> 
                         </ul>
                     </section>
                 </div>
@@ -142,7 +142,7 @@
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>Made By <span>(Name)</span></h2>
                             @foreach($fuel_test_users as $fuel_test_user)
-                                <li>{{ $fuel_test_user->Name }}</li>  
+                                <li class="dropdown-list">{{ $fuel_test_user->Name }}</li>  
                             @endforeach
                         </ul>
                     </section>
@@ -155,9 +155,9 @@
                     <section class="ApprovalForUse">
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96.2 200.1C96.07 197.4 96 194.7 96 192C96 103.6 167.6 32 256 32C315.3 32 367 64.25 394.7 112.2C409.9 101.1 428.3 96 448 96C501 96 544 138.1 544 192C544 204.2 541.7 215.8 537.6 226.6C596 238.4 640 290.1 640 352C640 422.7 582.7 480 512 480H144C64.47 480 0 415.5 0 336C0 273.2 40.17 219.8 96.2 200.1z"/></svg>Test Approval<span> </span></h2>
-                            <li class="Rejected">REJECTED</li>
-                            <li class="Approved">APPROVED</li>
-                            <li class="Waved">WAIVED</li> 
+                            <li class="Rejected dropdown-list">REJECTED</li>
+                            <li class="Approved dropdown-list">APPROVED</li>
+                            <li class="Waved dropdown-list">WAIVED</li> 
                         </ul>
                     </section> 
                 </div>
