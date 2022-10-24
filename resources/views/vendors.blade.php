@@ -91,7 +91,7 @@
                                 {{ $Vendor->VendorNo }} 
                             </label>
                         </form>  
-                        <section class="records-tooltip">{{ $Vendor->VendorNo }}</section>                      
+                        <section class="records-tooltip tooltip">{{ $Vendor->VendorNo }}</section>                      
                     </td>
                     <td class="vendor-name">
                         <form action="{{ route('all_records') }}">
@@ -101,7 +101,7 @@
                                 {{ $Vendor->VendorName }}
                             </label>
                         </form>  
-                        <section class="records-tooltip"> 
+                        <section class="records-tooltip tooltip"> 
                             @include('SwitchCases.SwitchCasesForVendors') 
                         </section> 
                     </td>  

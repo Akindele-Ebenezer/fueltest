@@ -1,6 +1,6 @@
 @php
  
-    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorName', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))
+    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('VendorName')->where('VendorName', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))
                                                                     ->get()
                                                                     ->count(); 
 

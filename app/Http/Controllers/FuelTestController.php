@@ -44,7 +44,7 @@ class FuelTestController extends Controller
 
         $all_records_for_insights = FuelTestRecord::orderBy('SampleNo', 'DESC')->get()->toArray(); 
         
-        $all_records = FuelTestRecord::orderBy('SampleNo', 'DESC')->get(); 
+        $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->get(); 
         $number_of_all_records = count($all_records);
 
         $vendors = Vendor::all();
@@ -435,22 +435,70 @@ class FuelTestController extends Controller
         if(Session::has('email')) {
   
             $title = 'All Records';
-            $FilterSampleNo = FuelTestRecord::distinct()->get(['SampleNo']);
-            $FilterSampleCollectionDate = FuelTestRecord::distinct()->get(['SampleCollectionDate']);
-            $FilterTruckPlateNo = FuelTestRecord::distinct()->get(['TruckPlateNo']);
-            $FilterTankNo = FuelTestRecord::distinct()->get(['TankNo']);
-            $FilterAppearanceResult = FuelTestRecord::distinct()->get(['AppearanceResult']);
-            $FilterColor = FuelTestRecord::distinct()->get(['Color']);
-            $FilterDensity = FuelTestRecord::distinct()->get(['Density']);
-            $FilterFlashPoint = FuelTestRecord::distinct()->get(['FlashPoint']);
-            $FilterTemp = FuelTestRecord::distinct()->get(['Temp']);
-            $FilterWaterSediment = FuelTestRecord::distinct()->get(['WaterSediment']);
-            $FilterCleanliness = FuelTestRecord::distinct()->get(['Cleanliness']);
-            $FilterDateOfTest = FuelTestRecord::distinct()->get(['DateOfTest']);
-            $FilterMadeBy = FuelTestRecord::distinct()->get(['MadeBy']);
-            $FilterDeliveredTo = FuelTestRecord::distinct()->get(['DeliveredTo']);
-            $FilterRemarks = FuelTestRecord::distinct()->get(['Remarks']);          
-            $FilterVendorName = FuelTestRecord::distinct()->get(['VendorName']);          
+            $FilterSampleNo = FuelTestRecord::select('SampleNo')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterSampleCollectionDate = FuelTestRecord::select('SampleCollectionDate')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterTruckPlateNo = FuelTestRecord::select('TruckPlateNo')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterTankNo = FuelTestRecord::select('TankNo')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterAppearanceResult = FuelTestRecord::select('AppearanceResult')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterColor = FuelTestRecord::select('Color')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterDensity = FuelTestRecord::select('Density')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterFlashPoint = FuelTestRecord::select('FlashPoint')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterTemp = FuelTestRecord::select('Temp')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterWaterSediment = FuelTestRecord::select('WaterSediment')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterCleanliness = FuelTestRecord::select('Cleanliness')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterDateOfTest = FuelTestRecord::select('DateOfTest')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterMadeBy = FuelTestRecord::select('MadeBy')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterDeliveredTo = FuelTestRecord::select('DeliveredTo')
+                                                ->distinct()
+                                                ->get();
+                                                
+            $FilterRemarks = FuelTestRecord::select('Remarks')
+                                                ->distinct()
+                                                ->get();          
+                                                
+            $FilterVendorName = FuelTestRecord::select('VendorName')
+                                                ->distinct()
+                                                ->get();          
+                                                
 
             $Config = $this->config(); 
              
@@ -1193,22 +1241,86 @@ class FuelTestController extends Controller
  
             $title = 'Previous Records'; 
               
-            $FilterSampleNo = FuelTestRecord::where('uid', $id)->distinct()->get(['SampleNo']);
-            $FilterSampleCollectionDate = FuelTestRecord::where('uid', $id)->distinct()->get(['SampleCollectionDate']);
-            $FilterTruckPlateNo = FuelTestRecord::where('uid', $id)->distinct()->get(['TruckPlateNo']);
-            $FilterTankNo = FuelTestRecord::where('uid', $id)->distinct()->get(['TankNo']);
-            $FilterAppearanceResult = FuelTestRecord::where('uid', $id)->distinct()->get(['AppearanceResult']);
-            $FilterColor = FuelTestRecord::where('uid', $id)->distinct()->get(['Color']);
-            $FilterDensity = FuelTestRecord::where('uid', $id)->distinct()->get(['Density']);
-            $FilterFlashPoint = FuelTestRecord::where('uid', $id)->distinct()->get(['FlashPoint']);
-            $FilterTemp = FuelTestRecord::where('uid', $id)->distinct()->get(['Temp']);
-            $FilterWaterSediment = FuelTestRecord::where('uid', $id)->distinct()->get(['WaterSediment']);
-            $FilterCleanliness = FuelTestRecord::where('uid', $id)->distinct()->get(['Cleanliness']);
-            $FilterDateOfTest = FuelTestRecord::where('uid', $id)->distinct()->get(['DateOfTest']);
-            $FilterMadeBy = FuelTestRecord::where('uid', $id)->distinct()->get(['MadeBy']);
-            $FilterDeliveredTo = FuelTestRecord::where('uid', $id)->distinct()->get(['DeliveredTo']);
-            $FilterRemarks = FuelTestRecord::where('uid', $id)->distinct()->get(['Remarks']); 
-            $FilterVendorName = FuelTestRecord::where('uid', $id)->distinct()->get(['VendorName']); 
+            $FilterSampleNo = FuelTestRecord::select('SampleNo')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterSampleCollectionDate = FuelTestRecord::select('SampleCollectionDate')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterTruckPlateNo = FuelTestRecord::select('TruckPlateNo')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterTankNo = FuelTestRecord::select('TankNo')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterAppearanceResult = FuelTestRecord::select('AppearanceResult')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterColor = FuelTestRecord::select('Color')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterDensity = FuelTestRecord::select('Density')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterFlashPoint = FuelTestRecord::select('FlashPoint')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterTemp = FuelTestRecord::select('Temp')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterWaterSediment = FuelTestRecord::select('WaterSediment')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterCleanliness = FuelTestRecord::select('Cleanliness')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterDateOfTest = FuelTestRecord::select('DateOfTest')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterMadeBy = FuelTestRecord::select('MadeBy')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterDeliveredTo = FuelTestRecord::select('DeliveredTo')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get();
+
+            $FilterRemarks = FuelTestRecord::select('Remarks')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get(); 
+
+            $FilterVendorName = FuelTestRecord::select('VendorName')
+                                                ->where('uid', $id)
+                                                ->distinct()
+                                                ->get(); 
+
   
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -1315,13 +1427,13 @@ class FuelTestController extends Controller
             
             if(isset($_GET['FilterWavedTestsForCurrentVendor'])) {
                 
-            $title = $VendorName = $_GET['Title'];
-            $previous_records = FuelTestRecord::where('VendorName', $VendorName)
-                                                ->where('uid', $id)
-                                                ->where('ApprovalForUse', 'WAIVED')
-                                                ->orderBy('SampleNo', 'DESC')->get();
-            
-            $number_of_previous_records = count($previous_records);
+                $title = $VendorName = $_GET['Title'];
+                $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('uid', $id)
+                                                    ->where('ApprovalForUse', 'WAIVED')
+                                                    ->orderBy('SampleNo', 'DESC')->get();
+                
+                $number_of_previous_records = count($previous_records);
             
                 $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
