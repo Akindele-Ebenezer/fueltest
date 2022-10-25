@@ -9,7 +9,7 @@
     <section class="previous-records">
         <center>
             <div>
-                <h1>{{ $title }} ({{ $number_of_previous_records }})</h1>
+                <h1>{{ $title }} ({{ $number_of_previous_records_absolute }})</h1> <br> ({{ $number_of_previous_records }})
             </div>
             <div>
                 <form action="/export">
@@ -534,6 +534,9 @@
                     <td class="remarks">{{ substr($previous_record->Remarks, 0, 17) }}{{ strlen($previous_record->Remarks) > 17 ? '..' : '' }}</td> 
                 </tr>
                 @endforeach 
+                <div class="links">  
+                    {{ $previous_records->links() }}   
+                </div>  
             </table>
         </div>
     </section>

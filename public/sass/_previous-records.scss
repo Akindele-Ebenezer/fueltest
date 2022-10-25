@@ -529,6 +529,17 @@ section {
 
         .table {
             padding-bottom: 8rem;
+
+            .links {
+                height: unset;
+                margin: unset;
+
+                nav {
+                    display: unset;
+                    position: sticky;
+                    top: 0;
+                }
+            }
         }
     }
 

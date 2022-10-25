@@ -13,7 +13,7 @@
     <section class="previous-records">
         <center>  
             <div>
-                <h1>{{ $title }} ({{ $number_of_all_records }})</h1> 
+                <h1>{{ $title }} ({{ $number_of_all_records_absolute }})</h1> <br> ({{ $number_of_all_records }})
             </div>
             <div>
                 <form action="/export">
@@ -566,12 +566,11 @@
                         <td>{{ $record->DeliveredTo }}</td>  
                         <td class="remarks">{{ substr($record->Remarks, 0, 17) }}{{ strlen($record->Remarks) > 17 ? '..' : '' }}</td>
                     </tr>
-                @endforeach
+                @endforeach 
+                <div class="links">  
+                    {{ $all_records->links() }}   
+                </div>   
             </table> 
-            <!-- <div class="links"> -->
-                <!-- Pagination links -->
-                
-            <!-- </div> -->
         </div>
     </section>
 

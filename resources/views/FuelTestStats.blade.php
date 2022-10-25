@@ -84,10 +84,10 @@
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
                     <h1>OVERALL SUPPLY</h1>
-                    <p><span>Total Number of FUEL Supplied</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records }} (100%)</span></p> 
-                    <p><span>Tests with FAILED Results</span> => &nbsp;&nbsp; <span class="Failed">{{ $number_of_failed_records }} ({{ round($PercentageOfFailedRecords) }}%)</span></p> 
-                    <p><span>Tests with PASSED Results</span> => &nbsp;&nbsp; <span class="Passed">{{ $number_of_passed_records }} ({{ round($PercentageOfPassedRecords) }}%)</span></p>
-                    <p><span>Tests Approved on a WAIVER</span> => &nbsp;&nbsp; <span class="Waved">{{ $number_of_waved_records }} ({{ round($PercentageOfWavedRecords) }}%)</span></p> 
+                    <p><span>Total Number of FUEL Supplied</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_absolute }} (100%)</span></p> 
+                    <p><span>Tests with FAILED Results</span> => &nbsp;&nbsp; <span class="Failed">{{ $number_of_failed_records }} ({{ round($AbsolutePercentageOfFailedRecords) }}%)</span></p> 
+                    <p><span>Tests with PASSED Results</span> => &nbsp;&nbsp; <span class="Passed">{{ $number_of_passed_records }} ({{ round($AbsolutePercentageOfPassedRecords) }}%)</span></p>
+                    <p><span>Tests Approved on a WAIVER</span> => &nbsp;&nbsp; <span class="Waved">{{ $number_of_waved_records }} ({{ round($AbsolutePercentageOfWavedRecords) }}%)</span></p> 
                 </div> 
             @endif
             @isset($_GET['GenerateChartForCurrentVendor'])
@@ -114,9 +114,9 @@
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>FUEL Supplied Last Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month }} ({{ round($PercentageOfNumberOfRecordsLastMonth, 2) }}%)</span></p> 
-                    <p><span>FUEL Supplied This Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_this_month }} ({{ round($PercentageOfAllRecordsThisMonth, 2) }}%)</span></p> 
-                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfNumberOfRecordsLastSevenDays, 2) }}%)</span></p>                      
+                    <p><span>FUEL Supplied Last Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_month }} ({{ round($AbsolutePercentageOfNumberOfRecordsLastMonth, 2) }}%)</span></p> 
+                    <p><span>FUEL Supplied This Month</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_this_month }} ({{ round($AbsolutePercentageOfAllRecordsThisMonth, 2) }}%)</span></p> 
+                    <p><span>FUEL Supplied Last 7 Days</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($AbsolutePercentageOfNumberOfRecordsLastSevenDays, 2) }}%)</span></p>                      
                 </div> 
             @endif
             @isset($_GET['GenerateChartForCurrentVendor'])
@@ -142,18 +142,18 @@
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $January }} ({{ round($PercentageOfAllRecordsInJanuary, 1) }}%)</span></p> 
-                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $February }} ({{ round($PercentageOfAllRecordsInFebruary, 1) }}%)</span></p> 
-                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $March }} ({{ round($PercentageOfAllRecordsInMarch, 1) }}%)</span></p> 
-                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $April }} ({{ round($PercentageOfAllRecordsInApril, 1) }}%)</span></p> 
-                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $May }} ({{ round($PercentageOfAllRecordsInMay, 1) }}%)</span></p> 
-                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $June }} ({{ round($PercentageOfAllRecordsInJune, 1) }}%)</span></p> 
-                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $July }} ({{ round($PercentageOfAllRecordsInJuly, 1) }}%)</span></p> 
-                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $August }} ({{ round($PercentageOfAllRecordsInAugust, 1) }}%)</span></p> 
-                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $September }} ({{ round($PercentageOfAllRecordsInSeptember, 1) }}%)</span></p> 
-                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $October }} ({{ round($PercentageOfAllRecordsInOctober, 1) }}%)</span></p> 
-                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $November }} ({{ round($PercentageOfAllRecordsInNovember, 1) }}%)</span></p> 
-                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $December }} ({{ round($PercentageOfAllRecordsInDecember, 1) }}%)</span></p>  
+                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $January }} ({{ round($AbsolutePercentageOfAllRecordsInJanuary, 1) }}%)</span></p> 
+                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $February }} ({{ round($AbsolutePercentageOfAllRecordsInFebruary, 1) }}%)</span></p> 
+                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $March }} ({{ round($AbsolutePercentageOfAllRecordsInMarch, 1) }}%)</span></p> 
+                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $April }} ({{ round($AbsolutePercentageOfAllRecordsInApril, 1) }}%)</span></p> 
+                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $May }} ({{ round($AbsolutePercentageOfAllRecordsInMay, 1) }}%)</span></p> 
+                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $June }} ({{ round($AbsolutePercentageOfAllRecordsInJune, 1) }}%)</span></p> 
+                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $July }} ({{ round($AbsolutePercentageOfAllRecordsInJuly, 1) }}%)</span></p> 
+                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $August }} ({{ round($AbsolutePercentageOfAllRecordsInAugust, 1) }}%)</span></p> 
+                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $September }} ({{ round($AbsolutePercentageOfAllRecordsInSeptember, 1) }}%)</span></p> 
+                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $October }} ({{ round($AbsolutePercentageOfAllRecordsInOctober, 1) }}%)</span></p> 
+                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $November }} ({{ round($AbsolutePercentageOfAllRecordsInNovember, 1) }}%)</span></p> 
+                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $December }} ({{ round($AbsolutePercentageOfAllRecordsInDecember, 1) }}%)</span></p>  
                 </div> 
             @endif
             @isset($_GET['GenerateChartForCurrentVendor'])
@@ -187,14 +187,14 @@
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>FUEL Supplied Today</span> => &nbsp;&nbsp; <span>{{ $number_of_todays_records }} ({{ round($PercentageOfAllRecordsToday, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied Yesterday</span> => &nbsp;&nbsp; <span>{{ $number_of_yesterday_records }} ({{ round($PercentageOfAllRecordsYesterday, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied Day Before</span> => &nbsp;&nbsp; <span>{{ $number_of_two_days_ago_records }} ({{ round($PercentageOfAllRecordsTwoDaysAgo, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied 3 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_three_days_ago_records }} ({{ round($PercentageOfAllRecordsThreeDaysAgo, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied 4 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_four_days_ago_records }} ({{ round($PercentageOfAllRecordsFourDaysAgo, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied 5 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_five_days_ago_records }} ({{ round($PercentageOfAllRecordsFiveDaysAgo, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied 6 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_six_days_ago_records }} ({{ round($PercentageOfAllRecordsSixDaysAgo, 3) }}%)</span></p> 
-                    <p><span>FUEL Supplied 1 week Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($PercentageOfAllRecordsSevenDaysAgo, 3) }}%)</span></p>  
+                    <p><span>FUEL Supplied Today</span> => &nbsp;&nbsp; <span>{{ $number_of_todays_records }} ({{ round($AbsolutePercentageOfAllRecordsToday, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied Yesterday</span> => &nbsp;&nbsp; <span>{{ $number_of_yesterday_records }} ({{ round($AbsolutePercentageOfAllRecordsYesterday, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied Day Before</span> => &nbsp;&nbsp; <span>{{ $number_of_two_days_ago_records }} ({{ round($AbsolutePercentageOfAllRecordsTwoDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 3 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_three_days_ago_records }} ({{ round($AbsolutePercentageOfAllRecordsThreeDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 4 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_four_days_ago_records }} ({{ round($AbsolutePercentageOfAllRecordsFourDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 5 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_five_days_ago_records }} ({{ round($AbsolutePercentageOfAllRecordsFiveDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 6 Days Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_six_days_ago_records }} ({{ round($AbsolutePercentageOfAllRecordsSixDaysAgo, 3) }}%)</span></p> 
+                    <p><span>FUEL Supplied 1 week Ago</span> => &nbsp;&nbsp; <span>{{ $number_of_all_records_last_seven_days }} ({{ round($AbsolutePercentageOfNumberOfRecordsLastSevenDays, 3) }}%)</span></p>  
                 </div> 
             @endif
             @isset($_GET['GenerateChartForCurrentVendor'])
@@ -314,9 +314,13 @@ let FuelTestResults = new Chart("myChart", {
                     {{ $number_of_passed_records }}, 
                     {{ $number_of_waved_records }}, 
                     @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  
-                    {{ $number_of_diff_records }}, @endif 
+                        {{ $number_of_diff_records }}, 
+                    @endif 
                     {{ $number_of_previous_records }}, 
-                    {{ $number_of_all_records }}
+                    @if((isset($_GET['GenerateChartForCurrentVendor'])))  
+                    {{ $number_of_all_records }},
+                    @endif 
+                    {{ $number_of_all_records_absolute }}
                 ],
             }]
         },

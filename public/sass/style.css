@@ -1130,6 +1130,15 @@ section.previous-records table tr th.vendors-th {
 section.previous-records .table {
   padding-bottom: 8rem;
 }
+section.previous-records .table .links {
+  height: unset;
+  margin: unset;
+}
+section.previous-records .table .links nav {
+  display: unset;
+  position: sticky;
+  top: 0;
+}
 section.hide-record {
   display: none;
 }

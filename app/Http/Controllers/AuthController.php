@@ -14,7 +14,7 @@ class AuthController extends Controller
             $username = $request->Email;
             $password = $request->Password; 
 
-            $query = FuelTestUser::select('Email')
+            $query = FuelTestUser::select('id', 'Email', 'Name')
                                     ->where('Email', $username)
                                     ->where('Password', $password)
                                     ->get();
