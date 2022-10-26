@@ -86,7 +86,8 @@
                                 <section>
                                     <li class="date"><span>From</span> <input type="date" name="DateFrom"> </li>
                                     <li class="date"><span>To</span> <input type="date" name="DateTo"> </li>
-                                    <button name="FilterDateBetween">Apply</button>
+                                    <input type="hidden" name="Title" value="{{ $title }}">
+                                    <button name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterDateBetweenForCurrentVendor' : 'FilterDateBetween' }}">Apply</button>
                                 </section> <br>
                                 <section class="DatesFilter"> 
                                     <input type="hidden" name="RecordsOfToday" value="{{ date('Y-m-d') }}">

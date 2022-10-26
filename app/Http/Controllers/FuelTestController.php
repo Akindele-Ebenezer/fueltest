@@ -759,9 +759,19 @@ class FuelTestController extends Controller
                     $number_of_diff_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', NULL)
                                                     ->count(); 
-                } 
+                }  
 
-                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
+                $number_of_all_records_absolute = FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute); 
             }
 
             if (isset($_GET['SortByVendorName'])) {
@@ -787,7 +797,15 @@ class FuelTestController extends Controller
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                   
                 $title = 'Today';
-                $number_of_all_records = count($all_records);
+                $number_of_all_records = count($all_records); 
+
+                $number_of_all_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday)
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records) 
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute); 
             }
  
             if (isset($_GET['FilterRecordsOfYesterday'])) {
@@ -801,6 +819,14 @@ class FuelTestController extends Controller
                   
                 $title = 'Yesterday';
                 $number_of_all_records = count($all_records);
+
+                $number_of_all_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterday)
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records) 
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
 
             if (isset($_GET['FilterRecordsOfLastSevenDays'])) {
@@ -809,12 +835,20 @@ class FuelTestController extends Controller
                  
                 $all_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])
                                 ->orderBy('SampleNo', 'DESC')
-                                ->gsimplePaginatet();
+                                ->simplePaginate();
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                   
                 $title = 'Last Seven Days';
                 $number_of_all_records = count($all_records);
+
+                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records) 
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             } 
  
             if (isset($_GET['FilterRecordsOfThisMonth'])) {
@@ -829,6 +863,14 @@ class FuelTestController extends Controller
                         
                 $title = 'This Month';
                 $number_of_all_records = count($all_records);
+
+                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records) 
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
             
             if (isset($_GET['FilterRecordsOfLastMonth'])) {
@@ -843,6 +885,14 @@ class FuelTestController extends Controller
                          
                 $title = 'Last Month';
                 $number_of_all_records = count($all_records);
+
+                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records) 
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }  
 
             if (isset($_GET['FilterPassedTests'])) {   
@@ -851,7 +901,20 @@ class FuelTestController extends Controller
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                    
                 $title = 'Passed Tests';
+                
                 $number_of_all_records = count($all_records);
+
+                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
 
             if (isset($_GET['FilterDiffTests'])) {   
@@ -861,6 +924,18 @@ class FuelTestController extends Controller
 
                 $title = 'Diff Tests';
                 $number_of_all_records = count($all_records);
+                
+                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', NULL)
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             } 
 
             if (isset($_GET['FilterWavedTests'])) {   
@@ -870,6 +945,18 @@ class FuelTestController extends Controller
                 
                 $title = 'Waived Tests';
                 $number_of_all_records = count($all_records);
+                
+                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             } 
 
             if (isset($_GET['FilterFailedTests'])) {   
@@ -879,6 +966,18 @@ class FuelTestController extends Controller
                 
                 $title = 'Failed Tests';
                 $number_of_all_records = count($all_records);
+                
+                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_all_records', $number_of_all_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
  
             if (isset($_GET['FilterDateBetweenForCurrentVendor'])) {
@@ -913,7 +1012,19 @@ class FuelTestController extends Controller
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count(); 
 
-                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);                                                
+                
+                $number_of_all_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
+                                                                    ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                    ->with('number_of_passed_records', $number_of_passed_records)
+                                                    ->with('number_of_failed_records', $number_of_failed_records)
+                                                    ->with('number_of_waved_records', $number_of_waved_records)
+                                                    ->with('number_of_diff_records', $number_of_diff_records)
+                                                    ->with('number_of_all_records', $number_of_all_records)
+                                                    ->with('title', $title)
+                                                    ->with('number_of_all_records_absolute', $number_of_all_records_absolute);                                                
             }
  
             if (isset($_GET['FilterDateBetween'])) {
@@ -928,6 +1039,18 @@ class FuelTestController extends Controller
 
                 $title = 'From ' . $DateFrom . ' to ' . $DateTo;
                 $number_of_all_records = count($all_records);
+                
+                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                                    ->count();
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)
+                                                    ->with('number_of_passed_records', $number_of_passed_records)
+                                                    ->with('number_of_failed_records', $number_of_failed_records)
+                                                    ->with('number_of_waved_records', $number_of_waved_records)
+                                                    ->with('number_of_diff_records', $number_of_diff_records)
+                                                    ->with('number_of_all_records', $number_of_all_records)
+                                                    ->with('title', $title)
+                                                    ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
 
             if (isset($_GET['SortBySampleNo'])) {
@@ -1510,8 +1633,7 @@ class FuelTestController extends Controller
 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
             }
-        
-            
+         
             if(isset($_GET['FilterWavedTestsForCurrentVendor'])) {
                 
                 $title = $VendorName = $_GET['Title'];
@@ -1651,9 +1773,20 @@ class FuelTestController extends Controller
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', NULL)
                                                     ->count();  
- 
-                    return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title);
                 }
+
+                $number_of_previous_records_absolute = FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                                    ->where('uid', $id)
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute); 
             }
 
             if (isset($_GET['SortByVendorName'])) {
@@ -1680,20 +1813,38 @@ class FuelTestController extends Controller
                   
                 $title = 'Today';
                 $number_of_previous_records = count($previous_records);
+
+                $number_of_previous_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday) 
+                                                                    ->where('uid', $id)
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)  
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
  
             if (isset($_GET['FilterRecordsOfYesterday'])) {
                 $RecordsOfYesterday = $request->RecordsOfYesterday; 
                 
                 $previous_records = FuelTestRecord::where('uid', $id)
-                ->where('SampleCollectionDate', $RecordsOfYesterday)
-                ->orderBy('SampleNo', 'DESC')
-                ->simplePaginate(); 
+                                                    ->where('SampleCollectionDate', $RecordsOfYesterday)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->simplePaginate(); 
 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                   
                 $title = 'Yesterday';
                 $number_of_previous_records = count($previous_records);
+
+                $number_of_previous_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterday) 
+                                                                    ->where('uid', $id)
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)  
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
 
             if (isset($_GET['FilterRecordsOfLastSevenDays'])) {
@@ -1709,6 +1860,15 @@ class FuelTestController extends Controller
                   
                 $title = 'Last Seven Days';
                 $number_of_previous_records = count($previous_records);
+
+                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate]) 
+                                                                    ->where('uid', $id)
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)  
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             } 
  
             if (isset($_GET['FilterRecordsOfThisMonth'])) {
@@ -1724,6 +1884,15 @@ class FuelTestController extends Controller
                   
                 $title = 'This Month';
                 $number_of_previous_records = count($previous_records);
+
+                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate]) 
+                                                                    ->where('uid', $id)
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)  
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
             
             if (isset($_GET['FilterRecordsOfLastMonth'])) {
@@ -1739,6 +1908,15 @@ class FuelTestController extends Controller
                   
                 $title = 'Last Month';
                 $number_of_previous_records = count($previous_records);
+
+                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth]) 
+                                                                    ->where('uid', $id)
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)  
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }  
 
             if (isset($_GET['FilterPassedTests'])) {   
@@ -1747,11 +1925,21 @@ class FuelTestController extends Controller
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                 
                 $title = 'Passed Tests';
-                $number_of_previous_records_absolute = count($previous_records);
+                
+                $number_of_previous_records = count($previous_records);
 
-                return view("previous_records", $ViewData)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute)
-                                                            ->with('previous_records', $previous_records)
-                                                            ->with('title', $title);
+                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                    ->where('uid', $id)
+                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
 
             if (isset($_GET['FilterDiffTests'])) {   
@@ -1760,11 +1948,21 @@ class FuelTestController extends Controller
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                 
                 $title = 'Diff Tests';
-                $number_of_previous_records_absolute = count($previous_records);
+                
+                $number_of_previous_records = count($previous_records);
 
-                return view("previous_records", $ViewData)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute)
-                                                            ->with('previous_records', $previous_records)
-                                                            ->with('title', $title);
+                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', NULL)
+                                                    ->where('uid', $id)
+                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             } 
 
             if (isset($_GET['FilterWavedTests'])) {   
@@ -1773,11 +1971,21 @@ class FuelTestController extends Controller
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                 
                 $title = 'Waived Tests';
-                $number_of_previous_records_absolute = count($previous_records);
+                
+                $number_of_previous_records = count($previous_records);
 
-                return view("previous_records", $ViewData)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute)
-                                                            ->with('previous_records', $previous_records)
-                                                            ->with('title', $title);
+                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                                                    ->where('uid', $id)
+                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             } 
 
             if (isset($_GET['FilterFailedTests'])) {   
@@ -1786,12 +1994,75 @@ class FuelTestController extends Controller
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                 
                 $title = 'Failed Tests';
-                $number_of_previous_records_absolute = count($previous_records);
+                
+                $number_of_previous_records = count($previous_records);
 
-                return view("previous_records", $ViewData)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute)
-                                                            ->with('previous_records', $previous_records)
-                                                            ->with('title', $title);
+                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                    ->where('uid', $id)
+                                                    ->count();
 
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                        ->with('number_of_passed_records', $number_of_passed_records)
+                                                        ->with('number_of_failed_records', $number_of_failed_records)
+                                                        ->with('number_of_waved_records', $number_of_waved_records)
+                                                        ->with('number_of_diff_records', $number_of_diff_records)
+                                                        ->with('number_of_previous_records', $number_of_previous_records)
+                                                        ->with('title', $title)
+                                                        ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
+
+            }
+ 
+            if (isset($_GET['FilterDateBetweenForCurrentVendor'])) {
+                $title = $VendorName = $_GET['Title'];
+
+                $DateFrom = $request->DateFrom;
+                $DateTo = $request->DateTo;
+                
+                $previous_records = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->simplePaginate(); 
+                
+                $previous_records->setPath($_SERVER['REQUEST_URI']);  
+                
+                $title = 'From ' . $DateFrom . ' to ' . $DateTo;
+                $number_of_previous_records = count($previous_records);
+                    
+                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "APPROVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "REJECTED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', "WAIVED")
+                                                ->orderBy('SampleNo', 'DESC')->count(); 
+                
+                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->count(); 
+
+                
+                $number_of_previous_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
+                                                                    ->where('uid', $id)
+                                                                    ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                    ->with('number_of_passed_records', $number_of_passed_records)
+                                                    ->with('number_of_failed_records', $number_of_failed_records)
+                                                    ->with('number_of_waved_records', $number_of_waved_records)
+                                                    ->with('number_of_diff_records', $number_of_diff_records)
+                                                    ->with('number_of_previous_records', $number_of_previous_records)
+                                                    ->with('title', $title)
+                                                    ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);                                                
             }
  
             if (isset($_GET['FilterDateBetween'])) {
@@ -1806,6 +2077,18 @@ class FuelTestController extends Controller
                 
                 $title = 'From ' . $DateFrom . ' to ' . $DateTo;
                 $number_of_previous_records = count($previous_records);
+                
+                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                                    ->count();
+
+                return view("previous_records", $ViewData)->with('previous_records', $previous_records)
+                                                    ->with('number_of_passed_records', $number_of_passed_records)
+                                                    ->with('number_of_failed_records', $number_of_failed_records)
+                                                    ->with('number_of_waved_records', $number_of_waved_records)
+                                                    ->with('number_of_diff_records', $number_of_diff_records)
+                                                    ->with('number_of_previous_records', $number_of_previous_records)
+                                                    ->with('title', $title)
+                                                    ->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
 
             if (isset($_GET['SortBySampleNo'])) {
