@@ -1139,6 +1139,17 @@ section.previous-records .table .links nav {
   position: sticky;
   top: 0;
 }
+section.previous-records .table .links nav a:first-of-type {
+  color: inherit;
+}
+section.previous-records .table .links nav a:last-of-type {
+  background: #00592e;
+  color: #fff;
+  padding: 0.5rem;
+}
+section.previous-records .table .links nav span {
+  padding: 0.5rem;
+}
 section.hide-record {
   display: none;
 }

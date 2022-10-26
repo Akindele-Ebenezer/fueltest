@@ -538,6 +538,22 @@ section {
                     display: unset;
                     position: sticky;
                     top: 0;
+
+                    a {
+                        &:first-of-type { 
+                            color: inherit; 
+                        }
+
+                        &:last-of-type {
+                            background: #00592e;
+                            color: #fff;
+                            padding: .5rem;
+                        }
+                    }
+
+                    span {
+                        padding: .5rem;
+                    }
                 }
             }
         }
