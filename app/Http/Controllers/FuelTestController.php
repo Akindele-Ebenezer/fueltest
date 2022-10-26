@@ -81,8 +81,8 @@ class FuelTestController extends Controller
                                                     ->limit(1)
                                                     ->count(); 
 
-        $PercentageForVendorWithTheHighestSupply = $PercentageForVendorWithTheHighestSupply / $number_of_all_records * 100;
-        $PercentageForVendorWithTheLowestSupply = $PercentageForVendorWithTheLowestSupply / $number_of_all_records * 100;
+        $PercentageForVendorWithTheHighestSupply = $PercentageForVendorWithTheHighestSupply / $number_of_all_records_absolute * 100;
+        $PercentageForVendorWithTheLowestSupply = $PercentageForVendorWithTheLowestSupply / $number_of_all_records_absolute * 100;
  
 
         // $PassedRecords = FuelTestRecord::whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 

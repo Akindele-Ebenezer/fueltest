@@ -33,6 +33,6 @@
             <img src="images/diff.png">
             DIFF [{{ Route::is('previous_records') ? $number_of_diff_records_ : '' }}{{ Route::is('all_records') ? $number_of_diff_records : '' }}]
         </label>
-        <section class="tooltip">{{ $number_of_diff_records }} Non DIESEL Tests = Diff</section> 
+        <section class="tooltip">{{ Route::is('previous_records') ? $number_of_diff_records_ : '' }}{{ Route::is('all_records') ? $number_of_diff_records : '' }} Non DIESEL Tests = Diff</section> 
     </form>  
 </div>
