@@ -536,7 +536,7 @@
                 </tr>
                 @endforeach 
                 <div class="links">  
-                    {{ $previous_records->links() }}   
+                    {{ $previous_records->onEachSide(1)->links() }}   
                 </div>  
             </table>
         </div>

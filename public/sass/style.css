@@ -1139,6 +1139,9 @@ section.previous-records .table .links nav {
   position: sticky;
   top: 0;
 }
+section.previous-records .table .links nav a[aria-label="Next &raquo;"] {
+  color: #999 !important;
+}
 section.previous-records .table .links nav a:first-of-type {
   color: inherit;
 }
@@ -1147,8 +1150,43 @@ section.previous-records .table .links nav a:last-of-type {
   color: #fff;
   padding: 0.5rem;
 }
-section.previous-records .table .links nav span {
-  padding: 0.5rem;
+section.previous-records .table .links nav div {
+  height: unset;
+  margin: unset;
+  width: unset;
+}
+section.previous-records .table .links nav div.hidden {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+section.previous-records .table .links nav div p {
+  color: #333;
+}
+section.previous-records .table .links nav div svg {
+  height: 1.45rem;
+  translate: 0rem 0.3rem;
+}
+section.previous-records .table .links nav span[aria-current] {
+  background: #999;
+  color: #fff;
+  margin-inline: 0.3rem;
+  padding: 0.1rem 0.5rem;
+}
+section.previous-records .table .links nav span[aria-label="&laquo; Previous"] {
+  color: #999 !important;
+}
+section.previous-records .table .links nav span.rounded-md {
+  width: 16rem;
+}
+section.previous-records .table .links nav span.rounded-md a {
+  color: #888;
+  font-size: 1.2rem;
+}
+section.previous-records .table .links nav span.rounded-md a:last-of-type {
+  background: unset;
+  color: unset;
+  padding: unset;
 }
 section.hide-record {
   display: none;

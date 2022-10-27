@@ -539,7 +539,11 @@ section {
                     position: sticky;
                     top: 0;
 
-                    a {
+                    a { 
+                        &[aria-label="Next &raquo;"] {
+                            color: #999 !important;
+                        }
+
                         &:first-of-type { 
                             color: inherit; 
                         }
@@ -551,8 +555,55 @@ section {
                         }
                     }
 
+                    div {
+                        height: unset;
+                        margin: unset;
+                        width: unset;
+
+                        &.hidden {
+                            align-items: center;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        p {
+                            color: #333;
+                        }
+
+                        svg {
+                            height: 1.45rem;
+                            translate: 0rem 0.3rem;
+                        }
+                    }
+
                     span {
-                        padding: .5rem;
+                        // padding: .5rem;
+
+                        &[aria-current] {
+                            background: #999; 
+                            color: #fff;
+                            margin-inline: .3rem;
+                            padding: 0.1rem 0.5rem;
+                        }
+ 
+                        &[aria-label="&laquo; Previous"] {
+                            color: #999 !important;
+                        }
+
+                        &.rounded-md { 
+                            width: 16rem;
+
+                            a {
+                                color: #888;
+                                font-size: 1.2rem;
+
+                                &:last-of-type {
+                                    background: unset;
+                                    color: unset;
+                                    padding: unset;
+                                } 
+                            }
+                        }
                     }
                 }
             }
