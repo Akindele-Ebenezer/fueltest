@@ -39,13 +39,13 @@ class FuelTestController extends Controller
         $fuel_test_users = DB::table('fuel_test_users')->get();
         $number_fuel_test_users = count($fuel_test_users);
 
-        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->paginate(15);
+        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->paginate(15)->fragment('PreviousRecords');
         $number_of_previous_records = count($previous_records);
 
         $all_records_for_insights = FuelTestRecord::orderBy('SampleNo', 'DESC')->get()->toArray(); 
         
-        $number_of_previous_records_absolute = FuelTestRecord::where('uid', $id)->count();
-        $number_of_all_records_absolute = FuelTestRecord::count();
+        $number_of_previous_records_absolute = FuelTestRecord::select('id')->where('uid', $id)->count();
+        $number_of_all_records_absolute = FuelTestRecord::select('id')->count();
  
         $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->paginate(15)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
@@ -71,12 +71,12 @@ class FuelTestController extends Controller
         $VendorWithTheHighestSupply = $VendorWithTheHighestSupply[0]['VendorName']; 
         $VendorWithTheLowestSupply = $VendorWithTheLowestSupply[1]['VendorName'];  
         
-        $PercentageForVendorWithTheHighestSupply = FuelTestRecord::select('VendorName') 
+        $PercentageForVendorWithTheHighestSupply = FuelTestRecord::select('id') 
                                                     ->where('VendorName', $VendorWithTheHighestSupply) 
                                                     ->limit(1)
                                                     ->count(); 
 
-        $PercentageForVendorWithTheLowestSupply = FuelTestRecord::select('VendorName') 
+        $PercentageForVendorWithTheLowestSupply = FuelTestRecord::select('id') 
                                                     ->where('VendorName', $VendorWithTheLowestSupply) 
                                                     ->limit(1)
                                                     ->count(); 
@@ -98,7 +98,7 @@ class FuelTestController extends Controller
         // ->get(); 
 
         $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')->paginate(15);
-        $number_of_passed_records = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->count();  
+        $number_of_passed_records = FuelTestRecord::select('id')->where('ApprovalForUse', 'APPROVED')->count();  
          
         // $PassedRecords_ = FuelTestRecord::where('uid', $id)
         // ->whereIn('AppearanceResult', ['Bright', 'Clear', 'BRIGHT']) 
@@ -116,7 +116,8 @@ class FuelTestController extends Controller
         $PassedRecords_ = FuelTestRecord::where('uid', $id)
                                         ->where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')
                                         ->paginate(15);
-        $number_of_passed_records_ = FuelTestRecord::where('uid', $id)
+        $number_of_passed_records_ = FuelTestRecord::select('id')
+                                        ->where('uid', $id)
                                         ->where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')
                                         ->count();  
         
@@ -136,18 +137,18 @@ class FuelTestController extends Controller
         // ORDER BY
         // SampleNo DESC");  
 
-        $DiffRecords = FuelTestRecord::where('VendorName', NULL)->paginate(15);
+        $DiffRecords = FuelTestRecord::select('id')->where('VendorName', NULL)->paginate(15);
         $number_of_diff_records = FuelTestRecord::where('VendorName', NULL)->count(); 
         
         $DiffRecords_ = FuelTestRecord::where('uid', $id) 
                                         ->where('VendorName', NULL)
                                         ->paginate(15);
-        $number_of_diff_records_ = FuelTestRecord::where('uid', $id) 
+        $number_of_diff_records_ = FuelTestRecord::select('id')->where('uid', $id) 
                                                     ->where('VendorName', NULL)
                                                     ->count(); 
         
         $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')->paginate(15);
-        $number_of_failed_records = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->count(); 
+        $number_of_failed_records = FuelTestRecord::select('id')->where('ApprovalForUse', 'REJECTED')->count(); 
         
         // $FailedRecords_ = DB::select("SELECT * FROM fuel_test_records
         // WHERE uid = ?
@@ -169,19 +170,22 @@ class FuelTestController extends Controller
         $FailedRecords_ = FuelTestRecord::where('uid', $id)
                                         ->where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')
                                         ->paginate(15);
-        $number_of_failed_records_ = FuelTestRecord::where('uid', $id)
+        $number_of_failed_records_ = FuelTestRecord::select('id')
+                                                    ->where('uid', $id)
                                                     ->where('ApprovalForUse', 'REJECTED')
                                                     ->count();
 
         $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAIVED')->orderBy('SampleNo', 'DESC')
                                         ->paginate(15);
-        $number_of_waved_records = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+        $number_of_waved_records = FuelTestRecord::select('id')
+                                                    ->where('ApprovalForUse', 'WAIVED')
                                                     ->count();  
 
         $WavedRecords_ = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', 'DESC')
                                         ->where('ApprovalForUse', 'WAIVED')
                                         ->paginate(15);
-        $number_of_waved_records_ = FuelTestRecord::where('uid', $id)
+        $number_of_waved_records_ = FuelTestRecord::select('id')
+                                                    ->where('uid', $id)
                                                     ->where('ApprovalForUse', 'WAIVED')
                                                     ->count();   
  
@@ -244,7 +248,8 @@ class FuelTestController extends Controller
         $Config = $this->config();  
         extract($Config); 
         
-        $title = 'Depasamarine';  
+        $title = 'Depasamarine'; 
+         
         if(!(Session::has('email'))) {
             Session::forget('email');
             Session::flush();
@@ -623,24 +628,29 @@ class FuelTestController extends Controller
 
                 $number_of_all_records = count($all_records);
                 
-                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count(); 
 
-                $number_of_all_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->count();
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
+                                                ->count();
                             
                 return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title)->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
@@ -657,24 +667,29 @@ class FuelTestController extends Controller
 
                 $number_of_all_records = count($all_records);
                 
-                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count(); 
 
-                $number_of_all_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->count();
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
+                                                ->count();
                             
                 return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title)->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
@@ -691,24 +706,29 @@ class FuelTestController extends Controller
 
                 $number_of_all_records = count($all_records);
                 
-                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count(); 
 
-                $number_of_all_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->count();
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
+                                                ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title)->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
@@ -724,24 +744,29 @@ class FuelTestController extends Controller
 
                     $number_of_all_records = count($all_records);
                     
-                    $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                    $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', "APPROVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                    $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', "REJECTED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                    $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', "WAIVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                    $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', NULL)
                                                     ->count(); 
 
-                    $number_of_all_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                    ->count();
+                    $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                    ->where('VendorName', $VendorName)
+                                                    ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_passed_records', $number_of_passed_records)->with('number_of_failed_records', $number_of_failed_records)->with('number_of_waved_records', $number_of_waved_records)->with('number_of_diff_records', $number_of_diff_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title)->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
@@ -756,25 +781,30 @@ class FuelTestController extends Controller
 
                     $number_of_all_records = count($all_records);
                     
-                    $number_of_passed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', "APPROVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_failed_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', "REJECTED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_waved_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', "WAIVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_diff_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', NULL)
                                                     ->count(); 
                 }  
 
-                $number_of_all_records_absolute = FuelTestRecord::whereIn('VendorName', $VendorName)
-                                                                    ->count();
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
+                                                    ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
                                                         ->with('number_of_passed_records', $number_of_passed_records)
@@ -832,7 +862,8 @@ class FuelTestController extends Controller
                 $title = 'Yesterday';
                 $number_of_all_records = count($all_records);
 
-                $number_of_all_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterday)
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                                    ->where('SampleCollectionDate', $RecordsOfYesterday)
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records) 
@@ -876,7 +907,8 @@ class FuelTestController extends Controller
                 $title = 'This Month';
                 $number_of_all_records = count($all_records);
 
-                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records) 
@@ -916,7 +948,8 @@ class FuelTestController extends Controller
                 
                 $number_of_all_records = count($all_records);
 
-                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                    ->where('ApprovalForUse', 'APPROVED')
                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
@@ -958,7 +991,8 @@ class FuelTestController extends Controller
                 $title = 'Waived Tests';
                 $number_of_all_records = count($all_records);
                 
-                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                                    ->where('ApprovalForUse', 'WAIVED')
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
@@ -979,7 +1013,8 @@ class FuelTestController extends Controller
                 $title = 'Failed Tests';
                 $number_of_all_records = count($all_records);
                 
-                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                                    ->where('ApprovalForUse', 'REJECTED')
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
@@ -1008,24 +1043,29 @@ class FuelTestController extends Controller
                 $title = 'From ' . $DateFrom . ' to ' . $DateTo;
                 $number_of_all_records = count($all_records);
                     
-                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count(); 
 
                 
-                $number_of_all_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                                    ->where('VendorName', $VendorName)
                                                                     ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                                                     ->count();
 
@@ -1052,7 +1092,8 @@ class FuelTestController extends Controller
                 $title = 'From ' . $DateFrom . ' to ' . $DateTo;
                 $number_of_all_records = count($all_records);
                 
-                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                $number_of_all_records_absolute = FuelTestRecord::select('id')
+                                                                    ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
@@ -1623,29 +1664,34 @@ class FuelTestController extends Controller
                     
                 $number_of_previous_records = count($previous_records);
             
-                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count();  
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->where('uid', $id)
-                ->count();
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                        ->where('VendorName', $VendorName)
+                                                                        ->where('uid', $id)
+                                                                        ->count();
                                 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
@@ -1662,29 +1708,34 @@ class FuelTestController extends Controller
                     
                 $number_of_previous_records = count($previous_records);
             
-                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count();  
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->where('uid', $id)
-                ->count();
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                ->where('VendorName', $VendorName)
+                                                                ->where('uid', $id)
+                                                                ->count();
                                 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
@@ -1702,29 +1753,34 @@ class FuelTestController extends Controller
                         
                 $number_of_previous_records = count($previous_records);
             
-                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count();  
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->where('uid', $id)
-                ->count();
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->count();
                                 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
@@ -1741,29 +1797,34 @@ class FuelTestController extends Controller
                     
                 $number_of_previous_records = count($previous_records);
                 
-                $number_of_passed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records_ = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records_ = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count();  
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                ->where('uid', $id)
-                ->count();
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->count();
 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)->with('number_of_passed_records_', $number_of_passed_records_)->with('number_of_failed_records_', $number_of_failed_records_)->with('number_of_waved_records_', $number_of_waved_records_)->with('number_of_diff_records_', $number_of_diff_records_)->with('number_of_previous_records', $number_of_previous_records)->with('title', $title)->with('number_of_previous_records_absolute', $number_of_previous_records_absolute);
             }
@@ -1782,30 +1843,35 @@ class FuelTestController extends Controller
                     
                     $number_of_previous_records = count($previous_records);
         
-                    $number_of_passed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_passed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', "APPROVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_failed_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_failed_records_ = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', "REJECTED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_waved_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_waved_records_ = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', "WAIVED")
                                                     ->orderBy('SampleNo', 'DESC')->count(); 
                     
-                    $number_of_diff_records_ = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $number_of_diff_records_ = \App\Models\FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', NULL)
                                                     ->count();  
                 }
 
-                $number_of_previous_records_absolute = FuelTestRecord::whereIn('VendorName', $VendorName)
-                                                                    ->where('uid', $id)
-                                                                    ->count();
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                    ->whereIn('VendorName', $VendorName)
+                                                    ->where('uid', $id)
+                                                    ->count();
 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)
                                                         ->with('number_of_passed_records_', $number_of_passed_records_)
@@ -1865,7 +1931,8 @@ class FuelTestController extends Controller
                 $title = 'Yesterday';
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterday) 
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                    ->where('SampleCollectionDate', $RecordsOfYesterday) 
                                                                     ->where('uid', $id)
                                                                     ->count();
 
@@ -1889,7 +1956,8 @@ class FuelTestController extends Controller
                 $title = 'Last Seven Days';
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate]) 
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                    ->whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate]) 
                                                                     ->where('uid', $id)
                                                                     ->count();
 
@@ -1913,7 +1981,8 @@ class FuelTestController extends Controller
                 $title = 'This Month';
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate]) 
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate]) 
                                                                     ->where('uid', $id)
                                                                     ->count();
 
@@ -1937,7 +2006,8 @@ class FuelTestController extends Controller
                 $title = 'Last Month';
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth]) 
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth]) 
                                                                     ->where('uid', $id)
                                                                     ->count();
 
@@ -1956,7 +2026,8 @@ class FuelTestController extends Controller
                 
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                    ->where('ApprovalForUse', 'APPROVED')
                                                     ->where('uid', $id)
                                                     ->count();
 
@@ -2002,7 +2073,8 @@ class FuelTestController extends Controller
                 
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                    ->where('ApprovalForUse', 'WAIVED')
                                                     ->where('uid', $id)
                                                     ->count();
 
@@ -2025,7 +2097,8 @@ class FuelTestController extends Controller
                 
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                    ->where('ApprovalForUse', 'REJECTED')
                                                     ->where('uid', $id)
                                                     ->count();
 
@@ -2057,31 +2130,36 @@ class FuelTestController extends Controller
                 $title = 'From ' . $DateFrom . ' to ' . $DateTo;
                 $number_of_previous_records = count($previous_records);
                     
-                $number_of_passed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_passed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "APPROVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_failed_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_failed_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "REJECTED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_waved_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_waved_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', "WAIVED")
                                                 ->orderBy('SampleNo', 'DESC')->count(); 
                 
-                $number_of_diff_records = \App\Models\FuelTestRecord::where('VendorName', $VendorName)
+                $number_of_diff_records = \App\Models\FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->count(); 
 
                 
-                $number_of_previous_records_absolute = FuelTestRecord::where('VendorName', $VendorName)
-                                                                    ->where('uid', $id)
-                                                                    ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
-                                                                    ->count();
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                ->where('VendorName', $VendorName)
+                                                ->where('uid', $id)
+                                                ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                                                ->count();
 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)
                                                     ->with('number_of_passed_records', $number_of_passed_records)
@@ -2106,7 +2184,8 @@ class FuelTestController extends Controller
                 $title = 'From ' . $DateFrom . ' to ' . $DateTo;
                 $number_of_previous_records = count($previous_records);
                 
-                $number_of_previous_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')
+                                                                    ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                                                     ->count();
 
                 return view("previous_records", $ViewData)->with('previous_records', $previous_records)
@@ -2710,7 +2789,8 @@ class FuelTestController extends Controller
 
               
         $RecordsOfTwoDaysAgo = date('Y-m-d', strtotime("-2 day"));   
-        $number_of_two_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfTwoDaysAgo)
+        $number_of_two_days_ago_records = FuelTestRecord::select('id')
+                                    ->where('SampleCollectionDate', $RecordsOfTwoDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
         $PercentageOfAllRecordsTwoDaysAgo = $number_of_two_days_ago_records / $number_of_all_records * 100;                       
@@ -2718,7 +2798,8 @@ class FuelTestController extends Controller
                         
               
         $RecordsOfThreeDaysAgo = date('Y-m-d', strtotime("-3 day"));   
-        $number_of_three_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfThreeDaysAgo)
+        $number_of_three_days_ago_records = FuelTestRecord::select('id')
+                                    ->where('SampleCollectionDate', $RecordsOfThreeDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
         $PercentageOfAllRecordsThreeDaysAgo = $number_of_three_days_ago_records / $number_of_all_records * 100;                       
@@ -2726,7 +2807,8 @@ class FuelTestController extends Controller
                         
               
         $RecordsOfFourDaysAgo = date('Y-m-d', strtotime("-4 day"));   
-        $number_of_four_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFourDaysAgo)
+        $number_of_four_days_ago_records = FuelTestRecord::select('id')
+                                    ->where('SampleCollectionDate', $RecordsOfFourDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
         $PercentageOfAllRecordsFourDaysAgo = $number_of_four_days_ago_records / $number_of_all_records * 100;                       
@@ -2734,7 +2816,8 @@ class FuelTestController extends Controller
                         
               
         $RecordsOfFiveDaysAgo = date('Y-m-d', strtotime("-5 day"));   
-        $number_of_five_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFiveDaysAgo)
+        $number_of_five_days_ago_records = FuelTestRecord::select('id')
+                                    ->where('SampleCollectionDate', $RecordsOfFiveDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
         $PercentageOfAllRecordsFiveDaysAgo = $number_of_five_days_ago_records / $number_of_all_records * 100;                       
@@ -2742,7 +2825,8 @@ class FuelTestController extends Controller
                         
               
         $RecordsOfSixDaysAgo = date('Y-m-d', strtotime("-6 day"));   
-        $number_of_six_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfSixDaysAgo)
+        $number_of_six_days_ago_records = FuelTestRecord::select('id')
+                                    ->where('SampleCollectionDate', $RecordsOfSixDaysAgo)
                         ->orderBy('SampleNo', 'DESC')
                         ->count(); 
         $PercentageOfAllRecordsSixDaysAgo = $number_of_six_days_ago_records / $number_of_all_records * 100;                       
@@ -2751,7 +2835,8 @@ class FuelTestController extends Controller
         $Month1 = '01';                        
         $FirstDayOfJanuary = date('Y-' . $Month1 . '-01'); 
         $LastDayOfJanuary = date('Y-' . $Month1 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 1, 2022));                        
-        $January = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])
+        $January = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])
                                     ->count();   
         $PercentageOfAllRecordsInJanuary = $January / $number_of_all_records * 100;                      
         $AbsolutePercentageOfAllRecordsInJanuary = $January / $number_of_all_records_absolute * 100;                      
@@ -2759,7 +2844,8 @@ class FuelTestController extends Controller
         $Month2 = '02';                        
         $FirstDayOfFebruary = date('Y-' . $Month2 . '-01'); 
         $LastDayOfFebruary = date('Y-' . $Month2 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 2, 2022));                        
-        $February = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])
+        $February = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])
                                     ->count();                        
         $PercentageOfAllRecordsInFebruary = $February / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInFebruary = $February / $number_of_all_records_absolute * 100;  
@@ -2767,7 +2853,8 @@ class FuelTestController extends Controller
         $Month3 = '03';                        
         $FirstDayOfMarch = date('Y-' . $Month3 . '-01'); 
         $LastDayOfMarch = date('Y-' . $Month3 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 3, 2022));                        
-        $March = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])
+        $March = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])
                                     ->count();                        
         $PercentageOfAllRecordsInMarch = $March / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInMarch = $March / $number_of_all_records_absolute * 100;  
@@ -2775,7 +2862,8 @@ class FuelTestController extends Controller
         $Month4 = '04';                        
         $FirstDayOfApril = date('Y-' . $Month4 . '-01'); 
         $LastDayOfApril = date('Y-' . $Month4 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 4, 2022));                        
-        $April = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])
+        $April = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])
                                     ->count();                        
         $PercentageOfAllRecordsInApril = $April / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInApril = $April / $number_of_all_records_absolute * 100;  
@@ -2783,7 +2871,8 @@ class FuelTestController extends Controller
         $Month5 = '05';                        
         $FirstDayOfMay = date('Y-' . $Month5 . '-01'); 
         $LastDayOfMay = date('Y-' . $Month5 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 5, 2022));                        
-        $May = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])
+        $May = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])
                                     ->count();                        
         $PercentageOfAllRecordsInMay = $May / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInMay = $May / $number_of_all_records_absolute * 100;  
@@ -2791,7 +2880,8 @@ class FuelTestController extends Controller
         $Month6 = '06';                        
         $FirstDayOfJune = date('Y-' . $Month6 . '-01'); 
         $LastDayOfJune = date('Y-' . $Month6 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 6, 2022));                        
-        $June = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])
+        $June = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])
                                     ->count();                        
         $PercentageOfAllRecordsInJune = $June / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInJune = $June / $number_of_all_records_absolute * 100;  
@@ -2799,7 +2889,8 @@ class FuelTestController extends Controller
         $Month7 = '07';                        
         $FirstDayOfJuly = date('Y-' . $Month7 . '-01'); 
         $LastDayOfJuly = date('Y-' . $Month7 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 7, 2022));                        
-        $July = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])
+        $July = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])
                                     ->count();                        
         $PercentageOfAllRecordsInJuly = $July / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInJuly = $July / $number_of_all_records_absolute * 100;  
@@ -2807,7 +2898,8 @@ class FuelTestController extends Controller
         $Month8 = '08';                        
         $FirstDayOfAugust = date('Y-' . $Month8 . '-01'); 
         $LastDayOfAugust = date('Y-' . $Month8 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 8, 2022));                        
-        $August = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])
+        $August = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])
                                     ->count();                        
         $PercentageOfAllRecordsInAugust = $August / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInAugust = $August / $number_of_all_records_absolute * 100;  
@@ -2816,7 +2908,8 @@ class FuelTestController extends Controller
         $Month9 = '09';                        
         $FirstDayOfSeptember = date('Y-' . $Month9 . '-01'); 
         $LastDayOfSeptember = date('Y-' . $Month9 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 9, 2022));                        
-        $September = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])
+        $September = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])
                                     ->count();                        
         $PercentageOfAllRecordsInSeptember = $September / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInSeptember = $September / $number_of_all_records_absolute * 100;  
@@ -2825,7 +2918,8 @@ class FuelTestController extends Controller
         $Month10 = '10';                        
         $FirstDayOfOctober = date('Y-' . $Month10 . '-01'); 
         $LastDayOfOctober = date('Y-' . $Month10 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 10, 2022));                        
-        $October = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])
+        $October = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])
                                     ->count();                        
         $PercentageOfAllRecordsInOctober = $October / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInOctober = $October / $number_of_all_records_absolute * 100;  
@@ -2834,7 +2928,8 @@ class FuelTestController extends Controller
         $Month11 = '11';                        
         $FirstDayOfNovember = date('Y-' . $Month11 . '-01'); 
         $LastDayOfNovember = date('Y-' . $Month11 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 11, 2022));                        
-        $November = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])
+        $November = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])
                                     ->count();                        
         $PercentageOfAllRecordsInNovember = $November / $number_of_all_records * 100;  
         $AbsolutePercentageOfAllRecordsInNovember = $November / $number_of_all_records_absolute * 100;  
@@ -2843,7 +2938,8 @@ class FuelTestController extends Controller
         $Month12 = '12';                        
         $FirstDayOfDecember = date('Y-' . $Month12 . '-01'); 
         $LastDayOfDecember = date('Y-' . $Month12 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 12, 2022));                        
-        $December = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])
+        $December = FuelTestRecord::select('id')
+                                    ->whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])
                                     ->count();                        
         $PercentageOfAllRecordsInDecember = $December / $number_of_all_records * 100;    
         $AbsolutePercentageOfAllRecordsInDecember = $December / $number_of_all_records_absolute * 100;    
@@ -3001,11 +3097,13 @@ class FuelTestController extends Controller
             } else {
                 $CurrentVendorName = $CurrentVendorName->VendorName;  
 
-                $number_of_all_records = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
+                $number_of_all_records = FuelTestRecord::select('id')
+                                                            ->where('VendorNo', $CurrentVendorNo)
                                                             ->orderBy('SampleNo', 'DESC')
                                                             ->count();
     
-                $number_of_previous_records = FuelTestRecord::where('VendorNo', $CurrentVendorNo)
+                $number_of_previous_records = FuelTestRecord::select('id')
+                                                            ->where('VendorNo', $CurrentVendorNo)
                                                             ->orderBy('SampleNo', 'DESC')
                                                             ->count();
     
@@ -3090,35 +3188,40 @@ class FuelTestController extends Controller
                 $number_of_todays_records = count($RecordsOfTodayForCurrentVendor); 
             
                 $RecordsOfTwoDaysAgo = date('Y-m-d', strtotime("-2 day"));   
-                $number_of_two_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfTwoDaysAgo)                                                                
+                $number_of_two_days_ago_records = FuelTestRecord::select('id')
+                                            ->where('SampleCollectionDate', $RecordsOfTwoDaysAgo)                                                                
                                                                     ->where('VendorNo', $CurrentVendorNo)
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->count(); 
                                 
                       
                 $RecordsOfThreeDaysAgo = date('Y-m-d', strtotime("-3 day"));   
-                $number_of_three_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfThreeDaysAgo)                                                                
+                $number_of_three_days_ago_records = FuelTestRecord::select('id')
+                                            ->where('SampleCollectionDate', $RecordsOfThreeDaysAgo)                                                                
                                                                     ->where('VendorNo', $CurrentVendorNo)
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->count(); 
                                 
                       
                 $RecordsOfFourDaysAgo = date('Y-m-d', strtotime("-4 day"));   
-                $number_of_four_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFourDaysAgo)                                                                
+                $number_of_four_days_ago_records = FuelTestRecord::select('id')
+                                            ->where('SampleCollectionDate', $RecordsOfFourDaysAgo)                                                                
                                                                     ->where('VendorNo', $CurrentVendorNo)
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->count(); 
                                 
                       
                 $RecordsOfFiveDaysAgo = date('Y-m-d', strtotime("-5 day"));   
-                $number_of_five_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfFiveDaysAgo)                                                                
+                $number_of_five_days_ago_records = FuelTestRecord::select('id')
+                                            ->where('SampleCollectionDate', $RecordsOfFiveDaysAgo)                                                                
                                                                     ->where('VendorNo', $CurrentVendorNo)
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->count(); 
                                 
                       
                 $RecordsOfSixDaysAgo = date('Y-m-d', strtotime("-6 day"));   
-                $number_of_six_days_ago_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfSixDaysAgo)                                                                
+                $number_of_six_days_ago_records = FuelTestRecord::select('id')
+                                            ->where('SampleCollectionDate', $RecordsOfSixDaysAgo)                                                                
                                                                     ->where('VendorNo', $CurrentVendorNo)
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->count(); 
@@ -3126,56 +3229,64 @@ class FuelTestController extends Controller
                 $Month1 = '01';                        
                 $FirstDayOfJanuary = date('Y-' . $Month1 . '-01'); 
                 $LastDayOfJanuary = date('Y-' . $Month1 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 1, 2022));                        
-                $January = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])                                                                
+                $January = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfJanuary, $LastDayOfJanuary])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                 
                 $Month2 = '02';                        
                 $FirstDayOfFebruary = date('Y-' . $Month2 . '-01'); 
                 $LastDayOfFebruary = date('Y-' . $Month2 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 2, 2022));                        
-                $February = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])                                                                
+                $February = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfFebruary, $LastDayOfFebruary])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                 
                 $Month3 = '03';                        
                 $FirstDayOfMarch = date('Y-' . $Month3 . '-01'); 
                 $LastDayOfMarch = date('Y-' . $Month3 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 3, 2022));                        
-                $March = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])                                                                
+                $March = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfMarch, $LastDayOfMarch])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                 
                 $Month4 = '04';                        
                 $FirstDayOfApril = date('Y-' . $Month4 . '-01'); 
                 $LastDayOfApril = date('Y-' . $Month4 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 4, 2022));                        
-                $April = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])                                                                
+                $April = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfApril, $LastDayOfApril])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                 
                 $Month5 = '05';                        
                 $FirstDayOfMay = date('Y-' . $Month5 . '-01'); 
                 $LastDayOfMay = date('Y-' . $Month5 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 5, 2022));                        
-                $May = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])                                                                
+                $May = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfMay, $LastDayOfMay])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                 
                 $Month6 = '06';                        
                 $FirstDayOfJune = date('Y-' . $Month6 . '-01'); 
                 $LastDayOfJune = date('Y-' . $Month6 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 6, 2022));                        
-                $June = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])                                                                
+                $June = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfJune, $LastDayOfJune])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                 
                 $Month7 = '07';                        
                 $FirstDayOfJuly = date('Y-' . $Month7 . '-01'); 
                 $LastDayOfJuly = date('Y-' . $Month7 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 7, 2022));                        
-                $July = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])                                                                
+                $July = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfJuly, $LastDayOfJuly])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
             
                 $Month8 = '08';                        
                 $FirstDayOfAugust = date('Y-' . $Month8 . '-01'); 
                 $LastDayOfAugust = date('Y-' . $Month8 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 8, 2022));                        
-                $August = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])                                                                
+                $August = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfAugust, $LastDayOfAugust])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
             
@@ -3183,7 +3294,8 @@ class FuelTestController extends Controller
                 $Month9 = '09';                        
                 $FirstDayOfSeptember = date('Y-' . $Month9 . '-01'); 
                 $LastDayOfSeptember = date('Y-' . $Month9 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 9, 2022));                        
-                $September = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])                                                                
+                $September = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfSeptember, $LastDayOfSeptember])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
             
@@ -3191,7 +3303,8 @@ class FuelTestController extends Controller
                 $Month10 = '10';                        
                 $FirstDayOfOctober = date('Y-' . $Month10 . '-01'); 
                 $LastDayOfOctober = date('Y-' . $Month10 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 10, 2022));                        
-                $October = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])                                                                
+                $October = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfOctober, $LastDayOfOctober])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
             
@@ -3199,7 +3312,8 @@ class FuelTestController extends Controller
                 $Month11 = '11';                        
                 $FirstDayOfNovember = date('Y-' . $Month11 . '-01'); 
                 $LastDayOfNovember = date('Y-' . $Month11 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 11, 2022));                        
-                $November = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])                                                                
+                $November = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfNovember, $LastDayOfNovember])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
             
@@ -3207,7 +3321,8 @@ class FuelTestController extends Controller
                 $Month12 = '12';                        
                 $FirstDayOfDecember = date('Y-' . $Month12 . '-01'); 
                 $LastDayOfDecember = date('Y-' . $Month12 . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, 12, 2022));                        
-                $December = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])                                                                
+                $December = FuelTestRecord::select('id')
+                                            ->whereBetween('SampleCollectionDate', [$FirstDayOfDecember, $LastDayOfDecember])                                                                
                                             ->where('VendorNo', $CurrentVendorNo)
                                             ->count();                        
                                                  
