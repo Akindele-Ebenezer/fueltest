@@ -39,7 +39,7 @@ class FuelTestController extends Controller
         $fuel_test_users = DB::table('fuel_test_users')->get();
         $number_fuel_test_users = count($fuel_test_users);
 
-        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->paginate(15)->fragment('PreviousRecords');
+        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('PreviousRecords');
         $number_of_previous_records = count($previous_records);
 
         $all_records_for_insights = FuelTestRecord::orderBy('SampleNo', 'DESC')->get()->toArray(); 
@@ -47,7 +47,7 @@ class FuelTestController extends Controller
         $number_of_previous_records_absolute = FuelTestRecord::select('id')->where('uid', $id)->count();
         $number_of_all_records_absolute = FuelTestRecord::select('id')->count();
  
-        $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->paginate(15)->fragment('AllRecords'); 
+        $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
 
         $vendors = Vendor::all();
@@ -97,7 +97,7 @@ class FuelTestController extends Controller
         // ->orderBy('SampleNo', 'DESC')
         // ->get(); 
 
-        $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')->paginate(15);
+        $PassedRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')->paginate(14);
         $number_of_passed_records = FuelTestRecord::select('id')->where('ApprovalForUse', 'APPROVED')->count();  
          
         // $PassedRecords_ = FuelTestRecord::where('uid', $id)
@@ -115,7 +115,7 @@ class FuelTestController extends Controller
         
         $PassedRecords_ = FuelTestRecord::where('uid', $id)
                                         ->where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')
-                                        ->paginate(15);
+                                        ->paginate(14);
         $number_of_passed_records_ = FuelTestRecord::select('id')
                                         ->where('uid', $id)
                                         ->where('ApprovalForUse', 'APPROVED')->orderBy('SampleNo', 'DESC')
@@ -137,17 +137,17 @@ class FuelTestController extends Controller
         // ORDER BY
         // SampleNo DESC");  
 
-        $DiffRecords = FuelTestRecord::select('id')->where('VendorName', NULL)->paginate(15);
+        $DiffRecords = FuelTestRecord::select('id')->where('VendorName', NULL)->paginate(14);
         $number_of_diff_records = FuelTestRecord::where('VendorName', NULL)->count(); 
         
         $DiffRecords_ = FuelTestRecord::where('uid', $id) 
                                         ->where('VendorName', NULL)
-                                        ->paginate(15);
+                                        ->paginate(14);
         $number_of_diff_records_ = FuelTestRecord::select('id')->where('uid', $id) 
                                                     ->where('VendorName', NULL)
                                                     ->count(); 
         
-        $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')->paginate(15);
+        $FailedRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')->paginate(14);
         $number_of_failed_records = FuelTestRecord::select('id')->where('ApprovalForUse', 'REJECTED')->count(); 
         
         // $FailedRecords_ = DB::select("SELECT * FROM fuel_test_records
@@ -169,21 +169,21 @@ class FuelTestController extends Controller
 
         $FailedRecords_ = FuelTestRecord::where('uid', $id)
                                         ->where('ApprovalForUse', 'REJECTED')->orderBy('SampleNo', 'DESC')
-                                        ->paginate(15);
+                                        ->paginate(14);
         $number_of_failed_records_ = FuelTestRecord::select('id')
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', 'REJECTED')
                                                     ->count();
 
         $WavedRecords = FuelTestRecord::where('ApprovalForUse', 'WAIVED')->orderBy('SampleNo', 'DESC')
-                                        ->paginate(15);
+                                        ->paginate(14);
         $number_of_waved_records = FuelTestRecord::select('id')
                                                     ->where('ApprovalForUse', 'WAIVED')
                                                     ->count();  
 
         $WavedRecords_ = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', 'DESC')
                                         ->where('ApprovalForUse', 'WAIVED')
-                                        ->paginate(15);
+                                        ->paginate(14);
         $number_of_waved_records_ = FuelTestRecord::select('id')
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', 'WAIVED')
@@ -622,7 +622,7 @@ class FuelTestController extends Controller
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
-                                                ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -661,7 +661,7 @@ class FuelTestController extends Controller
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'WAIVED')
-                                                ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -700,7 +700,7 @@ class FuelTestController extends Controller
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'REJECTED')
-                                                ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -738,7 +738,7 @@ class FuelTestController extends Controller
                     $title = $VendorName = $_GET['Title'];
                     $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', 'APPROVED')
-                                                    ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                    ->orderBy('SampleNo', 'DESC')->paginate(14);
                     
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -775,7 +775,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $_GET['CheckVendorName'];   
                 foreach ($FilteredRecords as $VendorName) {
                     $title = $VendorName[0];
-                    $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->paginate(15);
+                    $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->paginate(14);
 
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -834,7 +834,7 @@ class FuelTestController extends Controller
                 
                 $all_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday)
                                 ->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -855,7 +855,7 @@ class FuelTestController extends Controller
                 
                 $all_records = FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterday)
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(15);
+                                                ->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -878,7 +878,7 @@ class FuelTestController extends Controller
                  
                 $all_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])
                                 ->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -900,7 +900,7 @@ class FuelTestController extends Controller
                 
                 $all_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                 ->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                  
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                         
@@ -923,7 +923,7 @@ class FuelTestController extends Controller
                   
                 $all_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                 ->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                  
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                          
@@ -1036,7 +1036,7 @@ class FuelTestController extends Controller
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(15);
+                                                ->paginate(14);
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                 
@@ -1085,7 +1085,7 @@ class FuelTestController extends Controller
                 
                 $all_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                 ->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                   
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -1123,7 +1123,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckSampleNo;  
                 
                 foreach ($FilteredRecords as $SampleNo) {
-                    $all_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->orderBy('SampleNo', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->orderBy('SampleNo', 'DESC')->paginate(14);
                    
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1136,7 +1136,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $SampleCollectionDate) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('SampleCollectionDate', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('SampleCollectionDate', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1147,7 +1147,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckSampleCollectionDate; 
 
                 foreach ($FilteredRecords as $SampleCollectionDate) {
-                    $all_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->orderBy('SampleCollectionDate', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->orderBy('SampleCollectionDate', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1160,7 +1160,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $TruckPlateNo) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('TruckPlateNo', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('TruckPlateNo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1171,7 +1171,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTruckPlateNo; 
 
                 foreach ($FilteredRecords as $TruckPlateNo) {
-                    $all_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->orderBy('TruckPlateNo', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->orderBy('TruckPlateNo', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1184,7 +1184,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $TankNo) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('TankNo', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('TankNo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1195,7 +1195,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTankNo; 
 
                 foreach ($FilteredRecords as $TankNo) {
-                    $all_records = FuelTestRecord::whereIn('TankNo', $TankNo)->orderBy('TankNo', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('TankNo', $TankNo)->orderBy('TankNo', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1208,7 +1208,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $AppearanceResult) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('AppearanceResult', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('AppearanceResult', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1219,7 +1219,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckAppearanceResult; 
 
                 foreach ($FilteredRecords as $AppearanceResult) {
-                    $all_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->orderBy('AppearanceResult', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->orderBy('AppearanceResult', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1232,7 +1232,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Color) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('Color', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('Color', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1243,7 +1243,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckColor; 
 
                 foreach ($FilteredRecords as $Color) {
-                    $all_records = FuelTestRecord::whereIn('Color', $Color)->orderBy('Color', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('Color', $Color)->orderBy('Color', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1256,7 +1256,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Density) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('Density', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('Density', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1267,7 +1267,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDensity; 
 
                 foreach ($FilteredRecords as $Density) {
-                    $all_records = FuelTestRecord::whereIn('Density', $Density)->orderBy('Density', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('Density', $Density)->orderBy('Density', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1280,7 +1280,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $FlashPoint) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('FlashPoint', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('FlashPoint', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1291,7 +1291,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckFlashPoint; 
 
                 foreach ($FilteredRecords as $FlashPoint) {
-                    $all_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->orderBy('FlashPoint', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->orderBy('FlashPoint', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1304,7 +1304,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Temp) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('Temp', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('Temp', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1315,7 +1315,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTemp; 
 
                 foreach ($FilteredRecords as $Temp) {
-                    $all_records = FuelTestRecord::whereIn('Temp', $Temp)->orderBy('Temp', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('Temp', $Temp)->orderBy('Temp', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1328,7 +1328,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $WaterSediment) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('WaterSediment', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('WaterSediment', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1339,7 +1339,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckWaterSediment; 
 
                 foreach ($FilteredRecords as $WaterSediment) {
-                    $all_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->orderBy('WaterSediment', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->orderBy('WaterSediment', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1352,7 +1352,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Cleanliness) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('Cleanliness', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('Cleanliness', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1363,7 +1363,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckCleanliness; 
 
                 foreach ($FilteredRecords as $Cleanliness) {
-                    $all_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->orderBy('Cleanliness', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->orderBy('Cleanliness', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1376,7 +1376,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $DateOfTest) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('DateOfTest', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('DateOfTest', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1387,7 +1387,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDateOfTest; 
 
                 foreach ($FilteredRecords as $DateOfTest) {
-                    $all_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->orderBy('DateOfTest', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->orderBy('DateOfTest', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1400,7 +1400,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $MadeBy) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('MadeBy', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('MadeBy', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1411,7 +1411,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckMadeBy; 
 
                 foreach ($FilteredRecords as $MadeBy) {
-                    $all_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->orderBy('MadeBy', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->orderBy('MadeBy', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1424,7 +1424,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $DeliveredTo) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('DeliveredTo', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('DeliveredTo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1435,7 +1435,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDeliveredTo; 
 
                 foreach ($FilteredRecords as $DeliveredTo) {
-                    $all_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->orderBy('DeliveredTo', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->orderBy('DeliveredTo', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1448,7 +1448,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Remarks) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('Remarks', $SortOrder)->paginate(15);
+                    $all_records = FuelTestRecord::orderBy('Remarks', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1459,7 +1459,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckRemarks; 
 
                 foreach ($FilteredRecords as $Remarks) {
-                    $all_records = FuelTestRecord::whereIn('Remarks', $Remarks)->orderBy('Remarks', 'DESC')->paginate(15);
+                    $all_records = FuelTestRecord::whereIn('Remarks', $Remarks)->orderBy('Remarks', 'DESC')->paginate(14);
                       
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1658,7 +1658,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', NULL)
-                                                    ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                    ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1702,7 +1702,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', 'WAIVED')
-                                                    ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                    ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1747,7 +1747,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('uid', $id)
                                                     ->where('ApprovalForUse', 'REJECTED')
-                                                    ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                    ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                         
@@ -1791,7 +1791,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
                                                 ->where('ApprovalForUse', 'APPROVED')
-                                                ->orderBy('SampleNo', 'DESC')->paginate(15);
+                                                ->orderBy('SampleNo', 'DESC')->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1837,7 +1837,7 @@ class FuelTestController extends Controller
                     $previous_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)
                                                                     ->where('uid', $id)
                                                                     ->orderBy('SampleNo', 'DESC')
-                                                                    ->paginate(15);
+                                                                    ->paginate(14);
                     
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -1888,7 +1888,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $VendorName) {  
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('VendorName', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('VendorName', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -1901,7 +1901,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('uid', $id)
                                 ->where('SampleCollectionDate', $RecordsOfToday)
                                 ->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -1924,7 +1924,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('uid', $id)
                                                     ->where('SampleCollectionDate', $RecordsOfYesterday)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(15);
+                                                    ->paginate(14);
 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -1949,7 +1949,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('uid', $id)
                                                     ->whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(15);
+                                                    ->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -1974,7 +1974,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('uid', $id)
                                                     ->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(15);
+                                                    ->paginate(14);
 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -1999,7 +1999,7 @@ class FuelTestController extends Controller
                 $previous_records = FuelTestRecord::where('uid', $id)
                                                     ->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(15);
+                                                    ->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                   
@@ -2123,7 +2123,7 @@ class FuelTestController extends Controller
                                                 ->where('uid', $id)
                                                 ->whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(15);
+                                                ->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                 
@@ -2177,7 +2177,7 @@ class FuelTestController extends Controller
                 
                 $previous_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$DateFrom, $DateTo])
                                 ->where('uid', $id)->orderBy('SampleNo', 'DESC')
-                                ->paginate(15);
+                                ->paginate(14);
                 
                 $previous_records->setPath($_SERVER['REQUEST_URI']);  
                 
@@ -2203,7 +2203,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $SampleNo) {  
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('SampleNo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2214,7 +2214,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckSampleNo; 
  
                 foreach ($FilteredRecords as $SampleNo) {
-                    $previous_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->where('uid', $id)->orderBy('SampleNo', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->where('uid', $id)->orderBy('SampleNo', 'DESC')->paginate(14);
                    
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2227,7 +2227,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $SampleCollectionDate) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('SampleCollectionDate', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('SampleCollectionDate', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2238,7 +2238,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckSampleCollectionDate; 
 
                 foreach ($FilteredRecords as $SampleCollectionDate) {
-                    $previous_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->where('uid', $id)->orderBy('SampleCollectionDate', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->where('uid', $id)->orderBy('SampleCollectionDate', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2251,7 +2251,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $TruckPlateNo) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('TruckPlateNo', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('TruckPlateNo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2262,7 +2262,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTruckPlateNo; 
 
                 foreach ($FilteredRecords as $TruckPlateNo) {
-                    $previous_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->where('uid', $id)->orderBy('TruckPlateNo', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->where('uid', $id)->orderBy('TruckPlateNo', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2275,7 +2275,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $TankNo) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('TankNo', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('TankNo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2286,7 +2286,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTankNo; 
 
                 foreach ($FilteredRecords as $TankNo) {
-                    $previous_records = FuelTestRecord::whereIn('TankNo', $TankNo)->where('uid', $id)->orderBy('TankNo', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('TankNo', $TankNo)->where('uid', $id)->orderBy('TankNo', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2299,7 +2299,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $AppearanceResult) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('AppearanceResult', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('AppearanceResult', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2310,7 +2310,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckAppearanceResult; 
 
                 foreach ($FilteredRecords as $AppearanceResult) {
-                    $previous_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->where('uid', $id)->orderBy('AppearanceResult', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->where('uid', $id)->orderBy('AppearanceResult', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2323,7 +2323,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Color) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Color', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Color', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2334,7 +2334,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckColor; 
 
                 foreach ($FilteredRecords as $Color) {
-                    $previous_records = FuelTestRecord::whereIn('Color', $Color)->where('uid', $id)->orderBy('Color', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('Color', $Color)->where('uid', $id)->orderBy('Color', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2347,7 +2347,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Density) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Density', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Density', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2358,7 +2358,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDensity; 
 
                 foreach ($FilteredRecords as $Density) {
-                    $previous_records = FuelTestRecord::whereIn('Density', $Density)->where('uid', $id)->orderBy('Density', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('Density', $Density)->where('uid', $id)->orderBy('Density', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2371,7 +2371,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $FlashPoint) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('FlashPoint', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('FlashPoint', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2382,7 +2382,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckFlashPoint; 
 
                 foreach ($FilteredRecords as $FlashPoint) {
-                    $previous_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->where('uid', $id)->orderBy('FlashPoint', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->where('uid', $id)->orderBy('FlashPoint', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2395,7 +2395,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Temp) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Temp', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Temp', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2406,7 +2406,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckTemp; 
 
                 foreach ($FilteredRecords as $Temp) {
-                    $previous_records = FuelTestRecord::whereIn('Temp', $Temp)->where('uid', $id)->orderBy('Temp', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('Temp', $Temp)->where('uid', $id)->orderBy('Temp', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2419,7 +2419,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $WaterSediment) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('WaterSediment', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('WaterSediment', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2430,7 +2430,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckWaterSediment; 
 
                 foreach ($FilteredRecords as $WaterSediment) {
-                    $previous_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->where('uid', $id)->orderBy('WaterSediment', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->where('uid', $id)->orderBy('WaterSediment', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2443,7 +2443,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Cleanliness) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Cleanliness', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Cleanliness', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2454,7 +2454,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckCleanliness; 
 
                 foreach ($FilteredRecords as $Cleanliness) {
-                    $previous_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->where('uid', $id)->orderBy('Cleanliness', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->where('uid', $id)->orderBy('Cleanliness', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2467,7 +2467,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $DateOfTest) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('DateOfTest', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('DateOfTest', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2478,7 +2478,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDateOfTest; 
 
                 foreach ($FilteredRecords as $DateOfTest) {
-                    $previous_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->where('uid', $id)->orderBy('DateOfTest', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->where('uid', $id)->orderBy('DateOfTest', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2491,7 +2491,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $MadeBy) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('MadeBy', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('MadeBy', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2502,7 +2502,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckMadeBy; 
 
                 foreach ($FilteredRecords as $MadeBy) {
-                    $previous_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->where('uid', $id)->orderBy('MadeBy', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->where('uid', $id)->orderBy('MadeBy', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2515,7 +2515,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $DeliveredTo) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('DeliveredTo', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('DeliveredTo', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2526,7 +2526,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckDeliveredTo; 
 
                 foreach ($FilteredRecords as $DeliveredTo) {
-                    $previous_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->where('uid', $id)->orderBy('DeliveredTo', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->where('uid', $id)->orderBy('DeliveredTo', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
@@ -2539,7 +2539,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $Remarks) { 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Remarks', $SortOrder)->paginate(15);
+                    $previous_records = FuelTestRecord::where('uid', $id)->orderBy('Remarks', $SortOrder)->paginate(14);
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     Session::put('SortOrder', $SortOrder); 
@@ -2550,7 +2550,7 @@ class FuelTestController extends Controller
                 $FilteredRecords[] = $request->CheckRemarks; 
 
                 foreach ($FilteredRecords as $Remarks) {
-                    $previous_records = FuelTestRecord::whereIn('Remarks', $Remarks)->where('uid', $id)->orderBy('Remarks', 'DESC')->paginate(15);
+                    $previous_records = FuelTestRecord::whereIn('Remarks', $Remarks)->where('uid', $id)->orderBy('Remarks', 'DESC')->paginate(14);
                  
                     $previous_records->setPath($_SERVER['REQUEST_URI']);  
                     
