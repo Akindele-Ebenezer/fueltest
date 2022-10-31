@@ -1153,6 +1153,7 @@ section.previous-records .table .links nav a:last-of-type {
 section.previous-records .table .links nav div {
   height: unset;
   margin: unset;
+  overflow: auto;
   width: unset;
 }
 section.previous-records .table .links nav div.hidden {

@@ -558,6 +558,7 @@ section {
                     div {
                         height: unset;
                         margin: unset;
+                        overflow: auto;
                         width: unset;
 
                         &.hidden {
