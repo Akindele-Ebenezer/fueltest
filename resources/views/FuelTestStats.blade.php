@@ -140,7 +140,7 @@
             @endisset
         </div>    
         <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
-            <!-- <h1>Monthly</h1> -->
+            <!-- <h1>Monthly</h1> refactor -->
             <canvas id="myChart3" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
