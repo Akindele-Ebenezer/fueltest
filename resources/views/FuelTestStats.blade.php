@@ -145,35 +145,17 @@
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[1] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[1], 1) }}%)</span></p> 
-                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[2] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[2], 1) }}%)</span></p> 
-                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[3] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[3], 1) }}%)</span></p> 
-                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[4] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[4], 1) }}%)</span></p> 
-                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[5] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[5], 1) }}%)</span></p> 
-                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[6] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[6], 1) }}%)</span></p> 
-                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[7] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[7], 1) }}%)</span></p> 
-                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[8] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[8], 1) }}%)</span></p> 
-                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[9] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[9], 1) }}%)</span></p> 
-                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[10] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[10], 1) }}%)</span></p> 
-                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[11] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[11], 1) }}%)</span></p> 
-                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[12] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[12], 1) }}%)</span></p>  
+                    @for($i = 1; $i < count($MonthNames); $i++)
+                        <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[$i], 1) }}%)</span></p> 
+                    @endfor 
                 </div> 
             @endif
             @isset($_GET['GenerateChartForCurrentVendor'])
                 <div>
                     <h1>BREAKDOWN</h1>
-                    <p><span>January</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[1] }} ({{ round($PercentageOfAllRecordsInJanuary, 1) }}%)</span></p> 
-                    <p><span>February</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[2] }} ({{ round($PercentageOfAllRecordsInFebruary, 1) }}%)</span></p> 
-                    <p><span>March</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[3] }} ({{ round($PercentageOfAllRecordsInMarch, 1) }}%)</span></p> 
-                    <p><span>April</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[4] }} ({{ round($PercentageOfAllRecordsInApril, 1) }}%)</span></p> 
-                    <p><span>May</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[5] }} ({{ round($PercentageOfAllRecordsInMay, 1) }}%)</span></p> 
-                    <p><span>June</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[6] }} ({{ round($PercentageOfAllRecordsInJune, 1) }}%)</span></p> 
-                    <p><span>July</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[7] }} ({{ round($PercentageOfAllRecordsInJuly, 1) }}%)</span></p> 
-                    <p><span>August</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[8] }} ({{ round($PercentageOfAllRecordsInAugust, 1) }}%)</span></p> 
-                    <p><span>September</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[9] }} ({{ round($PercentageOfAllRecordsInSeptember, 1) }}%)</span></p> 
-                    <p><span>October</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[10] }} ({{ round($PercentageOfAllRecordsInOctober, 1) }}%)</span></p> 
-                    <p><span>November</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[11] }} ({{ round($PercentageOfAllRecordsInNovember, 1) }}%)</span></p> 
-                    <p><span>December</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[12] }} ({{ round($PercentageOfAllRecordsInDecember, 1) }}%)</span></p> 
+                    @for($i = 1; $i < count($MonthNames); $i++)
+                        <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[$i] }} ({{ round(${"PercentageOfAllRecordsIn" . $MonthNames[$i]}, 1) }}%)</span></p> 
+                    @endfor  
                     <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
                     <p><span>Recent Supply Date *</span> => &nbsp;&nbsp; <span>{{ $RecentSupplyDate }}</span></p>
@@ -355,7 +337,11 @@ let FuelTestResults = new Chart("myChart", {
             datasets: [{
                 backgroundColor: ['#d7e1ee', '#a4a2a8', '#edbf33'],
                 fill: false,
-                data: [{{ $number_of_all_records_last_month }}, {{ $number_of_all_records_this_month }}, {{ $number_of_all_records_last_seven_days }}]
+                data: [
+                    {{ $number_of_all_records_last_month }}, 
+                    {{ $number_of_all_records_this_month }}, 
+                    {{ $number_of_all_records_last_seven_days }}
+                ]
             }]
         },
         options: {

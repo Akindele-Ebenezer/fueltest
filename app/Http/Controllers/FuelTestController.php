@@ -52,7 +52,7 @@ class FuelTestController extends Controller
 
         $vendors = Vendor::all();
         $number_of_vendors = count($vendors); 
- 
+  
         $VendorWithTheHighestSupply = FuelTestRecord::select('VendorName') 
                                                     ->whereNot('VendorName', NULL)
                                                     ->whereNot('VendorName', '')
@@ -64,12 +64,12 @@ class FuelTestController extends Controller
         $VendorWithTheLowestSupply = FuelTestRecord::select('VendorName')
                                                     ->groupBy('VendorName') 
                                                     ->orderBy('VendorName', 'DESC')
-                                                    ->limit(2)
+                                                    // ->limit(2)
                                                     ->get()
                                                     ->toArray(); 
-                                 
+                                                    
         $VendorWithTheHighestSupply = $VendorWithTheHighestSupply[0]['VendorName']; 
-        $VendorWithTheLowestSupply = $VendorWithTheLowestSupply[1]['VendorName'];  
+        $VendorWithTheLowestSupply = $VendorWithTheLowestSupply[0]['VendorName'];  
         
         $PercentageForVendorWithTheHighestSupply = FuelTestRecord::select('id') 
                                                     ->where('VendorName', $VendorWithTheHighestSupply) 
