@@ -22,10 +22,14 @@
                 <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>                
             </div>
             @include('ApprovedWavedRejected')
-        </center>
+        </center> 
         <section>
-            <!-- <input type="text" placeholder="Search.."> -->
-        </section>
+            <form action="">
+                <input type="text" name="SearchValue" placeholder="Search..">
+                <input type="submit" name="Search" value="Filter">
+                <input type="submit" name="Clear" value="Clear">
+            </form>
+        </section> 
         <div class="table">
             <table>
                 <tr> 

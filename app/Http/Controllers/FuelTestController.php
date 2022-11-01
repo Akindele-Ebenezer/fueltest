@@ -551,7 +551,7 @@ class FuelTestController extends Controller
             $ApprovalForUse = '';  
             $VendorNo = ''; 
             $VendorName = ''; 
- 
+  
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                 $SampleNo = $request->SampleNo; 
@@ -617,6 +617,59 @@ class FuelTestController extends Controller
 
             $ViewData = [...$Config, ...$ViewData]; 
             
+            if (isset($_GET['Search'])) {
+
+                $SearchValue = trim($_GET['SearchValue']);
+                $title = '" ' . $SearchValue . ' "';
+
+                $all_records =  FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('TruckPlateNo', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('TankNo', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('AppearanceResult', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('Color', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('Density', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('FlashPoint', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('Temp', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('WaterSediment', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('DateOfTest', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('MadeBy', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('DeliveredTo', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('Remarks', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->paginate(14)
+                                                ->fragment('AllRecords');
+ 
+                $number_of_all_records = count($all_records);                                     
+                $number_of_passed_records =  FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                            ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('TruckPlateNo', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('TankNo', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('AppearanceResult', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('Color', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('Density', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('FlashPoint', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('Temp', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('WaterSediment', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('DateOfTest', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('MadeBy', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('DeliveredTo', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('Remarks', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
+                                                            ->count();
+                                                            
+                $all_records->setPath($_SERVER['REQUEST_URI']);  
+
+                return view("all_records", $ViewData)->with('all_records', $all_records)->with('number_of_all_records', $number_of_all_records)->with('title', $title);
+
+            }
+
+            if (isset($_GET['Clear'])) {
+                return redirect('/AllRecords');
+            }
+
             if(isset($_GET['FilterDiffTestsForCurrentVendor'])) {
                 
                 $title = $VendorName = $_GET['Title'];
