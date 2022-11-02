@@ -41,11 +41,11 @@ $headings: 1, 2, 3, 4;
     top: 2.5rem;
 }
 
-button {
+button,
+.button {
     background: $color-2;
     border: 1px solid $color-2;
-    border-radius: .2rem;
-    box-shadow: 1px 2px 19px #eee;
+    border-radius: .2rem; 
     color: #fff;
     padding: .4rem;
     transition: .5s;
@@ -57,7 +57,7 @@ button {
         cursor: pointer;
     }
 }
-
+  
 @mixin AppearanceResult {
     background: #62d9622e; 
     color: green; 

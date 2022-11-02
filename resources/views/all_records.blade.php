@@ -23,11 +23,11 @@
             </div>
             @include('ApprovedWavedRejected')
         </center> 
-        <section>
+        <section class="search">
             <form action="">
                 <input type="text" name="SearchValue" placeholder="Search..">
-                <input type="submit" name="Search" value="Filter">
-                <input type="submit" name="Clear" value="Clear">
+                <input type="submit" class="button" name="Search" value="Filter">
+                <input type="submit" class="button" name="Clear" value="Clear">
             </form>
         </section> 
         <div class="table">

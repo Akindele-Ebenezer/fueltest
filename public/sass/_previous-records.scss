@@ -531,8 +531,12 @@ section {
             padding-bottom: 8rem;
 
             .links {
+                background: #fff;
+                border-radius: 0.5rem;
                 height: unset;
                 margin: unset;
+                overflow: hidden;
+                padding: .5rem;
 
                 nav {
                     display: unset;
@@ -546,6 +550,7 @@ section {
 
                         &:first-of-type { 
                             color: inherit; 
+                            font-style: italic;
                         }
 
                         &:last-of-type {
@@ -558,7 +563,7 @@ section {
                     div {
                         height: unset;
                         margin: unset;
-                        overflow: auto;
+                        overflow: hidden;
                         width: unset;
 
                         &.hidden {
@@ -581,7 +586,8 @@ section {
                         // padding: .5rem;
 
                         &[aria-current] {
-                            background: #999; 
+                            background: #4ab380; 
+                            border-radius: 0.1rem;
                             color: #fff;
                             margin-inline: .3rem;
                             padding: 0.1rem 0.5rem;
@@ -592,11 +598,13 @@ section {
                         }
 
                         &.rounded-md { 
+                            font-style: italic;
                             width: 16rem;
 
                             a {
-                                color: #888;
-                                font-size: 1.2rem;
+                                color: #00592e;
+                                font-size: 1rem;
+                                font-style: italic;
 
                                 &:last-of-type {
                                     background: unset;
@@ -613,6 +621,10 @@ section {
 
     &.hide-record {
         display: none;
+    }
+
+    &.search {
+        margin-top: 0.5rem;
     }
 
     &.show-record-side-bar {
@@ -722,6 +734,8 @@ section {
     input[placeholder="Search.."] {
         border: 1px solid #ccc;
         border-radius: 0.3rem;
+        color: #00592e;
+        font-style: italic;
         margin-left: 2rem;
         margin-top: 0.5rem;
         outline: none;
@@ -729,7 +743,13 @@ section {
     }
 
     input[value="Clear"] {
-        @include button();
+        background: #fff;
+        color: #00592e;
+
+        &:hover {
+            background: #00592e;
+            color: #fff;
+        }
     }
 }
 
