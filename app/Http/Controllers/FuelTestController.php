@@ -895,7 +895,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $VendorName) {    
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('VendorName', $SortOrder)->get(); 
+                    $all_records = FuelTestRecord::orderBy('VendorName', $SortOrder)->paginate(14); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     
@@ -1185,7 +1185,7 @@ class FuelTestController extends Controller
  
                 foreach ($FilteredRecords as $SampleNo) {    
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $all_records = FuelTestRecord::orderBy('SampleNo', $SortOrder)->get(); 
+                    $all_records = FuelTestRecord::orderBy('SampleNo', $SortOrder)->paginate(14); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     
