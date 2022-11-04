@@ -275,7 +275,7 @@ nav ul li a {
 }
 @media (max-width: 755px) {
   .nav-sm-screen,
-.nav-sm-screen-header-info div {
+  .nav-sm-screen-header-info div {
     display: block;
   }
 }
@@ -414,7 +414,7 @@ section.fuel-test .fuel-test-main .form div {
   align-items: center;
   background: #fff;
   display: flex;
-  margin: 1rem;
+  margin: 0.2rem;
   position: relative;
   width: 42rem;
 }
@@ -426,7 +426,7 @@ section.fuel-test .fuel-test-main .form div:last-of-type {
 section.fuel-test .fuel-test-main .form div p {
   color: red;
   position: absolute;
-  transform: translate(3rem, 3rem);
+  transform: translate(3rem, 2.5rem);
 }
 section.fuel-test .fuel-test-main .form div select {
   border: 3px solid #999;

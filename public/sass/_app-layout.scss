@@ -93,7 +93,7 @@ section {
                         align-items: center;
                         background: #fff; 
                         display: flex;
-                        margin: 1rem;
+                        margin: .2rem;
                         position: relative;
                         width: 42rem;
 
@@ -106,7 +106,7 @@ section {
                         p {
                             color: red;
                             position: absolute;
-                            transform: translate(3rem, 3rem);
+                            transform: translate(3rem, 2.5rem);
                         }
 
                         select {
