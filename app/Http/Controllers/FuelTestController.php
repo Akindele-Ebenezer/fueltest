@@ -1731,8 +1731,9 @@ class FuelTestController extends Controller
                 $SearchValue = trim($_GET['SearchValue']);
                 $title = '" ' . $SearchValue . ' "';
 
-                $previous_records =  FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%') 
-                                                    ->where('uid', $id)
+                $previous_records =  FuelTestRecord::where('uid', $id)
+                                                    ->where('VendorName', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('SampleNo', 'LIKE', '%' . $SearchValue . '%') 
                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('TruckPlateNo', 'LIKE', '%' . $SearchValue . '%')
@@ -1747,14 +1748,13 @@ class FuelTestController extends Controller
                                                     ->orWhere('MadeBy', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('DeliveredTo', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('Remarks', 'LIKE', '%' . $SearchValue . '%')
-                                                    ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->paginate(14)
                                                     ->fragment('PreviousRecords');
- 
+//  dd($previous_records);
                 $number_of_previous_records = count($previous_records);                                     
-                $number_of_previous_records_absolute = FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
-                                                                    ->where('uid', $id)
+                $number_of_previous_records_absolute = FuelTestRecord::where('uid', $id)
+                                                                    ->where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
                                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
                                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
                                                                     ->orWhere('TruckPlateNo', 'LIKE', '%' . $SearchValue . '%')

@@ -15,22 +15,25 @@ return new class extends Migration
     {
         Schema::create('fuel_test_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('SampleNo');
-            $table->string('SampleCollectionDate');
-            $table->string('TruckPlateNo');
-            $table->string('TankNo');
-            $table->string('AppearanceResult');
-            $table->string('Color');
-            $table->string('Density');
-            $table->string('FlashPoint');
-            $table->string('Temp');
-            $table->string('WaterSediment');
-            $table->string('Cleanliness');
-            $table->string('DateOfTest');
-            $table->string('uid');
-            $table->string('MadeBy');
-            $table->string('DeliveredTo');
-            $table->string('Remarks');
+            $table->string('SampleNo')->nullable();
+            $table->string('SampleCollectionDate')->nullable();
+            $table->string('TruckPlateNo')->nullable();
+            $table->string('TankNo')->nullable();
+            $table->string('AppearanceResult')->nullable();
+            $table->string('Color')->nullable();
+            $table->string('Density')->nullable();
+            $table->string('FlashPoint')->nullable();
+            $table->string('Temp')->nullable();
+            $table->string('WaterSediment')->nullable();
+            $table->string('Cleanliness')->nullable();
+            $table->string('DateOfTest')->nullable();
+            $table->string('uid')->nullable();
+            $table->string('MadeBy')->nullable();
+            $table->string('DeliveredTo')->nullable();
+            $table->string('Remarks')->nullable();
+            $table->string('VendorName')->nullable();
+            $table->string('VendorNo')->nullable();
+            $table->string('ApprovalForUse')->nullable();
             $table->timestamps();
         });
     }
