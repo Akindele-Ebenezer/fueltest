@@ -33,8 +33,7 @@
         array_push($WavedTestsForEachVendor, ${"WavedTestsFor" . str_replace(' ', '', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))});                                                                                                                                    
         
     }
-    
-print_r($ApprovedTestsForEachVendor);
+     
 @endphp
 
 
