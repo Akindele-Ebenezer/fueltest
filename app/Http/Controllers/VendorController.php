@@ -33,9 +33,7 @@ class VendorController extends Controller
                 'FilterVendorName' => $FilterVendorName,   
                 'FilterVendorNo' => $FilterVendorNo,   
             ];
-
-            $ViewData = [...$Config, ...$ViewData]; 
-            
+ 
             if (isset($_GET['Search'])) {
 
                 $SearchValue = trim($_GET['SearchValue']);
@@ -51,6 +49,8 @@ class VendorController extends Controller
                 $number_of_vendors = count($vendors);
                 
                 $vendors->setPath($_SERVER['REQUEST_URI']);  
+
+                $ViewData = [...$Config, ...$ViewData]; 
 
                 return view("vendors", $ViewData)->with('vendors', $vendors)
                                                     ->with('number_of_vendors', $number_of_vendors) 

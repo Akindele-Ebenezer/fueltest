@@ -8,7 +8,7 @@
     $RejectedTestsForEachVendor = [];
     $WavedTestsForEachVendor = [];
 
-    foreach ($vendors as $ApprovalForUse) {
+    for ($i=0; $i < 1; $i++) {   
 
         ${"ApprovedTestsFor" . str_replace(' ', '', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))}   = App\Models\FuelTestRecord::where('VendorName', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))
                                                                                                                                                                                                                         ->where('ApprovalForUse', 'APPROVED')
@@ -33,7 +33,8 @@
         array_push($WavedTestsForEachVendor, ${"WavedTestsFor" . str_replace(' ', '', Route::is('all_records') ? $record->VendorName : (Route::is('previous_records') ? $previous_record->VendorName : $Vendor->VendorName))});                                                                                                                                    
         
     }
-
+    
+print_r($ApprovedTestsForEachVendor);
 @endphp
 
 

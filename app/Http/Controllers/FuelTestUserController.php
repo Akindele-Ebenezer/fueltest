@@ -35,6 +35,32 @@ class FuelTestUserController extends Controller
                 'FilterEmails' => $FilterEmails,   
             ];
 
+            if (isset($_GET['Search'])) {
+
+                $SearchValue = trim($_GET['SearchValue']);
+                $title = '" ' . $SearchValue . ' "';
+
+                $fuel_test_users =  FuelTestUser::where('Email', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('Name', 'LIKE', '%' . $SearchValue . '%') 
+                                                ->orderBy('Name', 'DESC')
+                                                ->paginate(14)
+                                                ->fragment('Users');
+ 
+                $number_of_fuel_test_users = count($fuel_test_users);
+                
+                $fuel_test_users->setPath($_SERVER['REQUEST_URI']);  
+
+                $ViewData = [...$Config, ...$ViewData]; 
+
+                return view("Users", $ViewData)->with('fuel_test_users', $fuel_test_users)
+                                                    ->with('number_of_fuel_test_users', $number_of_fuel_test_users) 
+                                                    ->with('title', $title);
+            }
+
+            if (isset($_GET['Clear'])) {
+                return redirect('/Users');
+            }
+
             if (isset($_GET['SortByEmail'])) {
 
                 $SortOrder = Session::get('SortOrder', 'ASC');

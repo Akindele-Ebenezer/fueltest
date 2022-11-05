@@ -24,7 +24,7 @@
             <img src="images/rejected.png">
             REJECTED [{{ Route::is('previous_records') ? $number_of_failed_records_ : '' }}{{ Route::is('all_records') ? $number_of_failed_records : '' }}]
         </label>
-        <section class="tooltip">{{ $number_of_failed_records }} DIESEL Tests = Rejected</section> 
+        <section class="tooltip">{{ Route::is('previous_records') ? $number_of_failed_records_ : '' }}{{ Route::is('all_records') ? $number_of_failed_records : '' }} DIESEL Tests = Rejected</section> 
     </form> 
     <form action="" class="Diff">
         <label>
