@@ -745,6 +745,7 @@ section.previous-records .date {
 }
 section.previous-records .date div {
   height: unset;
+  overflow: hidden;
   width: unset;
 }
 section.previous-records center {
@@ -1159,6 +1160,7 @@ section.previous-records .table .links nav a:last-of-type {
 section.previous-records .table .links nav div {
   height: unset;
   margin: unset;
+  margin-right: 1rem;
   overflow: hidden;
   width: unset;
 }

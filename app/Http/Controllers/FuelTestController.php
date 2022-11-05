@@ -36,7 +36,7 @@ class FuelTestController extends Controller
         $header_info = "ID : [" . $id . "] Email : " . $email;
         $sample_no = date('Ymd') . $id . 0;
 
-        $fuel_test_users = DB::table('fuel_test_users')->get();
+        $fuel_test_users = DB::table('fuel_test_users')->paginate(14);
         $number_fuel_test_users = count($fuel_test_users);
 
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('PreviousRecords');
@@ -50,7 +50,7 @@ class FuelTestController extends Controller
         $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
 
-        $vendors = Vendor::all();
+        $vendors = Vendor::paginate(14);
         $number_of_vendors = count($vendors); 
   
         $VendorWithTheHighestSupply = FuelTestRecord::select('VendorName') 

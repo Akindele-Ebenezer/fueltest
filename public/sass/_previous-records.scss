@@ -26,7 +26,8 @@ section {
             overflow: unset;
 
             div { 
-                height: unset; 
+                height: unset;
+                overflow: hidden; 
                 width: unset; 
             } 
         }
@@ -563,6 +564,7 @@ section {
                     div {
                         height: unset;
                         margin: unset;
+                        margin-right: 1rem;
                         overflow: hidden;
                         width: unset;
 

@@ -17,7 +17,14 @@
                 <button>Add Vendor</button>
             </form>
         </section>
-        @endif
+        @endif 
+        <section class="search">
+            <form action="">
+                <input type="text" name="SearchValue" placeholder="Search..">
+                <input type="submit" class="button" name="Search" value="Filter">
+                <input type="submit" class="button" name="Clear" value="Clear">
+            </form>
+        </section> 
         <div class="table"> 
             <table class="vendors"> 
                 <tr>  
@@ -114,9 +121,11 @@
                         </form>
                     </td>
                 </tr>  
-                @endforeach
+                @endforeach 
+                <div class="links">  
+                    {{ $vendors->onEachSide(1)->links() }}   
+                </div>  
             </table> 
-            <!-- Pagination links -->
         </div>
     </section> 
 

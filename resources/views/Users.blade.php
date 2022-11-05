@@ -20,7 +20,7 @@
             </form>
         </section>
         @endif
-        <div> 
+        <div class="table"> 
             <table class="users"> 
                 <tr>  
                     <th class="resizable">#</th>
@@ -85,9 +85,11 @@
                     <td class="user-email">{{ $User->Email }}</td>
                     <td class="user-name">{{ $User->Name }}</td>  
                 </tr>  
-                @endforeach
-            </table> 
-            <!-- Pagination links -->
+                @endforeach 
+                <div class="links">  
+                    {{ $fuel_test_users->onEachSide(1)->links() }}   
+                </div>  
+            </table>  
         </div>
     </section>
     <script src="JS/Resizable.js"></script>

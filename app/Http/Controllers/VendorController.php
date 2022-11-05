@@ -33,7 +33,34 @@ class VendorController extends Controller
                 'FilterVendorName' => $FilterVendorName,   
                 'FilterVendorNo' => $FilterVendorNo,   
             ];
+
+            $ViewData = [...$Config, ...$ViewData]; 
             
+            if (isset($_GET['Search'])) {
+
+                $SearchValue = trim($_GET['SearchValue']);
+                $title = '" ' . $SearchValue . ' "';
+
+                $vendors =  Vendor::where('VendorNo', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orWhere('id', 'LIKE', '%' . $SearchValue . '%')
+                                                ->orderBy('VendorName', 'DESC')
+                                                ->paginate(14)
+                                                ->fragment('Vendors');
+ 
+                $number_of_vendors = count($vendors);
+                
+                $vendors->setPath($_SERVER['REQUEST_URI']);  
+
+                return view("vendors", $ViewData)->with('vendors', $vendors)
+                                                    ->with('number_of_vendors', $number_of_vendors) 
+                                                    ->with('title', $title);
+            }
+
+            if (isset($_GET['Clear'])) {
+                return redirect('/Vendors');
+            }
+
            if (isset($_GET['SortByVendorNo'])) {
 
                 $SortOrder = Session::get('SortOrder', 'ASC');
