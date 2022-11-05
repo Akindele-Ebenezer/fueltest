@@ -38,6 +38,7 @@ class FuelTestController extends Controller
 
         $fuel_test_users = DB::table('fuel_test_users')->paginate(14);
         $number_of_fuel_test_users = count($fuel_test_users);
+        $number_of_fuel_test_users_absolute = FuelTestUser::count();
 
         $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('PreviousRecords');
         $number_of_previous_records = count($previous_records);
@@ -52,6 +53,7 @@ class FuelTestController extends Controller
 
         $vendors = Vendor::paginate(14);
         $number_of_vendors = count($vendors); 
+        $number_of_vendors_absolute = Vendor::count(); 
   
         $VendorWithTheHighestSupply = FuelTestRecord::select('VendorName') 
                                                     ->whereNot('VendorName', NULL)
@@ -231,6 +233,8 @@ class FuelTestController extends Controller
             'number_of_failed_records_' => $number_of_failed_records_, 
             'number_of_previous_records_absolute' => $number_of_previous_records_absolute,
             'number_of_all_records_absolute' => $number_of_all_records_absolute,
+            'number_of_vendors_absolute' => $number_of_vendors_absolute,
+            'number_of_fuel_test_users_absolute' => $number_of_fuel_test_users_absolute,
             'AbsolutePercentageOfFailedRecords' => $AbsolutePercentageOfFailedRecords,
             'AbsolutePercentageOfPassedRecords' => $AbsolutePercentageOfPassedRecords,
             'AbsolutePercentageOfWavedRecords' => $AbsolutePercentageOfWavedRecords,
