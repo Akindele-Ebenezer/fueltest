@@ -44,10 +44,9 @@ section {
 
             a {
                 button {
-                    background: unset;
+                    background: $color-2;
                     border: 1px solid $color-2;
                     border-radius: .2rem;
-                    color: $color-2;
                     margin-left: .5rem;
 
                     &:hover {
@@ -89,7 +88,7 @@ section {
             }
 
             h1 {
-                background: -webkit-linear-gradient(#25066a, #00592e);
+                background: -webkit-linear-gradient(#182747, $color-2);
                 background-clip: border-box;  
                 font-size: 2rem;
                 margin: 1rem;
@@ -360,7 +359,7 @@ section {
                 } 
 
                 th {
-                    background: $color-4;
+                    background: lighten($color: #483434, $amount:20);
                     border: 1px solid #ddd;
                     // border-radius: 0.3rem;
                     color: #fff;
@@ -531,6 +530,10 @@ section {
         .table {
             padding-bottom: 8rem;
 
+            &.vendors-table {
+                overflow-x: hidden;
+            }
+
             .links {
                 background: #fff;
                 border-radius: 0.5rem;
@@ -555,7 +558,7 @@ section {
                         }
 
                         &:last-of-type {
-                            background: #00592e;
+                            background: lighten($color: $color-2, $amount: 10);
                             color: #fff;
                             padding: .5rem;
                         }
@@ -588,7 +591,7 @@ section {
                         // padding: .5rem;
 
                         &[aria-current] {
-                            background: #4ab380; 
+                            background: lighten($color: $color-2, $amount: 10);
                             border-radius: 0.1rem;
                             color: #fff;
                             margin-inline: .3rem;
@@ -604,7 +607,7 @@ section {
                             width: 16rem;
 
                             a {
-                                color: #00592e;
+                                color: lighten($color: $color-2, $amount: 10);
                                 font-size: 1rem;
                                 font-style: italic;
 
@@ -641,7 +644,7 @@ section {
         z-index: 1000;
 
         section {
-            background-image: linear-gradient(to bottom, lighten(#00592e, 3), #111); 
+            background-image: linear-gradient( to bottom, $color-2, #111);
             color: #ddd;
             height: 90vh;
             overflow: scroll;
@@ -736,7 +739,7 @@ section {
     input[placeholder="Search.."] {
         border: 1px solid #ccc;
         border-radius: 0.3rem;
-        color: #00592e;
+        color: $color-2;
         font-style: italic;
         margin-left: 2rem;
         margin-top: 0.5rem;
@@ -745,11 +748,11 @@ section {
     }
 
     input[value="Clear"] {
-        background: #fff;
-        color: #00592e;
+        background: $color-2; 
 
         &:hover {
-            background: #00592e;
+            background: lighten($color: $color-2, $amount: 10);
+            border: 1px solid lighten($color: $color-2, $amount: 10);
             color: #fff;
         }
     }

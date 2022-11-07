@@ -466,7 +466,7 @@ class FuelTestController extends Controller
     { 
         if(Session::has('email')) {
   
-            $title = 'All Records';
+            $title = 'Test Report';
             $FilterSampleNo = FuelTestRecord::select('SampleNo')
                                                 ->distinct()
                                                 ->get();

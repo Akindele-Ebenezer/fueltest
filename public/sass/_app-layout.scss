@@ -6,8 +6,8 @@ section {
         .fuel-test {
             &-left-nav {
                 background-image: linear-gradient( to bottom, $color-2, #111);
-                color: #ddd;
-                overflow: scroll;
+                color: #ddd; 
+                overflow-x: hidden;
                 width: 25rem;
 
                 center {
@@ -70,6 +70,7 @@ section {
                 }
                 
                 a { 
+                    color: $color-2;
                     font-family: 'Roboto', sans-serif;
                     font-size: 1.1rem;
                     text-decoration: none;
@@ -86,11 +87,12 @@ section {
             }
 
             &-main {
-                overflow: scroll;
+                overflow-x: hidden;
                 position: relative;
                 width: 80vw;
 
                 .form {
+                    background: #f4f4f4;
                     border-radius: .3rem;
                     box-shadow: 1px 2px 19px #ddd;
                     display: flex;
@@ -101,14 +103,18 @@ section {
                     div {
                         align-items: center;
                         background: #fff; 
+                        border-radius: 0.5rem;
                         display: flex;
-                        margin: .2rem;
+                        margin: .4rem;
+                        padding: 0.5rem;
                         position: relative;
                         width: 42rem;
 
                         &:last-of-type {
+                            background: unset;
                             box-shadow: unset;
                             justify-content: center;
+                            margin-block: 1.5rem;
                             width: 100%;
                         }
  
@@ -123,27 +129,24 @@ section {
                             box-shadow: 1px 2px 19px #bbb;
                             display: none;
                             max-height: 27rem;
+                            overflow-x: hidden;
                             padding: 1.5rem;
                             position: absolute;
                             left: 14rem;
-                            overflow: scroll;
                             top: 5rem;
                             width: 28rem;
                             z-index: 1;
 
                             ul {
                                 h2 {
-                                    align-items: center;
-                                    background: -webkit-linear-gradient(#25066a, #00592e);
-                                    background-clip: border-box; 
+                                    @extend .page-title;
+                                    align-items: center;  
                                     border-bottom: 2px solid #eee;
                                     display: flex;
                                     font-size: 2rem;
                                     justify-content: space-between;
                                     margin-bottom: 1rem;
-                                    padding-block: 1rem;
-                                    -webkit-background-clip: text;
-                                    -webkit-text-fill-color: transparent; 
+                                    padding-block: 1rem;  
                                 }
                                 
                                 li { 
@@ -193,7 +196,7 @@ section {
                                     
                                     &:hover {
                                         background: lighten($color: #eee, $amount: 1);
-                                        border-left: 3px solid green;
+                                        border-left: 3px solid $color-2;
                                         cursor: pointer;
                                         padding-left: 1rem;
                                         transition: .5s;
@@ -236,7 +239,7 @@ section {
                         }
 
                         svg {
-                            fill: $color-2;
+                            fill: lighten($color-2, 10);
                             width: 3rem;
 
                             &:hover {

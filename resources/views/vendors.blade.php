@@ -25,7 +25,7 @@
                 <input type="submit" class="button" name="Clear" value="Clear">
             </form>
         </section> 
-        <div class="table"> 
+        <div class="table vendors-table"> 
             <table class="vendors"> 
                 <tr>  
                     <th class="resizable">#</th>

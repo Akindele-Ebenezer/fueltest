@@ -10,8 +10,8 @@
         <div class="record-created-alert alert">NEW Record Created {{ $SampleNo }}</div>
         @include('DATA.EditUpdateData')
         <br>
-        <h1>{{ $MadeBy }}</h1>
-        <h1>Sample no: {{ $SampleNo }}</h1>
+        <h1 class="page-title">{{ $MadeBy }}</h1>
+        <h1 class="page-title">Sample no : {{ $SampleNo }}</h1>
         <br>
         <div class="record-info">
             <p>Your RECORD with the SAMPLE NO. {{ $SampleNo }} has been created Successfully.<br>
@@ -22,8 +22,8 @@
             </p>
             <br><br>
             <ul>
-                <li> <a href="/FuelTest" style="color: green">Insert New Record.</a> </li>
-                <li> <a href="/PreviousRecords" style="color: green"> Edit Previous Records.</a> </li>
+                <li> <a href="/FuelTest">Insert New Record.</a> </li>
+                <li> <a href="/PreviousRecords"> Edit Previous Records.</a> </li>
             </ul>
         </div> 
 

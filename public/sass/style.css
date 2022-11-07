@@ -41,8 +41,8 @@ h4 {
 
 button,
 .button {
-  background: #00592e;
-  border: 1px solid #00592e;
+  background: #664949;
+  border: 1px solid #664949;
   border-radius: 0.2rem;
   color: #fff;
   padding: 0.4rem;
@@ -51,8 +51,8 @@ button,
 button:hover,
 .button:hover {
   background: #fff;
-  border: 1px solid #00592e;
-  color: #00592e;
+  border: 1px solid #483434;
+  color: #483434;
   cursor: pointer;
 }
 
@@ -60,7 +60,7 @@ button:hover,
   align-items: center;
   background: #fff;
   border-radius: 1rem;
-  color: #00592e;
+  color: #483434;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -100,7 +100,7 @@ button:hover,
 }
 .date div form svg:hover,
 .date div a svg:hover, .date div p svg:hover {
-  fill: #00592e;
+  fill: #483434;
 }
 .date div form,
 .date div a {
@@ -111,24 +111,20 @@ button:hover,
   color: red;
 }
 .date div form:first-of-type svg {
-  fill: #00592e;
+  fill: #483434;
 }
 .date div form:nth-of-type(2) svg {
   fill: #ff4d4d;
 }
 .date div a:first-of-type svg {
-  fill: #00592e;
+  fill: #483434;
 }
 .date div a:nth-of-type(2) svg {
   fill: cadetblue;
 }
 .date h1 {
-  background: -webkit-linear-gradient(#25066a, #00592e);
-  font-size: 5.2rem;
   margin-left: 2rem;
   max-width: 50rem;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .GenerateChart {
@@ -145,6 +141,13 @@ button:hover,
 .log-in-button {
   border-radius: 0.5rem 1rem;
   padding: 1rem;
+}
+
+.page-title, section.fuel-test .fuel-test-main .form div section ul h2 {
+  background: -webkit-linear-gradient(#182747, #483434);
+  font-size: 5.2rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .show {
@@ -202,7 +205,7 @@ header div {
 
 nav {
   background: #fff;
-  color: #00592e;
+  color: #483434;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -218,7 +221,7 @@ nav ul li {
   padding: 0.5rem 2rem;
 }
 nav ul li.active-bg {
-  background: #00592e;
+  background: #483434;
 }
 nav ul li:hover {
   border-bottom: 2px solid antiquewhite;
@@ -227,7 +230,7 @@ nav ul li .active {
   color: #fff;
 }
 nav ul li a {
-  color: #00592e;
+  color: #483434;
   text-decoration: none;
 }
 
@@ -246,12 +249,12 @@ nav ul li a {
   transform: translateY(4.5rem);
 }
 .nav-sm-screen-header-info div svg {
-  fill: #00592e;
+  fill: #483434;
   width: 1rem;
 }
 .nav-sm-screen-header-info div svg:hover {
   cursor: pointer;
-  fill: #8cffc7;
+  fill: #ddd1d1;
 }
 .nav-sm-screen ul {
   align-items: center;
@@ -260,12 +263,12 @@ nav ul li a {
   justify-content: space-evenly;
 }
 .nav-sm-screen ul li a svg {
-  fill: #00592e;
+  fill: #483434;
   width: 2rem;
 }
 .nav-sm-screen ul li a svg:hover {
   cursor: pointer;
-  fill: #8cffc7;
+  fill: #ddd1d1;
 }
 
 @media (max-width: 755px) {
@@ -300,14 +303,14 @@ section.log-in div form button[type] {
   width: 100%;
 }
 section.log-in div form h2 {
-  border-bottom: 5px solid #00592e;
+  border-bottom: 5px solid #483434;
   font-size: 6rem;
   margin-block: 1rem;
 }
 section.log-in div form input {
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  color: #00592e;
+  color: #483434;
   margin-block: 1rem;
   padding: 0.75rem;
   outline: none;
@@ -348,9 +351,9 @@ section.fuel-test {
   transform: translateY(5rem);
 }
 section.fuel-test .fuel-test-left-nav {
-  background-image: linear-gradient(to bottom, #00592e, #111);
+  background-image: linear-gradient(to bottom, #483434, #111);
   color: #ddd;
-  overflow: scroll;
+  overflow-x: hidden;
   width: 25rem;
 }
 section.fuel-test .fuel-test-left-nav center img {
@@ -365,7 +368,7 @@ section.fuel-test .fuel-test-left-nav ul a li {
   display: flex;
 }
 section.fuel-test .fuel-test-left-nav ul a li:hover {
-  background: #004f29;
+  background: #423030;
   border-radius: 0 0.5rem 1rem 0;
   cursor: pointer;
 }
@@ -378,7 +381,7 @@ section.fuel-test .fuel-test-left-nav ul li {
   padding: 1rem;
 }
 section.fuel-test .fuel-test-left-nav ul li.active-dashboard {
-  background: #004f29;
+  background: #423030;
   border-left: 7px solid;
   border-radius: 0 0.5rem 1rem 0;
 }
@@ -393,6 +396,7 @@ section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
   padding: 1rem 1rem 7rem;
 }
 section.fuel-test .fuel-test-left-nav a, section.fuel-test .fuel-test-main a {
+  color: #483434;
   font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   text-decoration: none;
@@ -402,11 +406,12 @@ section.fuel-test .fuel-test-left-nav ul.error-messages li, section.fuel-test .f
   text-align: center;
 }
 section.fuel-test .fuel-test-main {
-  overflow: scroll;
+  overflow-x: hidden;
   position: relative;
   width: 80vw;
 }
 section.fuel-test .fuel-test-main .form {
+  background: #f4f4f4;
   border-radius: 0.3rem;
   box-shadow: 1px 2px 19px #ddd;
   display: flex;
@@ -417,14 +422,18 @@ section.fuel-test .fuel-test-main .form {
 section.fuel-test .fuel-test-main .form div {
   align-items: center;
   background: #fff;
+  border-radius: 0.5rem;
   display: flex;
-  margin: 0.2rem;
+  margin: 0.4rem;
+  padding: 0.5rem;
   position: relative;
   width: 42rem;
 }
 section.fuel-test .fuel-test-main .form div:last-of-type {
+  background: unset;
   box-shadow: unset;
   justify-content: center;
+  margin-block: 1.5rem;
   width: 100%;
 }
 section.fuel-test .fuel-test-main .form div select {
@@ -437,26 +446,22 @@ section.fuel-test .fuel-test-main .form div section {
   box-shadow: 1px 2px 19px #bbb;
   display: none;
   max-height: 27rem;
+  overflow-x: hidden;
   padding: 1.5rem;
   position: absolute;
   left: 14rem;
-  overflow: scroll;
   top: 5rem;
   width: 28rem;
   z-index: 1;
 }
 section.fuel-test .fuel-test-main .form div section ul h2 {
   align-items: center;
-  background: -webkit-linear-gradient(#25066a, #00592e);
-  background-clip: border-box;
   border-bottom: 2px solid #eee;
   display: flex;
   font-size: 2rem;
   justify-content: space-between;
   margin-bottom: 1rem;
   padding-block: 1rem;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 section.fuel-test .fuel-test-main .form div section ul li {
   align-items: center;
@@ -505,7 +510,7 @@ section.fuel-test .fuel-test-main .form div section ul li.Clear span {
 }
 section.fuel-test .fuel-test-main .form div section ul li:hover {
   background: #f1f1f1;
-  border-left: 3px solid green;
+  border-left: 3px solid #483434;
   cursor: pointer;
   padding-left: 1rem;
   transition: 0.5s;
@@ -525,7 +530,7 @@ section.fuel-test .fuel-test-main .form div section ul li.Muddy span {
 }
 section.fuel-test .fuel-test-main .form div section ul li p {
   color: unset;
-  color: #00592e;
+  color: #483434;
   position: unset;
   transform: unset;
   width: 15rem;
@@ -543,12 +548,12 @@ section.fuel-test .fuel-test-main .form div section.ToggleList {
   display: block;
 }
 section.fuel-test .fuel-test-main .form div svg {
-  fill: #00592e;
+  fill: #664949;
   width: 3rem;
 }
 section.fuel-test .fuel-test-main .form div svg:hover {
   cursor: pointer;
-  fill: #8cffc7;
+  fill: #ddd1d1;
 }
 section.fuel-test .fuel-test-main .form form {
   display: flex;
@@ -559,7 +564,7 @@ section.fuel-test .fuel-test-main .form input,
 section.fuel-test .fuel-test-main .form h3 {
   border: 1px solid #ccc;
   border-radius: 0.5rem 1rem;
-  color: #00592e;
+  color: #483434;
   outline: none;
   padding: 1rem;
   width: 100%;
@@ -577,7 +582,7 @@ section.fuel-test .fuel-test-main .form h3[placeholder="Name of VENDOR..."]:last
 }
 section.fuel-test .fuel-test-main .form input:focus,
 section.fuel-test .fuel-test-main .form h3:focus {
-  border-bottom: 3px solid #00592e;
+  border-bottom: 3px solid #483434;
 }
 section.fuel-test .fuel-test-main .form input[name=SampleNo], section.fuel-test .fuel-test-main .form input[name=TruckPlateNo], section.fuel-test .fuel-test-main .form input[name=Temp], section.fuel-test .fuel-test-main .form input[name=WaterSediment], section.fuel-test .fuel-test-main .form input[name=VendorNo], section.fuel-test .fuel-test-main .form input[name=Remarks],
 section.fuel-test .fuel-test-main .form h3[name=SampleNo],
@@ -607,13 +612,13 @@ section.fuel-test .fuel-test-main .form h3[name=TruckPlateNo] {
 }
 section.fuel-test .fuel-test-main .form input[name=SampleNo],
 section.fuel-test .fuel-test-main .form h3[name=SampleNo] {
-  border-bottom: 3px solid #00592e;
+  border-bottom: 3px solid #483434;
   color: #00828f;
   cursor: pointer;
 }
 section.fuel-test .fuel-test-main .form input:focus,
 section.fuel-test .fuel-test-main .form h3:focus {
-  border-bottom: 3px solid #00592e;
+  border-bottom: 3px solid #483434;
 }
 section.fuel-test .fuel-test-main .form input.select, section.fuel-test .fuel-test-main .form input[type=date],
 section.fuel-test .fuel-test-main .form h3.select,
@@ -630,7 +635,7 @@ section.fuel-test .fuel-test-main .form h3[type=date] {
 }
 section.fuel-test .fuel-test-main .form label {
   border-radius: 0.3rem;
-  color: #00592e;
+  color: #483434;
   display: block;
   margin-right: 1rem;
   padding: 1rem;
@@ -701,12 +706,6 @@ section.fuel-test .fuel-test-main .record-updated-alert {
     font-size: 3.2rem;
   }
 }
-section.fuel-test .fuel-test-main h1 {
-  background: -webkit-linear-gradient(#25066a, #00592e);
-  font-size: 5.2rem;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 section.fuel-test .fuel-test-main h1,
 section.fuel-test .fuel-test-main .record-info {
   margin-left: 2rem;
@@ -758,14 +757,13 @@ section.previous-records center {
   padding: 1rem 1rem 1rem 0;
 }
 section.previous-records center a button {
-  background: unset;
-  border: 1px solid #00592e;
+  background: #483434;
+  border: 1px solid #483434;
   border-radius: 0.2rem;
-  color: #00592e;
   margin-left: 0.5rem;
 }
 section.previous-records center a button:hover {
-  background: #00592e;
+  background: #483434;
   color: #fff;
 }
 section.previous-records center div {
@@ -792,7 +790,7 @@ section.previous-records center div form svg {
   width: 1.5rem;
 }
 section.previous-records center h1 {
-  background: -webkit-linear-gradient(#25066a, #00592e);
+  background: -webkit-linear-gradient(#182747, #483434);
   background-clip: border-box;
   font-size: 2rem;
   margin: 1rem;
@@ -816,7 +814,7 @@ section.previous-records .Diff {
   color: #00828f;
 }
 section.previous-records .Passed {
-  color: #00592e;
+  color: #483434;
 }
 section.previous-records .Failed {
   color: red;
@@ -1004,7 +1002,7 @@ section.previous-records table tr td input[type=image] {
   width: 2rem;
 }
 section.previous-records table tr th {
-  background: #444;
+  background: #835f5f;
   border: 1px solid #ddd;
   color: #fff;
   font-weight: unset;
@@ -1131,6 +1129,9 @@ section.previous-records table tr th.vendors-th {
 section.previous-records .table {
   padding-bottom: 8rem;
 }
+section.previous-records .table.vendors-table {
+  overflow-x: hidden;
+}
 section.previous-records .table .links {
   background: #fff;
   border-radius: 0.5rem;
@@ -1152,7 +1153,7 @@ section.previous-records .table .links nav a:first-of-type {
   font-style: italic;
 }
 section.previous-records .table .links nav a:last-of-type {
-  background: #00592e;
+  background: #664949;
   color: #fff;
   padding: 0.5rem;
 }
@@ -1176,7 +1177,7 @@ section.previous-records .table .links nav div svg {
   translate: 0rem 0.3rem;
 }
 section.previous-records .table .links nav span[aria-current] {
-  background: #4ab380;
+  background: #664949;
   border-radius: 0.1rem;
   color: #fff;
   margin-inline: 0.3rem;
@@ -1190,7 +1191,7 @@ section.previous-records .table .links nav span.rounded-md {
   width: 16rem;
 }
 section.previous-records .table .links nav span.rounded-md a {
-  color: #00592e;
+  color: #664949;
   font-size: 1rem;
   font-style: italic;
 }
@@ -1216,7 +1217,7 @@ section.show-record {
   z-index: 1000;
 }
 section.show-record section {
-  background-image: linear-gradient(to bottom, #006836, #111);
+  background-image: linear-gradient(to bottom, #483434, #111);
   color: #ddd;
   height: 90vh;
   overflow: scroll;
@@ -1283,7 +1284,7 @@ section.show-record ul li span:last-child {
 section input[placeholder="Search.."] {
   border: 1px solid #ccc;
   border-radius: 0.3rem;
-  color: #00592e;
+  color: #483434;
   font-style: italic;
   margin-left: 2rem;
   margin-top: 0.5rem;
@@ -1291,11 +1292,11 @@ section input[placeholder="Search.."] {
   padding: 0.2rem 1rem;
 }
 section input[value=Clear] {
-  background: #fff;
-  color: #00592e;
+  background: #483434;
 }
 section input[value=Clear]:hover {
-  background: #00592e;
+  background: #664949;
+  border: 1px solid #664949;
   color: #fff;
 }
 

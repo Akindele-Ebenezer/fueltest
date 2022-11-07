@@ -9,7 +9,7 @@
 }
 
 $color-1: antiquewhite;
-$color-2: #00592e;
+$color-2: #483434;
 $color-3: cadetblue;
 $color-4: #444;
 $error: red;
@@ -43,8 +43,8 @@ $headings: 1, 2, 3, 4;
 
 button,
 .button {
-    background: $color-2;
-    border: 1px solid $color-2;
+    background: lighten($color: $color-2, $amount: 10);
+    border: 1px solid lighten($color: $color-2, $amount: 10);
     border-radius: .2rem; 
     color: #fff;
     padding: .4rem;
@@ -155,13 +155,9 @@ button,
         }
     }
 
-    h1 {
-        background: -webkit-linear-gradient(#25066a, #00592e); 
-        font-size: 5.2rem;
+    h1 {  
         margin-left: 2rem;
-        max-width: 50rem;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        max-width: 50rem; 
     }
 }
 
@@ -182,6 +178,12 @@ button,
     padding: 1rem;
 }
 
+.page-title {
+    background: -webkit-linear-gradient(#182747, $color-2);
+    font-size: 5.2rem;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .show {
     display: block !important;
 }
