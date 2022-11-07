@@ -74,6 +74,15 @@ section {
                     font-size: 1.1rem;
                     text-decoration: none;
                 }
+
+                ul {
+                    &.error-messages {
+                        li {
+                            color: red; 
+                            text-align: center;
+                        }                    
+                    }
+                }
             }
 
             &-main {
@@ -102,13 +111,7 @@ section {
                             justify-content: center;
                             width: 100%;
                         }
-
-                        p {
-                            color: red;
-                            position: absolute;
-                            transform: translate(3rem, 2.5rem);
-                        }
-
+ 
                         select {
                             border: 3px solid #999;
                             width: 100%;

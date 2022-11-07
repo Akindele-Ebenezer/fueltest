@@ -397,6 +397,10 @@ section.fuel-test .fuel-test-left-nav a, section.fuel-test .fuel-test-main a {
   font-size: 1.1rem;
   text-decoration: none;
 }
+section.fuel-test .fuel-test-left-nav ul.error-messages li, section.fuel-test .fuel-test-main ul.error-messages li {
+  color: red;
+  text-align: center;
+}
 section.fuel-test .fuel-test-main {
   overflow: scroll;
   position: relative;
@@ -422,11 +426,6 @@ section.fuel-test .fuel-test-main .form div:last-of-type {
   box-shadow: unset;
   justify-content: center;
   width: 100%;
-}
-section.fuel-test .fuel-test-main .form div p {
-  color: red;
-  position: absolute;
-  transform: translate(3rem, 2.5rem);
 }
 section.fuel-test .fuel-test-main .form div select {
   border: 3px solid #999;
