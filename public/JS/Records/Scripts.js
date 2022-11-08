@@ -64,11 +64,11 @@ for (let i = 0; i < History.length; i++) {
     } 
 }  
 
-for (let i = 0; i < HistoryTotal.length; i++) { 
-    for (let j = 0; j < HistoryTotalArray.length; j++) {
-        HistoryTotal[i].textContent = HistoryTotalArray[i]; 
-    }
-}
+// for (let i = 0; i < HistoryTotal.length; i++) { 
+//     for (let j = 0; j < HistoryTotalArray.length; j++) {
+//         HistoryTotal[i].textContent = HistoryTotalArray[i]; 
+//     }
+// }
 
 let CheckBoxLists = document.querySelectorAll('section.previous-records table tr th .filter ul li');
 

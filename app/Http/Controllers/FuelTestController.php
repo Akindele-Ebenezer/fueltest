@@ -696,12 +696,7 @@ class FuelTestController extends Controller
             }
 
             if(isset($_GET['FilterDiffTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterDiffTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+                 
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
@@ -740,12 +735,7 @@ class FuelTestController extends Controller
         
             
             if(isset($_GET['FilterWavedTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterWavedTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+                 
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'WAIVED')
@@ -785,11 +775,6 @@ class FuelTestController extends Controller
             
             if(isset($_GET['FilterFailedTestsForCurrentVendor'])) {
                 
-                if(empty($_GET['FilterFailedTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
                 $title = $VendorName = $_GET['Title'];
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'REJECTED')
@@ -827,12 +812,7 @@ class FuelTestController extends Controller
             }
         
             if(isset($_GET['FilterPassedTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterPassedTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+                 
                     $title = $VendorName = $_GET['Title'];
                     $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', 'APPROVED')
@@ -871,7 +851,7 @@ class FuelTestController extends Controller
             
             if(isset($_GET['FilterVendorName'])) {
                 
-                if(empty($_GET['FilterVendorName'])) {
+                if(empty($_GET['CheckVendorName'])) {
                    return  redirect()->back();
                 }
                 
@@ -1225,9 +1205,9 @@ class FuelTestController extends Controller
             
             if(isset($_GET['FilterSampleNo'])) {
 
-                if(empty($_GET['FilterSampleNo'])) {
+                if(empty($_GET['CheckSampleNo'])) {
                    return  redirect()->back();
-                }
+                } 
 
                 $FilteredRecords[] = $request->CheckSampleNo;  
 
@@ -1254,7 +1234,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterSampleCollectionDate'])) {
                 
-                if(empty($_GET['FilterSampleCollectionDate'])) {
+                if(empty($_GET['CheckSampleCollectionDate'])) {
                    return  redirect()->back();
                 }
                 
@@ -1283,7 +1263,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterTruckPlateNo'])) {
                 
-                if(empty($_GET['FilterTruckPlateNo'])) {
+                if(empty($_GET['CheckTruckPlateNo'])) {
                    return  redirect()->back();
                 }
                 
@@ -1312,7 +1292,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterTankNo'])) {
                 
-                if(empty($_GET['FilterTankNo'])) {
+                if(empty($_GET['CheckTankNo'])) {
                    return  redirect()->back();
                 }
                 
@@ -1341,7 +1321,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterAppearanceResult'])) {
                 
-                if(empty($_GET['FilterAppearanceResult'])) {
+                if(empty($_GET['CheckAppearanceResult'])) {
                    return  redirect()->back();
                 }
                 
@@ -1370,7 +1350,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterColor'])) {
                 
-                if(empty($_GET['FilterColor'])) {
+                if(empty($_GET['CheckColor'])) {
                    return  redirect()->back();
                 }
                 
@@ -1399,7 +1379,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterDensity'])) {
                 
-                if(empty($_GET['FilterDensity'])) {
+                if(empty($_GET['CheckDensity'])) {
                    return  redirect()->back();
                 }
                 
@@ -1428,7 +1408,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterFlashPoint'])) {
                 
-                if(empty($_GET['FilterFlashPoint'])) {
+                if(empty($_GET['CheckFlashPoint'])) {
                    return  redirect()->back();
                 }
                 
@@ -1457,7 +1437,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterTemp'])) {
                 
-                if(empty($_GET['FilterTemp'])) {
+                if(empty($_GET['CheckTemp'])) {
                    return  redirect()->back();
                 }
                 
@@ -1486,7 +1466,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterWaterSediment'])) {
                 
-                if(empty($_GET['FilterWaterSediment'])) {
+                if(empty($_GET['CheckWaterSediment'])) {
                    return  redirect()->back();
                 }
                 
@@ -1515,7 +1495,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterCleanliness'])) {
                 
-                if(empty($_GET['FilterCleanliness'])) {
+                if(empty($_GET['CheckCleanliness'])) {
                    return  redirect()->back();
                 }
                 
@@ -1544,7 +1524,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterDateOfTest'])) {
                 
-                if(empty($_GET['FilterDateOfTest'])) {
+                if(empty($_GET['CheckDateOfTest'])) {
                    return  redirect()->back();
                 }
                 
@@ -1573,7 +1553,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterMadeBy'])) {
                 
-                if(empty($_GET['FilterMadeBy'])) {
+                if(empty($_GET['CheckMadeBy'])) {
                    return  redirect()->back();
                 }
                 
@@ -1602,7 +1582,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterDeliveredTo'])) {
                 
-                if(empty($_GET['FilterDeliveredTo'])) {
+                if(empty($_GET['CheckDeliveredTo'])) {
                    return  redirect()->back();
                 }
                 
@@ -1631,7 +1611,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterRemarks'])) {
                 
-                if(empty($_GET['FilterRemarks'])) {
+                if(empty($_GET['CheckRemarks'])) {
                    return  redirect()->back();
                 }
                 
@@ -1911,12 +1891,7 @@ class FuelTestController extends Controller
             }
 
             if(isset($_GET['FilterDiffTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterDiffTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+                 
                 $title = $VendorName = $_GET['Title'];
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('uid', $id)
@@ -1960,12 +1935,7 @@ class FuelTestController extends Controller
             }
          
             if(isset($_GET['FilterWavedTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterWavedTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+               
                 $title = $VendorName = $_GET['Title'];
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('uid', $id)
@@ -2010,12 +1980,7 @@ class FuelTestController extends Controller
         
             
             if(isset($_GET['FilterFailedTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterFailedTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+                 
                 $title = $VendorName = $_GET['Title'];
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                     ->where('uid', $id)
@@ -2059,12 +2024,7 @@ class FuelTestController extends Controller
             }
         
             if(isset($_GET['FilterPassedTestsForCurrentVendor'])) {
-                
-                if(empty($_GET['FilterPassedTestsForCurrentVendor'])) {
-                   return  redirect()->back();
-                }
-                
-                
+                 
                 $title = $VendorName = $_GET['Title'];
                 $previous_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('uid', $id)
@@ -2109,7 +2069,7 @@ class FuelTestController extends Controller
             
             if(isset($_GET['FilterVendorName'])) {
                 
-                if(empty($_GET['FilterVendorName'])) {
+                if(empty($_GET['CheckVendorName'])) {
                    return  redirect()->back();
                 }
                 
@@ -2495,7 +2455,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterSampleNo'])) {
                 
-                if(empty($_GET['FilterSampleNo'])) {
+                if(empty($_GET['CheckSampleNo'])) {
                    return  redirect()->back();
                 }
                 
@@ -2524,7 +2484,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterSampleCollectionDate'])) {
                 
-                if(empty($_GET['FilterSampleCollectionDate'])) {
+                if(empty($_GET['CheckSampleCollectionDate'])) {
                    return  redirect()->back();
                 }
                 
@@ -2553,7 +2513,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterTruckPlateNo'])) {
                 
-                if(empty($_GET['FilterTruckPlateNo'])) {
+                if(empty($_GET['CheckTruckPlateNo'])) {
                    return  redirect()->back();
                 }
                 
@@ -2582,7 +2542,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterTankNo'])) {
                 
-                if(empty($_GET['FilterTankNo'])) {
+                if(empty($_GET['CheckTankNo'])) {
                    return  redirect()->back();
                 }
                 
@@ -2611,7 +2571,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterAppearanceResult'])) {
                 
-                if(empty($_GET['FilterAppearanceResult'])) {
+                if(empty($_GET['CheckAppearanceResult'])) {
                    return  redirect()->back();
                 }
                 
@@ -2640,7 +2600,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterColor'])) {
                 
-                if(empty($_GET['FilterColor'])) {
+                if(empty($_GET['CheckColor'])) {
                    return  redirect()->back();
                 }
                 
@@ -2669,7 +2629,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterDensity'])) {
                 
-                if(empty($_GET['FilterDensity'])) {
+                if(empty($_GET['CheckDensity'])) {
                    return  redirect()->back();
                 }
                 
@@ -2698,7 +2658,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterFlashPoint'])) {
                 
-                if(empty($_GET['FilterFlashPoint'])) {
+                if(empty($_GET['CheckFlashPoint'])) {
                    return  redirect()->back();
                 }
                 
@@ -2727,7 +2687,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterTemp'])) {
                 
-                if(empty($_GET['FilterTemp'])) {
+                if(empty($_GET['CheckTemp'])) {
                    return  redirect()->back();
                 }
                 
@@ -2756,7 +2716,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterWaterSediment'])) {
                 
-                if(empty($_GET['FilterWaterSediment'])) {
+                if(empty($_GET['CheckWaterSediment'])) {
                    return  redirect()->back();
                 }
                 
@@ -2785,7 +2745,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterCleanliness'])) {
                 
-                if(empty($_GET['FilterCleanliness'])) {
+                if(empty($_GET['CheckCleanliness'])) {
                    return  redirect()->back();
                 }
                 
@@ -2814,7 +2774,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterDateOfTest'])) {
                 
-                if(empty($_GET['FilterDateOfTest'])) {
+                if(empty($_GET['CheckDateOfTest'])) {
                    return  redirect()->back();
                 }
                 
@@ -2843,7 +2803,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterMadeBy'])) {
                 
-                if(empty($_GET['FilterMadeBy'])) {
+                if(empty($_GET['CheckMadeBy'])) {
                    return  redirect()->back();
                 }
                 
@@ -2872,7 +2832,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterDeliveredTo'])) {
                 
-                if(empty($_GET['FilterDeliveredTo'])) {
+                if(empty($_GET['CheckDeliveredTo'])) {
                    return  redirect()->back();
                 }
                 
@@ -2901,7 +2861,7 @@ class FuelTestController extends Controller
 
             if(isset($_GET['FilterRemarks'])) {
                 
-                if(empty($_GET['FilterRemarks'])) {
+                if(empty($_GET['CheckRemarks'])) {
                    return  redirect()->back();
                 }
                 

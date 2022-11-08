@@ -93,7 +93,7 @@ class FuelTestUserController extends Controller
 
             if(isset($_GET['FilterUserNames'])) {
                 
-                if(empty($_GET['FilterUserNames'])) {
+                if(empty($_GET['CheckUserNames'])) {
                    return  redirect()->back();
                 }
                 
@@ -110,7 +110,7 @@ class FuelTestUserController extends Controller
 
             if(isset($_GET['FilterEmails'])) {
                 
-                if(empty($_GET['FilterEmails'])) {
+                if(empty($_GET['CheckEmails'])) {
                    return  redirect()->back();
                 }
                 

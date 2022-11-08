@@ -93,7 +93,7 @@ class VendorController extends Controller
 
             if(isset($_GET['FilterVendorName'])) {
                 
-                if(empty($_GET['FilterVendorName'])) {
+                if(empty($_GET['CheckVendorName'])) {
                    return  redirect()->back();
                 }
                 
@@ -110,7 +110,7 @@ class VendorController extends Controller
 
             if(isset($_GET['FilterVendorNo'])) {
                 
-                if(empty($_GET['FilterVendorNo'])) {
+                if(empty($_GET['CheckVendorNo'])) {
                    return  redirect()->back();
                 }
                 
