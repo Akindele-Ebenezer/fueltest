@@ -64,12 +64,12 @@ class VendorController extends Controller
            if (isset($_GET['SortByVendorNo'])) {
 
                 $SortOrder = Session::get('SortOrder', 'ASC');
-                $vendors = Vendor::orderBy('VendorNo', $SortOrder)->get(); 
+                $vendors = Vendor::orderBy('VendorNo', $SortOrder)->paginate(14); 
 
                 $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                 
                 Session::put('SortOrder', $SortOrder); 
-
+                
                 $ViewData = [...$Config, ...$ViewData]; 
 
                 return view('vendors', $ViewData)->with('vendors', $vendors); 
@@ -81,7 +81,7 @@ class VendorController extends Controller
             if (isset($_GET['SortByVendorName'])) { 
 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $vendors = Vendor::orderBy('VendorName', $SortOrder)->get(); 
+                    $vendors = Vendor::orderBy('VendorName', $SortOrder)->paginate(14); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     
@@ -95,7 +95,7 @@ class VendorController extends Controller
                 $FilteredRecords[] = $request->CheckVendorName;  
                 
                 foreach ($FilteredRecords as $VendorName) {
-                    $vendors = Vendor::whereIn('VendorName', $VendorName)->orderBy('VendorName', 'DESC')->get();
+                    $vendors = Vendor::whereIn('VendorName', $VendorName)->orderBy('VendorName', 'DESC')->paginate(14);
                    
                     $number_of_vendors = count($vendors); 
 
@@ -107,7 +107,7 @@ class VendorController extends Controller
                 $FilteredRecords[] = $request->CheckVendorNo;  
                 
                 foreach ($FilteredRecords as $VendorNo) {
-                    $vendors = Vendor::whereIn('VendorNo', $VendorNo)->orderBy('VendorNo', 'DESC')->get();
+                    $vendors = Vendor::whereIn('VendorNo', $VendorNo)->orderBy('VendorNo', 'DESC')->paginate(14);
                    
                     $number_of_vendors = count($vendors); 
 

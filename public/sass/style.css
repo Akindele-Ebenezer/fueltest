@@ -1129,7 +1129,7 @@ section.previous-records table tr th.vendors-th {
 section.previous-records .table {
   padding-bottom: 8rem;
 }
-section.previous-records .table.vendors-table {
+section.previous-records .table.other-tables {
   overflow-x: hidden;
 }
 section.previous-records .table .links {
@@ -1220,7 +1220,7 @@ section.show-record section {
   background-image: linear-gradient(to bottom, #483434, #111);
   color: #ddd;
   height: 90vh;
-  overflow: scroll;
+  overflow-x: hidden;
   padding: 2rem;
   position: absolute;
   right: -100%;

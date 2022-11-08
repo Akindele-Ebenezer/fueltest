@@ -64,7 +64,7 @@ class FuelTestUserController extends Controller
             if (isset($_GET['SortByEmail'])) {
 
                 $SortOrder = Session::get('SortOrder', 'ASC');
-                $fuel_test_users = FuelTestUser::orderBy('Email', $SortOrder)->get(); 
+                $fuel_test_users = FuelTestUser::orderBy('Email', $SortOrder)->paginate(14); 
 
                 $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                 
@@ -81,7 +81,7 @@ class FuelTestUserController extends Controller
             if (isset($_GET['SortByName'])) { 
 
                     $SortOrder = Session::get('SortOrder', 'ASC');
-                    $fuel_test_users = FuelTestUser::orderBy('Name', $SortOrder)->get(); 
+                    $fuel_test_users = FuelTestUser::orderBy('Name', $SortOrder)->paginate(14); 
 
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     
@@ -95,7 +95,7 @@ class FuelTestUserController extends Controller
                 $FilteredRecords[] = $request->CheckUserNames;  
                 
                 foreach ($FilteredRecords as $UserNames) {
-                    $fuel_test_users = FuelTestUser::whereIn('Name', $UserNames)->orderBy('Name', 'DESC')->get();
+                    $fuel_test_users = FuelTestUser::whereIn('Name', $UserNames)->orderBy('Name', 'DESC')->paginate(14);
                    
                     $number_of_fuel_test_users = count($fuel_test_users); 
 
@@ -107,7 +107,7 @@ class FuelTestUserController extends Controller
                 $FilteredRecords[] = $request->CheckEmails;  
                 
                 foreach ($FilteredRecords as $Email) {
-                    $fuel_test_users = FuelTestUser::whereIn('Email', $Email)->orderBy('Email', 'DESC')->get();
+                    $fuel_test_users = FuelTestUser::whereIn('Email', $Email)->orderBy('Email', 'DESC')->paginate(14);
                    
                     $number_of_fuel_test_users = count($fuel_test_users); 
 

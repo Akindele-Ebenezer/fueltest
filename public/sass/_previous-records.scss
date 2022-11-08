@@ -530,7 +530,7 @@ section {
         .table {
             padding-bottom: 8rem;
 
-            &.vendors-table {
+            &.other-tables {
                 overflow-x: hidden;
             }
 
@@ -647,7 +647,7 @@ section {
             background-image: linear-gradient( to bottom, $color-2, #111);
             color: #ddd;
             height: 90vh;
-            overflow: scroll;
+            overflow-x: hidden;
             padding: 2rem;
             position: absolute;
             right: -100%;
