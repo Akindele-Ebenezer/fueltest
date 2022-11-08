@@ -92,6 +92,11 @@ class FuelTestUserController extends Controller
             } 
 
             if(isset($_GET['FilterUserNames'])) {
+                
+                if(empty($_GET['FilterUserNames'])) {
+                   return  redirect()->back();
+                }
+                
                 $FilteredRecords[] = $request->CheckUserNames;  
                 
                 foreach ($FilteredRecords as $UserNames) {
@@ -104,6 +109,11 @@ class FuelTestUserController extends Controller
             }
 
             if(isset($_GET['FilterEmails'])) {
+                
+                if(empty($_GET['FilterEmails'])) {
+                   return  redirect()->back();
+                }
+                
                 $FilteredRecords[] = $request->CheckEmails;  
                 
                 foreach ($FilteredRecords as $Email) {

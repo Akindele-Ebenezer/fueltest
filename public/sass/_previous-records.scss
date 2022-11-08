@@ -379,7 +379,7 @@ section {
                         height: 20rem;
                         margin: unset;
                         margin-block: 2rem;
-                        overflow: scroll;
+                        overflow-x: hidden;
                         padding: 0 2rem 4rem;
                         position: absolute;
                         text-align: left;
@@ -387,7 +387,7 @@ section {
 
                         &-toggle {
                             display: block; 
-                            width: 21.3rem;
+                            width: fit-content;
                         }
 
                         ul {  
@@ -422,6 +422,8 @@ section {
                             }
 
                             li {
+                                display: flex;
+
                                 &.date {
                                     display: flex;
                                     font-weight: bold;

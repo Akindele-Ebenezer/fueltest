@@ -92,6 +92,11 @@ class VendorController extends Controller
             } 
 
             if(isset($_GET['FilterVendorName'])) {
+                
+                if(empty($_GET['FilterVendorName'])) {
+                   return  redirect()->back();
+                }
+                
                 $FilteredRecords[] = $request->CheckVendorName;  
                 
                 foreach ($FilteredRecords as $VendorName) {
@@ -104,6 +109,11 @@ class VendorController extends Controller
             }
 
             if(isset($_GET['FilterVendorNo'])) {
+                
+                if(empty($_GET['FilterVendorNo'])) {
+                   return  redirect()->back();
+                }
+                
                 $FilteredRecords[] = $request->CheckVendorNo;  
                 
                 foreach ($FilteredRecords as $VendorNo) {

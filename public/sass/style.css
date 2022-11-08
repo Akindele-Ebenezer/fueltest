@@ -1020,7 +1020,7 @@ section.previous-records table tr th .filter {
   height: 20rem;
   margin: unset;
   margin-block: 2rem;
-  overflow: scroll;
+  overflow-x: hidden;
   padding: 0 2rem 4rem;
   position: absolute;
   text-align: left;
@@ -1028,7 +1028,7 @@ section.previous-records table tr th .filter {
 }
 section.previous-records table tr th .filter-toggle {
   display: block;
-  width: 21.3rem;
+  width: fit-content;
 }
 section.previous-records table tr th .filter ul {
   position: relative;
@@ -1055,6 +1055,9 @@ section.previous-records table tr th .filter ul center {
   margin: 0 auto 1rem;
   padding: 0.5rem;
   width: 16rem;
+}
+section.previous-records table tr th .filter ul li {
+  display: flex;
 }
 section.previous-records table tr th .filter ul li.date {
   display: flex;
