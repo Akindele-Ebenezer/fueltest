@@ -181,6 +181,10 @@ button:hover,
 ul {
   list-style: none;
 }
+ul.error-messages li {
+  color: red;
+  text-align: center;
+}
 
 @media (max-width: 1400px) {
   * {
@@ -400,10 +404,6 @@ section.fuel-test .fuel-test-left-nav a, section.fuel-test .fuel-test-main a {
   font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   text-decoration: none;
-}
-section.fuel-test .fuel-test-left-nav ul.error-messages li, section.fuel-test .fuel-test-main ul.error-messages li {
-  color: red;
-  text-align: center;
 }
 section.fuel-test .fuel-test-main {
   overflow-x: hidden;

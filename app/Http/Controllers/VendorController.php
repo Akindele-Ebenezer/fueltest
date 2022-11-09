@@ -32,6 +32,7 @@ class VendorController extends Controller
                 'title' => $title,   
                 'FilterVendorName' => $FilterVendorName,   
                 'FilterVendorNo' => $FilterVendorNo,   
+                'ErrorMessage' => Session::get('ErrorMessage'),   
             ];
  
             if (isset($_GET['Search'])) {
@@ -152,6 +153,13 @@ class VendorController extends Controller
         $VendorNo = $request->VendorNo;
         $VendorName = $request->VendorName;
         
+        if(empty($VendorNo)) { 
+            $ErrorMessage = 'Vendor Number is required';
+            return redirect('Vendors')->with('ErrorMessage', $ErrorMessage);
+        }  elseif(empty($VendorName))  {
+            $ErrorMessage = 'Vendor Name is required';
+            return redirect('Vendors')->with('ErrorMessage', $ErrorMessage);
+        }      
         
         $AddVendor = Vendor::create([
             'VendorNo' => $VendorNo,

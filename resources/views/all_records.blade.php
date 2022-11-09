@@ -531,7 +531,7 @@
                                                                                                 ->count();
 
                                 @endphp
-                                <td>Last week  <span>{{ $number_of_all_records_last_seven_days }}</span> </td>
+                                <td>Last week  <span>{{ $number_of_last_week_records }}</span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
                             <tr class="Two-Weeks-Ago history">

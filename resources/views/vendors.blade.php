@@ -7,6 +7,11 @@
 @section('content')
     <section class="previous-records">
         @include('PageTitle')
+        
+        <ul class="error-messages">
+            <li>{{ $ErrorMessage }}</li> 
+        </ul> 
+
         @if(Session::get('email') == 'awadhesh@depasamarine.com') 
         <section class="add-vendor">
             <form action="/AddVendor" method="post"> @csrf 
