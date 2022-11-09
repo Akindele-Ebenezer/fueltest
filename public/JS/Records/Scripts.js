@@ -60,15 +60,19 @@ for (let i = 0; i < History.length; i++) {
         let HistoryTotal_ = History[i].length;
         let HistoryArray = [];
             HistoryArray.push(HistoryTotal_);
-            HistoryTotalArray.push(HistoryTotal_); 
+            HistoryTotalArray.push(HistoryTotal_);  
     } 
 }  
 
-// for (let i = 0; i < HistoryTotal.length; i++) { 
-//     for (let j = 0; j < HistoryTotalArray.length; j++) {
-//         HistoryTotal[i].textContent = HistoryTotalArray[i]; 
-//     }
-// }
+for (let i = 0; i < HistoryTotal.length; i++) { 
+    for (let j = 0; j < HistoryTotalArray.length; j++) {
+        if(HistoryTotal[i].parentElement.parentElement.className == 'Today history') {
+            continue;
+        }
+        HistoryTotal[i].textContent = HistoryTotalArray[i];
+        console.log(HistoryTotal[i].parentElement.parentElement.className) 
+    }
+}
 
 let CheckBoxLists = document.querySelectorAll('section.previous-records table tr th .filter ul li');
 

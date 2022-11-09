@@ -461,7 +461,7 @@
                                                                                                 ->count();
 
                                 @endphp
-                                <td>Yesterday <span>{{ $number_of_yesterdays_records }}</span></td>  
+                                <td>Yesterday <span></span></td>  
                             </tr> 
                         @elseif($record->SampleCollectionDate === date('Y-m-d'))
                             <tr class="Today history">
@@ -474,114 +474,48 @@
                                 <td>Today <span>{{ $number_of_todays_records }}</span></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-2 day")))
-                            <tr class="Two-Days-Ago history">
-                                @php
-                                    
-                                     $number_of_two_days_ago_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-2 day")))
-                                                                                                 ->count();
-
-                                @endphp
-                                <td>Two days ago <span>{{ $number_of_two_days_ago_records }}</span></td>
+                            <tr class="Two-Days-Ago history"> 
+                                <td>Two days ago <span></span></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
-                            <tr class="Three-Days-Ago history">
-                                @php
-                                    
-                                     $number_of_three_days_ago_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-3 day")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Three days ago <span>{{ $number_of_three_days_ago_records }}</span> </td>
+                            <tr class="Three-Days-Ago history"> 
+                                <td>Three days ago <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-4 day")))
-                            <tr class="Four-Days-Ago history">
-                                @php
-                                    
-                                     $number_of_four_days_ago_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-4 day")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Four days ago <span>{{ $number_of_four_days_ago_records }}</span> </td>
+                            <tr class="Four-Days-Ago history"> 
+                                <td>Four days ago <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-5 day")))
-                            <tr class="Five-Days-Ago history">
-                                @php
-                                    
-                                     $number_of_five_days_ago_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-5 day")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Five days ago <span>{{ $number_of_five_days_ago_records }}</span></td>
+                            <tr class="Five-Days-Ago history"> 
+                                <td>Five days ago <span></span></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-6 day")))
-                            <tr class="Six-Days-Ago history">
-                                @php
-                                    
-                                     $number_of_six_days_ago_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-6 day")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Six days ago <span>{{ $number_of_six_days_ago_records }}</span> </td>
+                            <tr class="Six-Days-Ago history"> 
+                                <td>Six days ago <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
-                            <tr class="Last-Week history">
-                                @php
-                                    
-                                     $number_of_last_week_records = App\Models\FuelTestRecord::where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 week")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Last week  <span>{{ $number_of_last_week_records }}</span> </td>
+                            <tr class="Last-Week history"> 
+                                <td>Last week  <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
-                            <tr class="Two-Weeks-Ago history">
-                                @php
-                                    
-                                     $number_of_last_two_week_records = App\Models\FuelTestRecord::where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 week")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Two weeks ago    <span>{{ $number_of_last_two_week_records }}</span> </td>
+                            <tr class="Two-Weeks-Ago history"> 
+                                <td>Two weeks ago    <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
-                            <tr class="Three-Weeks-Ago history">
-                                @php
-                                    
-                                     $number_of_three_week_records = App\Models\FuelTestRecord::where('SampleCollectionDate', '=', date('Y-m-d', strtotime("-3 week")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Three weeks ago <span>{{ $number_of_three_week_records }}</span> </td>
+                            <tr class="Three-Weeks-Ago history"> 
+                                <td>Three weeks ago <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
-                            <tr class="Last-Month history">
-                                @php
-                                    
-                                     $number_of_last_month_records = App\Models\FuelTestRecord::where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 month")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Last month <span>{{ $number_of_last_month_records }}</span> </td>
+                            <tr class="Last-Month history"> 
+                                <td>Last month <span></span> </td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
-                            <tr class="Two-Months-Ago history">
-                                @php
-                                    
-                                     $number_of_two_month_ago_records = App\Models\FuelTestRecord::where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 month")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Two months ago <span>{{ $number_of_two_month_ago_records }}</span> </td>
+                            <tr class="Two-Months-Ago history"> 
+                                <td>Two months ago <span></span> </td>
                             </tr>
                         @else($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
-                            <tr class="Older history">
-                                @php
-                                    
-                                     $number_of_older_records = App\Models\FuelTestRecord::where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 month - 1 day")))
-                                                                                                ->count();
-
-                                @endphp
-                                <td>Older  <span>{{ $number_of_older_records }}</span> </td>
+                            <tr class="Older history"> 
+                                <td>Older  <span></span> </td>
                             </tr>
                         @endif   
 
