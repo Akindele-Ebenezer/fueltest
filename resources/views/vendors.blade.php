@@ -7,6 +7,8 @@
 @section('content')
     <section class="previous-records">
         @include('PageTitle')
+
+        <section class="log-in-alert alert">VENDOR List up-to date</section>
         
         <ul class="error-messages">
             <li>{{ $ErrorMessage }}</li> 
@@ -92,6 +94,13 @@
                         ..
                     </th>
                 </tr>  
+                @if($number_of_vendors == 0)
+                <tr>
+                    <td>
+                         There are no VENDORS.. 
+                    </td>
+                </tr>
+                @endif  
                 @foreach($vendors as $Vendor) 
                 <tr> 
                     <td class="vendor-id">{{ $Vendor->id }}</td>
@@ -134,6 +143,7 @@
         </div>
     </section> 
 
+    <script src="/JS/Alert.js"></script>  
     <script src="JS/Resizable.js"></script>
     <script src="JS/Filter.js"></script>
 @endsection

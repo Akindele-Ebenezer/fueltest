@@ -86,6 +86,13 @@
                         </div> 
                     </th> 
                 </tr>  
+                @if($number_of_fuel_test_users == 0)
+                <tr>
+                    <td>
+                         There are no USERS.. 
+                    </td>
+                </tr>
+                @endif  
                 @foreach($fuel_test_users as $User)
                 <tr> 
                     <td class="user-id">{{ $User->id }}</td>

@@ -7,7 +7,7 @@ section {
             margin: 3rem 3rem 0;
 
             form { 
-                color: #00592e;
+                color: $color-2;
                 
                 input {
                     background: #eee;
@@ -533,6 +533,7 @@ section {
             padding-bottom: 8rem;
 
             &.other-tables {
+                height: 60vh;
                 overflow-x: hidden;
             }
 

@@ -725,7 +725,7 @@ section.previous-records .add-user {
 }
 section.previous-records .add-vendor form,
 section.previous-records .add-user form {
-  color: #00592e;
+  color: #483434;
 }
 section.previous-records .add-vendor form input,
 section.previous-records .add-user form input {
@@ -1133,6 +1133,7 @@ section.previous-records .table {
   padding-bottom: 8rem;
 }
 section.previous-records .table.other-tables {
+  height: 60vh;
   overflow-x: hidden;
 }
 section.previous-records .table .links {

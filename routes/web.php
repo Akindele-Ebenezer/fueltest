@@ -39,7 +39,7 @@ Route::get('/filter', [FuelTestController::class, 'filter'])->name('filter');
 
 Route::get('/FuelTestStats', [FuelTestController::class, 'show_stats'])->name('fuel_test_stats');
 
-Route::post('/AddVendor', [VendorController::class, 'store']);
+Route::post('/AddVendor', [VendorController::class, 'store'])->name('add_vendor');
 
 Route::get('/Users', [FuelTestUserController::class, 'index'])->name('users');
 

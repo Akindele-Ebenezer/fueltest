@@ -151,6 +151,7 @@ class VendorController extends Controller
     public function store(Request $request)
     { 
         $VendorNo = $request->VendorNo;
+        $RecordId = 0;
         $VendorName = $request->VendorName;
         
         if(empty($VendorNo)) { 
@@ -163,10 +164,11 @@ class VendorController extends Controller
         
         $AddVendor = Vendor::create([
             'VendorNo' => $VendorNo,
+            'RecordId' => $RecordId, 
             'VendorName' => $VendorName, 
         ]);
 
-        return redirect('Vendors'); 
+        return redirect('Vendors')->with('AddVendor', $AddVendor); 
     }
 
     /**
