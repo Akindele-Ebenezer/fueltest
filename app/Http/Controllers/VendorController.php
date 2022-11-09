@@ -28,7 +28,7 @@ class VendorController extends Controller
             $FilterVendorName = FuelTestRecord::distinct()->get(['VendorName']); 
             $FilterVendorNo = FuelTestRecord::distinct()->get(['VendorNo']); 
             
-            $ViewData = [ 
+            $ViewData = [
                 'title' => $title,   
                 'FilterVendorName' => $FilterVendorName,   
                 'FilterVendorNo' => $FilterVendorNo,   
@@ -130,7 +130,7 @@ class VendorController extends Controller
         } else {                                       
             return redirect('/');        
         }  
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -168,7 +168,7 @@ class VendorController extends Controller
             'VendorName' => $VendorName, 
         ]);
 
-        return redirect('Vendors')->with('AddVendor', $AddVendor); 
+        return redirect('Vendors'); 
     }
 
     /**

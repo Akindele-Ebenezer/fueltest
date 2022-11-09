@@ -52,6 +52,7 @@ class FuelTestController extends Controller
         $number_of_all_records = count($all_records);
 
         $vendors = Vendor::paginate(14);
+        $absolute_vendors = Vendor::all();
         $number_of_vendors = count($vendors); 
         $number_of_vendors_absolute = Vendor::count(); 
   
@@ -206,6 +207,7 @@ class FuelTestController extends Controller
             'all_records' => $all_records,
             'previous_records' => $previous_records,
             'vendors' => $vendors,
+            'absolute_vendors' => $absolute_vendors,
             'fuel_test_users' => $fuel_test_users,
             'number_of_fuel_test_users' => $number_of_fuel_test_users,
             'number_of_all_records' => $number_of_all_records,
