@@ -49,7 +49,7 @@
                         $NumberOfTotalRecordsForEachVendorArr = [];
                     @endphp
 
-                    @foreach ($vendors as $Vendor)
+                    @foreach ($absolute_vendors as $Vendor)
                         @php
                             include('../resources/views/DATA/Queries/NumberOfRecordsData.php'); 
 
@@ -77,7 +77,7 @@
                         </label>
                     </form>
 
-                    <p><span>Total Number of Vendors</span> => &nbsp;&nbsp; <span>{{ $number_of_vendors }} (100%)</span></p> 
+                    <p><span>Total Number of Vendors</span> => &nbsp;&nbsp; <span>{{ $number_of_vendors_absolute }} (100%)</span></p> 
                     <p><span>Vendors with Supply Status *</span> => &nbsp;&nbsp; <span>{{ $VendorsWithSupplyStatus }} ({{ round($PercentageOfVendorsWithSupplyStatus) }}%)</span></p>  
                 </div> 
             </div>
@@ -504,7 +504,7 @@ let FuelTestResults = new Chart("myChart", {
         $AvailableVendorNames = [];
     @endphp
 
-    @foreach($vendors as $vendor) 
+    @foreach($absolute_vendors as $vendor) 
 
         @php 
         
