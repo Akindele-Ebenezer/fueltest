@@ -282,7 +282,7 @@ nav ul li a {
 }
 @media (max-width: 755px) {
   .nav-sm-screen,
-  .nav-sm-screen-header-info div {
+.nav-sm-screen-header-info div {
     display: block;
   }
 }
@@ -1085,6 +1085,11 @@ section.previous-records table tr th .filter ul li input[type=checkbox] {
 }
 section.previous-records table tr th form {
   float: left;
+}
+section.previous-records table tr th form h1 {
+  font-size: 1.3rem;
+  margin-block: 0.5rem;
+  text-align: center;
 }
 section.previous-records table tr th form label input {
   display: none;
