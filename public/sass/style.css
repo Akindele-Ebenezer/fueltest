@@ -1090,15 +1090,16 @@ section.previous-records table tr th form label input {
   display: none;
 }
 section.previous-records table tr th p {
-  background: -webkit-linear-gradient(#25066a, #00592e);
+  background: -webkit-linear-gradient(#182747, #483434);
   border-bottom: 1px solid #ddd;
   font-size: 2rem;
   font-family: "Bitter", serif;
+  text-align: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 section.previous-records table tr th section.DatesFilter button {
-  background: cadetblue !important;
+  background: #483434 !important;
   border-radius: 0.6rem;
   padding: 0.5rem;
   width: 100%;

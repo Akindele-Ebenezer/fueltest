@@ -119,6 +119,7 @@
                                 <section class="DatesFilter">  
                                     <button name="FilterRecordsOfLastMonth">Last Month</button>
                                 </section> <br>
+                                <h1>Collection Dates</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('all_records') }}">Cancel</a></button> <button name="FilterSampleCollectionDate">Filter</button>
                                 </center>

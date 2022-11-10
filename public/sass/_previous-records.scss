@@ -470,10 +470,11 @@ section {
                     }
 
                     p {
-                        background: -webkit-linear-gradient(#25066a, #00592e); 
+                        background: -webkit-linear-gradient(#182747, $color-2); 
                         border-bottom: 1px solid #ddd;
                         font-size: 2rem;
                         font-family: "Bitter", serif;
+                        text-align: center;
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
                     }
@@ -481,7 +482,7 @@ section {
                     section { 
                         &.DatesFilter {
                             button {
-                                background: $color-3 !important;
+                                background: $color-2 !important;
                                 border-radius: 0.6rem;
                                 padding: 0.5rem; 
                                 width: 100%;
