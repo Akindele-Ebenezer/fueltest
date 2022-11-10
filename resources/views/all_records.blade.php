@@ -11,7 +11,6 @@
         <div class="log-in-alert alert">You are LOGGED IN</div>
     @endif
     <section class="previous-records">
-        <h1>Sample</h1>
         <center>  
             <div>
                 <h1>{{ $title }} ({{ $number_of_all_records_absolute }})</h1> <br> ({{ $number_of_all_records }})

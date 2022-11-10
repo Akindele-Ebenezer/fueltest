@@ -41,6 +41,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Sample Numbers</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterSampleNo">Filter</button>
                                 </center>
@@ -63,6 +64,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Vendor Catalogue</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterVendorName">Filter</button>
                                 </center>
@@ -113,6 +115,7 @@
                                 <section class="DatesFilter">  
                                     <button name="FilterRecordsOfLastMonth">Last Month</button>
                                 </section> <br>
+                                <h1>Collection Dates</h1> 
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterSampleCollectionDate">Filter</button>
                                 </center>
@@ -135,6 +138,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Truck Plate Numbers</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterTruckPlateNo">Filter</button>
                                 </center>
@@ -157,6 +161,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Tank Numbers</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterTankNo">Filter</button>
                                 </center>
@@ -179,6 +184,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Appearance Result</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterAppearanceResult">Filter</button>
                                 </center>
@@ -201,6 +207,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Colors</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterColor">Filter</button>
                                 </center>
@@ -223,6 +230,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Density</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterDensity">Filter</button>
                                 </center>
@@ -245,6 +253,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Flash Point</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterFlashPoint">Filter</button>
                                 </center>
@@ -267,6 +276,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Temperature</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterTemp">Filter</button>
                                 </center>
@@ -289,6 +299,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Water Sediment</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterWaterSediment">Filter</button>
                                 </center>
@@ -311,6 +322,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Cleanliness</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterCleanliness">Filter</button>
                                 </center>
@@ -333,6 +345,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Date of Test</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterDateOfTest">Filter</button>
                                 </center>
@@ -355,6 +368,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Made By</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterMadeBy">Filter</button>
                                 </center>
@@ -377,6 +391,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Delivered To</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterDeliveredTo">Filter</button>
                                 </center>
@@ -399,6 +414,7 @@
                     <div class="filter filter-sample-no">
                         <ul>
                             <form action="" method="get">
+                                <h1>Remarks</h1>
                                 <center>
                                     <button name="CancelFilter"><a href="{{ route('previous_records') }}">Cancel</a></button> <button name="FilterRemarks">Filter</button>
                                 </center>
