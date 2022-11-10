@@ -96,6 +96,10 @@ section {
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent; 
             }
+
+            span {
+                color: $color-2;
+            }
         }
  
         .Passed,

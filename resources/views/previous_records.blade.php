@@ -7,25 +7,7 @@
 @section('content')
     @include('ShowRecord')
     <section class="previous-records">
-        <center>
-            <div>
-                <h1>{{ $title }} ({{ $number_of_previous_records_absolute }})</h1> <br> ({{ $number_of_previous_records }})
-            </div>
-            <div>
-                <form action="/export">
-                    <button type="submit" name="export">Export to Excel</button>
-                </form>
-                <a href="{{ route('fuel_test') }}"><button>Add Record +</button></a>                
-            </div> 
-            @include('ApprovedWavedRejected')
-        </center>
-        <section class="search">
-            <form action="">
-                <input type="text" name="SearchValue" placeholder="Search..">
-                <input type="submit" class="button" name="Search" value="Filter">
-                <input type="submit" class="button" name="Clear" value="Clear">
-            </form>
-        </section>
+        @include('PageTitleForRecords')
         <div class="table">
             <table>
                 <tr>

@@ -282,7 +282,7 @@ nav ul li a {
 }
 @media (max-width: 755px) {
   .nav-sm-screen,
-.nav-sm-screen-header-info div {
+  .nav-sm-screen-header-info div {
     display: block;
   }
 }
@@ -592,7 +592,7 @@ section.fuel-test .fuel-test-main .form h3[name=WaterSediment],
 section.fuel-test .fuel-test-main .form h3[name=VendorNo],
 section.fuel-test .fuel-test-main .form h3[name=Remarks] {
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #483434;
   border-radius: unset;
 }
 section.fuel-test .fuel-test-main .form input[name=FlashPoint],
@@ -797,6 +797,9 @@ section.previous-records center h1 {
   text-transform: uppercase;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+section.previous-records center span {
+  color: #483434;
 }
 section.previous-records .Passed,
 section.previous-records .Failed,
