@@ -847,6 +847,9 @@ section.previous-records table td:not(td.pdf-and-edit) {
   border-bottom: 1px solid #eee;
   padding: 0.4rem 2rem;
 }
+section.previous-records table td.action {
+  text-align: center;
+}
 section.previous-records table tr.history, section.previous-records table tr.history td {
   border: none;
   padding-inline: 0.5rem;
@@ -1217,7 +1220,27 @@ section.hide-record {
   display: none;
 }
 section.search {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   margin-top: 0.5rem;
+}
+section.search form:first-of-type {
+  display: flex;
+}
+section.search form:first-of-type button:first-of-type {
+  margin-inline: 0.5rem;
+}
+section.search form:last-of-type {
+  margin-right: 1rem;
+}
+section.search form .icon-button {
+  display: flex;
+}
+section.search form .icon-button svg {
+  fill: #423030;
+  margin-right: 0.5rem;
+  width: 1.3rem;
 }
 section.show-record-side-bar {
   right: 0 !important;
@@ -1304,13 +1327,11 @@ section input[placeholder="Search.."] {
   outline: none;
   padding: 0.2rem 1rem;
 }
-section input[value=Clear] {
+section button[name=Clear] {
   background: #483434;
 }
-section input[value=Clear]:hover {
-  background: #664949;
-  border: 1px solid #664949;
-  color: #fff;
+section button[name=Clear] svg {
+  fill: #f24040 !important;
 }
 
 @media (min-width: 1416px) {

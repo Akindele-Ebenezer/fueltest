@@ -35,6 +35,9 @@
                             </form>
                         </ul>
                     </div></th>
+                    <th class="resizable">
+                        Action
+                    </th>
                     <th class="vendors-th resizable">Vendors 
                     <form action="" method="get">
                         <label>
@@ -513,10 +516,16 @@
                             </form>  
                         </td> 
                     </td>
+                    <td class="action">
+                        <form action="">
+                            <input type="checkbox" name="DeleteRecord[]">
+                            <input type="radio" name="">
+                        </form>
+                    </td>
                     <td class="vendors">
                         <form action="">
                             <label>
-                                    @include('DATA.CertificateData')
+                                @include('DATA.CertificateData')
                                 {{ $previous_record->VendorName }} 
                             </label>
                         </form>
