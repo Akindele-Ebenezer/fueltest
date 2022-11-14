@@ -35,9 +35,9 @@
                             </form>
                         </ul>
                     </div></th>
-                    <th class="resizable">
+                    {{-- <th class="resizable">
                         Action
-                    </th>
+                    </th> --}}
                     <th class="vendors-th resizable">Vendors 
                     <form action="" method="get">
                         <label>
@@ -516,12 +516,12 @@
                             </form>  
                         </td> 
                     </td>
-                    <td class="action">
+                    {{-- <td class="action">
                         <form action="">
-                            <input type="checkbox" name="DeleteRecord[]">
-                            <input type="radio" name="">
+                            <input type="checkbox" name="DeleteRecord" value="{{ $previous_record->id }}">
+                            <input type="radio" name="">  
                         </form>
-                    </td>
+                    </td> --}}
                     <td class="vendors">
                         <form action="">
                             <label>
@@ -559,5 +559,7 @@
     <script src="JS/Tooltips.js"></script>
     <script src="JS/Resizable.js"></script>
     <script src="JS/Records/Scripts.js"></script> 
+
+    @include('Delete')
 
 @endsection 

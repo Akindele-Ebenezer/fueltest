@@ -104,4 +104,4 @@ for (let i = 0; i < CheckBoxInput.length; i++) {
             }   
         } 
     });
-}
+}  
