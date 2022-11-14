@@ -42,6 +42,7 @@
                         <div class="filter filter-vendor-no">
                             <ul>
                                 <form action="" method="get">
+                                    <h1>Vendor Numbers</h1>
                                     <center>
                                         <button name="CancelFilter"><a href="{{ route('vendors') }}">Cancel</a></button> <button name="FilterVendorNo">Filter</button>
                                     </center>
@@ -69,6 +70,7 @@
                         <div class="filter filter-vendor-name">
                             <ul>
                                 <form action="" method="get">
+                                    <h1>Vendor Names</h1>
                                     <center>
                                         <button name="CancelFilter"><a href="{{ route('vendors') }}">Cancel</a></button> <button name="FilterVendorName">Filter</button>
                                     </center>

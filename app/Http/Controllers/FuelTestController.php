@@ -3053,17 +3053,17 @@ class FuelTestController extends Controller
         $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
         $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
   
-        $FirstDayOfLastMonth = date("Y-0n-j", strtotime("first day of previous month"));  
-        $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
+        $FirstDayOfLastMonth = date("Y-n-0j", strtotime("first day of previous month"));  
+        $LastDayOfLastMonth = date("Y-n-j", strtotime("last day of previous month"));
             
         $last_month_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                         ->orderBy('SampleNo', 'DESC')
                         ->get();
-         
+        //  dd($FirstDayOfLastMonth);
         $number_of_all_records_last_month = count($last_month_records); 
         $PercentageOfNumberOfRecordsLastMonth = $number_of_all_records_last_month / $number_of_all_records * 100; 
  
-        $FirstDayOfThisMonth = date('Y-m-1'); 
+        $FirstDayOfThisMonth = date('Y-m-01'); 
         $TodaysDate = date('Y-m-d'); 
         
         $this_month_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])

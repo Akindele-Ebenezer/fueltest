@@ -37,6 +37,7 @@
                         <div class="filter filter-email">
                             <ul>
                                 <form action="" method="get">
+                                    <h1>Emails</h1>
                                     <center>
                                         <button name="CancelFilter"><a href="{{ route('users') }}">Cancel</a></button> <button name="FilterEmails">Filter</button>
                                     </center>
@@ -64,6 +65,7 @@
                         <div class="filter filter-user-name">
                             <ul>
                                 <form action="" method="get">
+                                    <h1>Usernames</h1>
                                     <center>
                                         <button name="CancelFilter"><a href="{{ route('users') }}">Cancel</a></button> <button name="FilterUserNames">Filter</button>
                                     </center>
