@@ -29,7 +29,35 @@
                 <h3 class="top-info">Vendor No</h3>
                 <span class="top-info">{{ $VendorNo }}</span>
                 <br><br> 
-                {{-- <li>DETAILS : ({{ $NumberOfTotalRecordsForEachVendor }}) {{ $NumberOfTotalRecordsForEachVendor > 0 ? 'Diesel supplied from' : 'No Diesel Supplied yet from' }} {{ Route::is('previous_records') ? $previous_record->VendorName : '' }}{{ Route::is('all_records') ? $record->VendorName : '' }}{{ Route::is('vendors') ? $Vendor->VendorName : '' }}. </li> --}}
+                 @php
+                     
+                    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('id')
+                                                                                    ->where('VendorName', $VendorName) 
+                                                                                    ->get()
+                                                                                    ->count(); 
+                     
+                    $ApprovalForUseForEachVendor = App\Models\FuelTestRecord::select('ApprovalForUse')
+                                                                            ->where('SampleNo', $SampleNo)
+                                                                            ->where('VendorName', $VendorName) 
+                                                                            ->get(); 
+                       
+                    $TimeCreatedAtForEachVendor = App\Models\FuelTestRecord::select('created_at')
+                                                                            ->where('SampleNo', $SampleNo)
+                                                                            ->where('VendorName', $VendorName) 
+                                                                            ->get(); 
+ 
+                 @endphp 
+                <li>
+                    DETAILS : ({{ $NumberOfTotalRecordsForEachVendor }}) {{ $NumberOfTotalRecordsForEachVendor > 0 ? 'Diesel supplied from' : 'No Diesel Supplied yet from' }} {{ $VendorName }}. <br>
+                    Test for this record created on
+                        @foreach ($TimeCreatedAtForEachVendor as $Time)
+                            {{ $Time->created_at }}
+                        @endforeach  
+                    is
+                        @foreach ($ApprovalForUseForEachVendor as $Approval)
+                            {{ $Approval->ApprovalForUse }}.
+                        @endforeach  
+                </li>
                 <li><span> <br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM328.1 304.1C338.3 295.6 338.3 280.4 328.1 271C319.6 261.7 304.4 261.7 295 271L200 366.1L152.1 319C143.6 309.7 128.4 309.7 119 319C109.7 328.4 109.7 343.6 119 352.1L183 416.1C192.4 426.3 207.6 426.3 216.1 416.1L328.1 304.1z"/></svg>Sample Collection Date</span> <br> <span>{{ $SampleCollectionDate  }}</span></li>
                 <li><span> <br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M368 0C394.5 0 416 21.49 416 48V96H466.7C483.7 96 499.1 102.7 512 114.7L589.3 192C601.3 204 608 220.3 608 237.3V352C625.7 352 640 366.3 640 384C640 401.7 625.7 416 608 416H576C576 469 533 512 480 512C426.1 512 384 469 384 416H256C256 469 213 512 160 512C106.1 512 64 469 64 416H48C21.49 416 0 394.5 0 368V48C0 21.49 21.49 0 48 0H368zM416 160V256H544V237.3L466.7 160H416zM160 368C133.5 368 112 389.5 112 416C112 442.5 133.5 464 160 464C186.5 464 208 442.5 208 416C208 389.5 186.5 368 160 368zM480 464C506.5 464 528 442.5 528 416C528 389.5 506.5 368 480 368C453.5 368 432 389.5 432 416C432 442.5 453.5 464 480 464z"/></svg>Truck Plate No</span> <br> <span>{{ $TruckPlateNo  }}</span></li>
                 <li><span> <br><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M320 32C343.7 32 364.4 44.87 375.4 64H427.2C452.5 64 475.4 78.9 485.7 102L538.5 220.8C538.1 221.9 539.4 222.9 539.8 224H544C579.3 224 608 252.7 608 288V320C625.7 320 640 334.3 640 352C640 369.7 625.7 384 608 384H576C576 437 533 480 480 480C426.1 480 384 437 384 384H256C256 437 213 480 160 480C106.1 480 64 437 64 384H32C14.33 384 0 369.7 0 352C0 334.3 14.33 320 32 320V288C14.33 288 0 273.7 0 256V160C0 142.3 14.33 128 32 128V96C32 60.65 60.65 32 96 32L320 32zM384 128V224H469.9L427.2 128H384zM160 336C133.5 336 112 357.5 112 384C112 410.5 133.5 432 160 432C186.5 432 208 410.5 208 384C208 357.5 186.5 336 160 336zM480 432C506.5 432 528 410.5 528 384C528 357.5 506.5 336 480 336C453.5 336 432 357.5 432 384C432 410.5 453.5 432 480 432zM253.3 135.1C249.4 129.3 242.1 126.6 235.4 128.7C228.6 130.7 224 136.9 224 144V240C224 248.8 231.2 256 240 256C248.8 256 256 248.8 256 240V196.8L290.7 248.9C294.6 254.7 301.9 257.4 308.6 255.3C315.4 253.3 320 247.1 320 240V144C320 135.2 312.8 128 304 128C295.2 128 288 135.2 288 144V187.2L253.3 135.1zM128 144C128 135.2 120.8 128 112 128C103.2 128 96 135.2 96 144V208C96 234.5 117.5 256 144 256C170.5 256 192 234.5 192 208V144C192 135.2 184.8 128 176 128C167.2 128 160 135.2 160 144V208C160 216.8 152.8 224 144 224C135.2 224 128 216.8 128 208V144z"/></svg>Tank No</span> <br> <span>{{ $TankNo  }}</span></li>
