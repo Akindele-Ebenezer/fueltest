@@ -1002,9 +1002,9 @@ class FuelTestController extends Controller
                                                         ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }
             
-            if (isset($_GET['FilterRecordsOfLastMonth'])) {
-                $FirstDayOfLastMonth = date("Y-0n-0j", strtotime("first day of previous month"));  
-                $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
+            if (isset($_GET['FilterRecordsOfLastMonth'])) { 
+                $FirstDayOfLastMonth = date("Y-m-d", strtotime("first day of previous month"));  
+                $LastDayOfLastMonth = date("Y-m-d", strtotime("last day of previous month"));
                   
                 $all_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                 ->orderBy('SampleNo', 'DESC')
@@ -2238,8 +2238,8 @@ class FuelTestController extends Controller
             }
             
             if (isset($_GET['FilterRecordsOfLastMonth'])) {
-                $FirstDayOfLastMonth = date("Y-0n-0j", strtotime("first day of previous month"));  
-                $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
+                $FirstDayOfLastMonth = date("Y-m-d", strtotime("first day of previous month"));  
+                $LastDayOfLastMonth = date("Y-m-d", strtotime("last day of previous month"));
                    
                 $previous_records = FuelTestRecord::where('uid', $id)
                                                     ->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
@@ -3053,8 +3053,8 @@ class FuelTestController extends Controller
         $PercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records * 100;
         $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
   
-        $FirstDayOfLastMonth = date("Y-n-0j", strtotime("first day of previous month"));  
-        $LastDayOfLastMonth = date("Y-n-j", strtotime("last day of previous month"));
+        $FirstDayOfLastMonth = date("Y-m-d", strtotime("first day of previous month"));  
+        $LastDayOfLastMonth = date("Y-m-d", strtotime("last day of previous month"));
             
         $last_month_records = FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                         ->orderBy('SampleNo', 'DESC')
