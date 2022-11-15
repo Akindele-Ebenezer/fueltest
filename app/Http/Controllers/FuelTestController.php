@@ -48,6 +48,7 @@ class FuelTestController extends Controller
         $number_of_previous_records_absolute = FuelTestRecord::select('id')->where('uid', $id)->count();
         $number_of_all_records_absolute = FuelTestRecord::select('id')->count();
  
+        $all_records_absolute = DB::table('fuel_test_records')->get(); 
         $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
 
@@ -205,6 +206,7 @@ class FuelTestController extends Controller
             'header_info' => $header_info,
             'sample_no' => $sample_no,
             'all_records' => $all_records,
+            'all_records_absolute' => $all_records_absolute,
             'previous_records' => $previous_records,
             'vendors' => $vendors,
             'absolute_vendors' => $absolute_vendors,
@@ -262,7 +264,7 @@ class FuelTestController extends Controller
             return redirect('/');        
         } else {
             $VendorName = '';
-
+ 
             if (Session::get('VendorNo')) {
                 $VendorNo = Session::get('VendorNo'); 
 
@@ -296,8 +298,65 @@ class FuelTestController extends Controller
                 'ApprovalForUseErrorMessage' => Session::get('ApprovalForUseErrorMessage'), 
             ];
      
-            $ViewData = [...$Config, ...$ViewData];   
-    
+            $ViewData = [...$Config, ...$ViewData];  
+
+            if(isset($_GET['GetRecord']) AND empty($_GET['RecordId'])) {
+                return redirect()->back();
+            }
+            
+            if(isset($_GET['GetRecord'])) { 
+                $Config = $this->config(); 
+                extract($Config); 
+
+                $RecordId = $request->RecordId;
+                $RecordIdQuery = FuelTestRecord::where('SampleNo', $RecordId)
+                                                ->firstOrFail();
+                $title = $RecordId; 
+                $SampleNo = $RecordIdQuery->SampleNo;
+                $VendorNo = $RecordIdQuery->VendorNo;
+                $VendorName = $RecordIdQuery->VendorName;
+                $SampleCollectionDate = $RecordIdQuery->SampleCollectionDate;
+                $TruckPlateNo = $RecordIdQuery->TruckPlateNo;
+                $TankNo = $RecordIdQuery->TankNo;
+                $AppearanceResult = $RecordIdQuery->AppearanceResult;
+                $Color = $RecordIdQuery->Color;
+                $Density = $RecordIdQuery->Density;
+                $FlashPoint = $RecordIdQuery->FlashPoint;
+                $Temp = $RecordIdQuery->Temp;
+                $WaterSediment = $RecordIdQuery->WaterSediment;
+                $Cleanliness = $RecordIdQuery->Cleanliness;
+                $DateOfTest = $RecordIdQuery->DateOfTest;
+                $MadeBy = $RecordIdQuery->MadeBy;
+                $ApprovalForUse = $RecordIdQuery->ApprovalForUse;
+                $DeliveredTo = $RecordIdQuery->DeliveredTo;
+                $Remarks = $RecordIdQuery->Remarks; 
+                $SampleCollectionDate = date_create($SampleCollectionDate);
+                $DateOfTest = date_create($DateOfTest);
+
+                return view('fuel_test', $ViewData)->with('SampleNo', $SampleNo)
+                                                    ->with('SampleCollectionDate', $SampleCollectionDate)
+                                                    ->with('TruckPlateNo', $TruckPlateNo)
+                                                    ->with('TankNo', $TankNo)
+                                                    ->with('AppearanceResult', $AppearanceResult)
+                                                    ->with('Color', $Color)
+                                                    ->with('Density', $Density)
+                                                    ->with('FlashPoint', $FlashPoint)
+                                                    ->with('Temp', $Temp)
+                                                    ->with('WaterSediment', $WaterSediment)
+                                                    ->with('Cleanliness', $Cleanliness)
+                                                    ->with('DateOfTest', $DateOfTest)
+                                                    ->with('MadeBy', $MadeBy)
+                                                    ->with('DeliveredTo', $DeliveredTo)
+                                                    ->with('Remarks', $Remarks)
+                                                    ->with('ApprovalForUse', $ApprovalForUse)
+                                                    ->with('VendorName', $VendorName)
+                                                    ->with('VendorNo', $VendorNo);
+            }
+
+            if(isset($_GET['NullifyRecord'])) {
+                redirect()->back();
+            }
+
             return view('fuel_test', $ViewData);
         }
     }
