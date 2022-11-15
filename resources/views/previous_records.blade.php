@@ -77,11 +77,12 @@
                             <form action="" method="get">
                                 <br> 
                                 <p>Select Fields</p>
+                                <span>Select range to genaerate your Fuel Test Report.</span>
                                 <section>
                                     <li class="date"><span>From</span> <input type="date" name="DateFrom"> </li>
                                     <li class="date"><span>To</span> <input type="date" name="DateTo"> </li>
                                     <input type="hidden" name="Title" value="{{ $title }}">
-                                    <button name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterDateBetweenForCurrentVendor' : 'FilterDateBetween' }}">Apply</button>
+                                    <button name="{{ isset($_GET['CheckVendorName']) || isset($_GET['FilterPassedTestsForCurrentVendor']) || isset($_GET['FilterDiffTestsForCurrentVendor']) || isset($_GET['FilterWavedTestsForCurrentVendor']) || isset($_GET['FilterFailedTestsForCurrentVendor']) ? 'FilterDateBetweenForCurrentVendor' : 'FilterDateBetween' }}">Generate Report</button>
                                 </section> <br>
                                 <section class="DatesFilter"> 
                                     <input type="hidden" name="RecordsOfToday" value="{{ date('Y-m-d') }}">

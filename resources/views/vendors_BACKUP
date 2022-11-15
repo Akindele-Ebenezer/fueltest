@@ -14,3 +14,4 @@ INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`,
 INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (14, '200580', 119, 'WHITEHILL INTEGRATED SERVICES LIMITED', '2022-07-29 11:43:04', '2022-07-29 11:43:04');
 INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (15, '200770', 119, 'YURT ENERGY LTD', '2022-07-29 11:44:00', '2022-07-29 11:44:00');
 INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (16, '201359', 119, 'Z\'LURTOY OIL & GAS LTD', '2022-07-29 11:44:39', '2022-07-29 11:44:39');
+INSERT INTO `vendors` (`id`, `VendorNo`, `RecordId`, `VendorName`, `created_at`, `updated_at`) VALUES (19, '201393', 0, 'TONIA GLOBAL & SUPPLY SERVICES', '2022-11-09 14:48:57', '2022-11-09 14:48:57');

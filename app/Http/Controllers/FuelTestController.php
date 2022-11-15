@@ -140,9 +140,9 @@ class FuelTestController extends Controller
         // ORDER BY
         // SampleNo DESC");  
 
-        $DiffRecords = FuelTestRecord::select('id')->where('VendorName', NULL)->paginate(14);
+        $DiffRecords = FuelTestRecord::where('VendorName', NULL)->paginate(14);
         $number_of_diff_records = FuelTestRecord::where('VendorName', NULL)->count(); 
-        
+
         $DiffRecords_ = FuelTestRecord::where('uid', $id) 
                                         ->where('VendorName', NULL)
                                         ->paginate(14);
