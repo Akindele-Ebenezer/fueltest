@@ -197,7 +197,7 @@ class FuelTestController extends Controller
         $AbsolutePercentageOfFailedRecords = $number_of_failed_records / $number_of_all_records_absolute * 100;
         $AbsolutePercentageOfWavedRecords = $number_of_waved_records / $number_of_all_records_absolute * 100;
         $AbsolutePercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records_absolute * 100;
-        
+       
         return [ 
             'id' => $id,
             'Visibility' => '',
@@ -298,8 +298,8 @@ class FuelTestController extends Controller
                 'ApprovalForUseErrorMessage' => Session::get('ApprovalForUseErrorMessage'), 
             ];
      
-            $ViewData = [...$Config, ...$ViewData];  
-
+            $ViewData = [...$Config, ...$ViewData]; 
+  
             if(isset($_GET['GetRecord']) AND empty($_GET['RecordId'])) {
                 return redirect()->back();
             }
@@ -1897,7 +1897,7 @@ class FuelTestController extends Controller
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->paginate(14)
                                                     ->fragment('PreviousRecords');
-//  dd($previous_records);
+ 
                 $number_of_previous_records = count($previous_records);                                     
                 $number_of_previous_records_absolute = FuelTestRecord::where('uid', $id)
                                                                     ->where('SampleNo', 'LIKE', '%' . $SearchValue . '%')

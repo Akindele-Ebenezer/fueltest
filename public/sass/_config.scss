@@ -33,6 +33,13 @@ $headings: 1, 2, 3, 4;
     z-index: 2000;
 }
 
+.Passed {
+    color: rgba(58, 204, 177, 0.8);
+}
+
+.Failed {
+    color: $error;
+}
  
 .log-in-alert {
     @include alert();

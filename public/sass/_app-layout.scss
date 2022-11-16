@@ -108,6 +108,44 @@ section {
                             margin-block: 1.5rem;
                             width: 100%;
                         }
+
+                        &.Survey {
+                            display: unset;
+                            padding: unset;
+
+                            div {
+                                margin: unset;
+
+                                &:last-of-type {
+                                    display: unset;
+
+                                    h2 {
+                                        color: $color-2;
+                                        border-bottom: 1px solid #eee;
+                                        font-family: initial;
+                                        font-size: 1.5rem;
+                                        margin-bottom: 1rem;
+                                        padding-left: 1rem;
+                                    }
+
+                                    hr {
+                                        color: #eee;
+                                    }
+
+                                    p {
+                                        padding-left: 1rem;
+
+                                        span {
+                                            &:first-of-type {
+                                                display: inline-block;
+                                                margin-right: 2rem;
+                                                width: 8rem;
+                                            } 
+                                        }
+                                    }
+                                }
+                            }
+                        }
  
                         select {
                             border: 3px solid #999;
