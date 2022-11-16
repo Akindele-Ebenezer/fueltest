@@ -165,7 +165,7 @@ section {
                             top: 5rem;
                             width: 28rem;
                             z-index: 1;
-
+ 
                             ul {
                                 h2 {
                                     @extend .page-title;
@@ -373,10 +373,7 @@ section {
                     }
                 } 
 
-                section {
-                    background: #f2f2f2;
-                    padding: 1rem;
-                    
+                section { 
                     form { 
                         background: #fff;
                         padding: 0 1rem 1rem;
@@ -406,6 +403,28 @@ section {
                                 width: 3rem;
                             }
                         }
+                    }
+
+                    &.GetRecordSection {
+                        align-items: center;
+                        background: #f2f2f2;
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 1rem;   
+
+                        form {
+                            img {
+                                translate: 0 1rem;
+                                width: 2.5rem;
+                            }
+
+                            input[type='submit'] {
+                                background: #222;
+                                border: none;
+                                color: #fff;
+                                cursor: pointer;
+                            }
+                        }                     
                     }
                 }
 

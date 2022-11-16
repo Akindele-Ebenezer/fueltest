@@ -34,7 +34,7 @@
             <li>{{ $RemarksErrorMessage }}</li>
             <li>{{ $ApprovalForUseErrorMessage }}</li>
         </ul>  
-        <section>
+        <section class="GetRecordSection">
             <form action="">
                 <span> 
                     @if (isset($_GET['GetRecord']) AND $ApprovalForUse == 'APPROVED')
@@ -60,6 +60,11 @@
                 <button name="GetRecord">Pull Record</button>
                 <button name="NullifyRecord">Nullify</button>
             </form>
+            @if (isset($_GET['GetRecord']))
+                <form method='POST' target='blank' action="/GenerateCertificate/{{ isset($_GET['GetRecord']) ? $SampleNo : '' }}"> @csrf
+                    @include('DATA.CertificateData_GetRecord') 
+                </form>                
+            @endif
         </section>
         <div class="form"> 
             <form action="{{ route('record_success') }}">

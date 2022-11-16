@@ -333,6 +333,10 @@ class FuelTestController extends Controller
                 $SampleCollectionDate = date_create($SampleCollectionDate);
                 $DateOfTest = date_create($DateOfTest);
  
+                // if(isset($_GET[''])) {
+
+                // }
+
                 $NumberOfGoodTestsForAppearanceResult_CurrentVendor = FuelTestRecord::whereIn('AppearanceResult', ['BRIGHT', 'CLEAR'])  
                                                                                     ->where('VendorNo', $VendorNo)
                                                                                     ->count();

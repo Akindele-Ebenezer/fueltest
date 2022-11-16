@@ -678,10 +678,6 @@ section.fuel-test .fuel-test-main .form label {
   padding: 1rem;
   width: 37%;
 }
-section.fuel-test .fuel-test-main section {
-  background: #f2f2f2;
-  padding: 1rem;
-}
 section.fuel-test .fuel-test-main section form {
   background: #fff;
   padding: 0 1rem 1rem;
@@ -707,6 +703,23 @@ section.fuel-test .fuel-test-main section form span img {
   margin-right: 0.5rem;
   translate: 0 1rem;
   width: 3rem;
+}
+section.fuel-test .fuel-test-main section.GetRecordSection {
+  align-items: center;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+section.fuel-test .fuel-test-main section.GetRecordSection form img {
+  translate: 0 1rem;
+  width: 2.5rem;
+}
+section.fuel-test .fuel-test-main section.GetRecordSection form input[type=submit] {
+  background: #222;
+  border: none;
+  color: #fff;
+  cursor: pointer;
 }
 section.fuel-test .fuel-test-main .record-created-alert,
 section.fuel-test .fuel-test-main .record-updated-alert {
