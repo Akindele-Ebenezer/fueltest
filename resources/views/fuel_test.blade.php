@@ -110,14 +110,14 @@
                     <div> 
                         <h2>Appearance Results</h2>
                         <p>
-                            <span>Bad Tests</span> => <span class="Failed">{{ $NumberOfBadTestsForAppearanceResult }} ({{ round($PercentageForGoodTestsForAppearanceResult, 1) }})%</span> 
+                            <span>Bad Tests</span> => <span class="Failed">{{ isset($_GET['GetRecord']) ? $NumberOfBadTestsForAppearanceResult_CurrentVendor : $NumberOfBadTestsForAppearanceResult }} ({{ isset($_GET['GetRecord']) ? round($PercentageForBadTestsForAppearanceResult_CurrentVendor, 1) : round($PercentageForBadTestsForAppearanceResult, 1) }})%</span> 
                         </p>
                         <p>
-                            <span>Good Tests</span> => <span class="Passed">{{ $NumberOfGoodTestsForAppearanceResult }} ({{ round($PercentageForGoodTestsForAppearanceResult, 1) }})%</span> 
+                            <span>Good Tests</span> => <span class="Passed">{{ isset($_GET['GetRecord']) ? $NumberOfGoodTestsForAppearanceResult_CurrentVendor : $NumberOfGoodTestsForAppearanceResult }} ({{ isset($_GET['GetRecord']) ? round($PercentageForGoodTestsForAppearanceResult_CurrentVendor, 1) : round($PercentageForGoodTestsForAppearanceResult, 1) }})%</span> 
                         </p>
                         <br><hr>
                         <p>
-                            <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ $AggregateForAppearanceResult }} (100%)</span> 
+                            <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ isset($_GET['GetRecord']) ? $AggregateForAppearanceResult_CurrentVendor : $AggregateForAppearanceResult }} (100%)</span> 
                         </p>
                     </div>
                 </div>
@@ -151,14 +151,14 @@
                 <div>
                     <h2>Color Tests</h2>
                     <p>
-                        <span>Bad Tests</span> => <span class="Failed">{{ $NumberOfBadTestsForColor }} ({{ round($PercentageForGoodTestsForColor, 1) }})%</span> 
+                        <span>Bad Tests</span> => <span class="Failed">{{ isset($_GET['GetRecord']) ? $NumberOfBadTestsForColor_CurrentVendor : $NumberOfBadTestsForColor }} ({{ isset($_GET['GetRecord']) ? round($PercentageForBadTestsForColor_CurrentVendor, 1) : round($PercentageForBadTestsForColor, 1) }})%</span> 
                     </p>
                     <p>
-                        <span>Good Tests</span> => <span class="Passed">{{ $NumberOfGoodTestsForColor }} ({{ round($PercentageForGoodTestsForColor, 1) }})%</span> 
+                        <span>Good Tests</span> => <span class="Passed">{{ isset($_GET['GetRecord']) ? $NumberOfGoodTestsForColor_CurrentVendor : $NumberOfGoodTestsForColor }} ({{ isset($_GET['GetRecord']) ? round($PercentageForGoodTestsForColor_CurrentVendor, 1) : round($PercentageForGoodTestsForColor, 1) }})%</span> 
                     </p>
                     <br><hr>
                     <p>
-                        <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ $AggregateForColor }} (100%)</span> 
+                        <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ isset($_GET['GetRecord']) ? $AggregateForColor_CurrentVendor : $AggregateForColor }} (100%)</span> 
                     </p>
                 </div>
             </div>
@@ -181,14 +181,14 @@
                 <div>
                     <h2>Density Test</h2>
                     <p>
-                        <span>Bad Tests</span> => <span class="Failed">{{ $NumberOfBadTestsForDensity }} ({{ round($PercentageForGoodTestsForDensity, 1) }})%</span> 
+                        <span>Bad Tests</span> => <span class="Failed">{{ isset($_GET['GetRecord']) ? $NumberOfBadTestsForDensity_CurrentVendor : $NumberOfBadTestsForDensity }} ({{ isset($_GET['GetRecord']) ? round($PercentageForBadTestsForDensity_CurrentVendor, 1) : round($PercentageForBadTestsForDensity, 1) }})%</span> 
                     </p>
                     <p>
-                        <span>Good Tests</span> => <span class="Passed">{{ $NumberOfGoodTestsForDensity }} ({{ round($PercentageForGoodTestsForDensity, 1) }})%</span> 
+                        <span>Good Tests</span> => <span class="Passed">{{ isset($_GET['GetRecord']) ? $NumberOfGoodTestsForDensity_CurrentVendor : $NumberOfGoodTestsForDensity }} ({{ isset($_GET['GetRecord']) ? round($PercentageForGoodTestsForDensity_CurrentVendor, 1) : round($PercentageForGoodTestsForDensity, 1) }})%</span> 
                     </p>
                     <br><hr>
                     <p>
-                        <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ $AggregateForDensity }} (100%)</span> 
+                        <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ isset($_GET['GetRecord']) ? $AggregateForDensity_CurrentVendor : $AggregateForDensity }} (100%)</span> 
                     </p>
                 </div>
             </div>
@@ -201,14 +201,14 @@
                 <div>
                     <h2>Flash Point Result</h2>
                     <p>
-                        <span>Bad Tests</span> => <span class="Failed">{{ $NumberOfBadTestsForFlashPoint }} ({{ round($PercentageForGoodTestsForFlashPoint, 1) }})%</span> 
+                        <span>Bad Tests</span> => <span class="Failed">{{ isset($_GET['GetRecord']) ? $NumberOfBadTestsForFlashPoint_CurrentVendor : $NumberOfBadTestsForFlashPoint }} ({{ isset($_GET['GetRecord']) ? round($PercentageForBadTestsForFlashPoint_CurrentVendor, 1) : round($PercentageForBadTestsForFlashPoint, 1) }})%</span> 
                     </p>
                     <p>
-                        <span>Good Tests</span> => <span class="Passed">{{ $NumberOfGoodTestsForFlashPoint }} ({{ round($PercentageForGoodTestsForFlashPoint, 1) }})%</span> 
+                        <span>Good Tests</span> => <span class="Passed">{{ isset($_GET['GetRecord']) ? $NumberOfGoodTestsForFlashPoint_CurrentVendor : $NumberOfGoodTestsForFlashPoint }} ({{ isset($_GET['GetRecord']) ? round($PercentageForGoodTestsForFlashPoint_CurrentVendor, 1) : round($PercentageForGoodTestsForFlashPoint, 1) }})%</span> 
                     </p>
                     <br><hr>
                     <p>
-                        <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ $AggregateForFlashPoint }} (100%)</span> 
+                        <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ isset($_GET['GetRecord']) ? $AggregateForFlashPoint_CurrentVendor : $AggregateForFlashPoint }} (100%)</span> 
                     </p>
                 </div>
             </div>
@@ -221,15 +221,15 @@
                     <div>
                         <h2>Water/Sediment Result</h2>
                         <p>
-                            <span>Bad Tests</span> => <span class="Failed">{{ $NumberOfBadTestsForWaterSediment }} ({{ round($PercentageForGoodTestsForWaterSediment, 1) }})%</span> 
+                            <span>Bad Tests</span> => <span class="Failed">{{ isset($_GET['GetRecord']) ? $NumberOfBadTestsForWaterSediment_CurrentVendor : $NumberOfBadTestsForWaterSediment }} ({{ isset($_GET['GetRecord']) ? round($PercentageForBadTestsForWaterSediment_CurrentVendor, 1) : round($PercentageForBadTestsForWaterSediment, 1) }})%</span> 
                         </p>
                         <p>
-                            <span>Good Tests</span> => <span class="Passed">{{ $NumberOfGoodTestsForWaterSediment }} ({{ round($PercentageForGoodTestsForWaterSediment, 1) }})%</span> 
+                            <span>Good Tests</span> => <span class="Passed">{{ isset($_GET['GetRecord']) ? $NumberOfGoodTestsForWaterSediment_CurrentVendor : $NumberOfGoodTestsForWaterSediment }} ({{ isset($_GET['GetRecord']) ? round($PercentageForGoodTestsForWaterSediment_CurrentVendor, 1) : round($PercentageForGoodTestsForWaterSediment, 1) }})%</span> 
                         </p>
                         <br>
                         <hr>
                         <p>
-                            <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ $AggregateForWaterSediment }} (100%)</span> 
+                            <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ isset($_GET['GetRecord']) ? $AggregateForWaterSediment_CurrentVendor : $AggregateForWaterSediment }} (100%)</span> 
                         </p>
                     </div>
                 </div>
@@ -242,14 +242,14 @@
                     <div>
                         <h2>Cleanliness Tests</h2>
                         <p>
-                            <span>Bad Tests</span> => <span class="Failed">{{ $NumberOfBadTestsForCleanliness }} ({{ round($PercentageForGoodTestsForCleanliness, 1) }})%</span> 
+                            <span>Bad Tests</span> => <span class="Failed">{{ isset($_GET['GetRecord']) ? $NumberOfBadTestsForCleanliness_CurrentVendor : $NumberOfBadTestsForCleanliness }} ({{ isset($_GET['GetRecord']) ? round($PercentageForBadTestsForCleanliness_CurrentVendor, 1) : round($PercentageForBadTestsForCleanliness, 1) }})%</span> 
                         </p>
                         <p>
-                            <span>Good Tests</span> => <span class="Passed">{{ $NumberOfGoodTestsForCleanliness }} ({{ round($PercentageForGoodTestsForCleanliness, 1) }})%</span> 
+                            <span>Good Tests</span> => <span class="Passed">{{ isset($_GET['GetRecord']) ? $NumberOfGoodTestsForCleanliness_CurrentVendor : $NumberOfGoodTestsForCleanliness }} ({{ isset($_GET['GetRecord']) ? round($PercentageForGoodTestsForCleanliness_CurrentVendor, 1) : round($PercentageForGoodTestsForCleanliness, 1) }})%</span> 
                         </p>
                         <br><hr>
                         <p>
-                            <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ $AggregateForCleanliness }} (100%)</span> 
+                            <span><em>AGGREGATE</em> [Overall Test]</span> => <span>{{ isset($_GET['GetRecord']) ? $AggregateForCleanliness_CurrentVendor : $AggregateForCleanliness }} (100%)</span> 
                         </p>
                     </div>
                 </div>

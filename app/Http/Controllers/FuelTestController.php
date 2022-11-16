@@ -332,6 +332,78 @@ class FuelTestController extends Controller
                 $Remarks = $RecordIdQuery->Remarks; 
                 $SampleCollectionDate = date_create($SampleCollectionDate);
                 $DateOfTest = date_create($DateOfTest);
+ 
+                $NumberOfGoodTestsForAppearanceResult_CurrentVendor = FuelTestRecord::whereIn('AppearanceResult', ['BRIGHT', 'CLEAR'])  
+                                                                                    ->where('VendorNo', $VendorNo)
+                                                                                    ->count();
+                $NumberOfBadTestsForAppearanceResult_CurrentVendor = FuelTestRecord::whereNotIn('AppearanceResult', ['BRIGHT', 'CLEAR'])   
+                                                                                    ->where('VendorNo', $VendorNo)
+                                                                                    ->count();
+    
+                $AggregateForAppearanceResult_CurrentVendor = $NumberOfGoodTestsForAppearanceResult_CurrentVendor + $NumberOfBadTestsForAppearanceResult_CurrentVendor;                                                                
+
+                $PercentageForGoodTestsForAppearanceResult_CurrentVendor = $NumberOfGoodTestsForAppearanceResult_CurrentVendor / $AggregateForAppearanceResult_CurrentVendor * 100;
+                $PercentageForBadTestsForAppearanceResult_CurrentVendor = $NumberOfBadTestsForAppearanceResult_CurrentVendor / $AggregateForAppearanceResult_CurrentVendor * 100;
+ 
+                $NumberOfGoodTestsForColor_CurrentVendor = FuelTestRecord::where('Color', '<=', 2.5)   
+                                                                            ->where('VendorNo', $VendorNo)
+                                                                            ->count();
+                $NumberOfBadTestsForColor_CurrentVendor = FuelTestRecord::where('Color', '>', 2.5)  
+                                                                        ->where('VendorNo', $VendorNo)
+                                                                        ->count();
+    
+                $AggregateForColor_CurrentVendor = $NumberOfGoodTestsForColor_CurrentVendor + $NumberOfBadTestsForColor_CurrentVendor;                                                                
+
+                $PercentageForGoodTestsForColor_CurrentVendor = $NumberOfGoodTestsForColor_CurrentVendor / $AggregateForColor_CurrentVendor * 100;
+                $PercentageForBadTestsForColor_CurrentVendor = $NumberOfBadTestsForColor_CurrentVendor / $AggregateForColor_CurrentVendor * 100;
+ 
+                $NumberOfGoodTestsForDensity_CurrentVendor = FuelTestRecord::whereBetween('Density', [0.82, 0.855])   
+                                                                            ->where('VendorNo', $VendorNo)
+                                                                            ->count();
+                $NumberOfBadTestsForDensity_CurrentVendor = FuelTestRecord::whereNotBetween('Density', [0.82, 0.855])    
+                                                                            ->where('VendorNo', $VendorNo)
+                                                                            ->count();
+    
+                $AggregateForDensity_CurrentVendor = $NumberOfGoodTestsForDensity_CurrentVendor + $NumberOfBadTestsForDensity_CurrentVendor;                                                                
+
+                $PercentageForGoodTestsForDensity_CurrentVendor = $NumberOfGoodTestsForDensity_CurrentVendor / $AggregateForDensity_CurrentVendor * 100;
+                $PercentageForBadTestsForDensity_CurrentVendor = $NumberOfBadTestsForDensity_CurrentVendor / $AggregateForDensity_CurrentVendor * 100;
+ 
+                $NumberOfGoodTestsForFlashPoint_CurrentVendor = FuelTestRecord::whereBetween('FlashPoint', [52, 92])   
+                                                                                ->where('VendorNo', $VendorNo)
+                                                                                ->count();
+                $NumberOfBadTestsForFlashPoint_CurrentVendor = FuelTestRecord::whereNotBetween('FlashPoint', [52, 92])    
+                                                                                ->where('VendorNo', $VendorNo)
+                                                                                ->count();
+    
+                $AggregateForFlashPoint_CurrentVendor = $NumberOfGoodTestsForFlashPoint_CurrentVendor + $NumberOfBadTestsForFlashPoint_CurrentVendor;                                                                
+
+                $PercentageForGoodTestsForFlashPoint_CurrentVendor = $NumberOfGoodTestsForFlashPoint_CurrentVendor / $AggregateForFlashPoint_CurrentVendor * 100;
+                $PercentageForBadTestsForFlashPoint_CurrentVendor = $NumberOfBadTestsForFlashPoint_CurrentVendor / $AggregateForFlashPoint_CurrentVendor * 100;
+ 
+                $NumberOfGoodTestsForWaterSediment_CurrentVendor = FuelTestRecord::whereBetween('WaterSediment', [0, 0.050])  
+                                                                                    ->where('VendorNo', $VendorNo)
+                                                                                    ->count();
+                $NumberOfBadTestsForWaterSediment_CurrentVendor = FuelTestRecord::whereNotBetween('WaterSediment', [0, 0.050])    
+                                                                                ->where('VendorNo', $VendorNo)
+                                                                                ->count();
+                $AggregateForWaterSediment_CurrentVendor = $NumberOfGoodTestsForWaterSediment_CurrentVendor + $NumberOfBadTestsForWaterSediment_CurrentVendor + 0.1;                                                                
+
+                $PercentageForGoodTestsForWaterSediment_CurrentVendor = $NumberOfGoodTestsForWaterSediment_CurrentVendor / $AggregateForWaterSediment_CurrentVendor * 100;
+                $PercentageForBadTestsForWaterSediment_CurrentVendor = $NumberOfBadTestsForWaterSediment_CurrentVendor / $AggregateForWaterSediment_CurrentVendor * 100;
+ 
+                $NumberOfGoodTestsForCleanliness_CurrentVendor = FuelTestRecord::whereBetween('Cleanliness', [12, 15])  
+                                                                                ->where('VendorNo', $VendorNo)
+                                                                                ->count();
+                $NumberOfBadTestsForCleanliness_CurrentVendor = FuelTestRecord::whereNotBetween('Cleanliness', [12, 15])   
+                                                                                ->where('VendorNo', $VendorNo)
+                                                                                ->count();
+    
+                $AggregateForCleanliness_CurrentVendor = $NumberOfGoodTestsForCleanliness_CurrentVendor + $NumberOfBadTestsForCleanliness_CurrentVendor;                                                                
+
+                $PercentageForGoodTestsForCleanliness_CurrentVendor = $NumberOfGoodTestsForCleanliness_CurrentVendor / $AggregateForCleanliness_CurrentVendor * 100;
+                $PercentageForBadTestsForCleanliness_CurrentVendor = $NumberOfBadTestsForCleanliness_CurrentVendor / $AggregateForCleanliness_CurrentVendor * 100;
+                                                                                
 
                 return view('fuel_test', $ViewData)->with('SampleNo', $SampleNo)
                                                     ->with('SampleCollectionDate', $SampleCollectionDate)
@@ -350,6 +422,36 @@ class FuelTestController extends Controller
                                                     ->with('Remarks', $Remarks)
                                                     ->with('ApprovalForUse', $ApprovalForUse)
                                                     ->with('VendorName', $VendorName)
+                                                    ->with('NumberOfGoodTestsForAppearanceResult_CurrentVendor', $NumberOfGoodTestsForAppearanceResult_CurrentVendor)
+                                                    ->with('NumberOfBadTestsForAppearanceResult_CurrentVendor', $NumberOfBadTestsForAppearanceResult_CurrentVendor)
+                                                    ->with('AggregateForAppearanceResult_CurrentVendor', $AggregateForAppearanceResult_CurrentVendor)
+                                                    ->with('PercentageForGoodTestsForAppearanceResult_CurrentVendor', $PercentageForGoodTestsForAppearanceResult_CurrentVendor)
+                                                    ->with('PercentageForBadTestsForAppearanceResult_CurrentVendor', $PercentageForBadTestsForAppearanceResult_CurrentVendor)
+                                                    ->with('NumberOfGoodTestsForColor_CurrentVendor', $NumberOfGoodTestsForColor_CurrentVendor)
+                                                    ->with('NumberOfBadTestsForColor_CurrentVendor', $NumberOfBadTestsForColor_CurrentVendor)
+                                                    ->with('AggregateForColor_CurrentVendor', $AggregateForColor_CurrentVendor)
+                                                    ->with('PercentageForGoodTestsForColor_CurrentVendor', $PercentageForGoodTestsForColor_CurrentVendor)
+                                                    ->with('PercentageForBadTestsForColor_CurrentVendor', $PercentageForBadTestsForColor_CurrentVendor)
+                                                    ->with('NumberOfGoodTestsForDensity_CurrentVendor', $NumberOfGoodTestsForDensity_CurrentVendor)
+                                                    ->with('NumberOfBadTestsForDensity_CurrentVendor', $NumberOfBadTestsForDensity_CurrentVendor)
+                                                    ->with('AggregateForDensity_CurrentVendor', $AggregateForDensity_CurrentVendor)
+                                                    ->with('PercentageForGoodTestsForDensity_CurrentVendor', $PercentageForGoodTestsForDensity_CurrentVendor)
+                                                    ->with('PercentageForBadTestsForDensity_CurrentVendor', $PercentageForBadTestsForDensity_CurrentVendor)
+                                                    ->with('NumberOfGoodTestsForFlashPoint_CurrentVendor', $NumberOfGoodTestsForFlashPoint_CurrentVendor)
+                                                    ->with('NumberOfBadTestsForFlashPoint_CurrentVendor', $NumberOfBadTestsForFlashPoint_CurrentVendor)
+                                                    ->with('AggregateForFlashPoint_CurrentVendor', $AggregateForFlashPoint_CurrentVendor)
+                                                    ->with('PercentageForGoodTestsForFlashPoint_CurrentVendor', $PercentageForGoodTestsForFlashPoint_CurrentVendor)
+                                                    ->with('PercentageForBadTestsForFlashPoint_CurrentVendor', $PercentageForBadTestsForFlashPoint_CurrentVendor)
+                                                    ->with('NumberOfGoodTestsForWaterSediment_CurrentVendor', $NumberOfGoodTestsForWaterSediment_CurrentVendor)
+                                                    ->with('NumberOfBadTestsForWaterSediment_CurrentVendor', $NumberOfBadTestsForWaterSediment_CurrentVendor)
+                                                    ->with('AggregateForWaterSediment_CurrentVendor', $AggregateForWaterSediment_CurrentVendor)
+                                                    ->with('PercentageForGoodTestsForWaterSediment_CurrentVendor', $PercentageForGoodTestsForWaterSediment_CurrentVendor)
+                                                    ->with('PercentageForBadTestsForWaterSediment_CurrentVendor', $PercentageForBadTestsForWaterSediment_CurrentVendor)
+                                                    ->with('NumberOfGoodTestsForCleanliness_CurrentVendor', $NumberOfGoodTestsForCleanliness_CurrentVendor)
+                                                    ->with('NumberOfBadTestsForCleanliness_CurrentVendor', $NumberOfBadTestsForCleanliness_CurrentVendor)
+                                                    ->with('AggregateForCleanliness_CurrentVendor', $AggregateForCleanliness_CurrentVendor)
+                                                    ->with('PercentageForGoodTestsForCleanliness_CurrentVendor', $PercentageForGoodTestsForCleanliness_CurrentVendor)
+                                                    ->with('PercentageForBadTestsForCleanliness_CurrentVendor', $PercentageForBadTestsForCleanliness_CurrentVendor)
                                                     ->with('VendorNo', $VendorNo);
             }
 

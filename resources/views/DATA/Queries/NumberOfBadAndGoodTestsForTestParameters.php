@@ -16,7 +16,7 @@
                                                                 ->count();
 
     $AggregateForColor = $NumberOfGoodTestsForColor + $NumberOfBadTestsForColor;    
-    
+    // dd($NumberOfGoodTestsForColor);
     $PercentageForGoodTestsForColor = $NumberOfGoodTestsForColor / $AggregateForColor * 100;
     $PercentageForBadTestsForColor = $NumberOfBadTestsForColor / $AggregateForColor * 100;
 
@@ -52,7 +52,7 @@
 
     $NumberOfGoodTestsForCleanliness = App\Models\FuelTestRecord::whereBetween('Cleanliness', [12, 15]) 
                                                                 ->count();
-    $NumberOfBadTestsForCleanliness = App\Models\FuelTestRecord::whereBetween('Cleanliness', [12, 15]) 
+    $NumberOfBadTestsForCleanliness = App\Models\FuelTestRecord::whereNotBetween('Cleanliness', [12, 15]) 
                                                                 ->count();
                     
     $AggregateForCleanliness = $NumberOfGoodTestsForCleanliness + $NumberOfBadTestsForCleanliness;    
