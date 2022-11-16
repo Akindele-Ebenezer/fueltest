@@ -642,8 +642,13 @@ section.fuel-test .fuel-test-main .form label {
   width: 37%;
 }
 section.fuel-test .fuel-test-main section {
-  background: #f9f9f9;
-  padding-bottom: 1rem;
+  background: #f2f2f2;
+  padding: 1rem;
+}
+section.fuel-test .fuel-test-main section form {
+  background: #fff;
+  padding: 0 1rem 1rem;
+  width: fit-content;
 }
 section.fuel-test .fuel-test-main section form button {
   margin-right: 0.2rem;
@@ -851,7 +856,7 @@ section.previous-records .Waved {
   color: rgb(156, 156, 0);
 }
 section.previous-records div {
-  height: 68vh;
+  height: 64vh;
   margin: 1rem 1rem 0;
   overflow: scroll;
   width: 75vw;
@@ -1170,7 +1175,7 @@ section.previous-records .table {
   padding-bottom: 8rem;
 }
 section.previous-records .table.other-tables {
-  height: 60vh;
+  height: 56vh;
   overflow-x: hidden;
 }
 section.previous-records .table .links {
@@ -1246,9 +1251,16 @@ section.hide-record {
 }
 section.search {
   align-items: center;
+  background: #eee;
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  margin-left: 1rem;
+  padding: 1rem;
+}
+section.search form {
+  background: #fff;
+  padding: 1rem;
+  width: fit-content;
 }
 section.search form:first-of-type {
   display: flex;
@@ -1347,7 +1359,6 @@ section input[placeholder="Search.."] {
   border-radius: 0.3rem;
   color: #483434;
   font-style: italic;
-  margin-left: 2rem;
   margin-top: 0.5rem;
   outline: none;
   padding: 0.2rem 1rem;

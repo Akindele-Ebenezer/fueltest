@@ -336,10 +336,14 @@ section {
                 } 
 
                 section {
-                    background: #f9f9f9;
-                    padding-bottom: 1rem;
+                    background: #f2f2f2;
+                    padding: 1rem;
                     
                     form { 
+                        background: #fff;
+                        padding: 0 1rem 1rem;
+                        width: fit-content;
+                        
                         button {
                             margin-right: 0.2rem;
                         }
