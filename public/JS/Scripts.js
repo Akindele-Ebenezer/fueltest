@@ -1,6 +1,6 @@
 let VendorName = document.querySelector('section.fuel-test .fuel-test-main .form input[placeholder="Name of VENDOR..."]'); 
 let FuelTestForm = document.querySelector('section.fuel-test .fuel-test-main .form form');
-
+ 
 document.addEventListener('click', () => {
     for (let i = 0; i < SelectFields.length; i++) {  
         SelectFields[i].addEventListener('click', (e) => {
@@ -64,4 +64,10 @@ VendorNoInputBox.addEventListener('input', (VendorNo) => {
     }        
 });
   
- 
+ let SubmitButton = document.querySelector('button[name="create_record"]');
+
+ SubmitButton.addEventListener('click', (e) => {
+     if(window.location.search.includes('GetRecord') === true) {
+         e.preventDefault();
+     }
+ });
