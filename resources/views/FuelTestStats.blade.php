@@ -252,6 +252,49 @@
                 </div>            
             @endforeach            
         @endif
+        <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}">              
+            @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
+                <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
+                    <canvas width="1000" height="550" id="myChart7" class="{{ $Visibility }}"></canvas> 
+                    <div>
+                        @php                    
+                            $NumberOfTotalRecordsForEachVendorArr = [];
+                        @endphp
+    
+                        @foreach ($absolute_vendors as $Vendor)
+                            @php
+                                include('../resources/views/DATA/Queries/NumberOfRecordsData.php'); 
+    
+                                if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0) {  
+                                    continue;
+                                }  
+    
+                                array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);    
+                            @endphp 
+                        @endforeach
+    
+                        @php 
+                        
+                            $VendorsWithSupplyStatus = count($NumberOfTotalRecordsForEachVendorArr); 
+                            $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
+    
+                        @endphp
+    
+                        <h1>VENDOR STATS</h1>
+                        <form action="">
+                            <label>
+                                <input type="hidden" value="{{ $VendorsWithSupplyStatus }}" name="RevealVendors"> 
+                                <input class="hide" type="submit">   
+                                <span class="reveal-vendors">Reveal Vendors</span>
+                            </label>
+                        </form>
+    
+                        <p><span>Total Number of Vendors</span> => &nbsp;&nbsp; <span>{{ $number_of_vendors_absolute }} (100%)</span></p> 
+                        <p><span>Vendors with Supply Status *</span> => &nbsp;&nbsp; <span>{{ $VendorsWithSupplyStatus }} ({{ round($PercentageOfVendorsWithSupplyStatus) }}%)</span></p>  
+                    </div> 
+                </div>
+            @endif 
+        </div> 
     </div>
 </div>
  
@@ -269,7 +312,7 @@
     <input type="hidden" class="GenerateChartForCurrentVendor" name="GenerateChartForCurrentVendor">
 </form>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> 
 <script> 
 
 let FuelTestResults = new Chart("myChart", {
@@ -521,7 +564,7 @@ let FuelTestResults = new Chart("myChart", {
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
-        
+            
             $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
@@ -552,6 +595,80 @@ let FuelTestResults = new Chart("myChart", {
     });
 
     let FuelTestResults6 = new Chart("myChart6", {
+        type: "bar",
+        data: { 
+            labels: [...NewLabels], 
+            datasets: [{  
+                data: [...NumberOfWavedRecordsForEachVendor],
+                backgroundColor: "rgb(255, 255, 0, 0.7)",
+                borderColor: "rgb(255, 233, 0, 0.7)",
+                borderWidth: 1,
+                fill: false,
+                label: 'Waived', 
+            }, 
+            { 
+                data: [...NumberOfRejectedRecordsForEachVendor],
+                backgroundColor: "rgb(255, 30, 30, 0.7)",
+                borderColor: "rgb(255, 29, 30, 0.7)",
+                borderWidth: 1,
+                fill: false,
+                label: 'Rejected',
+            }, 
+            { 
+                data: [...NumberOfApprovedRecordsForEachVendor],
+                backgroundColor: "rgb(0, 255, 209, 0.7)",
+                borderColor: "rgb(0, 295, 209, 0.7)",
+                borderWidth: 1,
+                fill: false,
+                label: 'Approved',
+            }, 
+            { 
+                data: [...NumberOfTotalRecordsForEachVendor],
+                backgroundColor: "rgb(55, 41, 72, 0.7)",
+                borderColor: "rgb(55, 41, 72, 0.7)",
+                borderWidth: 1,
+                fill: false,
+                label: 'Total', 
+            }]
+        },
+        options: {
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 5,
+                    top: 5,
+                    bottom: 5,
+                }
+            },
+            legend: {
+                display: true,  
+                position: 'right', 
+            }, 
+            tooltips: {
+                mode: 'index',
+                callbacks: {
+                    title: 
+                    function(tooltipItem, data) {   
+                        return AvailableVendorNames[tooltipItem[0].index];   
+                    }
+                }
+            },
+            title: {
+                display: true,
+                fontSize: 20, 
+                text: 'Diesel Test Analysis (VENDORS)',
+            }, 
+            onClick: (a, b) => { 
+                let CurrentVendorForm = document.querySelector('.CurrentVendor');
+                let CurrentVendorNoInput = document.querySelector('.GenerateChartForCurrentVendor'); 
+                 
+                CurrentVendorNoInput.value = b[0]._xScale.ticks[b[0]._index]; 
+                CurrentVendorForm.submit();  
+            }
+        }
+    }); 
+
+    let FuelTestResults7 = new Chart("myChart7", {
         type: "line",
         data: { 
             labels: [...NewLabels], 

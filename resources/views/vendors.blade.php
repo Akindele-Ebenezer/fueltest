@@ -9,11 +9,7 @@
         @include('PageTitle')
 
         <section class="log-in-alert alert">VENDOR List up-to date</section>
-        
-        <ul class="error-messages">
-            <li>{{ $ErrorMessage }}</li> 
-        </ul> 
-
+        <p class="error-message">{{ $ErrorMessage }}</p> 
         @if(Session::get('email') == 'awadhesh@depasamarine.com') 
         <section class="add-vendor">
             <form action="/AddVendor" method="post"> @csrf 

@@ -186,6 +186,11 @@ button:hover,
   min-width: 145px;
 }
 
+.error-message {
+  color: red;
+  text-align: center;
+}
+
 ul {
   list-style: none;
 }
@@ -1101,7 +1106,7 @@ section.previous-records table tr th .filter {
   background: #fff;
   border-radius: 1rem 2rem;
   box-shadow: 1px 2px 19px #ccc;
-  color: #aaa;
+  color: #333;
   display: none;
   height: 20rem;
   margin: unset;

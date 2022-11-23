@@ -79,8 +79,8 @@
                         <ul>
                             <form action="" method="get">
                                 <br> 
-                                <p>Select Fields</p>
-                                <span>Select range to genaerate your Fuel Test Report.</span>
+                                <p>Select Fields</p> <br>
+                                <span><center>Select range to genaerate your Fuel Test Report.</center></span>
                                 <section>
                                     <li class="date"><span>From</span> <input type="date" name="DateFrom"> </li>
                                     <li class="date"><span>To</span> <input type="date" name="DateTo"> </li>

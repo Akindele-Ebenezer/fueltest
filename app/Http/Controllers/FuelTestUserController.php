@@ -33,6 +33,7 @@ class FuelTestUserController extends Controller
                 'title' => $title,   
                 'FilterUserNames' => $FilterUserNames,   
                 'FilterEmails' => $FilterEmails,   
+                'ErrorMessage' => Session::get('ErrorMessage'),   
             ];
 
             if (isset($_GET['Search'])) {
@@ -155,6 +156,16 @@ class FuelTestUserController extends Controller
         $Email = $request->Email;
         $Password = $request->Password;
         
+        if(empty($Name)) {
+            $ErrorMessage = 'Add a Name for the User..';
+            return redirect()->back()->with('ErrorMessage', $ErrorMessage);
+        } elseif(empty($Email)) {
+            $ErrorMessage = 'Add Email for the User..';
+            return redirect()->back()->with('ErrorMessage', $ErrorMessage);
+        } elseif(empty($Password)) {
+            $ErrorMessage = 'Add Password for the User..';
+            return redirect()->back()->with('ErrorMessage', $ErrorMessage);
+        }
         
         $AddVendor = FuelTestUser::create([
             'Name' => $Name,

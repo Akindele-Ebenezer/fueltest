@@ -16,24 +16,8 @@
             <div class="log-in-alert alert">You are LOGGED IN</div>
         @endif
 
-        <ul class="error-messages">
-            <li>{{ $VendorNameErrorMessage }}</li>
-            <li>{{ $SampleCollectionDateErrorMessage }}</li>
-            <li>{{ $TruckPlateNoErrorMessage }}</li>
-            <li>{{ $TankNoErrorMessage }}</li>
-            <li>{{ $AppearanceResultErrorMessage }}</li>
-            <li>{{ $ColorErrorMessage }}</li>
-            <li>{{ $DensityErrorMessage }}</li>
-            <li>{{ $FlashPointErrorMessage }}</li>
-            <li>{{ $TempErrorMessage }}</li>
-            <li>{{ $WaterSedimentErrorMessage }}</li>
-            <li>{{ $CleanlinessErrorMessage }}</li>
-            <li>{{ $DateOfTestErrorMessage }}</li>
-            <li>{{ $MadeByErrorMessage }}</li>
-            <li>{{ $DeliveredToErrorMessage }}</li>
-            <li>{{ $RemarksErrorMessage }}</li>
-            <li>{{ $ApprovalForUseErrorMessage }}</li>
-        </ul>  
+        <p class="error-message">{{ $ErrorMessage }}</p>
+        
         <section class="GetRecordSection">
             <form action="">
                 <span> 

@@ -279,23 +279,7 @@ class FuelTestController extends Controller
                 'title' => $title, 
                 'VendorNo' => Session::get('VendorNo'), 
                 'VendorName' => $VendorName, 
-                'VendorNameErrorMessage' => Session::get('VendorNameErrorMessage'), 
-                'SampleCollectionDateErrorMessage' => Session::get('SampleCollectionDateErrorMessage'), 
-                'TruckPlateNoErrorMessage' => Session::get('TruckPlateNoErrorMessage'), 
-                'TankNoErrorMessage' => Session::get('TankNoErrorMessage'), 
-                'AppearanceResultErrorMessage' => Session::get('AppearanceResultErrorMessage'), 
-                'ColorErrorMessage' => Session::get('ColorErrorMessage'), 
-                'DensityErrorMessage' => Session::get('DensityErrorMessage'), 
-                'FlashPointErrorMessage' => Session::get('FlashPointErrorMessage'), 
-                'TempErrorMessage' => Session::get('TempErrorMessage'), 
-                'WaterSedimentErrorMessage' => Session::get('WaterSedimentErrorMessage'), 
-                'CleanlinessErrorMessage' => Session::get('CleanlinessErrorMessage'), 
-                'DateOfTestErrorMessage' => Session::get('DateOfTestErrorMessage'), 
-                'MadeByErrorMessage' => Session::get('MadeByErrorMessage'), 
-                'DeliveredToErrorMessage' => Session::get('DeliveredToErrorMessage'), 
-                'RemarksErrorMessage' => Session::get('RemarksErrorMessage'), 
-                'TestResultErrorMessage' => Session::get('TestResultErrorMessage'),  
-                'ApprovalForUseErrorMessage' => Session::get('ApprovalForUseErrorMessage'), 
+                'ErrorMessage' => Session::get('ErrorMessage'),  
             ];
      
             $ViewData = [...$Config, ...$ViewData]; 
@@ -511,53 +495,53 @@ class FuelTestController extends Controller
         $TestResult = $request->TestResult; 
          
         if(empty($SampleCollectionDate)) {
-            $SampleCollectionDateErrorMessage = 'Enter Date for Sample Collection';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('SampleCollectionDateErrorMessage', $SampleCollectionDateErrorMessage)->withInput();
+            $ErrorMessage = 'Enter Date for Sample Collection';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($VendorName)) { 
-            $VendorNameErrorMessage = 'Vendor Name is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('VendorNameErrorMessage', $VendorNameErrorMessage)->withInput();
+            $ErrorMessage = 'Vendor Name is required';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($TruckPlateNo)) { 
-            $TruckPlateNoErrorMessage = 'Truck Plate No is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('TruckPlateNoErrorMessage', $TruckPlateNoErrorMessage)->withInput();
+            $ErrorMessage = 'Truck Plate No is required';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($TankNo)) { 
-            $TankNoErrorMessage = 'Enter Tank No';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('TankNoErrorMessage', $TankNoErrorMessage)->withInput();
+            $ErrorMessage = 'Enter Tank No';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($AppearanceResult)) { 
-            $AppearanceResultErrorMessage = 'Appearance Result field can\'t be empty';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('AppearanceResultErrorMessage', $AppearanceResultErrorMessage)->withInput();
+            $ErrorMessage = 'Appearance Result field can\'t be empty';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Color)) { 
-            $ColorErrorMessage = 'Select Color';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ColorErrorMessage', $ColorErrorMessage)->withInput();
+            $ErrorMessage = 'Select Color';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Density)) { 
-            $DensityErrorMessage = 'Input Density';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('DensityErrorMessage', $DensityErrorMessage)->withInput();
+            $ErrorMessage = 'Input Density';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($FlashPoint)) { 
-            $FlashPointErrorMessage = 'Enter Flash Point';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('FlashPointErrorMessage', $FlashPointErrorMessage)->withInput();
+            $ErrorMessage = 'Enter Flash Point';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Temp)) { 
-            $TempErrorMessage = 'This field is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('TempErrorMessage', $TempErrorMessage)->withInput();
+            $ErrorMessage = 'This field is required';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($WaterSediment)) { 
-            $WaterSedimentErrorMessage = 'This field is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('WaterSedimentErrorMessage', $WaterSedimentErrorMessage)->withInput();
+            $ErrorMessage = 'This field is required';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Cleanliness)) { 
-            $CleanlinessErrorMessage = 'Clean or Not ??';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('CleanlinessErrorMessage', $CleanlinessErrorMessage)->withInput();
+            $ErrorMessage = 'Clean or Not ??';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($DateOfTest)) { 
-            $DateOfTestErrorMessage = 'Date Of Test cannot be NULL';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('DateOfTestErrorMessage', $DateOfTestErrorMessage)->withInput();
+            $ErrorMessage = 'Date Of Test cannot be NULL';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($MadeBy)) { 
-            $MadeByErrorMessage = 'Made By who?';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('MadeByErrorMessage', $MadeByErrorMessage)->withInput();
+            $ErrorMessage = 'Made By who?';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($DeliveredTo)) { 
-            $DeliveredToErrorMessage = 'Delivered to who?';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('DeliveredToErrorMessage', $DeliveredToErrorMessage)->withInput();
+            $ErrorMessage = 'Delivered to who?';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Remarks)) { 
-            $RemarksErrorMessage = 'Write your Remarks..';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('RemarksErrorMessage', $RemarksErrorMessage)->withInput();
+            $ErrorMessage = 'Write your Remarks..';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($ApprovalForUse)) { 
-            $ApprovalForUseErrorMessage = 'Approved or Not?..';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ApprovalForUseErrorMessage', $ApprovalForUseErrorMessage)->withInput();
+            $ErrorMessage = 'Approved or Not?..';
+            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
         } else { 
                 $create_record = FuelTestRecord::create([
                         'SampleNo' => $SampleNo,

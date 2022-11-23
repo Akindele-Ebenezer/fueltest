@@ -9,6 +9,7 @@
         @include('PageTitle')
         @if(Session::get('email') == 'awadhesh@depasamarine.com') 
         <section class="add-user">
+            <p class="error-message">{{ $ErrorMessage }}</p>
             <form action="/AddUser" method="post"> @csrf 
                 <label for="Name">Name</label>
                 <input type="text" name="Name">
