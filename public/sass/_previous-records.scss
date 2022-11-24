@@ -130,7 +130,7 @@ section {
         }
 
         div { 
-            height: 64vh;
+            height: 61vh;
             margin: 1rem 1rem 0;
             overflow: scroll;
             width: 75vw;
@@ -379,8 +379,7 @@ section {
                     z-index: 102;
 
                     .filter {
-                        background: #fff;
-                        border-radius: 1rem 2rem;
+                        background: #fff; 
                         box-shadow: 1px 2px 19px #ccc;
                         color: #333;
                         display: none;
@@ -548,7 +547,7 @@ section {
             padding-bottom: 8rem;
 
             &.other-tables {
-                height: 56vh;
+                height: 53vh;
                 overflow-x: hidden;
             }
 

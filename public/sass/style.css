@@ -484,7 +484,6 @@ section.fuel-test .fuel-test-main .form div select {
 }
 section.fuel-test .fuel-test-main .form div section {
   background: #fff;
-  border-radius: 1rem 2rem;
   box-shadow: 1px 2px 19px #bbb;
   display: none;
   max-height: 27rem;
@@ -550,6 +549,9 @@ section.fuel-test .fuel-test-main .form div section ul li.Clear {
 section.fuel-test .fuel-test-main .form div section ul li.Clear span {
   background: #abab00;
 }
+section.fuel-test .fuel-test-main .form div section ul li.Bright, section.fuel-test .fuel-test-main .form div section ul li.Clear, section.fuel-test .fuel-test-main .form div section ul li.Muddy {
+  padding-right: 1rem;
+}
 section.fuel-test .fuel-test-main .form div section ul li:hover {
   background: #f1f1f1;
   border-left: 3px solid #483434;
@@ -580,7 +582,6 @@ section.fuel-test .fuel-test-main .form div section ul li p {
 section.fuel-test .fuel-test-main .form div section ul li span {
   border-radius: 1rem;
   color: cadetblue;
-  height: 1rem;
   padding: 0.5rem;
   margin-left: 1rem;
   text-align: center;
@@ -911,7 +912,7 @@ section.previous-records .Waved {
   color: rgb(156, 156, 0);
 }
 section.previous-records div {
-  height: 64vh;
+  height: 61vh;
   margin: 1rem 1rem 0;
   overflow: scroll;
   width: 75vw;
@@ -1104,7 +1105,6 @@ section.previous-records table tr th {
 }
 section.previous-records table tr th .filter {
   background: #fff;
-  border-radius: 1rem 2rem;
   box-shadow: 1px 2px 19px #ccc;
   color: #333;
   display: none;
@@ -1230,7 +1230,7 @@ section.previous-records .table {
   padding-bottom: 8rem;
 }
 section.previous-records .table.other-tables {
-  height: 56vh;
+  height: 53vh;
   overflow-x: hidden;
 }
 section.previous-records .table .links {

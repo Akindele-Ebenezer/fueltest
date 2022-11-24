@@ -154,7 +154,6 @@ section {
 
                         section {
                             background: #fff;
-                            border-radius: 1rem 2rem;
                             box-shadow: 1px 2px 19px #bbb;
                             display: none;
                             max-height: 27rem;
@@ -223,6 +222,12 @@ section {
                                         }
                                     }
                                     
+                                    &.Bright,
+                                    &.Clear,
+                                    &.Muddy {
+                                        padding-right: 1rem;
+                                     }
+
                                     &:hover {
                                         background: lighten($color: #eee, $amount: 1);
                                         border-left: 3px solid $color-2;
@@ -253,7 +258,6 @@ section {
                                     span {
                                         border-radius: 1rem;
                                         color: $color-3;
-                                        height: 1rem;
                                         padding: .5rem;
                                         margin-left: 1rem;
                                         text-align: center;
