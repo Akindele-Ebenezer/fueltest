@@ -552,7 +552,7 @@
                                     @include('DATA.CertificateData')
                                     {{ $record->SampleNo }} 
                                 </label>
-                                <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created on {{ $record->created_at }}</section> 
+                                <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created at {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }}</section> 
                             </form> 
                         </td>
                         <td class="vendors">

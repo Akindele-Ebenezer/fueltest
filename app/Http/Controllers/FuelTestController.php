@@ -1049,7 +1049,7 @@ class FuelTestController extends Controller
                                                         ->with('title', $title)
                                                         ->with('number_of_all_records_absolute', $number_of_all_records_absolute); 
             }
-
+ 
             if (isset($_GET['SortByVendorName'])) {
                 $FilteredRecords[] = $request->CheckVendorName; 
  
