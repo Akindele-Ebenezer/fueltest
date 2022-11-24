@@ -1080,6 +1080,10 @@ section.previous-records table tr td.pdf-and-edit img {
   translate: 0 0.5rem;
   width: 1.45rem;
 }
+section.previous-records table tr td.pdf-and-edit .time {
+  margin-inline: 1rem;
+  translate: 0 0.5rem;
+}
 section.previous-records table tr td button {
   margin-top: unset;
   padding: 0.2rem 1rem;

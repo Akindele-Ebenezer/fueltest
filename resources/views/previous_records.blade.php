@@ -506,6 +506,9 @@
                             @if($previous_record->ApprovalForUse === NULL)
                                 <img src="images/diff.png"> <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> [ Diff ]</section>  
                             @endif
+                            <section class="time">
+                                ({{ empty($previous_record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $previous_record->created_at)->format('H:i A') }})
+                            </section>
                     </td>
                     <td class="sample-no">
                             <form action="">
@@ -534,7 +537,7 @@
                             @include('SwitchCases.SwitchCasesForVendors') 
                         </section>
                     </td> 
-                    <td class="sample-collection-date">{{ $previous_record->SampleCollectionDate }}</td> 
+                    <td class="sample-collection-date">{{ $previous_record->SampleCollectionDate }} ({{ empty($previous_record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $previous_record->created_at)->format('H:i A') }})</td> 
                     <td class="truck-plate-no">{{ $previous_record->TruckPlateNo  }}</td>
                     <td class="tank-no">{{ $previous_record->TankNo }}</td>
                     <td class="appearance-result"><p class="{{ $previous_record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $previous_record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $previous_record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $previous_record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $previous_record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $previous_record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $previous_record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $previous_record->AppearanceResult }} </p></td> 

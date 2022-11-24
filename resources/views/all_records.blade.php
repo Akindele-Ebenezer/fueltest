@@ -545,6 +545,9 @@
                             @if($record->ApprovalForUse === NULL)
                                 <img src="images/diff.png"> <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> [ Diff ]</section>  
                             @endif
+                            <section class="time">
+                                ({{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }})
+                            </section>
                         </td> 
                         <td class="sample-no">
                             <form action="">
@@ -552,7 +555,7 @@
                                     @include('DATA.CertificateData')
                                     {{ $record->SampleNo }} 
                                 </label>
-                                <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created at {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }}</section> 
+                                <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created at {{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }}</section> 
                             </form> 
                         </td>
                         <td class="vendors">
@@ -566,7 +569,7 @@
                                 @include('SwitchCases.SwitchCasesForVendors')  
                             </section>
                         </td>
-                        <td class="sample-collection-date">{{ $record->SampleCollectionDate }}</td>
+                        <td class="sample-collection-date">{{ $record->SampleCollectionDate }} ({{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }})</td>
                         <td class="truck-plate-no">{{ $record->TruckPlateNo }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>
                         <td class="appearance-result"><p class="{{ $record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $record->AppearanceResult }} </p></td>
