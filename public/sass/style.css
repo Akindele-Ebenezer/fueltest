@@ -738,6 +738,11 @@ section.fuel-test .fuel-test-main .record-updated-alert {
   width: max-content;
   z-index: 2000;
 }
+section.fuel-test .fuel-test-main .vendor-info {
+  color: #222;
+  font-size: 0.95rem;
+  padding-block: 0.6rem;
+}
 
 @media (max-width: 1047px) {
   section.fuel-test .fuel-test-main .form div {

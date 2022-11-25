@@ -435,6 +435,12 @@ section {
                 .record-updated-alert {
                     @include alert();
                 }
+
+                .vendor-info {
+                    color: #222;
+                    font-size: 0.95rem;
+                    padding-block: 0.6rem;
+                }
             }
         }
     }

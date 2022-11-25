@@ -51,7 +51,7 @@
                     DETAILS : ({{ $NumberOfTotalRecordsForEachVendor }}) {{ $NumberOfTotalRecordsForEachVendor > 0 ? 'Diesel supplied from' : 'No Diesel Supplied yet from' }} {{ $VendorName }}. <br>
                     Test for this record created on {{ $SampleCollectionDate }},
                         @foreach ($TimeCreatedAtForEachVendor as $Time)
-                            {{  Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $Time->created_at)->format('H:i A') }}
+                            {{  empty($Time->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $Time->created_at)->format('H:i A') }}
                         @endforeach  
                     is
                         @foreach ($ApprovalForUseForEachVendor as $Approval)

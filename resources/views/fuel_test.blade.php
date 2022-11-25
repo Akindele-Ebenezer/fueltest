@@ -8,6 +8,23 @@
         @php 
             include '../resources/views/DATA/Queries/NumberOfBadAndGoodTestsForTestParameters.php';
             $title = 'FUEL TEST'; 
+            
+            if (isset($_GET['GetRecord'])) {
+                $NumberOfTotalRecordsForThisVendor = App\Models\FuelTestRecord::select('id')
+                                                                                ->where('VendorName', $VendorName) 
+                                                                                ->get()
+                                                                                ->count(); 
+                 
+                $TimeCreatedAtForThisVendor = App\Models\FuelTestRecord::select('created_at')
+                                                                        ->where('SampleNo', $SampleNo)
+                                                                        ->where('VendorName', $VendorName) 
+                                                                        ->get(); 
+
+                foreach ($TimeCreatedAtForThisVendor as $Time) {
+                    $VendorInformation = 'DETAILS : (' . $NumberOfTotalRecordsForThisVendor . ')' . ' Diesel supplied from ' . $VendorName . '. <br> [Test for this record created at ' . (empty($Time->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $Time->created_at)->format('H:i A')) . ' is ' . $ApprovalForUse . ']';
+                }
+            }
+            
         @endphp
 
         @include('PageTitle')
@@ -47,9 +64,15 @@
             @if (isset($_GET['GetRecord']))
                 <form method='POST' target='blank' action="/GenerateCertificate/{{ isset($_GET['GetRecord']) ? $SampleNo : '' }}"> @csrf
                     @include('DATA.CertificateData_GetRecord') 
-                </form>                
+                </form>   
             @endif
         </section>
+        @if (isset($_GET['GetRecord']))
+            <center class="vendor-info">
+                <h1>VENDOR &nbsp; Information</h1>
+                {!! $VendorInformation !!}
+            </center>             
+        @endif
         <div class="form"> 
             <form action="{{ route('record_success') }}">
                 
