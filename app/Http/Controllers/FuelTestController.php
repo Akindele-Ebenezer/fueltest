@@ -3338,7 +3338,7 @@ class FuelTestController extends Controller
             'AbsolutePercentageOfAllRecordsFourDaysAgo' => $AbsolutePercentageOfAllRecordsFourDaysAgo,
             'AbsolutePercentageOfAllRecordsFiveDaysAgo' => $AbsolutePercentageOfAllRecordsFiveDaysAgo,
             'AbsolutePercentageOfAllRecordsSixDaysAgo' => $AbsolutePercentageOfAllRecordsSixDaysAgo, 
-        ];
+        ]; 
 
         $ViewData = [...$Config, ...$ViewData];  
     

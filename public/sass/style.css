@@ -1447,12 +1447,20 @@ section button[name=Clear] svg {
     width: 100vw;
   }
 }
-.analysis {
-  margin-top: 8rem;
-}
-
 .chart-date {
   top: 6rem;
+}
+
+.filter-vendor-stats {
+  margin-bottom: unset;
+  margin-top: 8rem;
+  width: 60rem;
+}
+.filter-vendor-stats form {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
 }
 
 footer {
@@ -1485,7 +1493,7 @@ footer p {
 .fuel-test-dashboard-inner {
   background: #fff;
   padding-inline: 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 .fuel-test-dashboard-inner div {
   color: #333;

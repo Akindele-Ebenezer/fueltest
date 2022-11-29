@@ -40,7 +40,25 @@
             <img src="/images/depasa-logo.png"> 
         </div>
     @endisset 
-    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}">              
+    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}"> 
+        <div class="fuel-test-dashboard-inner filter-vendor-stats">
+            <form action="" method="get">
+                <p>(Filter Test Analysis) || From : <input type="date" name="VendorStatsFrom"></p>
+                <p>To : <input type="date" name="VendorStatsTo"></p>
+                <section>
+                    <button name="FilterVendorStats">GO</button>
+                    <button name="ClearFilterVendorStats">Reset</button>
+                </section>
+            </form>
+            @if (isset($_GET['FilterVendorStats']))
+                @php
+                    $VendorStatsFrom = $_GET['VendorStatsFrom'];
+                    $VendorStatsTo = $_GET['VendorStatsTo'];
+                @endphp
+
+                <p><center>Showing Test ANALYSIS for VENDORS by Filtered Date from {{ $VendorStatsFrom }} to {{ $VendorStatsTo }}.</center></p>
+            @endif
+        </div>             
         @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
             <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
                 <canvas width="1000" height="550" id="myChart6" class="{{ $Visibility }}"></canvas> 
@@ -550,6 +568,10 @@ let FuelTestResults = new Chart("myChart", {
     @foreach($absolute_vendors as $vendor) 
 
         @php 
+            
+            if(isset($_GET['ClearFilterVendorStats'])) {
+                header('Location: /FuelTestStats');
+            }
         
             $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
                                                 ->get()
@@ -569,6 +591,35 @@ let FuelTestResults = new Chart("myChart", {
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
+
+
+            if(isset($_GET['FilterVendorStats'])) {
+                $VendorStatsFrom = $_GET['VendorStatsFrom'];
+                $VendorStatsTo = $_GET['VendorStatsTo'];
+
+                $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                                                    ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
+                                                    ->get()
+                                                    ->count(); 
+            
+                $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                    ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
+                                                    ->where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+            
+                $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                                                    ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
+                                                    ->where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+                
+                $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                    ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
+                                                    ->where('VendorNo', $vendor->VendorNo)
+                                                    ->get()
+                                                    ->count(); 
+            }
                                                 
         @endphp
         
@@ -724,7 +775,19 @@ let FuelTestResults = new Chart("myChart", {
                     title: 
                     function(tooltipItem, data) {   
                         return AvailableVendorNames[tooltipItem[0].index];   
-                    }
+                    },
+                    // label: function(tooltipItem, data) {
+                    //     console.log(data['labels'][tooltipItem['index']])
+                    //     // console.log(data['labels'][tooltipItem['index']])
+                    //     // return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + '%';  
+                    //     let LabelTitles =  [
+                    //         'Waived',
+                    //         'Rejected',
+                    //         'Approved',
+                    //     ];
+                        
+                    //         return LabelTitles[0] + ': 23%';  
+                    // }
                 }
             },
             title: {

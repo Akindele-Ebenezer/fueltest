@@ -1,11 +1,24 @@
 .analysis {
-    margin-top: 8rem;
+    // margin-top: 3rem;
 }
 
 .chart-date {
     top: 6rem;
 } 
  
+.filter-vendor-stats {
+    margin-bottom: unset;
+    margin-top: 8rem;
+    width: 60rem;
+
+    form {
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0.5rem;
+    }
+}
+
 footer {
     display: flex;
     justify-content: center;
@@ -40,7 +53,7 @@ footer {
 .fuel-test-dashboard-inner {
     background: #fff;
     padding-inline: 1rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 
     div {
         color: #333;
