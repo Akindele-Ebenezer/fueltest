@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use App\Models\FuelTestRecord;
+use App\Models\DynamicExport;
 use Illuminate\Support\Facades\DB;
 
 class FuelTestsExport implements FromCollection, ShouldAutoSize, WithEvents, WithHeadings
@@ -18,7 +19,8 @@ class FuelTestsExport implements FromCollection, ShouldAutoSize, WithEvents, Wit
     */
     public function collection()
     {
-        return FuelTestRecord::orderBy('SampleNo', 'desc')->get(); 
+        return DynamicExport::orderBy('SampleNo', 'desc')->get(); 
+        // return FuelTestRecord::orderBy('SampleNo', 'desc')->get(); 
     }
 
     public function registerEvents(): array

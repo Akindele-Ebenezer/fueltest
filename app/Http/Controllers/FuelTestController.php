@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
 use App\Models\FuelTestUser;
 use App\Models\FuelTestRecord;
+use App\Models\DynamicExport;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -1173,9 +1174,38 @@ class FuelTestController extends Controller
                                                         ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             }  
 
-            if (isset($_GET['FilterPassedTests'])) {   
+            if (isset($_GET['FilterPassedTests'])) {  
+                $ClearDynamicExport = DynamicExport::query()->delete();
+
                 $all_records = $PassedRecords;  
-                  
+                $ExportRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();  
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
+
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                    
                 $title = 'Passed Tests';
@@ -1197,7 +1227,36 @@ class FuelTestController extends Controller
             }
 
             if (isset($_GET['FilterDiffTests'])) {   
+                $ClearDynamicExport = DynamicExport::query()->delete();
+
                 $all_records = $DiffRecords; 
+                $ExportRecords = FuelTestRecord::where('ApprovalForUse', NULL)
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();  
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
                   
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -1218,7 +1277,36 @@ class FuelTestController extends Controller
             } 
 
             if (isset($_GET['FilterWavedTests'])) {   
+                $ClearDynamicExport = DynamicExport::query()->delete();
+
                 $all_records = $WavedRecords; 
+                $ExportRecords = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();  
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
                   
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                 
@@ -1239,8 +1327,37 @@ class FuelTestController extends Controller
                                                         ->with('number_of_all_records_absolute', $number_of_all_records_absolute);
             } 
 
-            if (isset($_GET['FilterFailedTests'])) {   
+            if (isset($_GET['FilterFailedTests'])) {  
+                $ClearDynamicExport = DynamicExport::query()->delete();
+ 
                 $all_records = $FailedRecords; 
+                $ExportRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();  
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
                   
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
                 
