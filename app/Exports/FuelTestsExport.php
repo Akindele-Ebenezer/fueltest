@@ -27,6 +27,7 @@ class FuelTestsExport implements FromCollection, ShouldAutoSize, WithEvents, Wit
     { 
         return [
             AfterSheet::class => function(AfterSheet $event) {
+            //   dd($event);
 
                 $styleArray = [
                     'alignment' => [
@@ -55,7 +56,7 @@ class FuelTestsExport implements FromCollection, ShouldAutoSize, WithEvents, Wit
                 $Heading = 'A1:V1';
                 $event->sheet->getDelegate()->getStyle($Heading)->applyFromArray($styleArray);
 
-                $NumberOfFuelTestRecords = FuelTestRecord::all()->count();
+                $NumberOfFuelTestRecords = DynamicExport::all()->count();
                 $cellRange = 'A2:V' . $NumberOfFuelTestRecords + 1; 
                 $event->sheet->getDelegate()->getStyle($cellRange)->applyFromArray($styleArray2);
                 

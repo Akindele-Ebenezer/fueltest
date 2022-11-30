@@ -815,7 +815,7 @@ class FuelTestController extends Controller
                                                                 ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
                                                                 ->orderBy('SampleNo', 'DESC')
                                                                 ->count();
-
+/////////////////////////////////////
                 $number_of_passed_records =  FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
                                                             ->where('ApprovalForUse', 'APPROVED')
                                                             ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
@@ -833,12 +833,56 @@ class FuelTestController extends Controller
                                                             ->orWhere('Remarks', 'LIKE', '%' . $SearchValue . '%')
                                                             ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
                                                             ->count();
-                                                            
+////////////////////////////////                        
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('TruckPlateNo', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('TankNo', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('AppearanceResult', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('Color', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('Density', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('FlashPoint', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('Temp', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('WaterSediment', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('DateOfTest', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('MadeBy', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('DeliveredTo', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('Remarks', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+                                     
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
                                                     ->with('number_of_all_records', $number_of_all_records)
                                                     ->with('number_of_all_records_absolute', $number_of_all_records_absolute)
+                                                    ->with('number_of_passed_records', $number_of_passed_records)
                                                     ->with('title', $title);
 
             }
@@ -853,7 +897,38 @@ class FuelTestController extends Controller
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->orderBy('SampleNo', 'DESC')->paginate(14);
-                
+
+                $ClearDynamicExport = DynamicExport::query()->delete();
+
+                $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', NULL)
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
+                                                
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
                 $number_of_all_records = count($all_records);
@@ -892,6 +967,38 @@ class FuelTestController extends Controller
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')->paginate(14);
+
+                $ClearDynamicExport = DynamicExport::query()->delete();
+
+                $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', 'WAIVED')
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
+                
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -931,6 +1038,37 @@ class FuelTestController extends Controller
                 $all_records = FuelTestRecord::where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'REJECTED')
                                                 ->orderBy('SampleNo', 'DESC')->paginate(14);
+
+                $ClearDynamicExport = DynamicExport::query()->delete();
+
+                $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                                                ->where('ApprovalForUse', 'REJECTED')
+                                                ->orderBy('SampleNo', 'DESC')
+                                                ->get();
+
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                        'SampleNo' => $ExportRecord->SampleNo,
+                        'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                        'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                        'TankNo' => $ExportRecord->TankNo,
+                        'AppearanceResult' => $ExportRecord->AppearanceResult,
+                        'Color' => $ExportRecord->Color,
+                        'Density' => $ExportRecord->Density,
+                        'FlashPoint' => $ExportRecord->FlashPoint,
+                        'Temp' => $ExportRecord->Temp,
+                        'WaterSediment' => $ExportRecord->WaterSediment,
+                        'Cleanliness' => $ExportRecord->Cleanliness,
+                        'DateOfTest' => $ExportRecord->DateOfTest,
+                        'uid' => $ExportRecord->uid,
+                        'MadeBy' => $ExportRecord->MadeBy,
+                        'DeliveredTo' => $ExportRecord->DeliveredTo,
+                        'Remarks' => $ExportRecord->Remarks,
+                        'VendorName' => $ExportRecord->VendorName,
+                        'VendorNo' => $ExportRecord->VendorNo,
+                        'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
                 
                 $all_records->setPath($_SERVER['REQUEST_URI']);  
 
@@ -970,6 +1108,37 @@ class FuelTestController extends Controller
                                                     ->where('ApprovalForUse', 'APPROVED')
                                                     ->orderBy('SampleNo', 'DESC')->paginate(14);
                     
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+    
+                    $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                                                    ->where('ApprovalForUse', 'APPROVED')
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+ 
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
 
                     $number_of_all_records = count($all_records);
@@ -1012,6 +1181,36 @@ class FuelTestController extends Controller
                     $title = $VendorName[0];
                     $all_records = \App\Models\FuelTestRecord::whereIn('VendorName', $VendorName)->orderBy('SampleNo', 'DESC')->paginate(14);
 
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('VendorName', $VendorName)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+                        
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
 
                     $number_of_all_records = count($all_records);
@@ -1482,6 +1681,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $SampleNo) {
                     $all_records = FuelTestRecord::whereIn('SampleNo', $SampleNo)->orderBy('SampleNo', 'DESC')->paginate(14);
                    
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('SampleNo', $SampleNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);
@@ -1511,6 +1740,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $SampleCollectionDate) {
                     $all_records = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)->orderBy('SampleCollectionDate', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records); 
@@ -1540,6 +1799,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $TruckPlateNo) {
                     $all_records = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)->orderBy('TruckPlateNo', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);
@@ -1569,6 +1858,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $TankNo) {
                     $all_records = FuelTestRecord::whereIn('TankNo', $TankNo)->orderBy('TankNo', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('TankNo', $TankNo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records); 
@@ -1598,6 +1917,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $AppearanceResult) {
                     $all_records = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)->orderBy('AppearanceResult', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);
@@ -1627,6 +1976,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $Color) {
                     $all_records = FuelTestRecord::whereIn('Color', $Color)->orderBy('Color', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('Color', $Color)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);  
@@ -1656,6 +2035,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $Density) {
                     $all_records = FuelTestRecord::whereIn('Density', $Density)->orderBy('Density', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('Density', $Density)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);
@@ -1684,7 +2093,37 @@ class FuelTestController extends Controller
 
                 foreach ($FilteredRecords as $FlashPoint) {
                     $all_records = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)->orderBy('FlashPoint', 'DESC')->paginate(14);
-                      
+                        
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records); 
@@ -1714,6 +2153,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $Temp) {
                     $all_records = FuelTestRecord::whereIn('Temp', $Temp)->orderBy('Temp', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('Temp', $Temp)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);
@@ -1743,6 +2212,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $WaterSediment) {
                     $all_records = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)->orderBy('WaterSediment', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);
@@ -1772,6 +2271,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $Cleanliness) {
                     $all_records = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)->orderBy('Cleanliness', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records); 
@@ -1801,6 +2330,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $DateOfTest) {
                     $all_records = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)->orderBy('DateOfTest', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);  
@@ -1830,6 +2389,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $MadeBy) {
                     $all_records = FuelTestRecord::whereIn('MadeBy', $MadeBy)->orderBy('MadeBy', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('MadeBy', $MadeBy)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records); 
@@ -1859,6 +2448,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $DeliveredTo) {
                     $all_records = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)->orderBy('DeliveredTo', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records); 
@@ -1888,6 +2507,36 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $Remarks) {
                     $all_records = FuelTestRecord::whereIn('Remarks', $Remarks)->orderBy('Remarks', 'DESC')->paginate(14);
                       
+                    $ClearDynamicExport = DynamicExport::query()->delete();
+
+                    $ExportRecords = FuelTestRecord::whereIn('Remarks', $Remarks)
+                                                    ->orderBy('SampleNo', 'DESC')
+                                                    ->get();
+    
+                    foreach($ExportRecords as $ExportRecord) {
+                        $create_record = DynamicExport::create([
+                            'SampleNo' => $ExportRecord->SampleNo,
+                            'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                            'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                            'TankNo' => $ExportRecord->TankNo,
+                            'AppearanceResult' => $ExportRecord->AppearanceResult,
+                            'Color' => $ExportRecord->Color,
+                            'Density' => $ExportRecord->Density,
+                            'FlashPoint' => $ExportRecord->FlashPoint,
+                            'Temp' => $ExportRecord->Temp,
+                            'WaterSediment' => $ExportRecord->WaterSediment,
+                            'Cleanliness' => $ExportRecord->Cleanliness,
+                            'DateOfTest' => $ExportRecord->DateOfTest,
+                            'uid' => $ExportRecord->uid,
+                            'MadeBy' => $ExportRecord->MadeBy,
+                            'DeliveredTo' => $ExportRecord->DeliveredTo,
+                            'Remarks' => $ExportRecord->Remarks,
+                            'VendorName' => $ExportRecord->VendorName,
+                            'VendorNo' => $ExportRecord->VendorNo,
+                            'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                        ]);   
+                    }
+
                     $all_records->setPath($_SERVER['REQUEST_URI']);  
                     
                     $number_of_all_records = count($all_records);  
