@@ -17,7 +17,6 @@ use App\Charts\FuelTestStats;
 
 class FuelTestController extends Controller
 {
-    
     public function export() 
     {
         return Excel::download(new FuelTestsExport, 'FuelTest.xlsx');
