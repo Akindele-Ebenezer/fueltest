@@ -31,7 +31,7 @@ class FuelTestsExport extends DefaultValueBinder implements FromCollection, Shou
 //////////////////
     public function bindValue(Cell $cell, $value)
     { 
-        dd($cell->getValue());
+        // dd($cell->getValue());
         // $spreadsheet->getActiveSheet()->setCellValue('A1', 'PhpSpreadsheet');
         if ($value === 65) {
             $cell->setValueExplicit($value, 2);
