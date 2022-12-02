@@ -28,9 +28,11 @@ class FuelTestsExport extends DefaultValueBinder implements FromCollection, Shou
         return DynamicExport::orderBy('SampleNo', 'desc')->get(); 
         // return FuelTestRecord::orderBy('SampleNo', 'desc')->get(); 
     }
-
+//////////////////
     public function bindValue(Cell $cell, $value)
-    {
+    { 
+        dd($cell->getValue());
+        // $spreadsheet->getActiveSheet()->setCellValue('A1', 'PhpSpreadsheet');
         if ($value === 65) {
             $cell->setValueExplicit($value, 2);
 
@@ -40,7 +42,7 @@ class FuelTestsExport extends DefaultValueBinder implements FromCollection, Shou
         // else return default behavior
         return parent::bindValue($cell, $value);
     }
-
+///////////////
     public function columnWidths(): array
     {
         return [

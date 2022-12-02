@@ -30,4 +30,5 @@
             </form>
         </div>
     </section>
+    <script src="/JS/LogIn.js"></script> 
 @endsection

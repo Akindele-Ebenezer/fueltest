@@ -125,8 +125,8 @@
                 $PercentageOfDiffRecords = $number_of_diff_records / $number_of_all_records * 100;
         
         
-                $FirstDayOfLastMonth = date("Y-0n-0j", strtotime("first day of previous month"));  
-                $LastDayOfLastMonth = date("Y-0n-j", strtotime("last day of previous month"));
+                $FirstDayOfLastMonth = date("Y-m-d", strtotime("first day of previous month"));  
+                $LastDayOfLastMonth = date("Y-m-d", strtotime("last day of previous month")); 
                     
                 $AllRecordsLastMonthForCurrentVendor = \App\Models\FuelTestRecord::where('VendorNo', $CurrentVendorNo)
                                                                         ->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
@@ -154,7 +154,7 @@
                     
                 $number_of_all_records_last_seven_days = count($AllRecordsLastSevenDaysForCurrentVendor);
     
-                $RecordsOfYesterdayForCurrentVendor = date('Y-m-d',strtotime("-1 day")); 
+                $RecordsOfYesterdayForCurrentVendor = date('Y-m-d', strtotime("-1 day")); 
                     
                 $yesterday_records = \App\Models\FuelTestRecord::where('SampleCollectionDate', $RecordsOfYesterdayForCurrentVendor)                                                    
                                                                     ->where('VendorNo', $CurrentVendorNo)
