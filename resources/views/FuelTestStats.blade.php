@@ -642,7 +642,7 @@ let FuelTestResults = new Chart("myChart", {
     @endforeach   
         
     Labels.forEach(Label => {
-        NewLabels.push(Label.substring(0, 6));
+        NewLabels.push(Label);
     });
 
     let FuelTestResults6 = new Chart("myChart6", {
@@ -695,6 +695,23 @@ let FuelTestResults = new Chart("myChart", {
                 display: true,  
                 position: 'right', 
             }, 
+            scales: {         
+                xAxes: [
+                    {
+                        ticks: {
+                            callback: function(label, index, labels) {
+                                if (/\s/.test(label)) {
+                                    return label.split(" ");
+                                }else{
+                                    return label;
+                                }              
+                            },
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
+                    }
+                ]
+            },
             tooltips: {
                 mode: 'index',
                 callbacks: {
@@ -769,6 +786,23 @@ let FuelTestResults = new Chart("myChart", {
                 display: true,  
                 position: 'right', 
             }, 
+            scales: {         
+                xAxes: [
+                    {
+                        ticks: {
+                            callback: function(label, index, labels) {
+                                if (/\s/.test(label)) {
+                                    return label.split(" ");
+                                }else{
+                                    return label;
+                                }              
+                            },
+                            maxRotation: 0,
+                            minRotation: 0
+                        }
+                    }
+                ]
+            },
             tooltips: {
                 mode: 'index',
                 callbacks: {
