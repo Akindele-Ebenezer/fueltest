@@ -78,7 +78,7 @@
                                                                         ->count(); 
 
                 array_push($TotalNumberOfRecordsForEachMonth_, $NumberOfMonthlyRecords[$i]);
-                echo $MonthNames[$i] . ' ......';
+                // echo $MonthNames[$i] . ' ......';
                 ${"PercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords[$i] / $number_of_all_records * 100;      
  
                 $CurrentVendorName = $CurrentVendorName->VendorName;
@@ -240,9 +240,9 @@
                 
         } else {
 
-            $NumberOfMonthlyRecords[$i] = \App\Models\FuelTestRecord:: whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+            $NumberOfMonthlyRecords[$i] = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
                                         ->count();  
-
+ 
             ${"PercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords[$i] / $number_of_all_records * 100;  
             ${"AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords[$i] / $number_of_all_records_absolute * 100;          
     
