@@ -860,7 +860,8 @@ class FuelTestController extends Controller
 ////////////////////////////////                        
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('TruckPlateNo', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('TankNo', 'LIKE', '%' . $SearchValue . '%')
@@ -924,7 +925,8 @@ class FuelTestController extends Controller
 
                 $ClearDynamicExport = DynamicExport::query()->delete();
 
-                $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();
@@ -994,7 +996,8 @@ class FuelTestController extends Controller
 
                 $ClearDynamicExport = DynamicExport::query()->delete();
 
-                $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();
@@ -1065,7 +1068,8 @@ class FuelTestController extends Controller
 
                 $ClearDynamicExport = DynamicExport::query()->delete();
 
-                $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'REJECTED')
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();
@@ -1134,7 +1138,8 @@ class FuelTestController extends Controller
                     
                     $ClearDynamicExport = DynamicExport::query()->delete();
     
-                    $ExportRecords = FuelTestRecord::where('VendorName', $VendorName)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', 'APPROVED')
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
@@ -1207,7 +1212,8 @@ class FuelTestController extends Controller
 
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('VendorName', $VendorName)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('VendorName', $VendorName)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -1401,7 +1407,8 @@ class FuelTestController extends Controller
                 $ClearDynamicExport = DynamicExport::query()->delete();
 
                 $all_records = $PassedRecords;  
-                $ExportRecords = FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('ApprovalForUse', 'APPROVED')
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();  
 
@@ -1453,7 +1460,8 @@ class FuelTestController extends Controller
                 $ClearDynamicExport = DynamicExport::query()->delete();
 
                 $all_records = $DiffRecords; 
-                $ExportRecords = FuelTestRecord::where('ApprovalForUse', NULL)
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('ApprovalForUse', NULL)
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();  
 
@@ -1503,7 +1511,8 @@ class FuelTestController extends Controller
                 $ClearDynamicExport = DynamicExport::query()->delete();
 
                 $all_records = $WavedRecords; 
-                $ExportRecords = FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();  
 
@@ -1554,7 +1563,8 @@ class FuelTestController extends Controller
                 $ClearDynamicExport = DynamicExport::query()->delete();
  
                 $all_records = $FailedRecords; 
-                $ExportRecords = FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                $ExportRecords = DB::table('fuel_test_records')
+                                                ->where('ApprovalForUse', 'REJECTED')
                                                 ->orderBy('SampleNo', 'DESC')
                                                 ->get();  
 
@@ -1707,7 +1717,8 @@ class FuelTestController extends Controller
                    
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('SampleNo', $SampleNo)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('SampleNo', $SampleNo)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -1766,7 +1777,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('SampleCollectionDate', $SampleCollectionDate)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('SampleCollectionDate', $SampleCollectionDate)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -1825,7 +1837,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('TruckPlateNo', $TruckPlateNo)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('TruckPlateNo', $TruckPlateNo)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -1884,7 +1897,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('TankNo', $TankNo)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('TankNo', $TankNo)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -1943,7 +1957,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('AppearanceResult', $AppearanceResult)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('AppearanceResult', $AppearanceResult)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2002,7 +2017,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('Color', $Color)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('Color', $Color)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2061,7 +2077,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('Density', $Density)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('Density', $Density)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2120,7 +2137,8 @@ class FuelTestController extends Controller
                         
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('FlashPoint', $FlashPoint)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('FlashPoint', $FlashPoint)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2179,7 +2197,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('Temp', $Temp)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('Temp', $Temp)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2238,7 +2257,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('WaterSediment', $WaterSediment)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('WaterSediment', $WaterSediment)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2297,7 +2317,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('Cleanliness', $Cleanliness)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('Cleanliness', $Cleanliness)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2356,7 +2377,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('DateOfTest', $DateOfTest)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('DateOfTest', $DateOfTest)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2415,7 +2437,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('MadeBy', $MadeBy)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('MadeBy', $MadeBy)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2474,7 +2497,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('DeliveredTo', $DeliveredTo)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('DeliveredTo', $DeliveredTo)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
@@ -2533,7 +2557,8 @@ class FuelTestController extends Controller
                       
                     $ClearDynamicExport = DynamicExport::query()->delete();
 
-                    $ExportRecords = FuelTestRecord::whereIn('Remarks', $Remarks)
+                    $ExportRecords = DB::table('fuel_test_records')
+                                                    ->whereIn('Remarks', $Remarks)
                                                     ->orderBy('SampleNo', 'DESC')
                                                     ->get();
     
