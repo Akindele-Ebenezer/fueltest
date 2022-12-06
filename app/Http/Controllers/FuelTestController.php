@@ -619,67 +619,67 @@ class FuelTestController extends Controller
   
             $title = 'Test Report';
             $FilterSampleNo = FuelTestRecord::select('SampleNo')
-                                                ->distinct()
+                                                ->groupBy('SampleNo')
                                                 ->get();
                                                 
             $FilterSampleCollectionDate = FuelTestRecord::select('SampleCollectionDate')
-                                                ->distinct()
+                                                ->groupBy('SampleCollectionDate')
                                                 ->get();
                                                 
             $FilterTruckPlateNo = FuelTestRecord::select('TruckPlateNo')
-                                                ->distinct()
+                                                ->groupBy('TruckPlateNo')
                                                 ->get();
                                                 
             $FilterTankNo = FuelTestRecord::select('TankNo')
-                                                ->distinct()
+                                                ->groupBy('TankNo')
                                                 ->get();
                                                 
             $FilterAppearanceResult = FuelTestRecord::select('AppearanceResult')
-                                                ->distinct()
+                                                ->groupBy('AppearanceResult')
                                                 ->get();
                                                 
             $FilterColor = FuelTestRecord::select('Color')
-                                                ->distinct()
+                                                ->groupBy('Color')
                                                 ->get();
                                                 
             $FilterDensity = FuelTestRecord::select('Density')
-                                                ->distinct()
+                                                ->groupBy('Density')
                                                 ->get();
                                                 
             $FilterFlashPoint = FuelTestRecord::select('FlashPoint')
-                                                ->distinct()
+                                                ->groupBy('FlashPoint')
                                                 ->get();
                                                 
             $FilterTemp = FuelTestRecord::select('Temp')
-                                                ->distinct()
+                                                ->groupBy('Temp')
                                                 ->get();
                                                 
             $FilterWaterSediment = FuelTestRecord::select('WaterSediment')
-                                                ->distinct()
+                                                ->groupBy('WaterSediment')
                                                 ->get();
                                                 
             $FilterCleanliness = FuelTestRecord::select('Cleanliness')
-                                                ->distinct()
+                                                ->groupBy('Cleanliness')
                                                 ->get();
                                                 
             $FilterDateOfTest = FuelTestRecord::select('DateOfTest')
-                                                ->distinct()
+                                                ->groupBy('DateOfTest')
                                                 ->get();
                                                 
             $FilterMadeBy = FuelTestRecord::select('MadeBy')
-                                                ->distinct()
+                                                ->groupBy('MadeBy')
                                                 ->get();
                                                 
             $FilterDeliveredTo = FuelTestRecord::select('DeliveredTo')
-                                                ->distinct()
+                                                ->groupBy('DeliveredTo')
                                                 ->get();
                                                 
             $FilterRemarks = FuelTestRecord::select('Remarks')
-                                                ->distinct()
+                                                ->groupBy('Remarks')
                                                 ->get();          
                                                 
             $FilterVendorName = FuelTestRecord::select('VendorName')
-                                                ->distinct()
+                                                ->groupBy('VendorName')
                                                 ->get();          
                                                 
 
@@ -876,7 +876,7 @@ class FuelTestController extends Controller
                                                     ->orWhere('DeliveredTo', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('Remarks', 'LIKE', '%' . $SearchValue . '%')
                                                     ->orWhere('VendorName', 'LIKE', '%' . $SearchValue . '%')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -929,7 +929,7 @@ class FuelTestController extends Controller
                                                 ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', NULL)
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);
+                                                ->get();
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1000,7 +1000,7 @@ class FuelTestController extends Controller
                                                 ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);
+                                                ->get();
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1072,7 +1072,7 @@ class FuelTestController extends Controller
                                                 ->where('VendorName', $VendorName)
                                                 ->where('ApprovalForUse', 'REJECTED')
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);
+                                                ->get();
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1142,7 +1142,7 @@ class FuelTestController extends Controller
                                                     ->where('VendorName', $VendorName)
                                                     ->where('ApprovalForUse', 'APPROVED')
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
  
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -1215,7 +1215,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('VendorName', $VendorName)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -1410,7 +1410,7 @@ class FuelTestController extends Controller
                 $ExportRecords = DB::table('fuel_test_records')
                                                 ->where('ApprovalForUse', 'APPROVED')
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);  
+                                                ->get();  
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1463,7 +1463,7 @@ class FuelTestController extends Controller
                 $ExportRecords = DB::table('fuel_test_records')
                                                 ->where('ApprovalForUse', NULL)
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);  
+                                                ->get();  
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1514,7 +1514,7 @@ class FuelTestController extends Controller
                 $ExportRecords = DB::table('fuel_test_records')
                                                 ->where('ApprovalForUse', 'WAIVED')
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);  
+                                                ->get();  
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1566,7 +1566,7 @@ class FuelTestController extends Controller
                 $ExportRecords = DB::table('fuel_test_records')
                                                 ->where('ApprovalForUse', 'REJECTED')
                                                 ->orderBy('SampleNo', 'DESC')
-                                                ->paginate(14);  
+                                                ->get();  
 
                 foreach($ExportRecords as $ExportRecord) {
                     $create_record = DynamicExport::create([
@@ -1720,7 +1720,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('SampleNo', $SampleNo)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -1780,7 +1780,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('SampleCollectionDate', $SampleCollectionDate)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -1840,7 +1840,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('TruckPlateNo', $TruckPlateNo)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -1900,7 +1900,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('TankNo', $TankNo)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -1960,7 +1960,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('AppearanceResult', $AppearanceResult)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2020,7 +2020,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('Color', $Color)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2080,7 +2080,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('Density', $Density)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2140,7 +2140,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('FlashPoint', $FlashPoint)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2200,7 +2200,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('Temp', $Temp)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2260,7 +2260,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('WaterSediment', $WaterSediment)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2320,7 +2320,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('Cleanliness', $Cleanliness)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2380,7 +2380,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('DateOfTest', $DateOfTest)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2440,7 +2440,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('MadeBy', $MadeBy)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2500,7 +2500,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('DeliveredTo', $DeliveredTo)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
@@ -2560,7 +2560,7 @@ class FuelTestController extends Controller
                     $ExportRecords = DB::table('fuel_test_records')
                                                     ->whereIn('Remarks', $Remarks)
                                                     ->orderBy('SampleNo', 'DESC')
-                                                    ->paginate(14);
+                                                    ->get();
     
                     foreach($ExportRecords as $ExportRecord) {
                         $create_record = DynamicExport::create([
