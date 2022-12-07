@@ -618,63 +618,63 @@ class FuelTestController extends Controller
         if(Session::has('email')) {
   
             $title = 'Test Report';
-            $FilterSampleNo = FuelTestRecord::select('SampleNo')
+            $FilterSampleNo = DB::table('fuel_test_records')->select('SampleNo')
                                                 ->groupBy('SampleNo')
                                                 ->get();
                                                 
-            $FilterSampleCollectionDate = FuelTestRecord::select('SampleCollectionDate')
+            $FilterSampleCollectionDate = DB::table('fuel_test_records')->select('SampleCollectionDate')
                                                 ->groupBy('SampleCollectionDate')
                                                 ->get();
                                                 
-            $FilterTruckPlateNo = FuelTestRecord::select('TruckPlateNo')
+            $FilterTruckPlateNo = DB::table('fuel_test_records')->select('TruckPlateNo')
                                                 ->groupBy('TruckPlateNo')
                                                 ->get();
                                                 
-            $FilterTankNo = FuelTestRecord::select('TankNo')
+            $FilterTankNo = DB::table('fuel_test_records')->select('TankNo')
                                                 ->groupBy('TankNo')
                                                 ->get();
                                                 
-            $FilterAppearanceResult = FuelTestRecord::select('AppearanceResult')
+            $FilterAppearanceResult = DB::table('fuel_test_records')->select('AppearanceResult')
                                                 ->groupBy('AppearanceResult')
                                                 ->get();
                                                 
-            $FilterColor = FuelTestRecord::select('Color')
+            $FilterColor = DB::table('fuel_test_records')->select('Color')
                                                 ->groupBy('Color')
                                                 ->get();
                                                 
-            $FilterDensity = FuelTestRecord::select('Density')
+            $FilterDensity = DB::table('fuel_test_records')->select('Density')
                                                 ->groupBy('Density')
                                                 ->get();
                                                 
-            $FilterFlashPoint = FuelTestRecord::select('FlashPoint')
+            $FilterFlashPoint = DB::table('fuel_test_records')->select('FlashPoint')
                                                 ->groupBy('FlashPoint')
                                                 ->get();
                                                 
-            $FilterTemp = FuelTestRecord::select('Temp')
+            $FilterTemp = DB::table('fuel_test_records')->select('Temp')
                                                 ->groupBy('Temp')
                                                 ->get();
                                                 
-            $FilterWaterSediment = FuelTestRecord::select('WaterSediment')
+            $FilterWaterSediment = DB::table('fuel_test_records')->select('WaterSediment')
                                                 ->groupBy('WaterSediment')
                                                 ->get();
                                                 
-            $FilterCleanliness = FuelTestRecord::select('Cleanliness')
+            $FilterCleanliness = DB::table('fuel_test_records')->select('Cleanliness')
                                                 ->groupBy('Cleanliness')
                                                 ->get();
                                                 
-            $FilterDateOfTest = FuelTestRecord::select('DateOfTest')
+            $FilterDateOfTest = DB::table('fuel_test_records')->select('DateOfTest')
                                                 ->groupBy('DateOfTest')
                                                 ->get();
                                                 
-            $FilterMadeBy = FuelTestRecord::select('MadeBy')
+            $FilterMadeBy = DB::table('fuel_test_records')->select('MadeBy')
                                                 ->groupBy('MadeBy')
                                                 ->get();
                                                 
-            $FilterDeliveredTo = FuelTestRecord::select('DeliveredTo')
+            $FilterDeliveredTo = DB::table('fuel_test_records')->select('DeliveredTo')
                                                 ->groupBy('DeliveredTo')
                                                 ->get();
                                                 
-            $FilterRemarks = FuelTestRecord::select('Remarks')
+            $FilterRemarks = DB::table('fuel_test_records')->select('Remarks')
                                                 ->groupBy('Remarks')
                                                 ->get();          
                                                 

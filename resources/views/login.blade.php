@@ -31,4 +31,8 @@
         </div>
     </section>
     <script src="/JS/LogIn.js"></script> 
+    {{-- <script src="js-loading-overlay.min.js"></script>
+    <script>
+        JsLoadingOverlay.show({'spinnerIcon': 'triangle-skew-spin'});
+    </script> --}}
 @endsection
