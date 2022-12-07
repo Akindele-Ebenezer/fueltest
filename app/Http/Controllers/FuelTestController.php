@@ -772,34 +772,34 @@ class FuelTestController extends Controller
 
             $ViewData = [...$Config, ...$ViewData]; 
             
-            // if(isset($_GET['export'])) {
-            //     $ClearDynamicExport = DynamicExport::query()->delete();
-
-            //     $ExportRecords = $all_records_absolute; 
-            //     foreach($ExportRecords as $ExportRecord) {
-            //         $create_record = DynamicExport::create([
-            //         'SampleNo' => $ExportRecord->SampleNo,
-            //         'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
-            //         'TruckPlateNo' => $ExportRecord->TruckPlateNo,
-            //         'TankNo' => $ExportRecord->TankNo,
-            //         'AppearanceResult' => $ExportRecord->AppearanceResult,
-            //         'Color' => $ExportRecord->Color,
-            //         'Density' => $ExportRecord->Density,
-            //         'FlashPoint' => $ExportRecord->FlashPoint,
-            //         'Temp' => $ExportRecord->Temp,
-            //         'WaterSediment' => $ExportRecord->WaterSediment,
-            //         'Cleanliness' => $ExportRecord->Cleanliness,
-            //         'DateOfTest' => $ExportRecord->DateOfTest,
-            //         'uid' => $ExportRecord->uid,
-            //         'MadeBy' => $ExportRecord->MadeBy,
-            //         'DeliveredTo' => $ExportRecord->DeliveredTo,
-            //         'Remarks' => $ExportRecord->Remarks,
-            //         'VendorName' => $ExportRecord->VendorName,
-            //         'VendorNo' => $ExportRecord->VendorNo,
-            //         'ApprovalForUse' => $ExportRecord->ApprovalForUse,
-            //         ]);   
-            //     }
-            // }
+            if($_SERVER['REQUEST_URI'] == '/AllRecords') {
+                $ClearDynamicExport = DynamicExport::query()->delete();
+                $ExportRecords = $all_records_absolute;
+ 
+                foreach($ExportRecords as $ExportRecord) {
+                    $create_record = DynamicExport::create([
+                    'SampleNo' => $ExportRecord->SampleNo,
+                    'SampleCollectionDate' => $ExportRecord->SampleCollectionDate,
+                    'TruckPlateNo' => $ExportRecord->TruckPlateNo,
+                    'TankNo' => $ExportRecord->TankNo,
+                    'AppearanceResult' => $ExportRecord->AppearanceResult,
+                    'Color' => $ExportRecord->Color,
+                    'Density' => $ExportRecord->Density,
+                    'FlashPoint' => $ExportRecord->FlashPoint,
+                    'Temp' => $ExportRecord->Temp,
+                    'WaterSediment' => $ExportRecord->WaterSediment,
+                    'Cleanliness' => $ExportRecord->Cleanliness,
+                    'DateOfTest' => $ExportRecord->DateOfTest,
+                    'uid' => $ExportRecord->uid,
+                    'MadeBy' => $ExportRecord->MadeBy,
+                    'DeliveredTo' => $ExportRecord->DeliveredTo,
+                    'Remarks' => $ExportRecord->Remarks,
+                    'VendorName' => $ExportRecord->VendorName,
+                    'VendorNo' => $ExportRecord->VendorNo,
+                    'ApprovalForUse' => $ExportRecord->ApprovalForUse,
+                    ]);   
+                }
+            }
 
             if (isset($_GET['Search'])) {
 
