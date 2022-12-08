@@ -730,7 +730,7 @@ let FuelTestResults = new Chart("myChart", {
                 let CurrentVendorForm = document.querySelector('.CurrentVendor');
                 let CurrentVendorNoInput = document.querySelector('.GenerateChartForCurrentVendor'); 
                  
-                CurrentVendorNoInput.value = b[0]._xScale.ticks[b[0]._index]; 
+                CurrentVendorNoInput.value = b[0]._xScale.ticks[b[0]._index][0]; 
                 CurrentVendorForm.submit();  
             }
         }
@@ -833,8 +833,8 @@ let FuelTestResults = new Chart("myChart", {
                 let CurrentVendorForm = document.querySelector('.CurrentVendor');
                 let CurrentVendorNoInput = document.querySelector('.GenerateChartForCurrentVendor'); 
                  
-                CurrentVendorNoInput.value = b[0]._xScale.ticks[b[0]._index]; 
-                CurrentVendorForm.submit();  
+                CurrentVendorNoInput.value = b[0]._xScale.ticks[b[0]._index][0]; 
+                CurrentVendorForm.submit();   
             }
         }
     }); 
