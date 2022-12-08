@@ -270,50 +270,50 @@
                 </div>            
             @endforeach            
         @endif
-        <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}">              
-            @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
-                <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
-                    <canvas width="1000" height="550" id="myChart7" class="{{ $Visibility }}"></canvas> 
-                    <div>
-                        @php                    
-                            $NumberOfTotalRecordsForEachVendorArr = [];
-                        @endphp
-    
-                        @foreach ($absolute_vendors as $Vendor)
-                            @php
-                                include('../resources/views/DATA/Queries/NumberOfRecordsData.php'); 
-    
-                                if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0) {  
-                                    continue;
-                                }  
-    
-                                array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);    
-                            @endphp 
-                        @endforeach
-    
-                        @php 
-                        
-                            $VendorsWithSupplyStatus = count($NumberOfTotalRecordsForEachVendorArr); 
-                            $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
-    
-                        @endphp
-    
-                        <h1>VENDOR STATS</h1>
-                        <form action="">
-                            <label>
-                                <input type="hidden" value="{{ $VendorsWithSupplyStatus }}" name="RevealVendors"> 
-                                <input class="hide" type="submit">   
-                                <span class="reveal-vendors">Reveal Vendors</span>
-                            </label>
-                        </form>
-    
-                        <p><span>Total Number of Vendors</span> => &nbsp;&nbsp; <span>{{ $number_of_vendors_absolute }} (100%)</span></p> 
-                        <p><span>Vendors with Supply Status *</span> => &nbsp;&nbsp; <span>{{ $VendorsWithSupplyStatus }} ({{ round($PercentageOfVendorsWithSupplyStatus) }}%)</span></p>  
-                    </div> 
-                </div>
-            @endif 
-        </div> 
     </div>
+    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}">              
+        @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
+            <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
+                <canvas width="1000" height="550" id="myChart7" class="{{ $Visibility }}"></canvas> 
+                <div>
+                    @php                    
+                        $NumberOfTotalRecordsForEachVendorArr = [];
+                    @endphp
+
+                    @foreach ($absolute_vendors as $Vendor)
+                        @php
+                            include('../resources/views/DATA/Queries/NumberOfRecordsData.php'); 
+
+                            if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0) {  
+                                continue;
+                            }  
+
+                            array_push($NumberOfTotalRecordsForEachVendorArr, $NumberOfTotalRecordsForEachVendor);    
+                        @endphp 
+                    @endforeach
+
+                    @php 
+                    
+                        $VendorsWithSupplyStatus = count($NumberOfTotalRecordsForEachVendorArr); 
+                        $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
+
+                    @endphp
+
+                    <h1>VENDOR STATS</h1>
+                    <form action="">
+                        <label>
+                            <input type="hidden" value="{{ $VendorsWithSupplyStatus }}" name="RevealVendors"> 
+                            <input class="hide" type="submit">   
+                            <span class="reveal-vendors">Reveal Vendors</span>
+                        </label>
+                    </form>
+
+                    <p><span>Total Number of Vendors</span> => &nbsp;&nbsp; <span>{{ $number_of_vendors_absolute }} (100%)</span></p> 
+                    <p><span>Vendors with Supply Status *</span> => &nbsp;&nbsp; <span>{{ $VendorsWithSupplyStatus }} ({{ round($PercentageOfVendorsWithSupplyStatus) }}%)</span></p>  
+                </div> 
+            </div>
+        @endif 
+    </div> 
 </div>
  
 <footer> 
@@ -336,7 +336,7 @@
 let FuelTestResults = new Chart("myChart", {
     type: "horizontalBar",
     data: {
-            labels: ["Failed", "Passed", "Waived", @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif "Previous Records", "Total Records"],
+            labels: ["Failed", "Passed", "Waived",/* @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif */ "Previous Records", "Total Records"],
             datasets: [{
                 backgroundColor: [
                     'rgb(255, 30, 30, 0.3)',
@@ -359,9 +359,9 @@ let FuelTestResults = new Chart("myChart", {
                     {{ $number_of_failed_records }},
                     {{ $number_of_passed_records }}, 
                     {{ $number_of_waved_records }}, 
-                    @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  
-                        {{ $number_of_diff_records }}, 
-                    @endif 
+                    // @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  
+                    //     {{ $number_of_diff_records }}, 
+                    // @endif 
                     {{ $number_of_previous_records }}, 
                     @if((isset($_GET['GenerateChartForCurrentVendor'])))  
                     {{ $number_of_all_records }},

@@ -64,10 +64,3 @@ VendorNoInputBox.addEventListener('input', (VendorNo) => {
     }        
 });
   
- let SubmitButton = document.querySelector('button[name="create_record"]');
-
- SubmitButton.addEventListener('click', (e) => {
-     if(window.location.search.includes('GetRecord') === true) {
-         e.preventDefault();
-     }
- });
