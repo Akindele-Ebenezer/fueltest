@@ -15,7 +15,7 @@ LoaderElements.forEach(LoaderElement => {
             Loader.style.visibility = 'visible';
             setTimeout(() => {
                 Loader.style.visibility = 'hidden';
-            }, 5000);
+            }, 9000);
         })
     });
 }); 
