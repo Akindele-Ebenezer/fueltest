@@ -13,10 +13,9 @@ LoaderElements.forEach(LoaderElement => {
     LoaderElement.forEach((Elements) => {
         Elements.addEventListener('click', () => {
             Loader.style.visibility = 'visible';
+            setTimeout(() => {
+                Loader.style.visibility = 'hidden';
+            }, 5000);
         })
     });
-});
-
-window.onload = () => {
-    Loader.style.visibility = 'hidden';
-}
+}); 
