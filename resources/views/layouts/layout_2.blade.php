@@ -35,6 +35,7 @@
 
     <main>
         @yield('content')
+        <script src="JS/Loader.js"></script>
     </main> 
  
 </body>

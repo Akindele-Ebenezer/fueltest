@@ -551,7 +551,7 @@
                         </td> 
                         <td class="sample-no">
                             <form action="">
-                                <label>
+                                <label class="LoaderElement">
                                     @include('DATA.CertificateData')
                                     {{ $record->SampleNo }} 
                                 </label>
@@ -560,7 +560,7 @@
                         </td>
                         <td class="vendors">
                             <form action="">
-                                <label>
+                                <label class="LoaderElement">
                                     @include('DATA.CertificateData')
                                     {{ $record->VendorName }} 
                                 </label>

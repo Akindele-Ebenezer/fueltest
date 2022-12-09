@@ -55,6 +55,9 @@
     </div>
 
     <main>
+        <div class="loader">
+            <img src="images/loader.gif">
+        </div>
         <section class="fuel-test">
              
             <div class="fuel-test-left-nav">
@@ -74,6 +77,7 @@
             </div> 
             
             @yield('content')
+            <script src="JS/Loader.js"></script>
         </section>
     </main>  
 </body>

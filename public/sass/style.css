@@ -191,6 +191,21 @@ button:hover,
   text-align: center;
 }
 
+.loader {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: absolute;
+  visibility: hidden;
+  width: 100vw;
+}
+.loader img {
+  border-radius: 50%;
+  width: 12rem;
+  z-index: 100;
+}
+
 ul {
   list-style: none;
 }

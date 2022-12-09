@@ -62,5 +62,4 @@ VendorNoInputBox.addEventListener('input', (VendorNo) => {
             VendorNames[i].style.display = 'none';
         } 
     }        
-});
-  
+}); 
