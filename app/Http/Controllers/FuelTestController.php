@@ -2629,7 +2629,7 @@ class FuelTestController extends Controller
             $VendorNo = ''; 
             $VendorName = ''; 
  
-            $title = 'Previous Records'; 
+            $title = 'My Records'; 
               
             $FilterSampleNo = FuelTestRecord::select('SampleNo')
                                                 ->where('uid', $id)
