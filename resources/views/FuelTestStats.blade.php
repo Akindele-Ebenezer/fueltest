@@ -509,7 +509,7 @@ let FuelTestResults = new Chart("myChart", {
             title: {
                 display: true,
                 fontSize: 20, 
-                text: 'Recently',
+                text: 'Lately',
             }            
         }
     });
@@ -627,13 +627,13 @@ let FuelTestResults = new Chart("myChart", {
             @continue;
         @endif
         
-        Labels.push('{{ $vendor->VendorNo }} {{ $vendor->VendorName }}');
+        Labels.push("{!! $vendor->VendorNo !!} {!! $vendor->VendorName !!}");
 
         @php 
             array_push($AvailableVendorNames, $vendor->VendorName);
         @endphp
 
-        AvailableVendorNames.push('{{ $vendor->VendorName }}'); 
+        AvailableVendorNames.push("{!! $vendor->VendorName !!}"); 
         NumberOfTotalRecordsForEachVendor.push('{{ $NumberOfTotalRecordsForEachVendor }}'); 
         NumberOfApprovedRecordsForEachVendor.push('{{ $NumberOfApprovedRecordsForEachVendor }}');  
         NumberOfWavedRecordsForEachVendor.push('{{ $NumberOfWavedRecordsForEachVendor }}');  

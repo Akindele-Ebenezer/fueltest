@@ -51,7 +51,7 @@
                     @endif
                     Badge
                 </span> 
-                <input list="RecordId" name="RecordId" placeholder="Record ID..">
+                <input list="RecordId" name="RecordId" placeholder="Record ID.." autocomplete="off">
                 <datalist id="RecordId">
                     @foreach ($all_records_absolute as $Record)
                         <option value="{{ $Record->SampleNo }}"> 
