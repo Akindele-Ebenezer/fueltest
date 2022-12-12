@@ -405,7 +405,14 @@ section.fuel-test .fuel-test-left-nav ul a li:hover {
   cursor: pointer;
 }
 section.fuel-test .fuel-test-left-nav ul a li em {
+  background: rgba(43, 168, 145, 0.8);
+  border-radius: 0.2rem;
+  font-style: unset;
   margin-left: 1rem;
+  padding: 0 0.3rem;
+}
+section.fuel-test .fuel-test-left-nav ul a li em.report {
+  background: #ff1a1a;
 }
 section.fuel-test .fuel-test-left-nav ul li {
   font-family: "Poppins", sans-serif;

@@ -25,7 +25,7 @@
     @if(!(route('login')))
         <nav>
             <ul>
-                <li><a href="{{ route('previous_records') }}">VIEW PREVIOUS RECORDS</a></li>
+                <li><a href="{{ route('previous_records') }}">MY RECORDS</a></li>
                 <li><a href="{{ route('fuel_test') }}">CREATE NEW RECORD</a></li>
                 <li><a href="{{ route('all_records') }}">VIEW REPORT</a></li>
                 <li><a href="/logout">LOG OUT</a></li>
