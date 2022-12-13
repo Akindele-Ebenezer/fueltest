@@ -50,6 +50,9 @@
                     <button name="ClearFilterVendorStats">Reset</button>
                 </section>
             </form>
+            @php                    
+                $NumberOfTotalRecordsForEachVendorArr = [];
+            @endphp
             @if (isset($_GET['FilterVendorStats']))
                 @php
                     $VendorStatsFrom = $_GET['VendorStatsFrom'];
@@ -63,9 +66,6 @@
             <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
                 <canvas width="1000" height="550" id="myChart6" class="{{ $Visibility }}"></canvas> 
                 <div>
-                    @php                    
-                        $NumberOfTotalRecordsForEachVendorArr = [];
-                    @endphp
 
                     @foreach ($absolute_vendors as $Vendor)
                         @php
@@ -84,6 +84,22 @@
                         $VendorsWithSupplyStatus = count($NumberOfTotalRecordsForEachVendorArr); 
                         $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
 
+                        if(isset($_GET['FilterVendorStats'])) {
+                            $VendorStatsFrom = $_GET['VendorStatsFrom'];
+                            $VendorStatsTo = $_GET['VendorStatsTo'];
+                             
+                            $Vendors_ = App\Models\Vendor::select('VendorName')->get();
+
+                            $VendorsWithSupplyStatus = App\Models\FuelTestRecord::select('VendorName')
+                                                                        ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
+                                                                        ->whereNot('VendorName', '') 
+                                                                        ->whereIn('VendorName', $Vendors_) 
+                                                                        ->groupBy('VendorName') 
+                                                                        ->get(); 
+                                                                        
+                            $VendorsWithSupplyStatus = count($VendorsWithSupplyStatus); 
+                            $PercentageOfVendorsWithSupplyStatus = $VendorsWithSupplyStatus / $number_of_vendors * 100;                                                           
+                        }
                     @endphp
 
                     <h1>VENDOR STATS</h1>
@@ -618,9 +634,10 @@ let FuelTestResults = new Chart("myChart", {
                                                     ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
                                                     ->where('VendorNo', $vendor->VendorNo)
                                                     ->get()
-                                                    ->count(); 
+                                                    ->count();  
+                                                     
             }
-                                                
+
         @endphp
         
         @if($NumberOfTotalRecordsForEachVendor === 0 AND $NumberOfApprovedRecordsForEachVendor === 0 AND $NumberOfWavedRecordsForEachVendor === 0 AND $NumberOfRejectedRecordsForEachVendor === 0)  
