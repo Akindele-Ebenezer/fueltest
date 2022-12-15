@@ -34,7 +34,7 @@ class FuelTestController extends Controller
         $name = Session::get('name');
         $email = Session::get('email');
         $header_info = "ID : [" . $id . "] Email : " . $email;
-        $sample_no = date('Ymd') . $id . 0;
+        $sample_no = date('Ymd') . $id . 0; 
 
         $fuel_test_users = DB::table('fuel_test_users')->paginate(14);
         $number_of_fuel_test_users = count($fuel_test_users);
@@ -51,7 +51,7 @@ class FuelTestController extends Controller
         $all_records_absolute = DB::table('fuel_test_records')->get(); 
         $all_records = DB::table('fuel_test_records')->orderBy('SampleNo', 'DESC')->paginate(14)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
-
+        
         $vendors = Vendor::paginate(14);
         $absolute_vendors = Vendor::get();
         $number_of_vendors = count($vendors); 
@@ -316,11 +316,7 @@ class FuelTestController extends Controller
                 $Remarks = $RecordIdQuery->Remarks; 
                 $SampleCollectionDate = date_create($SampleCollectionDate);
                 $DateOfTest = date_create($DateOfTest);
- 
-                // if(isset($_GET[''])) {
-
-                // }
-
+  
                 $NumberOfGoodTestsForAppearanceResult_CurrentVendor = FuelTestRecord::whereIn('AppearanceResult', ['BRIGHT', 'CLEAR'])  
                                                                                     ->where('VendorNo', $VendorNo)
                                                                                     ->count();
@@ -1290,7 +1286,7 @@ class FuelTestController extends Controller
                 foreach ($FilteredRecords as $VendorName) {    
                     $SortOrder = Session::get('SortOrder', 'ASC');
                     $all_records = FuelTestRecord::orderBy('VendorName', $SortOrder)->paginate(14); 
-
+                    
                     $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
                     
                     Session::put('SortOrder', $SortOrder); 

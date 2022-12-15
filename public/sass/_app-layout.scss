@@ -32,14 +32,14 @@ section {
                             }
                             
                             em {
-                                background: darken($color: rgba(58, 204, 177, 0.8), $amount: 10) ;
+                                background: $green;
                                 border-radius: 0.2rem;
                                 font-style: unset;
                                 margin-left: 1rem;
                                 padding: 0 0.3rem;
 
                                 &.report {
-                                    background: lighten($color: red, $amount: 5);
+                                    background: $red;
                                 }
                             }
                         }

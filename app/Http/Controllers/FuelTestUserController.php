@@ -62,6 +62,36 @@ class FuelTestUserController extends Controller
                 return redirect('/Users');
             }
 
+            if (isset($_GET['SortByRole'])) {
+
+                $SortOrder = Session::get('SortOrder', 'ASC');
+                $fuel_test_users = FuelTestUser::orderBy('Role', $SortOrder)->paginate(14); 
+
+                $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
+                
+                Session::put('SortOrder', $SortOrder); 
+
+                $ViewData = [...$Config, ...$ViewData]; 
+
+                return view('users', $ViewData)->with('fuel_test_users', $fuel_test_users); 
+
+           }
+
+            if (isset($_GET['SortByStatus'])) {
+
+                $SortOrder = Session::get('SortOrder', 'ASC');
+                $fuel_test_users = FuelTestUser::orderBy('Status', $SortOrder)->paginate(14); 
+
+                $SortOrder = $SortOrder == 'DESC' ? 'ASC': 'DESC';
+                
+                Session::put('SortOrder', $SortOrder); 
+
+                $ViewData = [...$Config, ...$ViewData]; 
+
+                return view('users', $ViewData)->with('fuel_test_users', $fuel_test_users); 
+
+           }
+
             if (isset($_GET['SortByEmail'])) {
 
                 $SortOrder = Session::get('SortOrder', 'ASC');
@@ -91,6 +121,40 @@ class FuelTestUserController extends Controller
                     return view('users', $ViewData)->with('fuel_test_users', $fuel_test_users); 
             
             } 
+
+            if(isset($_GET['FilterRole'])) {
+                
+                if(empty($_GET['CheckRole'])) {
+                   return  redirect()->back();
+                }
+                
+                $FilteredRecords[] = $request->CheckRole;  
+                
+                foreach ($FilteredRecords as $Role) {
+                    $fuel_test_users = FuelTestUser::whereIn('Role', $Role)->orderBy('Name', 'DESC')->paginate(14);
+                   
+                    $number_of_fuel_test_users = count($fuel_test_users); 
+
+                    return view('users', $ViewData)->with('fuel_test_users', $fuel_test_users)->with('number_of_fuel_test_users', $number_of_fuel_test_users); 
+                } 
+            }
+
+            if(isset($_GET['FilterStatus'])) {
+                
+                if(empty($_GET['CheckStatus'])) {
+                   return  redirect()->back();
+                }
+                
+                $FilteredRecords[] = $request->CheckStatus;  
+                
+                foreach ($FilteredRecords as $Status) {
+                    $fuel_test_users = FuelTestUser::whereIn('Status', $Status)->orderBy('Name', 'DESC')->paginate(14);
+                   
+                    $number_of_fuel_test_users = count($fuel_test_users); 
+
+                    return view('users', $ViewData)->with('fuel_test_users', $fuel_test_users)->with('number_of_fuel_test_users', $number_of_fuel_test_users); 
+                } 
+            }
 
             if(isset($_GET['FilterUserNames'])) {
                 
@@ -155,6 +219,7 @@ class FuelTestUserController extends Controller
         $Name = $request->Name;
         $Email = $request->Email;
         $Password = $request->Password;
+        $Role = $request->Role;
         
         if(empty($Name)) {
             $ErrorMessage = 'Add a Name for the User..';
@@ -165,12 +230,16 @@ class FuelTestUserController extends Controller
         } elseif(empty($Password)) {
             $ErrorMessage = 'Add Password for the User..';
             return redirect()->back()->with('ErrorMessage', $ErrorMessage);
+        } elseif(empty($Role) || $Role === 'Assign Role..') {
+            $ErrorMessage = 'Add Role for the User..';
+            return redirect()->back()->with('ErrorMessage', $ErrorMessage);
         }
         
         $AddVendor = FuelTestUser::create([
             'Name' => $Name,
             'Email' => $Email, 
             'Password' => $Password, 
+            'Role' => $Role, 
         ]);
 
         return redirect('Users');

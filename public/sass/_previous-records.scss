@@ -186,6 +186,24 @@ section {
                     td {
                         padding-block: .5rem;
 
+                        &.status {
+                            text-align: center;
+                            
+                            .offline {
+                                background: $red;
+                                border-radius: 50%;
+                                height: 1rem;
+                                width: 1rem;
+                            } 
+
+                            .online {
+                                background: $green;
+                                border-radius: 50%;
+                                height: 1rem;
+                                width: 1rem;
+                            } 
+                        }
+
                         &.user-email {
                             width: 25rem !important;
                         }

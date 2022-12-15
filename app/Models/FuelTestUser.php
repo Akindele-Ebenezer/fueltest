@@ -10,6 +10,8 @@ class FuelTestUser extends Model
     protected $fillable = ['Name',
                             'Email', 
                             'Password', 
+                            'Status', 
+                            'Role', 
                         ]; 
     use HasFactory;
 }

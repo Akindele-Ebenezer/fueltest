@@ -14,11 +14,11 @@ class AuthController extends Controller
             $username = $request->Email;
             $password = $request->Password; 
 
-            $query = FuelTestUser::select('id', 'Email', 'Name')
+            $query = FuelTestUser::select('id', 'Email', 'Name', 'Role')
                                     ->where('Email', $username)
                                     ->where('Password', $password)
                                     ->get();
-            
+
             if(count($query) == 1) {
                 
                 foreach($query as $current_user) {
@@ -26,11 +26,16 @@ class AuthController extends Controller
                     $id = $current_user->id;
                     $user = $current_user->Email;
                     $user_password = $current_user->Password;
+                    $Role = $current_user->Role;
                     
                     Session::put('id', $current_user->id); 
                     Session::put('email', $current_user->Email); 
                     Session::put('name', $current_user->Name); 
-                
+                    Session::put('Role', $Role); 
+
+                    $SetStatus_ONLINE = FuelTestUser::where('id', $id)
+                                                    ->update(['Status' => 1]);
+
                     if(Session::has('email')) {
                         return redirect('AllRecords'); 
                     } else {                                       
@@ -69,6 +74,10 @@ class AuthController extends Controller
 
 
     public function fuel_test_user_logout() { 
+        
+            $SetStatus_OFFLINE = FuelTestUser::where('id', Session::get('id'))
+                                                ->update(['Status' => 0]);
+
             Session::flush(); 
             return redirect('/');
     }

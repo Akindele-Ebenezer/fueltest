@@ -10,7 +10,7 @@
 
         <section class="log-in-alert alert">VENDOR List up-to date</section>
         <p class="error-message">{{ $ErrorMessage }}</p> 
-        @if(Session::get('email') == 'awadhesh@depasamarine.com') 
+        @if(Session::get('Role') === 'ADMIN') 
         <section class="add-vendor">
             <form action="/AddVendor" method="post"> @csrf 
                 <label for="VendorNo">Vendor No.</label>

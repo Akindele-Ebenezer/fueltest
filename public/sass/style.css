@@ -978,6 +978,21 @@ section.previous-records table.vendors, section.previous-records table.users {
 section.previous-records table.vendors tr td, section.previous-records table.users tr td {
   padding-block: 0.5rem;
 }
+section.previous-records table.vendors tr td.status, section.previous-records table.users tr td.status {
+  text-align: center;
+}
+section.previous-records table.vendors tr td.status .offline, section.previous-records table.users tr td.status .offline {
+  background: #ff1a1a;
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+}
+section.previous-records table.vendors tr td.status .online, section.previous-records table.users tr td.status .online {
+  background: rgba(43, 168, 145, 0.8);
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+}
 section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.user-email {
   width: 25rem !important;
 }

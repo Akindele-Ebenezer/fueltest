@@ -13,6 +13,8 @@ $color-2: #483434;
 $color-3: cadetblue;
 $color-4: #444;
 $error: red;
+$green: darken($color: rgba(58, 204, 177, 0.8), $amount: 10);
+$red: lighten($color: red, $amount: 5);
 
 $headings: 1, 2, 3, 4;
 @each $heading in $headings {
