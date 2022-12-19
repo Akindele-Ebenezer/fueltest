@@ -40,28 +40,28 @@
             <img src="/images/depasa-logo.png"> 
         </div>
     @endisset 
-    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}"> 
-        <div class="fuel-test-dashboard-inner filter-vendor-stats">
-            <form action="" method="get">
-                <p>(Filter Test Analysis) || From : <input type="date" name="VendorStatsFrom"></p>
-                <p>To : <input type="date" name="VendorStatsTo"></p>
-                <section>
-                    <button name="FilterVendorStats">GO</button>
-                    <button name="ClearFilterVendorStats">Reset</button>
-                </section>
-            </form>
-            @php                    
-                $NumberOfTotalRecordsForEachVendorArr = [];
+    <div class="fuel-test-dashboard-inner filter-vendor-stats">
+        <form action="" method="get">
+            <p>(Filter Test Analysis) || From : <input type="date" name="VendorStatsFrom"></p>
+            <p>To : <input type="date" name="VendorStatsTo"></p>
+            <section>
+                <button name="FilterVendorStats">GO</button>
+                <button name="ClearFilterVendorStats">Reset</button>
+            </section>
+        </form>
+        @php                    
+            $NumberOfTotalRecordsForEachVendorArr = [];
+        @endphp
+        @if (isset($_GET['FilterVendorStats']))
+            @php
+                $VendorStatsFrom = $_GET['VendorStatsFrom'];
+                $VendorStatsTo = $_GET['VendorStatsTo'];
             @endphp
-            @if (isset($_GET['FilterVendorStats']))
-                @php
-                    $VendorStatsFrom = $_GET['VendorStatsFrom'];
-                    $VendorStatsTo = $_GET['VendorStatsTo'];
-                @endphp
 
-                <p><center>Showing Test ANALYSIS for VENDORS by Filtered Date from {{ $VendorStatsFrom }} to {{ $VendorStatsTo }}.</center></p>
-            @endif
-        </div>             
+            <p><center>Showing Test ANALYSIS for VENDORS by Filtered Date from {{ $VendorStatsFrom }} to {{ $VendorStatsTo }}.</center></p>
+        @endif
+    </div>             
+    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}"> 
         @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
             <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
                 <canvas width="1000" height="550" id="myChart6" class="{{ $Visibility }}"></canvas> 
@@ -649,7 +649,7 @@ let FuelTestResults = new Chart("myChart", {
     });
 
     let FuelTestResults6 = new Chart("myChart6", {
-        type: "bar",
+        type: "horizontalBar",
         data: { 
             labels: [...NewLabels], 
             datasets: [{  

@@ -1490,7 +1490,7 @@ section button[name=Clear] svg {
 
 .filter-vendor-stats {
   margin-bottom: unset;
-  margin-top: 8rem;
+  margin: 8rem auto;
   width: 60rem;
 }
 .filter-vendor-stats form {
