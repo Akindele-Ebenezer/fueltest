@@ -41,8 +41,16 @@ class FuelTestUserController extends Controller
                 $SearchValue = trim($_GET['SearchValue']);
                 $title = '" ' . $SearchValue . ' "';
 
+                if($SearchValue == 'online' || $SearchValue == 'Online' || $SearchValue == 'ONLINE') {
+                    $SearchValue = 1;
+                } elseif($SearchValue == 'offline' || $SearchValue == 'Offline' || $SearchValue == 'OFFLINE') {
+                    $SearchValue = 0;
+                }
+
                 $fuel_test_users =  FuelTestUser::where('Email', 'LIKE', '%' . $SearchValue . '%')
                                                 ->orWhere('Name', 'LIKE', '%' . $SearchValue . '%') 
+                                                ->orWhere('Status', 'LIKE', '%' . $SearchValue . '%') 
+                                                ->orWhere('Role', 'LIKE', '%' . $SearchValue . '%') 
                                                 ->orderBy('Name', 'DESC')
                                                 ->paginate(14)
                                                 ->fragment('Users');

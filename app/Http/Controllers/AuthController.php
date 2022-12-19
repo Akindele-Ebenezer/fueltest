@@ -38,7 +38,7 @@ class AuthController extends Controller
 
                     if(Session::has('email')) {
                         return redirect('AllRecords'); 
-                    } else {                                       
+                    } else {    
                         return redirect('/');        
                     }  
                     
