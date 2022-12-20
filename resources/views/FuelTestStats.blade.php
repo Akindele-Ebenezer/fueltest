@@ -649,7 +649,7 @@ let FuelTestResults = new Chart("myChart", {
     });
 
     let FuelTestResults6 = new Chart("myChart6", {
-        type: "horizontalBar",
+        type: "bar",
         data: { 
             labels: [...NewLabels], 
             datasets: [{  

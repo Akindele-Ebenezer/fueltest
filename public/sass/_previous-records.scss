@@ -186,6 +186,30 @@ section {
                     td {
                         padding-block: .5rem;
 
+                        .ApprovedTestsForEachVendor {
+                            background: $green;
+                            border-radius: 0.2rem;
+                            color: white;
+                            padding: 0 0.3rem;
+                            width: fit-content;
+                        }
+
+                        .FailedTestsForEachVendor {
+                            background: $red;
+                            border-radius: 0.2rem;
+                            color: white;
+                            padding: 0 0.3rem;
+                            width: fit-content;
+                        }
+
+                        .WaivedTestsForEachVendor {
+                            background: rgb(156, 156, 0);
+                            border-radius: 0.2rem;
+                            color: white;
+                            padding: 0 0.3rem;
+                            width: fit-content;
+                        }
+
                         &.status {
                             text-align: center;
                             

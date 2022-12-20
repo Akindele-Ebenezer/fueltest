@@ -83,7 +83,16 @@
                         </div>                        
                     </th> 
                     <th>
-                        ..
+                        Chart
+                    </th>
+                    <th class="Approved resizable"> 
+                        Approved                       
+                    </th>
+                    <th class="Rejected resizable"> 
+                        Rejected                       
+                    </th>
+                    <th class="Waived resizable"> 
+                        Waived                       
                     </th>
                 </tr>  
                 @if($number_of_vendors == 0)
@@ -125,6 +134,30 @@
                                 <img class="icon" src="/images/chart.png">
                             </label>
                         </form>
+                    </td>
+                    <td>
+                        @php
+                            $ApprovedTestsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                                                                                    ->where('VendorName', $Vendor->VendorName)
+                                                                                    ->count();
+                        @endphp
+                        <p class="ApprovedTestsForEachVendor">{{ $ApprovedTestsForEachVendor }}</p>
+                    </td>
+                    <td>
+                        @php
+                            $FailedTestsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                                                                                    ->where('VendorName', $Vendor->VendorName)
+                                                                                    ->count();
+                        @endphp
+                        <p class="FailedTestsForEachVendor">{{ $FailedTestsForEachVendor }}</p>
+                    </td>
+                    <td>
+                        @php
+                            $WaivedTestsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                                                                                    ->where('VendorName', $Vendor->VendorName)
+                                                                                    ->count();
+                        @endphp
+                        <p class="WaivedTestsForEachVendor">{{ $WaivedTestsForEachVendor }}</p>
                     </td>
                 </tr>  
                 @endforeach 
