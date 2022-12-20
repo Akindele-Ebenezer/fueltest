@@ -595,7 +595,7 @@ section {
 
             &.other-tables {
                 height: 53vh;
-                overflow-x: hidden;
+                overflow-x: auto;
             }
 
             .links {
@@ -605,6 +605,7 @@ section {
                 margin: unset;
                 overflow: hidden;
                 padding: .5rem;
+                width: unset;
 
                 nav {
                     display: unset;

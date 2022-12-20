@@ -1297,7 +1297,7 @@ section.previous-records .table {
 }
 section.previous-records .table.other-tables {
   height: 53vh;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 section.previous-records .table .links {
   background: #fff;
@@ -1306,6 +1306,7 @@ section.previous-records .table .links {
   margin: unset;
   overflow: hidden;
   padding: 0.5rem;
+  width: unset;
 }
 section.previous-records .table .links nav {
   display: unset;

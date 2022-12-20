@@ -94,6 +94,15 @@
                     <th class="Waived resizable"> 
                         Waived                       
                     </th>
+                    <th class="Supplies resizable"> 
+                        Supplies                       
+                    </th>
+                    <th class="FirstSupplyDate resizable"> 
+                        First Supply Date                       
+                    </th>
+                    <th class="LastSupplyDate resizable"> 
+                        Last Supply Date                       
+                    </th>
                 </tr>  
                 @if($number_of_vendors == 0)
                 <tr>
@@ -137,7 +146,8 @@
                     </td>
                     <td>
                         @php
-                            $ApprovedTestsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                            $ApprovedTestsForEachVendor = App\Models\FuelTestRecord::select('id')
+                                                                                    ->where('ApprovalForUse', 'APPROVED')
                                                                                     ->where('VendorName', $Vendor->VendorName)
                                                                                     ->count();
                         @endphp
@@ -145,7 +155,8 @@
                     </td>
                     <td>
                         @php
-                            $FailedTestsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                            $FailedTestsForEachVendor = App\Models\FuelTestRecord::select('id')
+                                                                                    ->where('ApprovalForUse', 'REJECTED')
                                                                                     ->where('VendorName', $Vendor->VendorName)
                                                                                     ->count();
                         @endphp
@@ -153,11 +164,37 @@
                     </td>
                     <td>
                         @php
-                            $WaivedTestsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                            $WaivedTestsForEachVendor = App\Models\FuelTestRecord::select('id')
+                                                                                    ->where('ApprovalForUse', 'WAIVED')
                                                                                     ->where('VendorName', $Vendor->VendorName)
                                                                                     ->count();
                         @endphp
                         <p class="WaivedTestsForEachVendor">{{ $WaivedTestsForEachVendor }}</p>
+                    </td>
+                    <td>
+                        @php
+                            $TotalTestsForEachVendor = App\Models\FuelTestRecord::select('SampleCollectionDate')
+                                                                                    ->where('VendorName', $Vendor->VendorName)
+                                                                                    ->count();
+                        @endphp
+                        <p class="TotalTestsForEachVendor">{{ $TotalTestsForEachVendor }}</p>
+                    </td>
+                    <td>
+                        @php
+                            $FirstSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')
+                                                                                    ->where('VendorName', $Vendor->VendorName) 
+                                                                                    ->first();
+                        @endphp
+                        <p class="FirstSupplyDate">{{ empty($FirstSupplyDate->SampleCollectionDate) ? 'No Supplies' : $FirstSupplyDate->SampleCollectionDate }}</p>
+                    </td>
+                    <td>
+                        @php
+                            $LastSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')
+                                                                                    ->where('VendorName', $Vendor->VendorName)
+                                                                                    ->orderBy('SampleCollectionDate', 'DESC') 
+                                                                                    ->first();
+                        @endphp
+                        <p class="LastSupplyDate">{{ empty($LastSupplyDate->SampleCollectionDate) ? 'No Supplies' : $LastSupplyDate->SampleCollectionDate }}</p>
                     </td>
                 </tr>  
                 @endforeach 
