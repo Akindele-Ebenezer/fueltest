@@ -190,24 +190,24 @@ section {
                             background: $green;
                             border-radius: 0.2rem;
                             color: white;
-                            padding: 0 0.3rem;
-                            width: fit-content;
+                            padding: 0 0.3rem; 
+                            text-align: center;
                         }
 
                         .FailedTestsForEachVendor {
                             background: $red;
                             border-radius: 0.2rem;
                             color: white;
-                            padding: 0 0.3rem;
-                            width: fit-content;
+                            padding: 0 0.3rem; 
+                            text-align: center;
                         }
 
                         .WaivedTestsForEachVendor {
-                            background: rgb(156, 156, 0);
+                            background: #888;
                             border-radius: 0.2rem;
                             color: white;
-                            padding: 0 0.3rem;
-                            width: fit-content;
+                            padding: 0 0.3rem; 
+                            text-align: center;
                         }
 
                         &.status {

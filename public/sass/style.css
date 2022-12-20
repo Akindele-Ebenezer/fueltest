@@ -983,21 +983,21 @@ section.previous-records table.vendors tr td .ApprovedTestsForEachVendor, sectio
   border-radius: 0.2rem;
   color: white;
   padding: 0 0.3rem;
-  width: fit-content;
+  text-align: center;
 }
 section.previous-records table.vendors tr td .FailedTestsForEachVendor, section.previous-records table.users tr td .FailedTestsForEachVendor {
   background: #ff1a1a;
   border-radius: 0.2rem;
   color: white;
   padding: 0 0.3rem;
-  width: fit-content;
+  text-align: center;
 }
 section.previous-records table.vendors tr td .WaivedTestsForEachVendor, section.previous-records table.users tr td .WaivedTestsForEachVendor {
-  background: rgb(156, 156, 0);
+  background: #888;
   border-radius: 0.2rem;
   color: white;
   padding: 0 0.3rem;
-  width: fit-content;
+  text-align: center;
 }
 section.previous-records table.vendors tr td.status, section.previous-records table.users tr td.status {
   text-align: center;
