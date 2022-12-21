@@ -338,7 +338,7 @@
 let FuelTestResults = new Chart("myChart", {
     type: "horizontalBar",
     data: {
-            labels: ["Failed", "Passed", "Waived",/* @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif */ "Previous Records", "Total Records"],
+            labels: ["Failed", "Passed", "Waived",/* @if(!(isset($_GET['GenerateChartForCurrentVendor']))) "Diff", @endif */ "My Records", "Total Records"],
             datasets: [{
                 backgroundColor: [
                     'rgb(255, 30, 30, 0.3)',
