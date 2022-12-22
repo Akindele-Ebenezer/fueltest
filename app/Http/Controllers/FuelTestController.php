@@ -34,7 +34,7 @@ class FuelTestController extends Controller
         $name = Session::get('name');
         $email = Session::get('email');
         $header_info = "ID : [" . $id . "] Email : " . $email;
-        $sample_no = date('Ymd') . $id . 0; 
+        $sample_no = date('Ymd') . $id .  date("his"); 
 
         $fuel_test_users = DB::table('fuel_test_users')->paginate(14);
         $number_of_fuel_test_users = count($fuel_test_users);

@@ -16,9 +16,9 @@
         'December',
     ];
 
-    $TotalNumberOfRecordsForEachMonth = [0]; 
-    $TotalNumberOfRecordsForEachMonth_ = [0]; 
-    $PercentageOfAllRecordsForEachMonth = [0]; 
+    $TotalNumberOfRecordsForEachMonth           = [0]; 
+    $TotalNumberOfRecordsForEachMonth_          = [0]; 
+    $PercentageOfAllRecordsForEachMonth         = [0]; 
     $AbsolutePercentageOfAllRecordsForEachMonth = [0]; 
 
     for ($i = 1; $i < count($MonthNames); $i++) {
@@ -30,6 +30,7 @@
         }
          
         $AbsoluteMonthNumber = $i;  
+        
          
         ${"FirstDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-01'); 
         ${"LastDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , 2022));
