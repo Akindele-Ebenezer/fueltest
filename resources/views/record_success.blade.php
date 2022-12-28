@@ -23,7 +23,7 @@
             <br><br>
             <ul>
                 <li> <a href="/FuelTest">Insert New Record.</a> </li>
-                <li> <a href="/PreviousRecords"> Edit Previous Records.</a> </li>
+                <li> <a href="/PreviousRecords"> Edit My Records.</a> </li>
             </ul>
         </div> 
 

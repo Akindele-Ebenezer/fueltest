@@ -105,3 +105,27 @@ for (let i = 0; i < CheckBoxInput.length; i++) {
         } 
     });
 }  
+
+let DeleteButton = document.querySelector('.delete-button');
+let CheckedRecords_IDs = document.querySelector('.CheckedRecords_IDs');
+let CheckedRecords_IDs_FORM = document.querySelector('.CheckedRecords_IDs_FORM');
+let DeleteRecords__FORM = document.querySelector('.DeleteRecords__FORM');
+let CheckedRecords = document.querySelectorAll('section.previous-records table tr td input[name="DeleteRecord"]');
+let CheckedRecordsArr = [];
+let Forms = document.querySelectorAll('form');
+
+DeleteButton.addEventListener('click', () => {
+    for (let i = 0; i < Forms.length; i++) {
+        console.log(Forms[i]);
+    }
+
+    CheckedRecords.forEach((CheckedRecord) => {
+        if(CheckedRecord.checked) {
+            // CheckedRecordsArr.push(CheckedRecord.value);
+            // CheckedRecords_IDs.value = CheckedRecordsArr;
+            // console.log(CheckedRecordsArr);
+            // CheckedRecords_IDs_FORM.submit();
+            // DeleteRecords__FORM.submit();
+        }
+    });
+})

@@ -35,6 +35,15 @@ class VendorController extends Controller
                 'ErrorMessage' => Session::get('ErrorMessage'),   
             ];
  
+            if(isset($_GET['Delete_'])) {
+                $CheckedVendorsToDelete[] = $_GET['DeleteVendor'];
+                
+                foreach ($CheckedVendorsToDelete as $Vendor) {
+                    $DeleteCheckedVendors = Vendor::whereIn('id', $Vendor)->delete();
+                }
+                return redirect()->back(); 
+            }
+
             if (isset($_GET['Search'])) {
 
                 $SearchValue = trim($_GET['SearchValue']);

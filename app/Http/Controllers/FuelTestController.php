@@ -13,7 +13,8 @@ use App\Exports\FuelTestsExport;
 use Maatwebsite\Excel\Facades\Excel; 
 use Illuminate\Support\Carbon;
 use DateTime;
-use App\Charts\FuelTestStats; 
+use App\Charts\FuelTestStats;
+use Illuminate\Support\Facades\URL; 
 
 class FuelTestController extends Controller
 {
@@ -797,6 +798,19 @@ class FuelTestController extends Controller
                 }
             }
 
+            if(isset($_GET['Delete_'])) { 
+                if(empty($_GET['DeleteRecord'])) {
+                    return redirect()->back();  
+                }
+
+                $CheckedRecordsToDelete[] = $_GET['DeleteRecord'];
+                    
+                foreach ($CheckedRecordsToDelete as $Record) {
+                    $DeleteCheckedRecords = FuelTestRecord::whereIn('id', $Record)->delete();
+                } 
+                return redirect()->back();  
+            } 
+            
             if (isset($_GET['Search'])) {
 
                 $SearchValue = trim($_GET['SearchValue']);
@@ -2852,6 +2866,19 @@ class FuelTestController extends Controller
 
             }
 
+            if(isset($_GET['Delete_'])) { 
+                if(empty($_GET['DeleteRecord'])) {
+                    return redirect()->back();  
+                }
+
+                $CheckedRecordsToDelete[] = $_GET['DeleteRecord'];
+                    
+                foreach ($CheckedRecordsToDelete as $Record) {
+                    $DeleteCheckedRecords = FuelTestRecord::whereIn('id', $Record)->delete();
+                } 
+                return redirect()->back();  
+            } 
+ 
             if (isset($_GET['Clear'])) {
                 return redirect('/PreviousRecords');
             }

@@ -13,13 +13,14 @@
     <section class="previous-records">
         @include('PageTitleForRecords')
         <div class="table">
+            <form class="DeleteRecords_" action="">
             <table>
                 <tr> 
                     <th class="resizable">Days/Weeks/Months </th> 
                     <th class="resizable">Sample No.
                     <form action="" method="get">
                         <label>
-                            <input type="submit" name="SortBySampleNo">
+                            <input type="submit" name="SortBySampleNo" class="hide">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"/></svg>
                         </label>
                     </form>    
@@ -67,6 +68,11 @@
                             </form>
                         </ul>
                     </div></th>
+                    @if(Session::get('Role') === 'ADMIN') 
+                    <th class="resizable">
+                        Action
+                    </th>
+                    @endif
                     <th class="resizable">Sample Collection Date 
                     <form action="" method="get">
                         <label>
@@ -569,6 +575,11 @@
                                 @include('SwitchCases.SwitchCasesForVendors')  
                             </section>
                         </td>
+                        @if(Session::get('Role') === 'ADMIN') 
+                        <td class="action"> 
+                            <input type="checkbox" name="DeleteRecord[]" value="{{ $record->id }}">
+                        </td>
+                        @endif
                         <td class="sample-collection-date">{{ $record->SampleCollectionDate }} ({{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }})</td>
                         <td class="truck-plate-no">{{ $record->TruckPlateNo }}</td>
                         <td class="tank-no">{{ $record->TankNo }}</td>
@@ -589,6 +600,10 @@
                     {{ $all_records->onEachSide(1)->links() }}   
                 </div>   
             </table> 
+            @if(Session::get('Role') === 'ADMIN') 
+            <button type="submit" name="Delete_">Delete</button>
+            @endif
+            </form>
         </div>
     </section>
 

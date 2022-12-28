@@ -36,6 +36,15 @@ class FuelTestUserController extends Controller
                 'ErrorMessage' => Session::get('ErrorMessage'),   
             ];
 
+            if(isset($_GET['Delete_'])) {
+                $CheckedUsersToDelete[] = $_GET['DeleteUser'];
+                
+                foreach ($CheckedUsersToDelete as $User) {
+                    $DeleteCheckedUsers = FuelTestUser::whereIn('id', $User)->delete();
+                }
+                return redirect()->back(); 
+            }
+            
             if (isset($_GET['Search'])) {
 
                 $SearchValue = trim($_GET['SearchValue']);

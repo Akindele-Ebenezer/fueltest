@@ -1193,6 +1193,7 @@ section.previous-records table tr th .filter ul {
 section.previous-records table tr th .filter ul button {
   padding: unset;
   padding-inline: 1rem;
+  position: unset !important;
   transition: unset;
 }
 section.previous-records table tr th .filter ul button:first-of-type {
@@ -1298,6 +1299,11 @@ section.previous-records .table {
 section.previous-records .table.other-tables {
   height: 53vh;
   overflow-x: auto;
+}
+section.previous-records .table form.DeleteRecords_ button {
+  position: absolute;
+  right: 5rem;
+  top: 10rem;
 }
 section.previous-records .table .links {
   background: #fff;

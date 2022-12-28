@@ -450,6 +450,7 @@ section {
                             button { 
                                 padding: unset;
                                 padding-inline: 1rem;
+                                position: unset !important;
                                 transition: unset;
 
                                 &:first-of-type {
@@ -596,6 +597,16 @@ section {
             &.other-tables {
                 height: 53vh;
                 overflow-x: auto;
+            }
+
+            form {
+                &.DeleteRecords_ {
+                    button {
+                        position: absolute;
+                        right: 5rem;
+                        top: 10rem;
+                    }
+                }
             }
 
             .links {
