@@ -38,6 +38,7 @@ class FuelTestController extends Controller
         $sample_no = date('Ymd') . $id .  date("his"); 
 
         $fuel_test_users = DB::table('fuel_test_users')->paginate(14);
+        $fuel_test_users_absolute = DB::table('fuel_test_users')->get();
         $number_of_fuel_test_users = count($fuel_test_users);
         $number_of_fuel_test_users_absolute = FuelTestUser::count();
 
@@ -212,6 +213,7 @@ class FuelTestController extends Controller
             'vendors' => $vendors,
             'absolute_vendors' => $absolute_vendors,
             'fuel_test_users' => $fuel_test_users,
+            'fuel_test_users_absolute' => $fuel_test_users_absolute,
             'number_of_fuel_test_users' => $number_of_fuel_test_users,
             'number_of_all_records' => $number_of_all_records,
             'number_of_previous_records' => $number_of_previous_records,

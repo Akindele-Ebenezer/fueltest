@@ -4,7 +4,12 @@ section {
 
         .add-vendor,
         .add-user {
-            margin: 3rem 3rem 0;
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            margin-left: 1rem;
+            padding: 1em;
 
             form { 
                 color: $color-2;
@@ -17,6 +22,10 @@ section {
                     margin-bottom: 1rem;
                     outline: none;
                     padding: 1rem; 
+                }
+
+                select {
+                    margin-inline: 1rem;
                 }
             }
         }

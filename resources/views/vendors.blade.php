@@ -13,10 +13,8 @@
         @if(Session::get('Role') === 'ADMIN') 
         <section class="add-vendor">
             <form action="/AddVendor" method="post"> @csrf 
-                <label for="VendorNo">Vendor No.</label>
-                <input type="number" name="VendorNo">
-                <label for="VendorName">Vendor Name</label>
-                <input type="text" name="VendorName"> 
+                <input type="number" placeholder="Vendor No.." name="VendorNo">
+                <input type="text" placeholder="Vendor Name.." name="VendorName"> 
                 <button>Add Vendor</button>
             </form>
         </section>

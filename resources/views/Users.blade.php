@@ -11,14 +11,10 @@
         <section class="add-user">
             <p class="error-message">{{ $ErrorMessage }}</p>
             <form action="/AddUser" method="post"> @csrf 
-                <label for="Name">Name</label>
-                <input type="text" name="Name">
-                <label for="Email">Email</label>
-                <input type="email" name="Email"> 
-                <label for="Password">Password</label>
-                <input type="password" name="Password"> 
+                <input type="text" placeholder="Username.." name="Name">
+                <input type="email" placeholder="Email.." name="Email"> 
+                <input type="password" placeholder="Password.." name="Password"> 
                 <br>
-                <label for="Role">Role</label>
                 <select name="Role">
                     <option value="Assign Role..">Assign Role..</option>
                     <option value="ADMIN">ADMIN</option>

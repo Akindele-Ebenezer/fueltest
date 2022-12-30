@@ -424,6 +424,13 @@ section.fuel-test .fuel-test-left-nav ul li.active-dashboard {
   border-left: 7px solid;
   border-radius: 0 0.5rem 1rem 0;
 }
+section.fuel-test .fuel-test-left-nav ul li em {
+  background: rgba(43, 168, 145, 0.8);
+  border-radius: 0.2rem;
+  font-style: unset;
+  margin-right: 1em;
+  padding: 0 0.3rem;
+}
 section.fuel-test .fuel-test-left-nav ul li svg {
   fill: #f4d4aa;
   height: 1.4rem;
@@ -627,7 +634,6 @@ section.fuel-test .fuel-test-main .form form {
 section.fuel-test .fuel-test-main .form input,
 section.fuel-test .fuel-test-main .form h3 {
   border: 1px solid #ccc;
-  border-radius: 0.5rem 1rem;
   color: #483434;
   outline: none;
   padding: 1rem;
@@ -833,7 +839,12 @@ section.previous-records {
 }
 section.previous-records .add-vendor,
 section.previous-records .add-user {
-  margin: 3rem 3rem 0;
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  margin-left: 1rem;
+  padding: 1em;
 }
 section.previous-records .add-vendor form,
 section.previous-records .add-user form {
@@ -848,6 +859,10 @@ section.previous-records .add-user form input {
   margin-bottom: 1rem;
   outline: none;
   padding: 1rem;
+}
+section.previous-records .add-vendor form select,
+section.previous-records .add-user form select {
+  margin-inline: 1rem;
 }
 section.previous-records .date {
   height: unset;
