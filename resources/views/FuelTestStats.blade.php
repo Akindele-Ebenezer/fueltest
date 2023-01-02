@@ -41,7 +41,7 @@
         </div>
     @endisset 
     <div class="fuel-test-dashboard-inner filter-vendor-stats">
-        <form action="" method="get">
+        <form action="#DieselTestAnalysis" method="get">
             <p>(Filter Test Analysis) || From : <input type="date" name="VendorStatsFrom"></p>
             <p>To : <input type="date" name="VendorStatsTo"></p>
             <section>
@@ -61,7 +61,7 @@
             <p><center>Showing Test ANALYSIS for VENDORS by Filtered Date from {{ $VendorStatsFrom }} to {{ $VendorStatsTo }}.</center></p>
         @endif
     </div>             
-    <div id="fuel-test-dashboard" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}"> 
+    <div id="fuel-test-dashboard" id="DieselTestAnalysis" class="{{ isset($_GET['RevealVendors']) ? 'reveal-vendors-padding-top' : '' }}"> 
         @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
             <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }} {{ isset($_GET['GenerateChartForCurrentVendor']) ? '' : 'analysis' }}"> 
                 <canvas width="1000" height="550" id="myChart6" class="{{ $Visibility }}"></canvas> 
