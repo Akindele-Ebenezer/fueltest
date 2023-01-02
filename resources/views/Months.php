@@ -30,12 +30,28 @@
         }
          
         $AbsoluteMonthNumber = $i;  
-        
+        $Year_ = date('Y');
+        $Years = range(2000, strftime("%Y", time()));
          
         ${"FirstDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-01'); 
-        ${"LastDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , 2022));
- 
-        if (isset($_GET['GenerateChartForCurrentVendor'])) {
+        ${"LastDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , date('Y')));
+// ///////////////////////
+           if(isset($_GET['GetYearlyReport'])) {
+               $Year_ = $_GET['Year'];
+
+               if($Year_ === 'Select Year') {
+                    $Year_ = date('Y'); 
+               }
+
+                ${"FirstDayOf" . $MonthNames[$i]} = $Year_ . '-' . $MonthNumber . '-01'; 
+                ${"LastDayOf" . $MonthNames[$i]} = $Year_ . '-' . $MonthNumber . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , $Year_);
+           }
+
+           if(isset($_GET['ResetYearlyReport'])) {
+                header('Location: /FuelTestStats');
+           }
+// ///////////////////////
+           if (isset($_GET['GenerateChartForCurrentVendor'])) {
             
             $CurrentVendorNo = $_GET['GenerateChartForCurrentVendor'];
             $CurrentVendorName = App\Models\FuelTestRecord::select('VendorName')

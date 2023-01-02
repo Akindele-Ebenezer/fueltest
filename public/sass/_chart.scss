@@ -2,6 +2,12 @@
     // margin-top: 3rem;
 }
 
+div {
+    &:target {
+      padding-top: 13rem;
+    }
+}
+
 .chart-date {
     top: 6rem;
 } 

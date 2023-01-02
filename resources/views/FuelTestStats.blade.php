@@ -158,12 +158,24 @@
                 </div>
             @endisset
         </div>    
-        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}" id="YearlyReport">
+            <h1>Yearly Report</h1>
+            <form action="#YearlyReport">
+                <select name="Year">
+                    <option>Select Year</option>
+                    @foreach($Years as $Year)
+                        <option value="{{ $Year }}">{{ $Year }}</option>
+                    @endforeach
+                </select>
+                <button name="GetYearlyReport">GO</button>
+                <button name="ResetYearlyReport">Reset</button>
+            </form>
+              
             <!-- <h1>Monthly</h1> refactor -->
             <canvas id="myChart3" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>
-                    <h1>BREAKDOWN</h1>
+                    <h1>BREAKDOWN ({{ $Year_ }})</h1>
                     @for($i = 1; $i < count($MonthNames); $i++)
                         <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[$i], 1) }}%)</span></p> 
                     @endfor 
