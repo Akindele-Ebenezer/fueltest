@@ -158,7 +158,7 @@
                 </div>
             @endisset
         </div>    
-        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}" id="YearlyReport">
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}" id="{{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? '#YearlyReport' : '' }}">
             <h1>Yearly Report</h1>
             <form action="{{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? '#YearlyReport' : '' }}">
                 <select name="Year">
@@ -177,7 +177,7 @@
                 <div>
                     <h1>BREAKDOWN ({{ $Year_ }})</h1>
                     @for($i = 1; $i < count($MonthNames); $i++)
-                        <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span class="Total">{{ $TotalNumberOfRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Passed">{{ $TotalNumberOfApprovedRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllApprovedRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Waved">{{ $TotalNumberOfWaivedRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllWaivedRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Failed">{{ $TotalNumberOfRejectedRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllRejectedRecordsForEachMonth[$i], 1) }}%)</span> </p> 
+                        <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span class="Total">{{ $TotalNumberOfRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Passed">{{ $TotalNumberOfApprovedRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllApprovedRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Waved">{{ $TotalNumberOfWaivedRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllWaivedRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Failed">{{ $TotalNumberOfRejectedRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllRejectedRecordsForEachMonth[$i], 1) }}%)</span> &nbsp;&nbsp; <span class="Diff">{{ $TotalNumberOfDiffRecordsForEachMonth[$i] }} ({{ round($AbsolutePercentageOfAllDiffRecordsForEachMonth[$i], 1) }}%)</span> </p> 
                     @endfor 
                 </div> 
             @endif

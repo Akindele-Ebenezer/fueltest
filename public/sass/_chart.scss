@@ -81,10 +81,17 @@ footer {
 
                 &.Failed,
                 &.Passed,
+                &.Diff,
                 &.Waved {
                     border: 1px solid #eee;
                     padding-inline: 1em;
                     width: 8rem;
+                }
+                
+                &.Diff { 
+                    background: $color-2;
+                    color: #fff;
+                    font-style: italic;
                 }
                 
                 &.Total { 

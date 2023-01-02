@@ -23,10 +23,12 @@
     $TotalNumberOfApprovedRecordsForEachMonth   = [0]; 
     $TotalNumberOfWaivedRecordsForEachMonth     = [0]; 
     $TotalNumberOfRejectedRecordsForEachMonth   = [0]; 
+    $TotalNumberOfDiffRecordsForEachMonth   = [0]; 
 
     $AbsolutePercentageOfAllApprovedRecordsForEachMonth     = [0]; 
     $AbsolutePercentageOfAllWaivedRecordsForEachMonth       = [0]; 
     $AbsolutePercentageOfAllRejectedRecordsForEachMonth     = [0];
+    $AbsolutePercentageOfAllDiffRecordsForEachMonth     = [0];
     
     for ($i = 1; $i < count($MonthNames); $i++) {
         
@@ -281,6 +283,11 @@
                                                                         ->where('ApprovalForUse', 'REJECTED')
                                                                         ->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
                                                                         ->count();
+ 
+            $NumberOfMonthlyRecords_DIFF = \App\Models\FuelTestRecord::select('id')
+                                                                        ->where('ApprovalForUse', NULL)
+                                                                        ->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                                                                        ->count();
 
             ${"PercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords[$i] / $number_of_all_records * 100;  
             ${"AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords[$i] / $number_of_all_records_absolute * 100;          
@@ -288,19 +295,21 @@
             ${"APPROVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_APPROVED / $number_of_all_records_absolute * 100;          
             ${"WAIVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_WAIVED / $number_of_all_records_absolute * 100;          
             ${"REJECTED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_REJECTED / $number_of_all_records_absolute * 100;          
+            ${"DIFF_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_DIFF / $number_of_all_records_absolute * 100;          
     
             array_push($TotalNumberOfRecordsForEachMonth, $NumberOfMonthlyRecords[$i]);
             array_push($TotalNumberOfApprovedRecordsForEachMonth, $NumberOfMonthlyRecords_APPROVED);
             array_push($TotalNumberOfWaivedRecordsForEachMonth, $NumberOfMonthlyRecords_WAIVED);
             array_push($TotalNumberOfRejectedRecordsForEachMonth, $NumberOfMonthlyRecords_REJECTED);
+            array_push($TotalNumberOfDiffRecordsForEachMonth, $NumberOfMonthlyRecords_DIFF);
             array_push($PercentageOfAllRecordsForEachMonth, ${"PercentageOfAllRecordsIn" . $MonthNames[$i]});
             array_push($AbsolutePercentageOfAllRecordsForEachMonth, ${"AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]}); 
 
             array_push($AbsolutePercentageOfAllApprovedRecordsForEachMonth, ${"APPROVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});        
             array_push($AbsolutePercentageOfAllWaivedRecordsForEachMonth, ${"WAIVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});        
             array_push($AbsolutePercentageOfAllRejectedRecordsForEachMonth, ${"REJECTED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});    
+            array_push($AbsolutePercentageOfAllDiffRecordsForEachMonth, ${"DIFF_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});    
             
-
         }
  
     }    
