@@ -78,6 +78,18 @@ footer {
                 &.Failed { color:rgb(255, 30, 30, 0.8); }     
                 &.Passed { color:rgba(58, 204, 177, 0.8); } 
                 &.Waved { color:rgba(173, 173, 49, 0.95); } 
+
+                &.Failed,
+                &.Passed,
+                &.Waved {
+                    border: 1px solid #eee;
+                    padding-inline: 1em;
+                    width: 8rem;
+                }
+                
+                &.Total { 
+                    width: 6rem;
+                }
             }
         }
     }
