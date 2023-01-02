@@ -158,7 +158,7 @@
                 </div>
             @endisset
         </div>    
-        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}" id="{{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? '#YearlyReport' : '' }}">
+        <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}" id="YearlyReport">
             <h1>Yearly Report</h1>
             <form action="{{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? '#YearlyReport' : '' }}">
                 <select name="Year">
