@@ -18,17 +18,26 @@
 
     $TotalNumberOfRecordsForEachMonth           = [0]; 
     $TotalNumberOfRecordsForEachMonth_          = [0]; 
+    $TotalNumberOfApprovedRecordsForEachMonth_  = [0]; 
+    $TotalNumberOfWaivedRecordsForEachMonth_    = [0]; 
+    $TotalNumberOfRejectedRecordsForEachMonth_  = [0]; 
+    $TotalNumberOfDiffRecordsForEachMonth_      = [0]; 
     $PercentageOfAllRecordsForEachMonth         = [0];  
     $AbsolutePercentageOfAllRecordsForEachMonth = [0]; 
     $TotalNumberOfApprovedRecordsForEachMonth   = [0]; 
     $TotalNumberOfWaivedRecordsForEachMonth     = [0]; 
     $TotalNumberOfRejectedRecordsForEachMonth   = [0]; 
-    $TotalNumberOfDiffRecordsForEachMonth   = [0]; 
+    $TotalNumberOfDiffRecordsForEachMonth       = [0]; 
 
     $AbsolutePercentageOfAllApprovedRecordsForEachMonth     = [0]; 
     $AbsolutePercentageOfAllWaivedRecordsForEachMonth       = [0]; 
     $AbsolutePercentageOfAllRejectedRecordsForEachMonth     = [0];
-    $AbsolutePercentageOfAllDiffRecordsForEachMonth     = [0];
+    $AbsolutePercentageOfAllDiffRecordsForEachMonth         = [0];
+
+    $AbsolutePercentageOfAllApprovedRecordsForEachMonth_    = [0]; 
+    $AbsolutePercentageOfAllWaivedRecordsForEachMonth_      = [0]; 
+    $AbsolutePercentageOfAllRejectedRecordsForEachMonth_    = [0];
+    $AbsolutePercentageOfAllDiffRecordsForEachMonth_        = [0];
     
     for ($i = 1; $i < count($MonthNames); $i++) {
         
@@ -42,6 +51,8 @@
         $Year_ = date('Y');
         $Years = range(2000, strftime("%Y", time()));
          
+        // ${"FirstDayOf" . $MonthNames[$i]} = date('2022-' . $MonthNumber . '-01'); 
+        // ${"LastDayOf" . $MonthNames[$i]} = date('2022-' . $MonthNumber . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , date('2022')));
         ${"FirstDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-01'); 
         ${"LastDayOf" . $MonthNames[$i]} = date('Y-' . $MonthNumber . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , date('Y')));
 // ///////////////////////
@@ -66,7 +77,7 @@
             $CurrentVendorName = App\Models\FuelTestRecord::select('VendorName')
                                                             ->where('VendorNo', $CurrentVendorNo) 
                                                             ->first();
-
+ 
             if($CurrentVendorName == null) {  
 
                 $CurrentVendorName = '<big style="color: red; font-family: arial;">This Vendor has NO RECORDS yet !</big>';  
@@ -83,6 +94,40 @@
 
             } else {
                     
+                $CurrentVendor_NumberOfMonthlyRecords_APPROVED = \App\Models\FuelTestRecord::select('id')
+                            ->where('ApprovalForUse', 'APPROVED')
+                            ->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                            ->where('VendorNo', $CurrentVendorNo)
+                            ->count();
+
+                $CurrentVendor_NumberOfMonthlyRecords_WAIVED = \App\Models\FuelTestRecord::select('id')
+                            ->where('ApprovalForUse', 'WAIVED')
+                            ->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                            ->where('VendorNo', $CurrentVendorNo)
+                            ->count();
+
+                $CurrentVendor_NumberOfMonthlyRecords_REJECTED = \App\Models\FuelTestRecord::select('id')
+                            ->where('ApprovalForUse', 'REJECTED')
+                            ->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                            ->where('VendorNo', $CurrentVendorNo)
+                            ->count();
+
+                $CurrentVendor_NumberOfMonthlyRecords_DIFF = \App\Models\FuelTestRecord::select('id')
+                            ->where('ApprovalForUse', NULL)
+                            ->whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                            ->where('VendorNo', $CurrentVendorNo)
+                            ->count();
+
+                ${"CurrentVendor_APPROVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $CurrentVendor_NumberOfMonthlyRecords_APPROVED / $number_of_all_records_absolute * 100;          
+                ${"CurrentVendor_WAIVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $CurrentVendor_NumberOfMonthlyRecords_WAIVED / $number_of_all_records_absolute * 100;          
+                ${"CurrentVendor_REJECTED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $CurrentVendor_NumberOfMonthlyRecords_REJECTED / $number_of_all_records_absolute * 100;          
+                ${"CurrentVendor_DIFF_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $CurrentVendor_NumberOfMonthlyRecords_DIFF / $number_of_all_records_absolute * 100;          
+       
+                array_push($AbsolutePercentageOfAllApprovedRecordsForEachMonth_, ${"CurrentVendor_APPROVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});        
+                array_push($AbsolutePercentageOfAllWaivedRecordsForEachMonth_, ${"CurrentVendor_WAIVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});        
+                array_push($AbsolutePercentageOfAllRejectedRecordsForEachMonth_, ${"CurrentVendor_REJECTED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});    
+                array_push($AbsolutePercentageOfAllDiffRecordsForEachMonth_, ${"CurrentVendor_DIFF_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});    
+
                 $FirstSupplyDate = App\Models\FuelTestRecord::select('SampleCollectionDate')                                                                
                                                             ->where('VendorNo', $CurrentVendorNo)
                                                             ->first(); 
@@ -103,8 +148,32 @@
                                                                         ->where('VendorNo', $CurrentVendorNo) 
                                                                         ->count(); 
 
+                $NumberOfApprovedRecordsForEachMonth_ = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                                                                        ->where('VendorNo', $CurrentVendorNo) 
+                                                                        ->where('ApprovalForUse', 'APPROVED') 
+                                                                        ->count(); 
+
+                $NumberOfWaivedRecordsForEachMonth_ = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                                                                        ->where('VendorNo', $CurrentVendorNo) 
+                                                                        ->where('ApprovalForUse', 'WAIVED') 
+                                                                        ->count(); 
+
+                $NumberOfRejectedRecordsForEachMonth_ = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                                                                        ->where('VendorNo', $CurrentVendorNo) 
+                                                                        ->where('ApprovalForUse', 'REJECTED') 
+                                                                        ->count(); 
+
+                $NumberOfDiffRecordsForEachMonth_ = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [${"FirstDayOf" . $MonthNames[$i]}, ${"LastDayOf" . $MonthNames[$i]}])
+                                                                        ->where('VendorNo', $CurrentVendorNo) 
+                                                                        ->where('ApprovalForUse', NULL) 
+                                                                        ->count(); 
+
                 array_push($TotalNumberOfRecordsForEachMonth_, $NumberOfMonthlyRecords[$i]);
-                // echo $MonthNames[$i] . ' ......';
+                array_push($TotalNumberOfApprovedRecordsForEachMonth_, $NumberOfApprovedRecordsForEachMonth_);
+                array_push($TotalNumberOfWaivedRecordsForEachMonth_, $NumberOfWaivedRecordsForEachMonth_);
+                array_push($TotalNumberOfRejectedRecordsForEachMonth_, $NumberOfRejectedRecordsForEachMonth_);
+                array_push($TotalNumberOfDiffRecordsForEachMonth_, $NumberOfDiffRecordsForEachMonth_);
+                 
                 ${"PercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords[$i] / $number_of_all_records * 100;      
  
                 $CurrentVendorName = $CurrentVendorName->VendorName;
@@ -296,7 +365,7 @@
             ${"WAIVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_WAIVED / $number_of_all_records_absolute * 100;          
             ${"REJECTED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_REJECTED / $number_of_all_records_absolute * 100;          
             ${"DIFF_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]} = $NumberOfMonthlyRecords_DIFF / $number_of_all_records_absolute * 100;          
-    
+
             array_push($TotalNumberOfRecordsForEachMonth, $NumberOfMonthlyRecords[$i]);
             array_push($TotalNumberOfApprovedRecordsForEachMonth, $NumberOfMonthlyRecords_APPROVED);
             array_push($TotalNumberOfWaivedRecordsForEachMonth, $NumberOfMonthlyRecords_WAIVED);
@@ -309,6 +378,7 @@
             array_push($AbsolutePercentageOfAllWaivedRecordsForEachMonth, ${"WAIVED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});        
             array_push($AbsolutePercentageOfAllRejectedRecordsForEachMonth, ${"REJECTED_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});    
             array_push($AbsolutePercentageOfAllDiffRecordsForEachMonth, ${"DIFF_AbsolutePercentageOfAllRecordsIn" . $MonthNames[$i]});    
+
             
         }
  

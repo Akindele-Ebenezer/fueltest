@@ -160,15 +160,16 @@
         </div>    
         <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}" id="YearlyReport">
             <h1>Yearly Report</h1>
-            <form action="{{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? '#YearlyReport' : '' }}">
+            <form action="{{ !(isset($_GET['GenerateChartForCurrentVendor'])) ? '#YearlyReport' : '' }}{{ isset($_GET['GenerateChartForCurrentVendor']) ? $_SERVER['REQUEST_URI'] : '' }}">
                 <select name="Year">
                     <option>Select Year</option>
                     @foreach($Years as $Year)
                         <option value="{{ $Year }}">{{ $Year }}</option>
                     @endforeach
                 </select>
-                <button name="GetYearlyReport">GO</button>
-                <button name="ResetYearlyReport">Reset</button>
+                <button name="{{ isset($_GET['GenerateChartForCurrentVendor']) ? 'GetYearlyReportForCurrentVendor' : 'GetYearlyReport' }}">GO</button>
+                <button name="{{ isset($_GET['GenerateChartForCurrentVendor']) ? 'ResetYearlyReportForCurrentVendor' : 'ResetYearlyReport' }}">Reset</button>
+                <input type="hidden" name="YearForCurrentVendor" value="{{ isset($_GET['GenerateChartForCurrentVendor']) AND isset($_GET['GetYearlyReportForCurrentVendor']) ? $_GET['Year'] : '' }}">
             </form>
               
             <!-- <h1>Monthly</h1> refactor -->
@@ -185,7 +186,7 @@
                 <div>
                     <h1>BREAKDOWN</h1>
                     @for($i = 1; $i < count($MonthNames); $i++)
-                        <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span>{{ $TotalNumberOfRecordsForEachMonth_[$i] }} ({{ round(${"PercentageOfAllRecordsIn" . $MonthNames[$i]}, 1) }}%)</span></p> 
+                        <p><span>{{ $MonthNames[$i] }}</span> => &nbsp;&nbsp; <span class="Total">{{ $TotalNumberOfRecordsForEachMonth_[$i] }} ({{ round(${"PercentageOfAllRecordsIn" . $MonthNames[$i]}, 1) }}%)</span> &nbsp;&nbsp; <span class="Passed">{{ $TotalNumberOfApprovedRecordsForEachMonth_[$i] }} ({{ round($AbsolutePercentageOfAllApprovedRecordsForEachMonth_[$i], 1) }}%)</span>  &nbsp;&nbsp; <span class="Waved">{{ $TotalNumberOfWaivedRecordsForEachMonth_[$i] }} ({{ round($AbsolutePercentageOfAllWaivedRecordsForEachMonth_[$i], 1) }}%)</span>  &nbsp;&nbsp; <span class="Failed">{{ $TotalNumberOfRejectedRecordsForEachMonth_[$i] }} ({{ round($AbsolutePercentageOfAllRejectedRecordsForEachMonth_[$i], 1) }}%)</span>  &nbsp;&nbsp; <span class="Diff">{{ $TotalNumberOfDiffRecordsForEachMonth_[$i] }} ({{ round($AbsolutePercentageOfAllDiffRecordsForEachMonth_[$i], 1) }}%)</span> </p> 
                     @endfor  
                     <p><span>Identification No.</span> => &nbsp;&nbsp; <span>{{ $CurrentVendorNo }}</span></p>
                     <p><span>First Supply Date *</span> => &nbsp;&nbsp; <span>{{ $FirstSupplyDate }}</span></p>
