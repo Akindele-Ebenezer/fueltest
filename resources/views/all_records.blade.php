@@ -461,14 +461,61 @@
                         @if($record->SampleCollectionDate === date('Y-m-d', strtotime("-1 day")))
                             <tr class="Yesterday history">
                                 @php
+                                    $NumberOfApprovedRecordsYesterday = \App\Models\FuelTestRecord::select('id')
+                                                                                                    ->where('ApprovalForUse', 'APPROVED')
+                                                                                                    ->where('SampleCollectionDate', date('Y-m-d', strtotime("-1 day")))
+                                                                                                    ->count();
+                                                                                                    
+                                    $NumberOfWaivedRecordsYesterday = \App\Models\FuelTestRecord::select('id')
+                                                                                                    ->where('ApprovalForUse', 'WAIVED')
+                                                                                                    ->where('SampleCollectionDate', date('Y-m-d', strtotime("-1 day")))
+                                                                                                    ->count();
+                                                                                                    
+                                    $NumberOfRejectedRecordsYesterday = \App\Models\FuelTestRecord::select('id')
+                                                                                                    ->where('ApprovalForUse', 'REJECTED')
+                                                                                                    ->where('SampleCollectionDate', date('Y-m-d', strtotime("-1 day")))
+                                                                                                    ->count();
+
+                                    $NumberOfRecordsYesterday = $NumberOfApprovedRecordsYesterday + $NumberOfWaivedRecordsYesterday + $NumberOfRejectedRecordsYesterday;
+
+                                    $PercentageOfApprovedRecordsYesterday = $NumberOfApprovedRecordsYesterday / $NumberOfRecordsYesterday * 100;
+                                    $PercentageOfWaivedRecordsYesterday = $NumberOfWaivedRecordsYesterday / $NumberOfRecordsYesterday * 100;
+                                    $PercentageOfRejectedRecordsYesterday = $NumberOfRejectedRecordsYesterday / $NumberOfRecordsYesterday * 100;
+                                @endphp
+                                @php
                                     
                                      $number_of_yesterdays_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-1 day")))
                                                                                                 ->count();
 
                                 @endphp
-                                <td>Yesterday <span></span></td>  
+                                <td>Yesterday <span>{{ $NumberOfRecordsYesterday }} (100%)</span> </td> 
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsYesterday }} ({{ round($PercentageOfApprovedRecordsYesterday, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsYesterday }} ({{ round($PercentageOfWaivedRecordsYesterday, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsYesterday }} ({{ round($PercentageOfRejectedRecordsYesterday, 1) }})%</em></td> 
                             </tr> 
                         @elseif($record->SampleCollectionDate === date('Y-m-d'))
+                        @php
+                            $NumberOfApprovedRecordsToday = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d'))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsToday = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d'))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsToday = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d'))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsToday = $NumberOfApprovedRecordsToday + $NumberOfWaivedRecordsToday + $NumberOfRejectedRecordsToday;
+
+                            $PercentageOfApprovedRecordsToday = $NumberOfApprovedRecordsToday / $NumberOfRecordsToday * 100;
+                            $PercentageOfWaivedRecordsToday = $NumberOfWaivedRecordsToday / $NumberOfRecordsToday * 100;
+                            $PercentageOfRejectedRecordsToday = $NumberOfRejectedRecordsToday / $NumberOfRecordsToday * 100;
+                        @endphp
                             <tr class="Today history">
                                 @php
                                     
@@ -476,51 +523,329 @@
                                                                                             ->count();
 
                                 @endphp
-                                <td>Today <span>{{ $number_of_todays_records }}</span></td>
+                                <td>Today <span>{{ $number_of_todays_records }} (100%)</span></td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsToday }} ({{ round($PercentageOfApprovedRecordsToday, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsToday }} ({{ round($PercentageOfWaivedRecordsToday, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsToday }} ({{ round($PercentageOfRejectedRecordsToday, 1) }})%</em></td> 
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-2 day")))
+                        @php
+                            $NumberOfApprovedRecordsTwoDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-2 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsTwoDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-2 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsTwoDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-2 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsTwoDaysAgo = $NumberOfApprovedRecordsTwoDaysAgo + $NumberOfWaivedRecordsTwoDaysAgo + $NumberOfRejectedRecordsTwoDaysAgo;
+
+                            $PercentageOfApprovedRecordsTwoDaysAgo = $NumberOfApprovedRecordsTwoDaysAgo / $NumberOfRecordsTwoDaysAgo * 100;
+                            $PercentageOfWaivedRecordsTwoDaysAgo = $NumberOfWaivedRecordsTwoDaysAgo / $NumberOfRecordsTwoDaysAgo * 100;
+                            $PercentageOfRejectedRecordsTwoDaysAgo = $NumberOfRejectedRecordsTwoDaysAgo / $NumberOfRecordsTwoDaysAgo * 100;
+                        @endphp
                             <tr class="Two-Days-Ago history"> 
-                                <td>Two days ago <span></span></td>
+                                <td>Two days ago <span>{{ $NumberOfRecordsTwoDaysAgo }} (100%)</span></td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsTwoDaysAgo }} ({{ round($PercentageOfApprovedRecordsTwoDaysAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsTwoDaysAgo }} ({{ round($PercentageOfWaivedRecordsTwoDaysAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsTwoDaysAgo }} ({{ round($PercentageOfRejectedRecordsTwoDaysAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-3 day")))
+                        @php
+                            $NumberOfApprovedRecordsThreeDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-3 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsThreeDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-3 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsThreeDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-3 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsThreeDaysAgo = $NumberOfApprovedRecordsThreeDaysAgo + $NumberOfWaivedRecordsThreeDaysAgo + $NumberOfRejectedRecordsThreeDaysAgo;
+
+                            $PercentageOfApprovedRecordsThreeDaysAgo = $NumberOfApprovedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                            $PercentageOfWaivedRecordsThreeDaysAgo = $NumberOfWaivedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                            $PercentageOfRejectedRecordsThreeDaysAgo = $NumberOfRejectedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                        @endphp
                             <tr class="Three-Days-Ago history"> 
-                                <td>Three days ago <span></span> </td>
+                                <td>Three days ago <span>{{ $NumberOfRecordsThreeDaysAgo }} (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsThreeDaysAgo }} ({{ round($PercentageOfApprovedRecordsThreeDaysAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsThreeDaysAgo }} ({{ round($PercentageOfWaivedRecordsThreeDaysAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsThreeDaysAgo }} ({{ round($PercentageOfRejectedRecordsThreeDaysAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-4 day")))
+                        @php
+                            $NumberOfApprovedRecordsFourDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-4 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsFourDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-4 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsFourDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-4 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsFourDaysAgo = $NumberOfApprovedRecordsFourDaysAgo + $NumberOfWaivedRecordsFourDaysAgo + $NumberOfRejectedRecordsFourDaysAgo;
+
+                            $PercentageOfApprovedRecordsFourDaysAgo = $NumberOfApprovedRecordsFourDaysAgo / $NumberOfRecordsFourDaysAgo * 100;
+                            $PercentageOfWaivedRecordsFourDaysAgo = $NumberOfWaivedRecordsFourDaysAgo / $NumberOfRecordsFourDaysAgo * 100;
+                            $PercentageOfRejectedRecordsFourDaysAgo = $NumberOfRejectedRecordsFourDaysAgo / $NumberOfRecordsFourDaysAgo * 100;
+                        @endphp
                             <tr class="Four-Days-Ago history"> 
-                                <td>Four days ago <span></span> </td>
+                                <td>Four days ago <span>{{ $NumberOfRecordsFourDaysAgo }} (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsFourDaysAgo }} ({{ round($PercentageOfApprovedRecordsFourDaysAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsFourDaysAgo }} ({{ round($PercentageOfWaivedRecordsFourDaysAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsFourDaysAgo }} ({{ round($PercentageOfRejectedRecordsFourDaysAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-5 day")))
+                        @php
+                            $NumberOfApprovedRecordsFiveDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-5 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsFiveDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-5 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsFiveDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-5 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsFiveDaysAgo = $NumberOfApprovedRecordsFiveDaysAgo + $NumberOfWaivedRecordsFiveDaysAgo + $NumberOfRejectedRecordsFiveDaysAgo;
+
+                            $PercentageOfApprovedRecordsFiveDaysAgo = $NumberOfApprovedRecordsFiveDaysAgo / $NumberOfRecordsFiveDaysAgo * 100;
+                            $PercentageOfWaivedRecordsFiveDaysAgo = $NumberOfWaivedRecordsFiveDaysAgo / $NumberOfRecordsFiveDaysAgo * 100;
+                            $PercentageOfRejectedRecordsFiveDaysAgo = $NumberOfRejectedRecordsFiveDaysAgo / $NumberOfRecordsFiveDaysAgo * 100;
+                        @endphp
                             <tr class="Five-Days-Ago history"> 
-                                <td>Five days ago <span></span></td>
+                                <td>Five days ago <span>{{ $NumberOfRecordsFiveDaysAgo }} (100%)</span></td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsFiveDaysAgo }} ({{ round($PercentageOfApprovedRecordsFiveDaysAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsFiveDaysAgo }} ({{ round($PercentageOfWaivedRecordsFiveDaysAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsFiveDaysAgo }} ({{ round($PercentageOfRejectedRecordsFiveDaysAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate === date('Y-m-d', strtotime("-6 day")))
+                        @php
+                            $NumberOfApprovedRecordsSixDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-6 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsSixDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-6 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsSixDaysAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', date('Y-m-d', strtotime("-6 day")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsSixDaysAgo = $NumberOfApprovedRecordsSixDaysAgo + $NumberOfWaivedRecordsSixDaysAgo + $NumberOfRejectedRecordsSixDaysAgo;
+
+                            $PercentageOfApprovedRecordsSixDaysAgo = $NumberOfApprovedRecordsSixDaysAgo / $NumberOfRecordsSixDaysAgo * 100;
+                            $PercentageOfWaivedRecordsSixDaysAgo = $NumberOfWaivedRecordsSixDaysAgo / $NumberOfRecordsSixDaysAgo * 100;
+                            $PercentageOfRejectedRecordsSixDaysAgo = $NumberOfRejectedRecordsSixDaysAgo / $NumberOfRecordsSixDaysAgo * 100;
+                        @endphp
                             <tr class="Six-Days-Ago history"> 
-                                <td>Six days ago <span></span> </td>
+                                <td>Six days ago <span>{{ $NumberOfRecordsSixDaysAgo }} (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsSixDaysAgo }} ({{ round($PercentageOfApprovedRecordsSixDaysAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsSixDaysAgo }} ({{ round($PercentageOfWaivedRecordsSixDaysAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsSixDaysAgo }} ({{ round($PercentageOfRejectedRecordsSixDaysAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 week")))
+                        @php
+                            $NumberOfApprovedRecordsOneWeekAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsOneWeekAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsOneWeekAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsOneWeekAgo = $NumberOfApprovedRecordsOneWeekAgo + $NumberOfWaivedRecordsOneWeekAgo + $NumberOfRejectedRecordsOneWeekAgo;
+
+                            $PercentageOfApprovedRecordsOneWeekAgo = $NumberOfApprovedRecordsOneWeekAgo / $NumberOfRecordsOneWeekAgo * 100;
+                            $PercentageOfWaivedRecordsOneWeekAgo = $NumberOfWaivedRecordsOneWeekAgo / $NumberOfRecordsOneWeekAgo * 100;
+                            $PercentageOfRejectedRecordsOneWeekAgo = $NumberOfRejectedRecordsOneWeekAgo / $NumberOfRecordsOneWeekAgo * 100;
+                        @endphp
                             <tr class="Last-Week history"> 
-                                <td>Last week  <span></span> </td>
+                                <td>Last week  <span>{{ $NumberOfRecordsOneWeekAgo }}  (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsOneWeekAgo }} ({{ round($PercentageOfApprovedRecordsOneWeekAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsOneWeekAgo }} ({{ round($PercentageOfWaivedRecordsOneWeekAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsOneWeekAgo }} ({{ round($PercentageOfRejectedRecordsOneWeekAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 week")))
+                        @php
+                            $NumberOfApprovedRecordsTwoWeeksAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsTwoWeeksAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsTwoWeeksAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsTwoWeeksAgo = $NumberOfApprovedRecordsTwoWeeksAgo + $NumberOfWaivedRecordsTwoWeeksAgo + $NumberOfRejectedRecordsTwoWeeksAgo;
+
+                            $PercentageOfApprovedRecordsTwoWeeksAgo = $NumberOfApprovedRecordsTwoWeeksAgo / $NumberOfRecordsTwoWeeksAgo * 100;
+                            $PercentageOfWaivedRecordsTwoWeeksAgo = $NumberOfWaivedRecordsTwoWeeksAgo / $NumberOfRecordsTwoWeeksAgo * 100;
+                            $PercentageOfRejectedRecordsTwoWeeksAgo = $NumberOfRejectedRecordsTwoWeeksAgo / $NumberOfRecordsTwoWeeksAgo * 100;
+                        @endphp
                             <tr class="Two-Weeks-Ago history"> 
-                                <td>Two weeks ago    <span></span> </td>
+                                <td>Two weeks ago    <span>{{ $NumberOfRecordsTwoWeeksAgo }}  (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsTwoWeeksAgo }} ({{ round($PercentageOfApprovedRecordsTwoWeeksAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsTwoWeeksAgo }} ({{ round($PercentageOfWaivedRecordsTwoWeeksAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsTwoWeeksAgo }} ({{ round($PercentageOfRejectedRecordsTwoWeeksAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week")))
+                        @php
+                            $NumberOfApprovedRecordsThreeWeeksAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsThreeWeeksAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsThreeWeeksAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 week")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsThreeDaysAgo = $NumberOfApprovedRecordsThreeDaysAgo + $NumberOfWaivedRecordsThreeDaysAgo + $NumberOfRejectedRecordsThreeDaysAgo;
+
+                            $PercentageOfApprovedRecordsThreeDaysAgo = $NumberOfApprovedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                            $PercentageOfWaivedRecordsThreeDaysAgo = $NumberOfWaivedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                            $PercentageOfRejectedRecordsThreeDaysAgo = $NumberOfRejectedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                        @endphp
                             <tr class="Three-Weeks-Ago history"> 
-                                <td>Three weeks ago <span></span> </td>
+                                <td>Three weeks ago <span>{{ $NumberOfRecordsThreeDaysAgo }}  (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsThreeDaysAgo }} ({{ round($PercentageOfApprovedRecordsThreeDaysAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsThreeDaysAgo }} ({{ round($PercentageOfWaivedRecordsThreeDaysAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsThreeDaysAgo }} ({{ round($PercentageOfRejectedRecordsThreeDaysAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
+                        @php
+                            $NumberOfApprovedRecordsOneMonthAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 month")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfWaivedRecordsOneMonthAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 month")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRejectedRecordsOneMonthAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                                                            ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-1 month")))
+                                                                                            ->count();
+                                                                                            
+                            $NumberOfRecordsOneMonthAgo = $NumberOfApprovedRecordsOneMonthAgo + $NumberOfWaivedRecordsOneMonthAgo + $NumberOfRejectedRecordsOneMonthAgo;
+
+                            $PercentageOfApprovedRecordsOneMonthAgo = $NumberOfApprovedRecordsOneMonthAgo / $NumberOfRecordsOneMonthAgo * 100;
+                            $PercentageOfWaivedRecordsOneMonthAgo = $NumberOfWaivedRecordsOneMonthAgo / $NumberOfRecordsOneMonthAgo * 100;
+                            $PercentageOfRejectedRecordsOneMonthAgo = $NumberOfRejectedRecordsOneMonthAgo / $NumberOfRecordsOneMonthAgo * 100;
+                        @endphp
                             <tr class="Last-Month history"> 
-                                <td>Last month <span></span> </td>
+                                <td>Last month <span>{{ $NumberOfRecordsOneMonthAgo }}  (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsOneMonthAgo }} ({{ round($PercentageOfApprovedRecordsOneMonthAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsOneMonthAgo }} ({{ round($PercentageOfWaivedRecordsOneMonthAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsOneMonthAgo }} ({{ round($PercentageOfRejectedRecordsOneMonthAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month")))
+                            @php
+                                $NumberOfApprovedRecordsTwoMonthsAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                                ->where('ApprovalForUse', 'APPROVED')
+                                                                                                ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 month")))
+                                                                                                ->count();
+                                                                                                
+                                $NumberOfWaivedRecordsTwoMonthsAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                                ->where('ApprovalForUse', 'WAIVED')
+                                                                                                ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 month")))
+                                                                                                ->count();
+                                                                                                
+                                $NumberOfRejectedRecordsTwoMonthsAgo = \App\Models\FuelTestRecord::select('id')
+                                                                                                ->where('ApprovalForUse', 'REJECTED')
+                                                                                                ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-2 month")))
+                                                                                                ->count();
+                                                                                            
+                            $NumberOfRecordsTwoMonthsAgo = $NumberOfApprovedRecordsTwoMonthsAgo + $NumberOfWaivedRecordsTwoMonthsAgo + $NumberOfRejectedRecordsTwoMonthsAgo;
+
+                            $PercentageOfApprovedRecordsTwoMonthsAgo = $NumberOfApprovedRecordsTwoMonthsAgo / $NumberOfRecordsTwoMonthsAgo * 100;
+                            $PercentageOfWaivedRecordsTwoMonthsAgo = $NumberOfWaivedRecordsTwoMonthsAgo / $NumberOfRecordsTwoMonthsAgo * 100;
+                            $PercentageOfRejectedRecordsTwoMonthsAgo = $NumberOfRejectedRecordsTwoMonthsAgo / $NumberOfRecordsTwoMonthsAgo * 100;
+                            @endphp
                             <tr class="Two-Months-Ago history"> 
-                                <td>Two months ago <span></span> </td>
-                            </tr>
-                        @else($record->SampleCollectionDate >= date('Y-m-d', strtotime("-2 month - 1 day")))
+                                <td>Two months ago <span>{{ $NumberOfRecordsTwoMonthsAgo }}  (100%)</span></td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsTwoMonthsAgo }} ({{ round($PercentageOfApprovedRecordsTwoMonthsAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsTwoMonthsAgo }} ({{ round($PercentageOfWaivedRecordsTwoMonthsAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsTwoMonthsAgo }} ({{ round($PercentageOfRejectedRecordsTwoMonthsAgo, 1) }})%</em></td>
+                            </tr> 
+                        @else
+                            @php
+                                $NumberOfApprovedRecordsOlder = \App\Models\FuelTestRecord::select('id')
+                                                                                                ->where('ApprovalForUse', 'APPROVED')
+                                                                                                ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 month")))
+                                                                                                ->count();
+                                                                                                
+                                $NumberOfWaivedRecordsOlder = \App\Models\FuelTestRecord::select('id')
+                                                                                                ->where('ApprovalForUse', 'WAIVED')
+                                                                                                ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 month")))
+                                                                                                ->count();
+                                                                                                
+                                $NumberOfRejectedRecordsOlder = \App\Models\FuelTestRecord::select('id')
+                                                                                                ->where('ApprovalForUse', 'REJECTED')
+                                                                                                ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 month")))
+                                                                                                ->count();
+                                                                                            
+                            $NumberOfRecordsOlder = $NumberOfApprovedRecordsOlder + $NumberOfWaivedRecordsOlder + $NumberOfRejectedRecordsOlder;
+
+                            $PercentageOfApprovedRecordsOlder = $NumberOfApprovedRecordsOlder / $NumberOfRecordsOlder * 100;
+                            $PercentageOfWaivedRecordsOlder = $NumberOfWaivedRecordsOlder / $NumberOfRecordsOlder * 100;
+                            $PercentageOfRejectedRecordsOlder = $NumberOfRejectedRecordsOlder / $NumberOfRecordsOlder * 100;
+                            @endphp
                             <tr class="Older history"> 
-                                <td>Older  <span></span> </td>
+                                <td>Older  <span>{{ $NumberOfRecordsOlder }}  (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsOlder }} ({{ round($PercentageOfApprovedRecordsOlder, 1) }})%</em></td> 
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsOlder }} ({{ round($PercentageOfWaivedRecordsOlder, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsOlder }} ({{ round($PercentageOfRejectedRecordsOlder, 1) }})%</em></td>
                             </tr>
                         @endif   
 

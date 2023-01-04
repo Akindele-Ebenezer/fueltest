@@ -55,7 +55,8 @@ let HistoryTotalArray = [];
 
 for (let i = 0; i < History.length; i++) {
     for (let j = 0; j < History[i].length; j++) { 
-        History[i][0].style.display = 'block';
+        History[i][0].style.display = 'block ruby';
+        History[i][0].style.width = '20em';
         
         let HistoryTotal_ = History[i].length;
         let HistoryArray = [];
@@ -69,7 +70,7 @@ for (let i = 0; i < HistoryTotal.length; i++) {
         if(HistoryTotal[i].parentElement.parentElement.className == 'Today history') {
             continue;
         }
-        HistoryTotal[i].textContent = HistoryTotalArray[i];
+        // HistoryTotal[i].textContent = HistoryTotalArray[i];
         console.log(HistoryTotal[i].parentElement.parentElement.className) 
     }
 }
@@ -105,27 +106,4 @@ for (let i = 0; i < CheckBoxInput.length; i++) {
         } 
     });
 }  
-
-let DeleteButton = document.querySelector('.delete-button');
-let CheckedRecords_IDs = document.querySelector('.CheckedRecords_IDs');
-let CheckedRecords_IDs_FORM = document.querySelector('.CheckedRecords_IDs_FORM');
-let DeleteRecords__FORM = document.querySelector('.DeleteRecords__FORM');
-let CheckedRecords = document.querySelectorAll('section.previous-records table tr td input[name="DeleteRecord"]');
-let CheckedRecordsArr = [];
-let Forms = document.querySelectorAll('form');
-
-DeleteButton.addEventListener('click', () => {
-    for (let i = 0; i < Forms.length; i++) {
-        console.log(Forms[i]);
-    }
-
-    CheckedRecords.forEach((CheckedRecord) => {
-        if(CheckedRecord.checked) {
-            // CheckedRecordsArr.push(CheckedRecord.value);
-            // CheckedRecords_IDs.value = CheckedRecordsArr;
-            // console.log(CheckedRecordsArr);
-            // CheckedRecords_IDs_FORM.submit();
-            // DeleteRecords__FORM.submit();
-        }
-    });
-})
+ 

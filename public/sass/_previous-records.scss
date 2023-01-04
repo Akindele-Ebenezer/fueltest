@@ -125,19 +125,7 @@ section {
         .Diff {
             color: #00828f;
         }
-        
-        .Passed {
-            color: $color-2;
-        }
-        
-        .Failed {
-            color: $error;
-        }
-
-        .Waved {
-            color: rgb(156, 156, 0);
-        }
-
+         
         div { 
             height: 61vh;
             margin: 1rem 1rem 0;
@@ -293,14 +281,14 @@ section {
 
                         span {
                             font-style: italic;
-                            margin-left: 2rem;
+                            margin-left: 1rem;
                         }
                     }
                 } 
 
-                &:hover {
-                    background: #eee;
-                } 
+                // &:hover {
+                //     background: #eee;
+                // } 
 
                 td {  
                     border: 1px solid #ddd !important;
@@ -389,6 +377,7 @@ section {
                         border: none !important;
                         display: flex; 
                         // height: 1rem;
+                        justify-content: space-evenly;
                         position: relative;
                         // width: 10rem;
 
