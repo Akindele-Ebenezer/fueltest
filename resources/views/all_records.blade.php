@@ -748,17 +748,17 @@
                                                                                             ->where('SampleCollectionDate', '>=', date('Y-m-d', strtotime("-3 week")))
                                                                                             ->count();
                                                                                             
-                            $NumberOfRecordsThreeDaysAgo = $NumberOfApprovedRecordsThreeDaysAgo + $NumberOfWaivedRecordsThreeDaysAgo + $NumberOfRejectedRecordsThreeDaysAgo;
+                            $NumberOfRecordsThreeWeeksAgo = $NumberOfApprovedRecordsThreeWeeksAgo + $NumberOfWaivedRecordsThreeWeeksAgo + $NumberOfRejectedRecordsThreeWeeksAgo;
 
-                            $PercentageOfApprovedRecordsThreeDaysAgo = $NumberOfApprovedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
-                            $PercentageOfWaivedRecordsThreeDaysAgo = $NumberOfWaivedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
-                            $PercentageOfRejectedRecordsThreeDaysAgo = $NumberOfRejectedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100;
+                            $PercentageOfApprovedRecordsThreeWeeksAgo = $NumberOfApprovedRecordsThreeWeeksAgo / $NumberOfRecordsThreeWeeksAgo * 100;
+                            $PercentageOfWaivedRecordsThreeWeeksAgo = $NumberOfWaivedRecordsThreeWeeksAgo / $NumberOfRecordsThreeWeeksAgo * 100;
+                            $PercentageOfRejectedRecordsThreeWeeksAgo = $NumberOfRejectedRecordsThreeWeeksAgo / $NumberOfRecordsThreeWeeksAgo * 100;
                         @endphp
                             <tr class="Three-Weeks-Ago history"> 
-                                <td>Three weeks ago <span>{{ $NumberOfRecordsThreeDaysAgo }}  (100%)</span> </td>
-                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsThreeDaysAgo }} ({{ round($PercentageOfApprovedRecordsThreeDaysAgo, 1) }})%</em></td>
-                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsThreeDaysAgo }} ({{ round($PercentageOfWaivedRecordsThreeDaysAgo, 1) }})%</em></td>
-                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsThreeDaysAgo }} ({{ round($PercentageOfRejectedRecordsThreeDaysAgo, 1) }})%</em></td>
+                                <td>Three weeks ago <span>{{ $NumberOfRecordsThreeWeeksAgo }}  (100%)</span> </td>
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsThreeWeeksAgo }} ({{ round($PercentageOfApprovedRecordsThreeWeeksAgo, 1) }})%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsThreeWeeksAgo }} ({{ round($PercentageOfWaivedRecordsThreeWeeksAgo, 1) }})%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsThreeWeeksAgo }} ({{ round($PercentageOfRejectedRecordsThreeWeeksAgo, 1) }})%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-1 month")))
                         @php
