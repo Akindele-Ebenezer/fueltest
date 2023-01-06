@@ -154,6 +154,8 @@
                             $TotalTestsForEachVendor = App\Models\FuelTestRecord::select('SampleCollectionDate')
                                                                                     ->where('VendorName', $Vendor->VendorName)
                                                                                     ->count();
+
+                            $TotalTestsForEachVendor_PERCENTAGE_Absolute = $TotalTestsForEachVendor == 0 ? 0 : ($TotalTestsForEachVendor/ $number_of_all_records_absolute * 100);
                                                                        
                             $ApprovedTestsForEachVendor = App\Models\FuelTestRecord::select('id')
                                                                                     ->where('ApprovalForUse', 'APPROVED')
@@ -191,8 +193,8 @@
                         @endphp
                         <p class="WaivedTestsForEachVendor"><span class="Total_">{{ $WaivedTestsForEachVendor }}</span>&nbsp;&nbsp; <span class="Waived">({{ round($WaivedTestsForEachVendor_PERCENTAGE, 1) }}%)</span> + <em>{{ round($WaivedTestsForEachVendor_PERCENTAGE_Absolute, 1)  }}%</em></p>
                     </td>
-                    <td> 
-                        <p class="TotalTestsForEachVendor">{{ $TotalTestsForEachVendor }}</p>
+                    <td>  
+                        <p class="TotalTestsForEachVendor"><span class="Total_">{{ $TotalTestsForEachVendor }}</span>&nbsp;&nbsp;  + <em>{{ round($TotalTestsForEachVendor_PERCENTAGE_Absolute, 1)  }}%</em></p>
                     </td>
                     <td>
                         @php

@@ -28,6 +28,11 @@
     $PercentageOfRejectedRecordsLastMonth = $NumberOfRecordsLastMonth == 0 ? 0 : ($NumberOfRejectedRecordsLastMonth / $NumberOfRecordsLastMonth * 100); 
     $PercentageOfDiffRecordsLastMonth = $NumberOfRecordsLastMonth == 0 ? 0 : ($NumberOfDiffRecordsLastMonth / $NumberOfRecordsLastMonth * 100); 
 
+    $PercentageOfApprovedRecordsLastMonth_Absolute = $NumberOfRecordsLastMonth == 0 ? 0 : ($NumberOfApprovedRecordsLastMonth / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsLastMonth_Absolute = $NumberOfRecordsLastMonth == 0 ? 0 : ($NumberOfWaivedRecordsLastMonth / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsLastMonth_Absolute = $NumberOfRecordsLastMonth == 0 ? 0 : ($NumberOfRejectedRecordsLastMonth / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsLastMonth_Absolute = $NumberOfRecordsLastMonth == 0 ? 0 : ($NumberOfDiffRecordsLastMonth / $number_of_all_records_absolute * 100);
+
 // THIS MONTH
 
     $FirstDayOfThisMonth = date('Y-m-01'); 
@@ -56,6 +61,11 @@
     $PercentageOfRejectedRecordsThisMonth = $NumberOfRecordsThisMonth == 0 ? 0 : ($NumberOfRejectedRecordsThisMonth / $NumberOfRecordsThisMonth * 100); 
     $PercentageOfDiffRecordsThisMonth = $NumberOfRecordsThisMonth == 0 ? 0 : ($NumberOfDiffRecordsThisMonth / $NumberOfRecordsThisMonth * 100); 
   
+    $PercentageOfApprovedRecordsThisMonth_Absolute = $NumberOfRecordsThisMonth == 0 ? 0 : ($NumberOfApprovedRecordsThisMonth / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsThisMonth_Absolute = $NumberOfRecordsThisMonth == 0 ? 0 : ($NumberOfWaivedRecordsThisMonth / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsThisMonth_Absolute = $NumberOfRecordsThisMonth == 0 ? 0 : ($NumberOfRejectedRecordsThisMonth / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsThisMonth_Absolute = $NumberOfRecordsThisMonth == 0 ? 0 : ($NumberOfDiffRecordsThisMonth / $number_of_all_records_absolute * 100);
+
 // YESTERDAYS BREAKDOWN
     $NumberOfApprovedRecordsYesterday = \App\Models\FuelTestRecord::select('id')
     ->where('ApprovalForUse', 'APPROVED')
@@ -83,6 +93,11 @@
     $PercentageOfWaivedRecordsYesterday = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfWaivedRecordsYesterday / $NumberOfRecordsYesterday * 100);
     $PercentageOfRejectedRecordsYesterday = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfRejectedRecordsYesterday / $NumberOfRecordsYesterday * 100); 
     $PercentageOfDiffRecordsYesterday = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfDiffRecordsYesterday / $NumberOfRecordsYesterday * 100); 
+
+    $PercentageOfApprovedRecordsYesterday_Absolute = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfApprovedRecordsYesterday / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsYesterday_Absolute = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfWaivedRecordsYesterday / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsYesterday_Absolute = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfRejectedRecordsYesterday / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsYesterday_Absolute = $NumberOfRecordsYesterday == 0 ? 0 : ($NumberOfDiffRecordsYesterday / $number_of_all_records_absolute * 100);
 
     //TODAY BREAKDOWN
     
@@ -113,6 +128,11 @@
     $PercentageOfRejectedRecordsToday = $NumberOfRecordsToday == 0 ? 0 : ($NumberOfRejectedRecordsToday / $NumberOfRecordsToday * 100);
     $PercentageOfDiffRecordsToday = $NumberOfRecordsToday == 0 ? 0 : ($NumberOfDiffRecordsToday / $NumberOfRecordsToday * 100);
 
+    $PercentageOfApprovedRecordsToday_Absolute = $NumberOfRecordsToday == 0 ? 0 : ($NumberOfApprovedRecordsToday / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsToday_Absolute = $NumberOfRecordsToday == 0 ? 0 : ($NumberOfWaivedRecordsToday / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsToday_Absolute = $NumberOfRecordsToday == 0 ? 0 : ($NumberOfRejectedRecordsToday / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsToday_Absolute = $NumberOfRecordsToday == 0 ? 0 : ($NumberOfDiffRecordsToday / $number_of_all_records_absolute * 100);
+
     //DAY BEFORE BREAKDOWN
 
     $NumberOfApprovedRecordsTwoDaysAgo = \App\Models\FuelTestRecord::select('id')
@@ -141,6 +161,11 @@
     $PercentageOfWaivedRecordsTwoDaysAgo = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsTwoDaysAgo / $NumberOfRecordsTwoDaysAgo * 100);
     $PercentageOfRejectedRecordsTwoDaysAgo = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsTwoDaysAgo / $NumberOfRecordsTwoDaysAgo * 100);
     $PercentageOfDiffRecordsTwoDaysAgo = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsTwoDaysAgo / $NumberOfRecordsTwoDaysAgo * 100);
+
+    $PercentageOfApprovedRecordsTwoDaysAgo_Absolute = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfApprovedRecordsTwoDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsTwoDaysAgo_Absolute = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsTwoDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsTwoDaysAgo_Absolute = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsTwoDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsTwoDaysAgo_Absolute = $NumberOfRecordsTwoDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsTwoDaysAgo / $number_of_all_records_absolute * 100);
 
     //3 DAYS AGO BREAKDOWN
 
@@ -171,6 +196,11 @@
     $PercentageOfRejectedRecordsThreeDaysAgo = $NumberOfRecordsThreeDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100);
     $PercentageOfDiffRecordsThreeDaysAgo = $NumberOfRecordsThreeDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsThreeDaysAgo / $NumberOfRecordsThreeDaysAgo * 100);
 
+    $PercentageOfApprovedRecordsThreeDaysAgo_Absolute = $NumberOfRecordsThreeDaysAgo == 0 ? 0 : ($NumberOfApprovedRecordsThreeDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsThreeDaysAgo_Absolute = $NumberOfRecordsThreeDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsThreeDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsThreeDaysAgo_Absolute = $NumberOfRecordsThreeDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsThreeDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsThreeDaysAgo_Absolute = $NumberOfRecordsThreeDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsThreeDaysAgo / $number_of_all_records_absolute * 100);
+
     //4 DAYS AGO BREAKDOWN
 
     $NumberOfApprovedRecordsFourDaysAgo = \App\Models\FuelTestRecord::select('id')
@@ -199,6 +229,11 @@
     $PercentageOfWaivedRecordsFourDaysAgo = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsFourDaysAgo / $NumberOfRecordsFourDaysAgo * 100);
     $PercentageOfRejectedRecordsFourDaysAgo = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsFourDaysAgo / $NumberOfRecordsFourDaysAgo * 100);
     $PercentageOfDiffRecordsFourDaysAgo = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsFourDaysAgo / $NumberOfRecordsFourDaysAgo * 100);
+
+    $PercentageOfApprovedRecordsFourDaysAgo_Absolute = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfApprovedRecordsFourDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsFourDaysAgo_Absolute = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsFourDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsFourDaysAgo_Absolute = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsFourDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsFourDaysAgo_Absolute = $NumberOfRecordsFourDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsFourDaysAgo / $number_of_all_records_absolute * 100);
 
     //5 DAYS AGO BREAKDOWN
 
@@ -229,6 +264,11 @@
     $PercentageOfRejectedRecordsFiveDaysAgo = $NumberOfRecordsFiveDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsFiveDaysAgo / $NumberOfRecordsFiveDaysAgo * 100);
     $PercentageOfDiffRecordsFiveDaysAgo = $NumberOfRecordsFiveDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsFiveDaysAgo / $NumberOfRecordsFiveDaysAgo * 100);
 
+    $PercentageOfApprovedRecordsFiveDaysAgo_Absolute = $NumberOfRecordsFiveDaysAgo == 0 ? 0 : ($NumberOfApprovedRecordsFiveDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsFiveDaysAgo_Absolute = $NumberOfRecordsFiveDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsFiveDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsFiveDaysAgo_Absolute = $NumberOfRecordsFiveDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsFiveDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsFiveDaysAgo_Absolute = $NumberOfRecordsFiveDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsFiveDaysAgo / $number_of_all_records_absolute * 100);
+
     //6 DAYS AGO BREAKDOWN
 
     $NumberOfApprovedRecordsSixDaysAgo = \App\Models\FuelTestRecord::select('id')
@@ -258,6 +298,11 @@
     $PercentageOfRejectedRecordsSixDaysAgo = $NumberOfRecordsSixDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsSixDaysAgo / $NumberOfRecordsSixDaysAgo * 100);
     $PercentageOfDiffRecordsSixDaysAgo = $NumberOfRecordsSixDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsSixDaysAgo / $NumberOfRecordsSixDaysAgo * 100);
 
+    $PercentageOfApprovedRecordsSixDaysAgo_Absolute = $NumberOfRecordsSixDaysAgo == 0 ? 0 : ($NumberOfApprovedRecordsSixDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsSixDaysAgo_Absolute = $NumberOfRecordsSixDaysAgo == 0 ? 0 : ($NumberOfWaivedRecordsSixDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsSixDaysAgo_Absolute = $NumberOfRecordsSixDaysAgo == 0 ? 0 : ($NumberOfRejectedRecordsSixDaysAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsSixDaysAgo_Absolute = $NumberOfRecordsSixDaysAgo == 0 ? 0 : ($NumberOfDiffRecordsSixDaysAgo / $number_of_all_records_absolute * 100);
+
     //1 WEEK AGO BREAKDOWN
 
     $NumberOfApprovedRecordsOneWeekAgo = \App\Models\FuelTestRecord::select('id')
@@ -286,3 +331,8 @@
     $PercentageOfWaivedRecordsOneWeekAgo = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfWaivedRecordsOneWeekAgo / $NumberOfRecordsOneWeekAgo * 100);
     $PercentageOfRejectedRecordsOneWeekAgo = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfRejectedRecordsOneWeekAgo / $NumberOfRecordsOneWeekAgo * 100);
     $PercentageOfDiffRecordsOneWeekAgo = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfDiffRecordsOneWeekAgo / $NumberOfRecordsOneWeekAgo * 100);
+
+    $PercentageOfApprovedRecordsOneWeekAgo_Absolute = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfApprovedRecordsOneWeekAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfWaivedRecordsOneWeekAgo_Absolute = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfWaivedRecordsOneWeekAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfRejectedRecordsOneWeekAgo_Absolute = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfRejectedRecordsOneWeekAgo / $number_of_all_records_absolute * 100);
+    $PercentageOfDiffRecordsOneWeekAgo_Absolute = $NumberOfRecordsOneWeekAgo == 0 ? 0 : ($NumberOfDiffRecordsOneWeekAgo / $number_of_all_records_absolute * 100);
