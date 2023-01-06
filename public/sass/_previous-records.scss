@@ -147,7 +147,7 @@ section {
                 &:not(td.pdf-and-edit) {
                     border-top: 1px solid #eee;
                     border-bottom: 1px solid #eee;
-                    padding: .4rem 2rem;
+                    padding: .4rem 1rem;
                 } 
 
                 &.action {
@@ -183,28 +183,19 @@ section {
                     td {
                         padding-block: .5rem;
 
-                        .ApprovedTestsForEachVendor {
-                            background: $green;
-                            border-radius: 0.2rem;
-                            color: white;
-                            padding: 0 0.3rem; 
-                            text-align: center;
+                        .ApprovedTestsForEachVendor { 
+                            border-radius: 0.2rem; 
+                            padding: 0 0.3rem;  
                         }
 
                         .FailedTestsForEachVendor {
-                            background: $red;
                             border-radius: 0.2rem;
-                            color: white;
-                            padding: 0 0.3rem; 
-                            text-align: center;
+                            padding: 0 0.3rem;  
                         }
 
                         .WaivedTestsForEachVendor {
-                            background: #888;
                             border-radius: 0.2rem;
-                            color: white;
-                            padding: 0 0.3rem; 
-                            text-align: center;
+                            padding: 0 0.3rem;  
                         }
 
                         &.status {
