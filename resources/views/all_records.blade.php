@@ -470,9 +470,9 @@
 
                                 @endphp
                                 <td>Yesterday <span>{{ $NumberOfRecordsYesterday }} (100%)</span> </td> 
-                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsYesterday }} ({{ round($PercentageOfApprovedRecordsYesterday, 1) }})%</em></td>
-                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsYesterday }} ({{ round($PercentageOfWaivedRecordsYesterday, 1) }})%</em></td>
-                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsYesterday }} ({{ round($PercentageOfRejectedRecordsYesterday, 1) }})%</em></td> 
+                                <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsYesterday }} ({{ round($PercentageOfApprovedRecordsYesterday, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfApprovedRecordsYesterday_Absolute, 1) }}%</em></td>
+                                <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsYesterday }} ({{ round($PercentageOfWaivedRecordsYesterday, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfWaivedRecordsYesterday_Absolute, 1) }}%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsYesterday }} ({{ round($PercentageOfRejectedRecordsYesterday, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfRejectedRecordsYesterday_Absolute, 1) }}%</em></td> 
                             </tr> 
                         @elseif($record->SampleCollectionDate === date('Y-m-d')) 
                             <tr class="Today history">
