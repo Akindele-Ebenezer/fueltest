@@ -1591,8 +1591,6 @@ footer p {
   color: rgba(173, 173, 49, 0.95);
 }
 .fuel-test-dashboard-inner div p span.Failed, .fuel-test-dashboard-inner div p span.Passed, .fuel-test-dashboard-inner div p span.Diff, .fuel-test-dashboard-inner div p span.Waved {
-  border: 1px solid #eee;
-  padding-inline: 1em;
   width: 8rem;
 }
 .fuel-test-dashboard-inner div p span.Diff {
