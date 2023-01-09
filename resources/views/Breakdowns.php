@@ -347,6 +347,7 @@
     $PercentageOfRejectedRecordsOneWeekAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRejectedRecordsOneWeekAgo / $number_of_all_records_absolute * 100);
 $PercentageOfDiffRecordsOneWeekAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRecordsOneWeekAgo / $number_of_all_records_absolute * 100);
 
+    //2 WEEKS AGO BREAKDOWN
 
 $NumberOfApprovedRecordsTwoWeeksAgo = \App\Models\FuelTestRecord::select('id')
             ->where('ApprovalForUse', 'APPROVED')
@@ -374,6 +375,8 @@ $PercentageOfApprovedRecordsTwoWeeksAgo_Absolute = $number_of_all_records_absolu
 $PercentageOfWaivedRecordsTwoWeeksAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfWaivedRecordsTwoWeeksAgo / $number_of_all_records_absolute * 100);
 $PercentageOfRejectedRecordsTwoWeeksAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRejectedRecordsTwoWeeksAgo / $number_of_all_records_absolute * 100);
 $PercentageOfDiffRecordsTwoWeeksAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRecordsTwoWeeksAgo / $number_of_all_records_absolute * 100);
+   
+//3 WEEKS AGO BREAKDOWN
 
 $NumberOfApprovedRecordsThreeWeeksAgo = \App\Models\FuelTestRecord::select('id')
 ->where('ApprovalForUse', 'APPROVED')
@@ -401,6 +404,7 @@ $PercentageOfApprovedRecordsThreeWeeksAgo_Absolute = $number_of_all_records_abso
 $PercentageOfWaivedRecordsThreeWeeksAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfWaivedRecordsThreeWeeksAgo / $number_of_all_records_absolute * 100);
 $PercentageOfRejectedRecordsThreeWeeksAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRejectedRecordsThreeWeeksAgo / $number_of_all_records_absolute * 100);
 $PercentageOfDiffRecordsThreeWeeksAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRecordsThreeWeeksAgo / $number_of_all_records_absolute * 100);
+    //1 MONTH AGO BREAKDOWN
 
 $NumberOfApprovedRecordsOneMonthAgo = \App\Models\FuelTestRecord::select('id')
 ->where('ApprovalForUse', 'APPROVED')
@@ -428,6 +432,7 @@ $PercentageOfApprovedRecordsOneMonthAgo_Absolute = $number_of_all_records_absolu
 $PercentageOfWaivedRecordsOneMonthAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfWaivedRecordsOneMonthAgo / $number_of_all_records_absolute * 100);
 $PercentageOfRejectedRecordsOneMonthAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRejectedRecordsOneMonthAgo / $number_of_all_records_absolute * 100);
 $PercentageOfDiffRecordsOneMonthAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRecordsOneMonthAgo / $number_of_all_records_absolute * 100);
+    //2 MONTHS AGO BREAKDOWN
 
 $NumberOfApprovedRecordsTwoMonthsAgo = \App\Models\FuelTestRecord::select('id')
 ->where('ApprovalForUse', 'APPROVED')
@@ -455,6 +460,7 @@ $PercentageOfApprovedRecordsTwoMonthsAgo_Absolute = $number_of_all_records_absol
 $PercentageOfWaivedRecordsTwoMonthsAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfWaivedRecordsTwoMonthsAgo / $number_of_all_records_absolute * 100);
 $PercentageOfRejectedRecordsTwoMonthsAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRejectedRecordsTwoMonthsAgo / $number_of_all_records_absolute * 100);
 $PercentageOfDiffRecordsTwoMonthsAgo_Absolute = $number_of_all_records_absolute == 0 ? 0 : ($NumberOfRecordsTwoMonthsAgo / $number_of_all_records_absolute * 100);
+    //OLDER BREAKDOWN
 
 $NumberOfApprovedRecordsOlder = \App\Models\FuelTestRecord::select('id')
 ->where('ApprovalForUse', 'APPROVED')
