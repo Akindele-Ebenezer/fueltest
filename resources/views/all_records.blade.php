@@ -534,7 +534,7 @@
                                 <td class='days'>Two weeks ago    <span>{{ $NumberOfRecordsTwoWeeksAgo }}  (100%)</span> <span> + {{ round($PercentageOfAllRecordsTwoWeeksAgo, 1) }}%</span> </td>
                                 <td><p>Approved =></p> <em class="Passed">{{ $NumberOfApprovedRecordsTwoWeeksAgo }} ({{ round($PercentageOfApprovedRecordsTwoWeeksAgo, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfApprovedRecordsTwoWeeksAgo_Absolute, 1) }}%</em></td>
                                 <td><p>Waived =></p> <em class="Waved">{{ $NumberOfWaivedRecordsTwoWeeksAgo }} ({{ round($PercentageOfWaivedRecordsTwoWeeksAgo, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfWaivedRecordsTwoWeeksAgo_Absolute, 1) }}%</em></td>
-                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsTwoWeeksAgo }} ({{ round($PercentageOfRejectedRecordsTwoWeeksAgo, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfRejectedApprovedRecordsTwoWeeksAgo_Absolute, 1) }}%</em></td>
+                                <td><p>Rejected =></p> <em class="Failed">{{ $NumberOfRejectedRecordsTwoWeeksAgo }} ({{ round($PercentageOfRejectedRecordsTwoWeeksAgo, 1) }})%</em> <em>&nbsp;+  {{ round($PercentageOfRejectedRecordsTwoWeeksAgo_Absolute, 1) }}%</em></td>
                             </tr>
                         @elseif($record->SampleCollectionDate >= date('Y-m-d', strtotime("-3 week"))) 
                             <tr class="Three-Weeks-Ago history"> 
