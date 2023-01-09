@@ -1059,6 +1059,9 @@ section.previous-records table tr.history td {
   font-family: "Bitter", serif;
   font-size: 1.4rem;
 }
+section.previous-records table tr.history td.days {
+  width: max-content;
+}
 section.previous-records table tr.history td span {
   font-style: italic;
   margin-left: 1rem;
