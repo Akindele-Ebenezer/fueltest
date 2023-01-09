@@ -7,8 +7,8 @@
                      
     $AggregateForAppearanceResult = $NumberOfGoodTestsForAppearanceResult + $NumberOfBadTestsForAppearanceResult;                                                                
     
-    $PercentageForGoodTestsForAppearanceResult = $NumberOfGoodTestsForAppearanceResult / $AggregateForAppearanceResult * 100;
-    $PercentageForBadTestsForAppearanceResult = $NumberOfBadTestsForAppearanceResult / $AggregateForAppearanceResult * 100;
+    $PercentageForGoodTestsForAppearanceResult = $AggregateForAppearanceResult === 0 ? 0 : ($NumberOfGoodTestsForAppearanceResult / $AggregateForAppearanceResult * 100);
+    $PercentageForBadTestsForAppearanceResult = $AggregateForAppearanceResult === 0 ? 0 : ($NumberOfBadTestsForAppearanceResult / $AggregateForAppearanceResult * 100);
 
     $NumberOfGoodTestsForColor = App\Models\FuelTestRecord::where('Color', '<=', 2.5)  
                                                                 ->count();
@@ -17,8 +17,8 @@
 
     $AggregateForColor = $NumberOfGoodTestsForColor + $NumberOfBadTestsForColor;    
     // dd($NumberOfGoodTestsForColor);
-    $PercentageForGoodTestsForColor = $NumberOfGoodTestsForColor / $AggregateForColor * 100;
-    $PercentageForBadTestsForColor = $NumberOfBadTestsForColor / $AggregateForColor * 100;
+    $PercentageForGoodTestsForColor = $AggregateForColor === 0 ? 0 : ($NumberOfGoodTestsForColor / $AggregateForColor * 100);
+    $PercentageForBadTestsForColor = $AggregateForColor === 0 ? 0 : ($NumberOfBadTestsForColor / $AggregateForColor * 100);
 
     $NumberOfGoodTestsForDensity = App\Models\FuelTestRecord::whereBetween('Density', [0.82, 0.855]) 
                                                             ->count();
@@ -27,8 +27,8 @@
 
     $AggregateForDensity = $NumberOfGoodTestsForDensity + $NumberOfBadTestsForDensity;    
     
-    $PercentageForGoodTestsForDensity = $NumberOfGoodTestsForDensity / $AggregateForDensity * 100;
-    $PercentageForBadTestsForDensity = $NumberOfBadTestsForDensity / $AggregateForDensity * 100;
+    $PercentageForGoodTestsForDensity = $AggregateForDensity === 0 ? 0 : ($NumberOfGoodTestsForDensity / $AggregateForDensity * 100);
+    $PercentageForBadTestsForDensity = $AggregateForDensity === 0 ? 0 : ($NumberOfBadTestsForDensity / $AggregateForDensity * 100);
 
     $NumberOfGoodTestsForFlashPoint = App\Models\FuelTestRecord::whereBetween('FlashPoint', [52, 92]) 
                                                                 ->count();
@@ -37,8 +37,8 @@
                 
     $AggregateForFlashPoint = $NumberOfGoodTestsForFlashPoint + $NumberOfBadTestsForFlashPoint;    
     
-    $PercentageForGoodTestsForFlashPoint = $NumberOfGoodTestsForFlashPoint / $AggregateForFlashPoint * 100;
-    $PercentageForBadTestsForFlashPoint = $NumberOfBadTestsForFlashPoint / $AggregateForFlashPoint * 100;
+    $PercentageForGoodTestsForFlashPoint = $AggregateForFlashPoint === 0 ? 0 : ($NumberOfGoodTestsForFlashPoint / $AggregateForFlashPoint * 100);
+    $PercentageForBadTestsForFlashPoint = $AggregateForFlashPoint === 0 ? 0 : ($NumberOfBadTestsForFlashPoint / $AggregateForFlashPoint * 100);
 
     $NumberOfGoodTestsForWaterSediment = App\Models\FuelTestRecord::whereBetween('WaterSediment', [0, 0.050]) 
                                                                     ->count();
@@ -47,8 +47,8 @@
 
     $AggregateForWaterSediment = $NumberOfGoodTestsForWaterSediment + $NumberOfBadTestsForWaterSediment;    
     
-    $PercentageForGoodTestsForWaterSediment = $NumberOfGoodTestsForWaterSediment / $AggregateForWaterSediment * 100;
-    $PercentageForBadTestsForWaterSediment = $NumberOfBadTestsForWaterSediment / $AggregateForWaterSediment * 100;
+    $PercentageForGoodTestsForWaterSediment = $AggregateForWaterSediment === 0 ? 0 : ($NumberOfGoodTestsForWaterSediment / $AggregateForWaterSediment * 100);
+    $PercentageForBadTestsForWaterSediment = $AggregateForWaterSediment === 0 ? 0 : ($NumberOfBadTestsForWaterSediment / $AggregateForWaterSediment * 100);
 
     $NumberOfGoodTestsForCleanliness = App\Models\FuelTestRecord::whereBetween('Cleanliness', [12, 15]) 
                                                                 ->count();
@@ -57,5 +57,5 @@
                     
     $AggregateForCleanliness = $NumberOfGoodTestsForCleanliness + $NumberOfBadTestsForCleanliness;    
     
-    $PercentageForGoodTestsForCleanliness = $NumberOfGoodTestsForCleanliness / $AggregateForCleanliness * 100;
-    $PercentageForBadTestsForCleanliness = $NumberOfBadTestsForCleanliness / $AggregateForCleanliness * 100;
+    $PercentageForGoodTestsForCleanliness = $AggregateForCleanliness === 0 ? 0 : ($NumberOfGoodTestsForCleanliness / $AggregateForCleanliness * 100);
+    $PercentageForBadTestsForCleanliness = $AggregateForCleanliness === 0 ? 0 : ($NumberOfBadTestsForCleanliness / $AggregateForCleanliness * 100);

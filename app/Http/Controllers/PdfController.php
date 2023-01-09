@@ -256,11 +256,11 @@ class PdfController extends Controller
         $pdf->Cell(10, 10,'6', 1, 0, 'C');
         $pdf->Cell(33, 10,'CLEANLINESS', 1, 0, 'C');
         $pdf->Cell(25, 10,'Mins', 1, 0, 'C');
-        $pdf->Cell(33, 10,'   12                 15   ', 1, 0, 'C');
+        $pdf->Cell(33, 10,'   -                 15   ', 1, 0, 'C');
         $pdf->Cell(33, 10,'D2068', 1, 0, 'C');
  
         switch ($Cleanliness) {
-            case $Cleanliness <= 15 && $Cleanliness >= 12:
+            case $Cleanliness <= 15:
                 $CleanlinessResult = 'PASSED';
                 break;      
                 
