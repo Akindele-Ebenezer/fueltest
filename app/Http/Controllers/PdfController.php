@@ -76,8 +76,8 @@ class PdfController extends Controller
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
         $pdf->Cell(50, 10,'SAMPLE DRAWN BY', 1, 0, 'C');
-        $pdf->SetFont('Arial','B', 8);
-        $pdf->Cell(37, 10, $MadeBy, 1, 1, 'C');
+        $pdf->SetFont('Arial','B', 6);
+        $pdf->Cell(37, 10, strlen($MadeBy) > 22 ? substr($MadeBy, 0, 22) . '..' : $MadeBy, 1, 1, 'C');
         
         $pdf->SetTextColor(9, 33, 81); 
         $pdf->SetFont('Arial','B', 10);
