@@ -437,7 +437,6 @@ section.fuel-test .fuel-test-left-nav ul li.active-dashboard {
 section.fuel-test .fuel-test-left-nav ul li em {
   background: rgba(43, 168, 145, 0.8);
   border-radius: 0.2rem;
-  font-style: unset;
   margin-right: 1em;
   padding: 0 0.3rem;
 }
