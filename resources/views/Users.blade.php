@@ -266,10 +266,10 @@
                         $NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE_ =  $NumberOfRecordsCreatedByCurrentUser === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_REJECTED / $NumberOfRecordsCreatedByCurrentUser * 100);
 
                     @endphp
-                    <td class="records">{{ $NumberOfRecordsCreatedByCurrentUser }} ({{ round($NumberOfRecordsCreatedByCurrentUser__PERCENTAGE_, 1) }})% &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser__PERCENTAGE, 1) }}%</td>  
-                    <td class="approved"><span class="Passed">{{ $NumberOfRecordsCreatedByCurrentUser_APPROVED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE, 1) }}%</td>  
-                    <td class="waived"><span class="Waived">{{ $NumberOfRecordsCreatedByCurrentUser_WAIVED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE, 1) }}%</td>  
-                    <td class="rejected"><span class="Failed">{{ $NumberOfRecordsCreatedByCurrentUser_REJECTED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE, 1) }}%</td>  
+                    <td class="records">{{ $NumberOfRecordsCreatedByCurrentUser }} ({{ round($NumberOfRecordsCreatedByCurrentUser__PERCENTAGE_, 1) }})% &nbsp;&nbsp; <em> + {{ round($NumberOfRecordsCreatedByCurrentUser__PERCENTAGE, 1) }}%</em></td>  
+                    <td class="approved"><span class="Passed">{{ $NumberOfRecordsCreatedByCurrentUser_APPROVED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; <em> + {{ round($NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE, 1) }}%</em></td>  
+                    <td class="waived"><span class="Waived">{{ $NumberOfRecordsCreatedByCurrentUser_WAIVED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; <em> + {{ round($NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE, 1) }}%</em></td>  
+                    <td class="rejected"><span class="Failed">{{ $NumberOfRecordsCreatedByCurrentUser_REJECTED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; <em> + {{ round($NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE, 1) }}%</em></td>  
                     <td class="status"><p class="{{ $User->Status === 1 ? 'online' : 'offline' }}"></p></td>  
                     <td class="role">{{ $User->Role }}</td>  
                 </tr>  
