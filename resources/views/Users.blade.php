@@ -84,6 +84,94 @@
                         </div> 
                     </th> 
                     <th class="resizable">
+                            {{-- <label>
+                                <input type="submit" name="SortByStatus" class="hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"/></svg>
+                            </label> --}}
+                        Records
+                        {{-- <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                        <div class="filter filter-staus">
+                            <ul>
+                                    <h1>Status</h1>
+                                    <center>
+                                        <button name="CancelFilter"><a href="{{ route('users') }}">Cancel</a></button> <button name="FilterStatus">Filter</button>
+                                    </center> 
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="1"> Online
+                                        </li>    
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="0"> Offline
+                                        </li>    
+                            </ul>
+                        </div> --}}
+                    </th> 
+                    <th class="resizable">
+                            {{-- <label>
+                                <input type="submit" name="SortByStatus" class="hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"/></svg>
+                            </label> --}}
+                        Approved
+                        {{-- <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                        <div class="filter filter-staus">
+                            <ul>
+                                    <h1>Status</h1>
+                                    <center>
+                                        <button name="CancelFilter"><a href="{{ route('users') }}">Cancel</a></button> <button name="FilterStatus">Filter</button>
+                                    </center> 
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="1"> Online
+                                        </li>    
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="0"> Offline
+                                        </li>    
+                            </ul>
+                        </div> --}}
+                    </th> 
+                    <th class="resizable">
+                            {{-- <label>
+                                <input type="submit" name="SortByStatus" class="hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"/></svg>
+                            </label> --}}
+                        Waived
+                        {{-- <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                        <div class="filter filter-staus">
+                            <ul>
+                                    <h1>Status</h1>
+                                    <center>
+                                        <button name="CancelFilter"><a href="{{ route('users') }}">Cancel</a></button> <button name="FilterStatus">Filter</button>
+                                    </center> 
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="1"> Online
+                                        </li>    
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="0"> Offline
+                                        </li>    
+                            </ul>
+                        </div> --}}
+                    </th> 
+                    <th class="resizable">
+                            {{-- <label>
+                                <input type="submit" name="SortByStatus" class="hide">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"/></svg>
+                            </label> --}}
+                        Rejected
+                        {{-- <svg class="filter-sample-no-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1 313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7 419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854 54.87L3.853 54.87z"/></svg>
+                        <div class="filter filter-staus">
+                            <ul>
+                                    <h1>Status</h1>
+                                    <center>
+                                        <button name="CancelFilter"><a href="{{ route('users') }}">Cancel</a></button> <button name="FilterStatus">Filter</button>
+                                    </center> 
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="1"> Online
+                                        </li>    
+                                        <li>
+                                            <input type="checkbox" name="CheckStatus[]" value="0"> Offline
+                                        </li>    
+                            </ul>
+                        </div> --}}
+                    </th> 
+                    <th class="resizable">
                             <label>
                                 <input type="submit" name="SortByStatus" class="hide">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"/></svg>
@@ -145,6 +233,43 @@
                     @endif
                     <td class="user-email">{{ $User->Email }}</td>
                     <td class="user-name">{{ $User->Name }}</td>  
+                    @php
+                        $NumberOfRecordsCreatedByCurrentUser = \App\Models\FuelTestRecord::where('uid', $User->id)
+                                                                                        ->count();
+
+                        $NumberOfRecordsCreatedByCurrentUser_APPROVED = \App\Models\FuelTestRecord::where('uid', $User->id)
+                                                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                                                        ->count();
+
+                        $NumberOfRecordsCreatedByCurrentUser_WAIVED = \App\Models\FuelTestRecord::where('uid', $User->id)
+                                                                                        ->where('ApprovalForUse', 'WAIVED')
+                                                                                        ->count();
+
+                        $NumberOfRecordsCreatedByCurrentUser_REJECTED = \App\Models\FuelTestRecord::where('uid', $User->id)
+                                                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                                                        ->count();
+
+                        $NumberOfRecordsCreatedByCurrentUser__PERCENTAGE =  $number_of_all_records_absolute === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser / $number_of_all_records_absolute * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE =  $number_of_all_records_absolute === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_APPROVED / $number_of_all_records_absolute * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE =  $number_of_all_records_absolute === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_WAIVED / $number_of_all_records_absolute * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE =  $number_of_all_records_absolute === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_REJECTED / $number_of_all_records_absolute * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser__PERCENTAGE_ =  $NumberOfRecordsCreatedByCurrentUser === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser / $NumberOfRecordsCreatedByCurrentUser * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE_ =  $NumberOfRecordsCreatedByCurrentUser === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_APPROVED / $NumberOfRecordsCreatedByCurrentUser * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE_ =  $NumberOfRecordsCreatedByCurrentUser === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_WAIVED / $NumberOfRecordsCreatedByCurrentUser * 100);
+
+                        $NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE_ =  $NumberOfRecordsCreatedByCurrentUser === 0 ? 0 : ($NumberOfRecordsCreatedByCurrentUser_REJECTED / $NumberOfRecordsCreatedByCurrentUser * 100);
+
+                    @endphp
+                    <td class="records">{{ $NumberOfRecordsCreatedByCurrentUser }} ({{ round($NumberOfRecordsCreatedByCurrentUser__PERCENTAGE_, 1) }})% &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser__PERCENTAGE, 1) }}%</td>  
+                    <td class="approved"><span class="Passed">{{ $NumberOfRecordsCreatedByCurrentUser_APPROVED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser_APPROVED__PERCENTAGE, 1) }}%</td>  
+                    <td class="waived"><span class="Waived">{{ $NumberOfRecordsCreatedByCurrentUser_WAIVED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser_WAIVED__PERCENTAGE, 1) }}%</td>  
+                    <td class="rejected"><span class="Failed">{{ $NumberOfRecordsCreatedByCurrentUser_REJECTED }} ({{ round($NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE_, 1) }})%</span> &nbsp;&nbsp; + {{ round($NumberOfRecordsCreatedByCurrentUser_REJECTED__PERCENTAGE, 1) }}%</td>  
                     <td class="status"><p class="{{ $User->Status === 1 ? 'online' : 'offline' }}"></p></td>  
                     <td class="role">{{ $User->Role }}</td>  
                 </tr>  
