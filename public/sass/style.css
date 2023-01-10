@@ -1250,7 +1250,7 @@ section.previous-records table tr th .filter ul li input[type=checkbox] {
   margin-left: 1rem;
 }
 section.previous-records table tr th form {
-  float: left;
+  display: inline list-item;
 }
 section.previous-records table tr th form h1 {
   font-size: 1.3rem;
@@ -1279,7 +1279,7 @@ section.previous-records table tr th svg {
   cursor: pointer;
   fill: antiquewhite;
   height: 1.2rem;
-  margin-inline: 0.5rem;
+  margin-inline: 0.3rem;
   transform: translateY(0.3rem);
   width: 1.2rem;
 }

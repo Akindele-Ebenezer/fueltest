@@ -508,7 +508,7 @@ section {
                     }
 
                     form {
-                        float: left;
+                        display: inline list-item;
                         // transform: translateY(-.03rem);
 
                         h1 {
@@ -549,7 +549,7 @@ section {
                         cursor: pointer;
                         fill: $color-1;
                         height: 1.2rem;
-                        margin-inline: .5rem;
+                        margin-inline: .3rem;
                         transform: translateY(.3rem);
                         width: 1.2rem;
                         
