@@ -27,6 +27,8 @@ Route::get('/logout', [AuthController::class, 'fuel_test_user_logout']);
  
 Route::post('/update/{SampleNo}', [FuelTestController::class, 'update']); 
 
+Route::get('/UpdateUser/{UserId}', [FuelTestUserController::class, 'update']); 
+
 Route::get('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
  
 Route::post('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']); 

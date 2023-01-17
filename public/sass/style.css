@@ -975,6 +975,8 @@ section.previous-records table td:not(td.pdf-and-edit) {
   padding: 0.4rem 1rem;
 }
 section.previous-records table td.action {
+  display: flex;
+  justify-content: space-evenly;
   text-align: center;
 }
 section.previous-records table tr.history, section.previous-records table tr.history td {
@@ -1423,7 +1425,7 @@ section.show-record {
   height: 90vh;
   position: absolute;
   width: 100vw;
-  z-index: 1000;
+  z-index: 2500;
 }
 section.show-record section {
   background-image: linear-gradient(to bottom, #483434, #111);

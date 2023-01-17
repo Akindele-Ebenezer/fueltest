@@ -5,6 +5,50 @@
 @section('header_info', $title)
 @section('title', $title)
 @section('content')
+    @isset($_GET['EditUser'])
+        <section class="show-record">
+            <section class="show-record-side-bar"> 
+                <div>
+                    <a href="/Users">✖</a>
+                </div>
+                @php
+                    $UserId = $_GET['UserId'];
+                    $User = \App\Models\FuelTestUser::where('id', $UserId)
+                                                        ->first(); 
+                @endphp  
+                <br><br>
+                <center>{{ $User->Name }}</center>
+                <br>
+                <ul> 
+                    <form action="/UpdateUser/{{ $UserId }}">
+                        <h2>Role</h2>
+                        <span>{{ $User->Role }}</span>
+                        <br><br>
+                        <h2>Email</h2>
+                        <span>{{ $User->Email }}</span>
+                        <br><br>
+                        <li>
+                            USERNAME: <br>
+                            <input type="text" name="UserName" value="{{ $User->Name }}">
+                        </li>
+                        <li>
+                            EMAIL: <br>
+                            <input type="text" name="UserEmail" value="{{ $User->Email }}">
+                        </li>
+                        <li>
+                            ROLE: <br>
+                            <select name="UserRole">
+                                <option value="Assign Role..">{{ $User->Role }}</option>
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="USER">USER</option>
+                            </select> 
+                        </li>
+                    </ul>
+                    <button type="submit" name="UpdateUser">Update</button>
+                </form>
+            </section>
+        </section>
+    @endisset
     <section class="previous-records">
         @include('PageTitle')
         @if(Session::get('Role') === 'ADMIN') 
@@ -18,7 +62,7 @@
                 <select name="Role">
                     <option value="Assign Role..">Assign Role..</option>
                     <option value="ADMIN">ADMIN</option>
-                    <option value="User">User</option>
+                    <option value="USER">USER</option>
                 </select>
                 <button>Add User</button>
             </form>
@@ -26,7 +70,7 @@
         @endif
         @include('Search')
         <div class="table other-tables"> 
-            <form class="DeleteRecords_" action="">
+            <form class="DeleteRecords_" action=""> 
             <table class="users"> 
                 <tr>  
                     <th class="resizable">#</th>
@@ -226,9 +270,16 @@
                 @foreach($fuel_test_users as $User)
                 <tr> 
                     <td class="user-id">{{ $User->id }}</td>
-                    @if(Session::get('Role') === 'ADMIN') 
+                    @if(Session::get('Role') === 'ADMIN')   
                     <td class="action"> 
                         <input type="checkbox" name="DeleteUser[]" value="{{ $User->id }}">
+                        <form action="">
+                            <label>
+                                <img src="images/edit.png">
+                                <input type="hidden" name="UserId" value="{{ $User->id }}">
+                                <input type="submit" class="hide" name="EditUser">
+                            </label>
+                        </form>
                     </td>
                     @endif
                     <td class="user-email">{{ $User->Email }}</td>

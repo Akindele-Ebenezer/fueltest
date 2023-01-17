@@ -36,6 +36,13 @@ class FuelTestUserController extends Controller
                 'ErrorMessage' => Session::get('ErrorMessage'),   
             ];
 
+            if(isset($_GET['EditUserDetails'])) {
+                $Email[] = $_GET['EditUserEmail'];
+                $Ids[] = $_GET['EditUserId'];
+   
+                return redirect()->back();
+            }
+
             if(isset($_GET['Delete_'])) {
                 $CheckedUsersToDelete[] = $_GET['DeleteUser'];
                 
@@ -291,9 +298,22 @@ class FuelTestUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $UserId)
+    { 
+            $UserId = $request->UserId;
+ 
+            $UserName_UPDATE = $request->UserName;
+            $UserEmail_UPDATE = $request->UserEmail;
+            $UserRole_UPDATE = $request->UserRole;
+
+            $UpdateUser = FuelTestUser::where('id', $UserId)
+                                                ->update([
+                                                    'Email' => $UserEmail_UPDATE,
+                                                    'Name' => $UserName_UPDATE,
+                                                    'Role' => $UserRole_UPDATE,
+                                                ]); 
+
+            return redirect('/Users');
     }
 
     /**

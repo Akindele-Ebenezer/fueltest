@@ -151,6 +151,8 @@ section {
                 } 
 
                 &.action {
+                    display: flex;
+                    justify-content: space-evenly;
                     text-align: center;
                 }
             }
@@ -746,7 +748,7 @@ section {
         height: 90vh;
         position: absolute;
         width: 100vw;
-        z-index: 1000;
+        z-index: 2500;
 
         section {
             background-image: linear-gradient( to bottom, $color-2, #111);
