@@ -53,7 +53,7 @@ class FuelTestController extends Controller
         $all_records_absolute = DB::table('fuel_test_records')->get(); 
         $all_records = DB::table('fuel_test_records')->orderBy('SampleCollectionDate', 'DESC')->paginate(14)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
-        
+         
         $vendors = Vendor::paginate(14);
         $absolute_vendors = Vendor::get();
         $number_of_vendors = count($vendors); 

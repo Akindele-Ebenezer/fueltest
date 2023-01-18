@@ -209,9 +209,24 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor)
-    {
-        //
+    public function update(Request $request, $VendorNo)
+    { 
+        $VendorNo_UPDATE = $request->VendorNo;
+        $VendorName_UPDATE = $request->VendorName; 
+ 
+        $UpdateVendor = Vendor::where('VendorNo', $VendorNo)
+                                            ->update([
+                                                'VendorNo' => $VendorNo_UPDATE,
+                                                'VendorName' => $VendorName_UPDATE, 
+                                            ]); 
+ 
+        // $UpdateVendor_ = FuelTestRecord::where('VendorNo', $VendorNo)
+        //                                     ->update([
+        //                                         'VendorNo' => $VendorNo_UPDATE,
+        //                                         'VendorName' => $VendorName_UPDATE, 
+        //                                     ]); 
+
+        return redirect('/Vendors');
     }
 
     /**

@@ -15,8 +15,25 @@
                     $UserId = $_GET['UserId'];
                     $User = \App\Models\FuelTestUser::where('id', $UserId)
                                                         ->first(); 
+
+                    $APPROVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                        ->count(); 
+                                                        
+                    $WAIVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                                                        ->where('ApprovalForUse', 'WAIVED')
+                                                        ->count(); 
+
+                    $FAILED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                        ->count(); 
+
+                    $TOTAL_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId) 
+                                                        ->count(); 
                 @endphp  
                 <br><br>
+                <em>USER PROFILE</em>
+                <hr><br>
                 <center>{{ $User->Name }}</center>
                 <br>
                 <ul> 
@@ -27,6 +44,17 @@
                         <h2>Email</h2>
                         <span>{{ $User->Email }}</span>
                         <br><br>
+                        <p>
+                            DETAILS: This User created <em>{{ $TOTAL_TESTS }}</em> Records so far..
+                            <hr>
+                            <br><br>
+                            Approved Tests: <em>{{ $APPROVED_TESTS }}</em> 
+                            <br>
+                            Waived Tests: <em>{{ $WAIVED_TESTS }}</em>
+                            <br>
+                            Failed Tests: <em>{{ $FAILED_TESTS }}</em>
+                        </p>
+                        <br><br>
                         <li>
                             USERNAME: <br>
                             <input type="text" name="UserName" value="{{ $User->Name }}">
@@ -34,6 +62,10 @@
                         <li>
                             EMAIL: <br>
                             <input type="text" name="UserEmail" value="{{ $User->Email }}">
+                        </li>
+                        <li>
+                            PASSWORD: <br>
+                            <input type="text" name="UserPassword" value="{{ $User->Password }}">
                         </li>
                         <li>
                             ROLE: <br>
@@ -275,7 +307,7 @@
                         <input type="checkbox" name="DeleteUser[]" value="{{ $User->id }}">
                         <form action="">
                             <label>
-                                <img src="images/edit.png">
+                                <img class="admin-edit" src="images/edit.png">
                                 <input type="hidden" name="UserId" value="{{ $User->id }}">
                                 <input type="submit" class="hide" name="EditUser">
                             </label>

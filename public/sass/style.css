@@ -975,7 +975,9 @@ section.previous-records table td:not(td.pdf-and-edit) {
   padding: 0.4rem 1rem;
 }
 section.previous-records table td.action {
+  border: none !important;
   display: flex;
+  height: 2.5rem;
   justify-content: space-evenly;
   text-align: center;
 }
@@ -1136,6 +1138,10 @@ section.previous-records table tr td img {
   height: 1.45rem;
   translate: 0 0.5rem;
   width: 1.45rem;
+}
+section.previous-records table tr td img.admin-edit {
+  cursor: pointer;
+  translate: 0;
 }
 section.previous-records table tr td.vendor-name label {
   color: unset;
@@ -1419,6 +1425,13 @@ section.search form .icon-button svg {
 }
 section.show-record-side-bar {
   right: 0 !important;
+}
+section.show-record-side-bar ul li input,
+section.show-record-side-bar ul li select {
+  border: none;
+  margin-block: 1em;
+  outline: none;
+  padding-inline: 0.3em;
 }
 section.show-record {
   background: rgba(0, 0, 0, 0.5);

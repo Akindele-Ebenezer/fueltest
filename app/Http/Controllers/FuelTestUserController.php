@@ -305,12 +305,14 @@ class FuelTestUserController extends Controller
             $UserName_UPDATE = $request->UserName;
             $UserEmail_UPDATE = $request->UserEmail;
             $UserRole_UPDATE = $request->UserRole;
+            $UserPassword_UPDATE = $request->UserPassword;
 
             $UpdateUser = FuelTestUser::where('id', $UserId)
                                                 ->update([
                                                     'Email' => $UserEmail_UPDATE,
                                                     'Name' => $UserName_UPDATE,
                                                     'Role' => $UserRole_UPDATE,
+                                                    'Password' => $UserPassword_UPDATE,
                                                 ]); 
 
             return redirect('/Users');

@@ -151,7 +151,9 @@ section {
                 } 
 
                 &.action {
+                    border: none !important;
                     display: flex;
+                    height: 2.5rem;
                     justify-content: space-evenly;
                     text-align: center;
                 }
@@ -361,6 +363,11 @@ section {
                         height: 1.45rem;
                         translate: 0 0.5rem;
                         width: 1.45rem;
+
+                        &.admin-edit {
+                            cursor: pointer;
+                            translate: 0;
+                        }
                     }
                     
                     &.vendor-name {
@@ -741,6 +748,18 @@ section {
 
     &.show-record-side-bar {
         right: 0 !important; 
+
+        ul {
+            li {
+                input,
+                select {
+                    border: none;
+                    margin-block: 1em;
+                    outline: none;
+                    padding-inline: 0.3em;
+                }
+            }
+        }
     }
 
     &.show-record { 

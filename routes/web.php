@@ -29,6 +29,8 @@ Route::post('/update/{SampleNo}', [FuelTestController::class, 'update']);
 
 Route::get('/UpdateUser/{UserId}', [FuelTestUserController::class, 'update']); 
 
+Route::get('/UpdateVendor/{VendorNo}', [VendorController::class, 'update']); 
+
 Route::get('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
  
 Route::post('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']); 

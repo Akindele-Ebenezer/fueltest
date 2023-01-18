@@ -5,6 +5,70 @@
 @section('header_info', $title)
 @section('title', $title)
 @section('content')
+@isset($_GET['EditVendor'])
+    <section class="show-record">
+        <section class="show-record-side-bar"> 
+            <div>
+                <a href="/Vendors">✖</a>
+            </div>
+            @php
+                $VendorId = $_GET['VendorId'];
+                $Vendor = \App\Models\Vendor::where('id', $VendorId)
+                                                    ->first(); 
+
+                $APPROVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                    ->where('ApprovalForUse', 'APPROVED')
+                                                    ->count(); 
+                                                    
+                $WAIVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                    ->where('ApprovalForUse', 'WAIVED')
+                                                    ->count(); 
+
+                $FAILED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                    ->where('ApprovalForUse', 'REJECTED')
+                                                    ->count(); 
+
+                $TOTAL_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo) 
+                                                    ->count(); 
+            @endphp  
+            <br><br>
+            <em>Vendor PROFILE</em>
+            <hr><br>
+            <center>{{ $Vendor->VendorName }}</center>
+            <br>
+            <ul> 
+                <form action="/UpdateVendor/{{ $Vendor->VendorNo }}">
+                    <h2>Vendor No</h2>
+                    <span>{{ $Vendor->VendorNo }}</span>
+                    <br><br>
+                    <h2>Vendor Name</h2>
+                    <span>{{ $Vendor->VendorName }}</span>
+                    <br><br>
+                    <p>
+                        DETAILS: This Vendor supplied <em>{{ $TOTAL_TESTS }}</em> Diesel(s) for testing so far..
+                        <hr>
+                        <br><br>
+                        Approved Tests: <em>{{ $APPROVED_TESTS }}</em> 
+                        <br>
+                        Waived Tests: <em>{{ $WAIVED_TESTS }}</em>
+                        <br>
+                        Failed Tests: <em>{{ $FAILED_TESTS }}</em>
+                    </p>
+                    <br><br>
+                    <li>
+                        Vendor No: <br>
+                        <input type="text" name="VendorNo" value="{{ $Vendor->VendorNo }}">
+                    </li>
+                    <li>
+                        Vendor Name: <br>
+                        <input type="text" name="VendorName" value="{{ $Vendor->VendorName }}">
+                    </li>  
+                    <button type="submit" name="UpdateVendor">Update</button>
+                </form>
+            </ul>
+        </section>
+    </section>
+@endisset
     <section class="previous-records">
         @include('PageTitle')
 
@@ -117,6 +181,13 @@
                     @if(Session::get('Role') === 'ADMIN') 
                     <td class="action"> 
                         <input type="checkbox" name="DeleteVendor[]" value="{{ $Vendor->id }}">
+                        <form action="">
+                            <label>
+                                <img class="admin-edit" src="images/edit.png">
+                                <input type="hidden" name="VendorId" value="{{ $Vendor->id }}">
+                                <input type="submit" class="hide" name="EditVendor">
+                            </label>
+                        </form>
                     </td>
                     @endif
                     <td class="vendor-no" id="Vend">
