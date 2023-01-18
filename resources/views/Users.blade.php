@@ -43,9 +43,9 @@
                                 <option value="USER">USER</option>
                             </select> 
                         </li>
-                    </ul>
-                    <button type="submit" name="UpdateUser">Update</button>
-                </form>
+                        <button type="submit" name="UpdateUser">Update</button>
+                    </form>
+                </ul>
             </section>
         </section>
     @endisset
