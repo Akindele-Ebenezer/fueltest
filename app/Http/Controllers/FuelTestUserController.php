@@ -43,7 +43,11 @@ class FuelTestUserController extends Controller
                 return redirect()->back();
             }
 
-            if(isset($_GET['Delete_'])) {
+            if(isset($_GET['Delete_'])) { 
+                if(empty($_GET['DeleteUser'])) {
+                    return redirect()->back();  
+                }
+
                 $CheckedUsersToDelete[] = $_GET['DeleteUser'];
                 
                 foreach ($CheckedUsersToDelete as $User) {

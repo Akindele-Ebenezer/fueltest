@@ -36,6 +36,10 @@ class VendorController extends Controller
             ];
  
             if(isset($_GET['Delete_'])) {
+                if(empty($_GET['DeleteVendor'])) {
+                    return redirect()->back();  
+                }
+                
                 $CheckedVendorsToDelete[] = $_GET['DeleteVendor'];
                 
                 foreach ($CheckedVendorsToDelete as $Vendor) {
