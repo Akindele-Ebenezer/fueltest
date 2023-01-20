@@ -753,11 +753,14 @@ section {
             li {
                 input,
                 select {
+                    background: unset;
                     border: none;
+                    border-bottom: 1px solid $color-2;
+                    color: #fff !important;
                     margin-block: 1em;
                     outline: none;
                     padding-inline: 0.3em;
-                }
+                } 
             }
         }
     }
@@ -768,6 +771,69 @@ section {
         position: absolute;
         width: 100vw;
         z-index: 2500;
+ 
+        .fuel-test-main {
+            position: absolute;
+            width: 40em;
+
+            a {
+                color: unset;
+                display: block;
+                text-align: center; 
+            }
+
+            .form {
+                background: unset;
+                box-shadow: unset;
+                display: unset;
+
+                div {
+                    background: unset;
+                    border-radius: unset;
+
+                    input,
+                    input.select,
+                    input[type="date"] {
+                        background: unset;
+                        border: none;
+                        border-bottom: 1px solid $color-2;
+                        color: #fff !important;
+                        margin-left: unset;
+                        padding: 0.1em 0.5em !important;
+                        width: 21em;
+                    }
+
+                    section {
+                        box-shadow: unset;
+                        height: fit-content;
+                        left: 8rem !important;
+                    }
+
+                    svg {
+                        margin-right: unset;
+                        padding: unset;
+                        transform: unset;
+                        width: 1.5em;
+                    }
+                }
+
+                label {
+                    color: white;
+                    margin-right: unset;
+                    width: 10.5em;
+
+                    &[for="VendorNo"] {
+                        width: 13.6em;
+                    }
+                }
+            }
+
+            .record-info {
+                margin-left: unset;
+                padding-inline: 2rem !important;
+                text-align: unset;
+            }
+        }
 
         section {
             background-image: linear-gradient( to bottom, $color-2, #111);
@@ -826,6 +892,19 @@ section {
 
             &:last-child { 
                 margin-top: 4rem; 
+            }
+
+            &.edit-vendor-details {
+                display: unset;
+            }
+
+            input {
+                border: none;
+                margin-block: .5em;
+                margin-left: 3em;
+                outline: none;
+                padding-inline: .5em;
+                width: 80%;
             }
 
             svg { 

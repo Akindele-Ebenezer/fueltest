@@ -45,16 +45,16 @@
                     <span>{{ $Vendor->VendorName }}</span>
                     <br><br>
                     <p>
-                        DETAILS: This Vendor supplied <em>{{ $TOTAL_TESTS }}</em> Diesel(s) for testing so far..
-                        <hr>
+                        NB: This Vendor supplied <em>{{ $TOTAL_TESTS }}</em> Diesel(s) for testing so far..
+                         
                         <br><br>
-                        Approved Tests: <em>{{ $APPROVED_TESTS }}</em> 
+                        Approved Tests => {{ $APPROVED_TESTS }} 
                         <br>
-                        Waived Tests: <em>{{ $WAIVED_TESTS }}</em>
+                        Waived Tests => {{ $WAIVED_TESTS }}
                         <br>
-                        Failed Tests: <em>{{ $FAILED_TESTS }}</em>
+                        Failed Tests => {{ $FAILED_TESTS }}
                     </p>
-                    <br><br>
+                    <br> 
                     <li>
                         Vendor No: <br>
                         <input type="text" name="VendorNo" value="{{ $Vendor->VendorNo }}">

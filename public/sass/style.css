@@ -840,7 +840,7 @@ section.fuel-test .fuel-test-main .record-info {
 }
 section.fuel-test .fuel-test-main center form input {
   transform: translateY(2rem);
-  width: 5rem;
+  width: 3rem;
 }
 
 section.previous-records {
@@ -1428,7 +1428,10 @@ section.show-record-side-bar {
 }
 section.show-record-side-bar ul li input,
 section.show-record-side-bar ul li select {
+  background: unset;
   border: none;
+  border-bottom: 1px solid #483434;
+  color: #fff !important;
   margin-block: 1em;
   outline: none;
   padding-inline: 0.3em;
@@ -1439,6 +1442,59 @@ section.show-record {
   position: absolute;
   width: 100vw;
   z-index: 2500;
+}
+section.show-record .fuel-test-main {
+  position: absolute;
+  width: 40em;
+}
+section.show-record .fuel-test-main a {
+  color: unset;
+  display: block;
+  text-align: center;
+}
+section.show-record .fuel-test-main .form {
+  background: unset;
+  box-shadow: unset;
+  display: unset;
+}
+section.show-record .fuel-test-main .form div {
+  background: unset;
+  border-radius: unset;
+}
+section.show-record .fuel-test-main .form div input,
+section.show-record .fuel-test-main .form div input.select,
+section.show-record .fuel-test-main .form div input[type=date] {
+  background: unset;
+  border: none;
+  border-bottom: 1px solid #483434;
+  color: #fff !important;
+  margin-left: unset;
+  padding: 0.1em 0.5em !important;
+  width: 21em;
+}
+section.show-record .fuel-test-main .form div section {
+  box-shadow: unset;
+  height: fit-content;
+  left: 8rem !important;
+}
+section.show-record .fuel-test-main .form div svg {
+  margin-right: unset;
+  padding: unset;
+  transform: unset;
+  width: 1.5em;
+}
+section.show-record .fuel-test-main .form label {
+  color: white;
+  margin-right: unset;
+  width: 10.5em;
+}
+section.show-record .fuel-test-main .form label[for=VendorNo] {
+  width: 13.6em;
+}
+section.show-record .fuel-test-main .record-info {
+  margin-left: unset;
+  padding-inline: 2rem !important;
+  text-align: unset;
 }
 section.show-record section {
   background-image: linear-gradient(to bottom, #483434, #111);
@@ -1486,6 +1542,17 @@ section.show-record div:first-child form input[type=submit] {
 }
 section.show-record div:last-child {
   margin-top: 4rem;
+}
+section.show-record div.edit-vendor-details {
+  display: unset;
+}
+section.show-record div input {
+  border: none;
+  margin-block: 0.5em;
+  margin-left: 3em;
+  outline: none;
+  padding-inline: 0.5em;
+  width: 80%;
 }
 section.show-record div svg {
   cursor: pointer;

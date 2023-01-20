@@ -592,13 +592,14 @@ class FuelTestController extends Controller
                     'title' => $title, 
                     'VendorNo_' => $VendorNo_, 
                     'VendorName_' => $VendorName_, 
-                    'TestResult' => $TestResult,  
+                    'TestResult' => $TestResult, 
+                    'ErrorMessage' => Session::get('ErrorMessage'),  
                 ];
 
                 $ViewData = [...$Config, ...$ViewData];  
                 extract($Config); 
                 
-                return view("record_success", $ViewData);
+                return view("fuel_test", $ViewData);
 
             } else { 
                 return redirect('/');        
@@ -3981,14 +3982,14 @@ class FuelTestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $SampleNo)
+    public function update(Request $request, $MyRecordId)
     {
         if(!(Session::has('email'))) {
             Session::forget('email');
             Session::flush();
             return redirect('/');        
         } 
-        
+  
         $SampleNo = $request->SampleNo;   
         $SampleCollectionDate = $request->SampleCollectionDate; 
         $TruckPlateNo = $request->TruckPlateNo; 
@@ -4010,7 +4011,7 @@ class FuelTestController extends Controller
         $VendorNo = $request->VendorNo;
         $VendorName = $request->VendorName;
 
-        $save_changes = FuelTestRecord::where('SampleNo', $SampleNo)->update([
+        $save_changes = FuelTestRecord::where('SampleNo', $MyRecordId)->update([
             'SampleNo' => $request->SampleNo,
             'SampleCollectionDate' => $SampleCollectionDate,
             'TruckPlateNo' => $TruckPlateNo,
@@ -4032,7 +4033,7 @@ class FuelTestController extends Controller
             'ApprovalForUse' => $ApprovalForUse,
          ]);
 
-         return redirect('FuelTest');
+         return redirect('/PreviousRecords'); 
     }
 
     public function show_stats() { 

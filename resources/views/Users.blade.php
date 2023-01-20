@@ -37,24 +37,18 @@
                 <center>{{ $User->Name }}</center>
                 <br>
                 <ul> 
-                    <form action="/UpdateUser/{{ $UserId }}">
-                        <h2>Role</h2>
-                        <span>{{ $User->Role }}</span>
-                        <br><br>
-                        <h2>Email</h2>
-                        <span>{{ $User->Email }}</span>
-                        <br><br>
+                    <form action="/UpdateUser/{{ $UserId }}"> 
                         <p>
-                            DETAILS: This User created <em>{{ $TOTAL_TESTS }}</em> Records so far..
-                            <hr>
+                            This User created <em>"{{ $TOTAL_TESTS }}</em> Records" so far..
+                             
                             <br><br>
-                            Approved Tests: <em>{{ $APPROVED_TESTS }}</em> 
+                            Approved Tests => {{ $APPROVED_TESTS }} 
                             <br>
-                            Waived Tests: <em>{{ $WAIVED_TESTS }}</em>
+                            Waived Tests => {{ $WAIVED_TESTS }}
                             <br>
-                            Failed Tests: <em>{{ $FAILED_TESTS }}</em>
+                            Failed Tests => {{ $FAILED_TESTS }}
                         </p>
-                        <br><br>
+                        <br> 
                         <li>
                             USERNAME: <br>
                             <input type="text" name="UserName" value="{{ $User->Name }}">
