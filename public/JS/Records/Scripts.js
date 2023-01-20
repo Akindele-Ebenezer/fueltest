@@ -55,7 +55,7 @@ let HistoryTotalArray = [];
 
 for (let i = 0; i < History.length; i++) {
     for (let j = 0; j < History[i].length; j++) { 
-        History[i][0].style.display = 'block ruby';
+        History[i][0].style.display = '-webkit-box';
         History[i][0].style.width = '20em';
         
         let HistoryTotal_ = History[i].length;

@@ -1259,7 +1259,7 @@ section.previous-records table tr th .filter ul li input[type=checkbox] {
   margin-left: 1rem;
 }
 section.previous-records table tr th form {
-  display: inline list-item;
+  display: contents;
 }
 section.previous-records table tr th form h1 {
   font-size: 1.3rem;
