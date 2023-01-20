@@ -1154,6 +1154,7 @@ section.previous-records table tr td.pdf-and-edit {
   position: relative;
 }
 section.previous-records table tr td.pdf-and-edit img {
+  cursor: pointer;
   height: 1.45rem;
   translate: 0 0.5rem;
   width: 1.45rem;
