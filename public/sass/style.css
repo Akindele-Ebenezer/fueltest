@@ -1531,7 +1531,8 @@ section.show-record div:first-child .pdf-and-edit {
 section.show-record div:first-child .pdf-and-edit form {
   padding: 1rem;
 }
-section.show-record div:first-child .pdf-and-edit label {
+section.show-record div:first-child .pdf-and-edit label,
+section.show-record div:first-child .pdf-and-edit img {
   cursor: pointer;
 }
 section.show-record div:first-child form input {

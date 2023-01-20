@@ -14,11 +14,33 @@
                 @php
                     $MyRecordId = $_GET['EditMyRecord_SAMPLE_NO'];
                     $MyRecord = \App\Models\FuelTestRecord::where('SampleNo', $MyRecordId)
-                                                        ->first();  
+                                                        ->first(); 
+                    $SampleNo = $MyRecordId;   
+                    $SampleCollectionDate = $MyRecord->SampleCollectionDate; 
+                    $TruckPlateNo = $MyRecord->TruckPlateNo; 
+                    $TankNo = $MyRecord->TankNo; 
+                    $AppearanceResult = $MyRecord->AppearanceResult; 
+                    $Color = $MyRecord->Color; 
+                    $Density = $MyRecord->Density; 
+                    $FlashPoint = $MyRecord->FlashPoint; 
+                    $Temp = $MyRecord->Temp; 
+                    $WaterSediment = $MyRecord->WaterSediment; 
+                    $Cleanliness = $MyRecord->Cleanliness; 
+                    $DateOfTest = $MyRecord->DateOfTest; 
+                    $uid = $MyRecord->uid; 
+                    $MadeBy = $MyRecord->MadeBy; 
+                    $DeliveredTo = $MyRecord->DeliveredTo; 
+                    $Remarks = $MyRecord->Remarks;
+                    $ApprovalForUse = $MyRecord->ApprovalForUse;  
+                    
+                    $VendorNo = $MyRecord->VendorNo;
+                    $VendorName = $MyRecord->VendorName;
+                 
                                                         
                 @endphp  
                 <br><br>
                 <em>{{ $MyRecord->SampleNo }}</em>
+                @include('DATA.EditUpdateData')
                 <hr><br>
                 <center>{{ $MyRecord->VendorName }}</center>
                 <center>{{ $MyRecord->VendorNo }}</center>
