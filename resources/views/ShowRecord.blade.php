@@ -1,4 +1,4 @@
-<section class="{{ isset($_GET['SampleNo']) ? 'show-record' : 'hide-record' }}">
+<section class="{{ isset($_GET['SampleNo']) ? 'show-record' : 'hide-record' }}  {{ isset($_GET['HideShowRecordSideBar']) ? 'hide' : '' }}">
     <section class="{{ isset($_GET['SampleNo']) ? 'show-record-side-bar' : '' }}">        
         <div> 
             <div class="pdf-and-edit">
@@ -9,9 +9,12 @@
                     </label>
                 </form>  
                 @if(Route::is('previous_records'))
-                    <form action="/Edit/{{ $SampleNo }}" > 
+                    <form action=""> 
                         <label>
                             <p>Edit Record</p> 
+                            <input type="hidden" name="EditMyRecord_SAMPLE_NO" value="{{ $SampleNo }}">
+                            <input type="hidden" name="EditMyRecord">
+                            <input type="hidden" name="HideShowRecordSideBar">
                             @include('ShowRecordsCertificateData')   
                         </label>
                     </form> 
