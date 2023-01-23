@@ -49,7 +49,7 @@
          
         $AbsoluteMonthNumber = $i;  
         $Year_ = date('Y');
-        $Years = range(2000, strftime("%Y", time()));
+        $Years = range(2022, strftime("%Y", time()));
          
         // ${"FirstDayOf" . $MonthNames[$i]} = date('2022-' . $MonthNumber . '-01'); 
         // ${"LastDayOf" . $MonthNames[$i]} = date('2022-' . $MonthNumber . '-' . cal_days_in_month(CAL_EASTER_DEFAULT, $AbsoluteMonthNumber , date('2022')));
