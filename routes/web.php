@@ -18,17 +18,13 @@ Route::get('/PreviousRecords', [FuelTestController::class, 'show_previous_record
 Route::get('/AllRecords', [FuelTestController::class, 'show_all_records'])->name('all_records');
 
 Route::get('/edit', [FuelTestController::class, 'edit'])->name('edit_records');
-
-// Route::get('/RecordSuccess', [FuelTestController::class, 'store'])->name('record_success');
-
+ 
 Route::get('/RecordSuccess', [FuelTestController::class, 'store'])->name('record_success');
 
 Route::post('/login', [AuthController::class, 'fuel_test_user_login'])->name('login');
     
 Route::get('/logout', [AuthController::class, 'fuel_test_user_logout']);
- 
-// Route::post('/update/{SampleNo}', [FuelTestController::class, 'update']); 
-
+  
 Route::get('/UpdateMyRecord/{MyRecordId}', [FuelTestController::class, 'update']); 
 
 Route::get('/UpdateUser/{UserId}', [FuelTestUserController::class, 'update']); 
