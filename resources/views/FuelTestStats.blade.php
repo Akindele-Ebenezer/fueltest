@@ -105,6 +105,17 @@
             </div>
         @endif 
         <div class="fuel-test-dashboard-inner {{ isset($_GET['RevealVendors']) ? 'hide' : '' }}">
+            <h1>Yearly Report</h1>
+            <form action="">
+                <select name="Year">
+                    <option>Select Year</option>
+                    @foreach($Years as $Year)
+                        <option value="{{ $Year }}">{{ $Year }}</option>
+                    @endforeach
+                </select>
+                <input type="button" name="ApprovalForUse_YearlyReport">
+            </form>
+              
             <canvas id="myChart" style="width:100%;min-width:700px"></canvas>
             @if(!(isset($_GET['GenerateChartForCurrentVendor'])))
                 <div>

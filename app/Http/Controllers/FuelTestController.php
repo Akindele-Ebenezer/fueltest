@@ -42,7 +42,7 @@ class FuelTestController extends Controller
         $number_of_fuel_test_users = count($fuel_test_users);
         $number_of_fuel_test_users_absolute = FuelTestUser::count();
 
-        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleCollectionDate', 'DESC')->paginate(14)->fragment('PreviousRecords');
+        $previous_records = DB::table('fuel_test_records')->where('uid', Session::get('id'))->orderBy('SampleCollectionDate', 'DESC')->latest()->paginate(14)->fragment('PreviousRecords');
         $number_of_previous_records = count($previous_records);
 
         $all_records_for_insights = FuelTestRecord::orderBy('SampleNo', 'DESC')->get()->toArray(); 
@@ -51,7 +51,7 @@ class FuelTestController extends Controller
         $number_of_all_records_absolute = FuelTestRecord::select('id')->count();
  
         $all_records_absolute = DB::table('fuel_test_records')->get(); 
-        $all_records = DB::table('fuel_test_records')->orderBy('SampleCollectionDate', 'DESC')->paginate(14)->fragment('AllRecords'); 
+        $all_records = DB::table('fuel_test_records')->orderBy('SampleCollectionDate', 'DESC')->latest()->paginate(14)->fragment('AllRecords'); 
         $number_of_all_records = count($all_records);
          
         $vendors = Vendor::paginate(14);
