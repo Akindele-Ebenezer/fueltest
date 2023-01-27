@@ -26,7 +26,7 @@ for (let i = 0; i < SelectFields.length; i++) {
             if (VendorName.id === "EditVendorName") {
                 SelectFieldsEvent.preventDefault();
             } else {
-                FuelTestForm.submit();
+                // FuelTestForm.submit();
             }     
         });
     });  
@@ -37,7 +37,8 @@ SelectDropdownArray.forEach(SelectDropdownLi => {
     SelectDropdownLi.addEventListener('click', () => {
         if (SelectDropdownLi.parentElement.parentElement.previousElementSibling.getAttribute("name") === 'VendorNo') {
             SelectDropdownLi.parentElement.parentElement.previousElementSibling.value = SelectDropdownLi.lastElementChild.textContent; 
-            SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 
+            SelectDropdownLi.parentElement.parentElement.nextElementSibling.value = SelectDropdownLi.firstElementChild.textContent; 
+            SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList');  
         } else {
             SelectDropdownLi.parentElement.parentElement.previousElementSibling.value = SelectDropdownLi.textContent;
             SelectDropdownLi.parentElement.parentElement.classList.remove('ToggleList'); 

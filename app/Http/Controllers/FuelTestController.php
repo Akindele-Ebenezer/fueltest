@@ -265,23 +265,9 @@ class FuelTestController extends Controller
             Session::forget('email');
             Session::flush();
             return redirect('/');        
-        } else {
-            $VendorName = '';
- 
-            if (Session::get('VendorNo')) {
-                $VendorNo = Session::get('VendorNo'); 
-
-                $VendorNo = Vendor::where('VendorNo', $VendorNo)->get();
-
-                foreach ($VendorNo as $VendorName) {
-                    $VendorName = $VendorName->VendorName;
-                }
-            }
- 
+        } else { 
             $ViewData = [ 
-                'title' => $title, 
-                'VendorNo' => Session::get('VendorNo'), 
-                'VendorName' => $VendorName, 
+                'title' => $title,  
                 'ErrorMessage' => Session::get('ErrorMessage'),  
             ];
      
@@ -495,52 +481,55 @@ class FuelTestController extends Controller
          
         if(empty($SampleCollectionDate)) {
             $ErrorMessage = 'Enter Date for Sample Collection';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
+        } elseif(empty($VendorNo)) { 
+            $ErrorMessage = 'Vendor No is required';
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($VendorName)) { 
             $ErrorMessage = 'Vendor Name is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($TruckPlateNo)) { 
             $ErrorMessage = 'Truck Plate No is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($TankNo)) { 
             $ErrorMessage = 'Enter Tank No';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($AppearanceResult)) { 
             $ErrorMessage = 'Appearance Result field can\'t be empty';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Color)) { 
             $ErrorMessage = 'Select Color';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Density)) { 
             $ErrorMessage = 'Input Density';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($FlashPoint)) { 
             $ErrorMessage = 'Enter Flash Point';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Temp)) { 
             $ErrorMessage = 'This field is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($WaterSediment)) { 
             $ErrorMessage = 'This field is required';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Cleanliness)) { 
             $ErrorMessage = 'Clean or Not ??';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($DateOfTest)) { 
             $ErrorMessage = 'Date Of Test cannot be NULL';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($MadeBy)) { 
             $ErrorMessage = 'Made By who?';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($DeliveredTo)) { 
             $ErrorMessage = 'Delivered to who?';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($Remarks)) { 
             $ErrorMessage = 'Write your Remarks..';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } elseif(empty($ApprovalForUse)) { 
             $ErrorMessage = 'Approved or Not?..';
-            return redirect('FuelTest')->with('VendorNo', $VendorNo)->with('ErrorMessage', $ErrorMessage)->withInput();
+            return redirect('FuelTest')->with('ErrorMessage', $ErrorMessage)->withInput();
         } else { 
                 $create_record = FuelTestRecord::create([
                         'SampleNo' => $SampleNo,

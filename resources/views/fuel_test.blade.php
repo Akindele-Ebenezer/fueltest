@@ -294,7 +294,7 @@
                 <div>  
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>
                     <label for="VendorNo">Vendor No.</label><br>
-                    <input class="select" type="text" placeholder="Vendor No..." name="VendorNo" value="{{ isset($_GET['GetRecord']) ? $VendorNo : $VendorNo }}" autocomplete="off" id="{{ isset($_GET['RecordId']) ? 'readonly' : '' }}">
+                    <input class="select" type="text" placeholder="Vendor No..." name="VendorNo" value="{{ old('VendorNo') }}{{ isset($_GET['GetRecord']) ? $VendorNo : '' }}" autocomplete="off" id="{{ isset($_GET['RecordId']) ? 'readonly' : '' }}">
                     <section class="VendorList">
                         <ul>
                             <h2><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"/></svg>VENDORS List <span>{{ $number_of_vendors_absolute }}</span></h2>
@@ -303,7 +303,7 @@
                             @endforeach
                         </ul>
                     </section>
-                    <input type="text" placeholder="Name of VENDOR..." name="VendorName" value="{{ isset($_GET['GetRecord']) ? $VendorName : $VendorName }}">
+                    <input type="text" placeholder="Name of VENDOR..." name="VendorName" value="{{ old('VendorName') }}{{ isset($_GET['GetRecord']) ? $VendorName : '' }}">
                 </div>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M368 0C394.5 0 416 21.49 416 48V96H466.7C483.7 96 499.1 102.7 512 114.7L589.3 192C601.3 204 608 220.3 608 237.3V352C625.7 352 640 366.3 640 384C640 401.7 625.7 416 608 416H576C576 469 533 512 480 512C426.1 512 384 469 384 416H256C256 469 213 512 160 512C106.1 512 64 469 64 416H48C21.49 416 0 394.5 0 368V48C0 21.49 21.49 0 48 0H368zM416 160V256H544V237.3L466.7 160H416zM160 368C133.5 368 112 389.5 112 416C112 442.5 133.5 464 160 464C186.5 464 208 442.5 208 416C208 389.5 186.5 368 160 368zM480 464C506.5 464 528 442.5 528 416C528 389.5 506.5 368 480 368C453.5 368 432 389.5 432 416C432 442.5 453.5 464 480 464z"/></svg>
