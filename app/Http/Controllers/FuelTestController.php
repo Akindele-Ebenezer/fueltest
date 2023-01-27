@@ -429,7 +429,7 @@ class FuelTestController extends Controller
             }
 
             if(isset($_GET['NullifyRecord'])) {
-                redirect()->back();
+                return redirect('/FuelTest');
             }
 
             return view('fuel_test', $ViewData);
