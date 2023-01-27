@@ -391,10 +391,7 @@ let FuelTestResults = new Chart("myChart", {
                     // @if(!(isset($_GET['GenerateChartForCurrentVendor'])))  
                     //     {{ $number_of_diff_records }}, 
                     // @endif 
-                    {{ $number_of_previous_records }}, 
-                    @if((isset($_GET['GenerateChartForCurrentVendor'])))  
-                    {{ $number_of_all_records }},
-                    @endif 
+                    {{ $number_of_previous_records_absolute }},  
                     {{ $number_of_all_records_absolute }}
                 ],
             }]
