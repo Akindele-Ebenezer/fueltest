@@ -44,6 +44,46 @@ section {
                             }
                         }
                     }
+ 
+                    div {
+                        &.sub-section { 
+                            display: none;
+                            margin-left: 5rem; 
+
+                            &-show {
+                                display: block;
+                                margin-left: 5rem; 
+
+                                ul {
+                                    li {
+                                        border-left: 3px solid;
+                                        color: #ccc;
+                                        margin-block: 0.4rem;
+                                        padding: .3rem !important;
+                                        padding-left: 0.5rem !important;
+                                    }
+                                }
+                            }
+
+                            ul {
+                                li {
+                                    border-left: 3px solid;
+                                    color: #ccc;
+                                    margin-block: 0.4rem;
+                                    padding: .3rem !important;
+                                    padding-left: 0.5rem !important;
+
+                                    .vendor-no {
+                                        border: 1px solid;
+                                        font-size: .8rem;
+
+                                        padding: 0.2rem;
+                                        border-radius: 0.3rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     li {  
                         font-family: "Poppins", sans-serif;
@@ -54,7 +94,7 @@ section {
                             background: darken($color: $color-2, $amount: 2); 
                             border-left: 7px solid;
                             border-radius: 0 0.5rem 1rem 0; 
-                        }
+                        } 
 
                         em {
                             background: $green;
@@ -68,6 +108,23 @@ section {
                             height: 1.4rem;
                             margin-right: 1.5rem;
                             width: 1.4rem;
+                        }
+                    }
+
+                    .sub-section-container {
+                        position: relative;  
+
+                        .arrow {
+                            cursor: pointer;
+                            position: absolute;
+                            right: 1rem;
+                            top: 1rem;
+                        }
+                    }
+
+                    span {
+                        img {
+                            width: 1.5rem;
                         }
                     }
                 }

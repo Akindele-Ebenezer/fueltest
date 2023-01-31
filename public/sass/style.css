@@ -424,6 +424,34 @@ section.fuel-test .fuel-test-left-nav ul a li em {
 section.fuel-test .fuel-test-left-nav ul a li em.report {
   background: #ff1a1a;
 }
+section.fuel-test .fuel-test-left-nav ul div.sub-section {
+  display: none;
+  margin-left: 5rem;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show {
+  display: block;
+  margin-left: 5rem;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li {
+  border-left: 3px solid;
+  color: #ccc;
+  margin-block: 0.4rem;
+  padding: 0.3rem !important;
+  padding-left: 0.5rem !important;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li {
+  border-left: 3px solid;
+  color: #ccc;
+  margin-block: 0.4rem;
+  padding: 0.3rem !important;
+  padding-left: 0.5rem !important;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li .vendor-no {
+  border: 1px solid;
+  font-size: 0.8rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
 section.fuel-test .fuel-test-left-nav ul li {
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.09rem;
@@ -445,6 +473,18 @@ section.fuel-test .fuel-test-left-nav ul li svg {
   height: 1.4rem;
   margin-right: 1.5rem;
   width: 1.4rem;
+}
+section.fuel-test .fuel-test-left-nav ul .sub-section-container {
+  position: relative;
+}
+section.fuel-test .fuel-test-left-nav ul .sub-section-container .arrow {
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+section.fuel-test .fuel-test-left-nav ul span img {
+  width: 1.5rem;
 }
 section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
   height: 90vh;
