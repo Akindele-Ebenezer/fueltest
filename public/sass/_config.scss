@@ -203,6 +203,11 @@ button,
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.rotate-arrow {
+    rotate: unset !important;
+}
+
 .show {
     display: block !important;
 }

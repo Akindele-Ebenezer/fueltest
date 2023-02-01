@@ -168,6 +168,10 @@ button:hover,
   -webkit-text-fill-color: transparent;
 }
 
+.rotate-arrow {
+  rotate: unset !important;
+}
+
 .show {
   display: block !important;
 }
@@ -498,6 +502,8 @@ section.fuel-test .fuel-test-left-nav ul .sub-section-container .arrow {
   top: 1rem;
 }
 section.fuel-test .fuel-test-left-nav ul span img {
+  rotate: 270deg;
+  transition: 1s;
   width: 1.5rem;
 }
 section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
