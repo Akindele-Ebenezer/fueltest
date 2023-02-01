@@ -454,7 +454,7 @@ section.fuel-test .fuel-test-left-nav ul div.sub-section ul li {
   padding-left: 0.5rem !important;
 }
 section.fuel-test .fuel-test-left-nav ul div.sub-section ul li a {
-  font-family: cursive;
+  font-family: unset;
   font-size: smaller;
 }
 section.fuel-test .fuel-test-left-nav ul div.sub-section ul li a:hover {
