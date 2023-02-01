@@ -439,12 +439,26 @@ section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li {
   padding: 0.3rem !important;
   padding-left: 0.5rem !important;
 }
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li a {
+  font-family: cursive;
+  font-size: smaller;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li a:hover {
+  font-weight: bold;
+}
 section.fuel-test .fuel-test-left-nav ul div.sub-section ul li {
   border-left: 3px solid;
   color: #ccc;
   margin-block: 0.4rem;
   padding: 0.3rem !important;
   padding-left: 0.5rem !important;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li a {
+  font-family: cursive;
+  font-size: smaller;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li a:hover {
+  font-weight: bold;
 }
 section.fuel-test .fuel-test-left-nav ul div.sub-section ul li .vendor-no {
   border: 1px solid;

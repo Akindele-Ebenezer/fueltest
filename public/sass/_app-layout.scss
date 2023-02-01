@@ -61,6 +61,16 @@ section {
                                         margin-block: 0.4rem;
                                         padding: .3rem !important;
                                         padding-left: 0.5rem !important;
+
+                                        a {
+                                            font-family: cursive;
+                                        font-size: smaller;
+
+
+                                            &:hover {
+                                                font-weight: bold;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -72,6 +82,15 @@ section {
                                     margin-block: 0.4rem;
                                     padding: .3rem !important;
                                     padding-left: 0.5rem !important;
+
+                                    a {
+                                        font-family: cursive;
+                                        font-size: smaller;
+
+                                        &:hover {
+                                            font-weight: bold;
+                                        }
+                                    }
 
                                     .vendor-no {
                                         border: 1px solid;
