@@ -108,8 +108,8 @@
                             <br>
                             <ul>
                                 <li><a href="{{ route('all_records', ['FilterPassedTests' => '']) }}">Approved (Passed) <span class="Passed">{{ $number_of_failed_records }}</span></a></li>
-                                <li><a href="{{ route('all_records', ['FilterFailedTests' => '']) }}">Waived (Overlooked) <span class="Waved">{{ $number_of_waved_records }}</span></a></li>
-                                <li><a href="{{ route('all_records', ['FilterWavedTests' => '']) }}">Rejected (Failed) <span class="Failed">{{ $number_of_passed_records }}</span></a></li>
+                                <li><a href="{{ route('all_records', ['FilterWavedTests' => '']) }}">Waived (Overlooked) <span class="Waved">{{ $number_of_waved_records }}</span></a></li>
+                                <li><a href="{{ route('all_records', ['FilterFailedTests' => '']) }}">Rejected (Failed) <span class="Failed">{{ $number_of_passed_records }}</span></a></li>
                             </ul>
                             <br>
                             <h2>RECENT</h2>
