@@ -130,17 +130,8 @@
                         </span>
                         <div class="sub-section">
                             <ul>
-                                @foreach ($vendors as $Vendor)
-                                    <li>
-                                        <form action="{{ route('all_records') }}">
-                                            <label>
-                                                <input type="hidden" class="hide" name="FilterVendorName">
-                                                <input type="submit" class="hide" name="CheckVendorName[]" value="{{ $Vendor->VendorName }}">
-                                                {{ $Vendor->VendorName }}
-                                            </label>
-                                        </form> 
-                                        <span class="vendor-no">{{ $Vendor->VendorNo }}</span>
-                                    </li>
+                                @foreach ($vendors as $Vendor) 
+                                    <li><a href="{{ route('all_records', ['FilterVendorName' => '', 'CheckVendorName[]' => $Vendor->VendorName]) }}">{{ $Vendor->VendorName }} <span class="vendor-no">({{ $Vendor->VendorNo }})</span></a></li>
                                 @endforeach
                             </ul>
                         </div> 
@@ -200,6 +191,7 @@
             
             @yield('content')
             <script src="JS/Loader.js"></script>
+            <script src="JS/SubSection.js"></script>
         </section>
     </main>  
 </body>
