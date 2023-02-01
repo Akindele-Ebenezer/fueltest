@@ -169,9 +169,9 @@
                             <br>
                             <h2>ROLES</h2>
                             <br>
-                            <li><a href="{{ route('users', ['CheckRole[]' => 'ADMIN', 'FilterRole' => '']) }}">Role: (ADMIN) <span>{{ $NumberOfAdmins }}</span></li> 
-                            <li><a href="{{ route('users', ['CheckRole[]' => 'USER', 'FilterRole' => '']) }}">Role: (USER) <span>{{ $NumberOfUsers }}</span></li> 
-                            <li>Users <span>({{ $number_of_fuel_test_users_absolute }})</span></li> 
+                            <li><a href="{{ route('users', ['CheckRole[]' => 'ADMIN', 'FilterRole' => '']) }}">Role: (ADMIN) <span>{{ $NumberOfAdmins }}</span></a></li> 
+                            <li><a href="{{ route('users', ['CheckRole[]' => 'USER', 'FilterRole' => '']) }}">Role: (USER) <span>{{ $NumberOfUsers }}</span></a></li> 
+                            <li><a href="{{ route('users') }}">Users <span>({{ $number_of_fuel_test_users_absolute }})</span></a></li> 
                         </ul>
                     </div> 
                     <br>
