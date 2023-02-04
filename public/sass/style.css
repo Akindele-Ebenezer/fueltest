@@ -24,6 +24,10 @@ h4 {
   font-family: "Bitter", serif;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .Passed {
   color: rgba(58, 204, 177, 0.8);
 }
@@ -437,7 +441,7 @@ section.fuel-test .fuel-test-left-nav ul div.sub-section-show {
   margin-left: 5rem;
 }
 section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li {
-  border-left: 3px solid;
+  border-left: 1px solid;
   color: #ccc;
   margin-block: 0.4rem;
   padding: 0.3rem !important;
@@ -451,7 +455,7 @@ section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li a:hover {
   font-weight: bold;
 }
 section.fuel-test .fuel-test-left-nav ul div.sub-section ul li {
-  border-left: 3px solid;
+  border-left: 1px solid;
   color: #ccc;
   margin-block: 0.4rem;
   padding: 0.3rem !important;
@@ -905,6 +909,12 @@ section.fuel-test .fuel-test-main center form input {
 
 section.previous-records {
   background: #f4f4f4;
+}
+section.previous-records .SampleNumber {
+  cursor: pointer;
+}
+section.previous-records .SampleNumber:hover {
+  font-weight: bold;
 }
 section.previous-records .add-vendor,
 section.previous-records .add-user {
@@ -1573,7 +1583,7 @@ section.show-record div:first-child {
   display: flex;
   gap: 0.4rem;
 }
-section.show-record div:first-child a {
+section.show-record div:first-child .CancelRecordModal {
   cursor: pointer;
   color: red;
   font-size: 2rem;
@@ -1590,8 +1600,9 @@ section.show-record div:first-child .pdf-and-edit {
   translate: -2rem 0;
   z-index: 10;
 }
-section.show-record div:first-child .pdf-and-edit form {
-  padding: 1rem;
+section.show-record div:first-child .pdf-and-edit a, section.show-record div:first-child .pdf-and-edit em {
+  color: #fff;
+  padding: 0.3rem 1rem;
 }
 section.show-record div:first-child .pdf-and-edit label,
 section.show-record div:first-child .pdf-and-edit img {
@@ -1628,6 +1639,10 @@ section.show-record div svg {
 section.show-record center {
   font-size: 1.2rem;
   text-align: center;
+}
+section.show-record h2 span {
+  font-size: small !important;
+  position: unset !important;
 }
 section.show-record ul h2, section.show-record ul h3 {
   margin-bottom: 0.5rem;

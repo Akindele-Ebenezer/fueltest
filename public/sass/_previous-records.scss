@@ -2,6 +2,14 @@ section {
     &.previous-records {        
         background: #f4f4f4;
 
+        .SampleNumber {
+            cursor: pointer;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+
         .add-vendor,
         .add-user {
             background: #eee;
@@ -854,7 +862,7 @@ section {
                 display: flex;
                 gap: .4rem;
                 
-                a {
+                .CancelRecordModal {
                     cursor: pointer;
                     color: red;
                     font-size: 2rem;
@@ -872,8 +880,9 @@ section {
                     translate: -2rem 0;
                     z-index: 10;
 
-                    form { 
-                        padding: 1rem;
+                    a, em { 
+                        color: #fff;
+                        padding: .3rem 1rem;
                     }
 
                     label,
@@ -923,6 +932,11 @@ section {
         center { 
             font-size: 1.2rem;
             text-align: center;
+        }
+
+        h2 span {
+            font-size: small !important;
+            position: unset !important;
         }
 
         ul {

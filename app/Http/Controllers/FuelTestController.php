@@ -3978,7 +3978,6 @@ class FuelTestController extends Controller
             Session::flush();
             return redirect('/');        
         } 
-  
         $SampleNo = $request->SampleNo;   
         $SampleCollectionDate = $request->SampleCollectionDate; 
         $TruckPlateNo = $request->TruckPlateNo; 

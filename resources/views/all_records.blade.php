@@ -597,22 +597,22 @@
                                 ({{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }})
                             </section>
                         </td> 
-                        <td class="sample-no">
-                            <form action="">
-                                <label class="LoaderElement">
-                                    @include('DATA.CertificateData')
-                                    {{ $record->SampleNo }} 
-                                </label>
-                                <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created at {{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }}</section> 
-                            </form> 
+                        @php
+                            
+                            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('id')
+                                                                                            ->where('VendorName', $record->VendorName) 
+                                                                                            ->count(); 
+                            
+                        @endphp
+                        <td class="sample-no"> 
+                            <section class="records-tooltip tooltip">{{ $record->SampleNo }} <br> <hr> Created at {{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }}</section> 
+                            <span class="SampleNumber">{{ $record->SampleNo }}</span>  
+                            <span class="hide">{{ $record->VendorNo }}</span> 
+                            <span class="hide">{{ $NumberOfTotalRecordsForEachVendor }}</span> 
+                            <span class="hide">{{ $record->ApprovalForUse }}</span> 
                         </td>
                         <td class="vendors">
-                            <form action="">
-                                <label class="LoaderElement">
-                                    @include('DATA.CertificateData')
-                                    {{ $record->VendorName }} 
-                                </label>
-                            </form>
+                            <span class='VendorName'>{{ $record->VendorName }}</span>  
                             <section class="records-tooltip tooltip">  
                                 @include('SwitchCases.SwitchCasesForVendors')  
                             </section>
@@ -622,20 +622,20 @@
                             <input type="checkbox" name="DeleteRecord[]" value="{{ $record->id }}">
                         </td>
                         @endif
-                        <td class="sample-collection-date">{{ $record->SampleCollectionDate }} ({{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }})</td>
-                        <td class="truck-plate-no">{{ $record->TruckPlateNo }}</td>
-                        <td class="tank-no">{{ $record->TankNo }}</td>
-                        <td class="appearance-result"><p class="{{ $record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $record->AppearanceResult }} </p></td>
-                        <td>{{ str_replace("Choose Color...", "null", $record->Color) }}</td>
-                        <td class="density">{{ $record->Density }}</td>
-                        <td class="flash-point">{{ $record->FlashPoint }}</td>
-                        <td class="temp">{{ $record->Temp }}</td>
-                        <td>{{ $record->WaterSediment }} </td>
-                        <td>{{ $record->Cleanliness }}</td>
-                        <td>{{ $record->DateOfTest }}</td>
-                        <td>{{ $record->MadeBy }}</td>
-                        <td>{{ $record->DeliveredTo }}</td>  
-                        <td class="remarks">{{ substr($record->Remarks, 0, 17) }}{{ strlen($record->Remarks) > 17 ? '..' : '' }}</td>
+                        <td class="sample-collection-date"><span class='SampleCollectionDate'>{{ $record->SampleCollectionDate }} ({{ empty($record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $record->created_at)->format('H:i A') }})</span></td>
+                        <td class="truck-plate-no"><span class='TruckPlateNo'>{{ $record->TruckPlateNo }}</span></td>
+                        <td class="tank-no"><span class='TankNo'>{{ $record->TankNo }}</span></td>
+                        <td class="appearance-result"><p class="AppearanceResult {{ $record->AppearanceResult === 'BRIGHT' ? 'Bright' : '' }}  {{ $record->AppearanceResult === 'Bright' ? 'Bright' : '' }} {{ $record->AppearanceResult === 'MUDDY' ? 'Muddy' : '' }}  {{ $record->AppearanceResult === 'Muddy' ? 'Muddy' : '' }} {{ $record->AppearanceResult === 'CLEAR' ? 'Clear' : '' }}  {{ $record->AppearanceResult === 'Clear' ? 'Clear' : '' }} {{ $record->AppearanceResult === 'C/M' ? 'CM' : '' }} Appearance">{{ $record->AppearanceResult }} </p></td>
+                        <td><span class='Color'>{{ str_replace("Choose Color...", "null", $record->Color) }}</span></td>
+                        <td class="density"><span class='Density'>{{ $record->Density }}</span></td>
+                        <td class="flash-point"><span class='FlashPoint'>{{ $record->FlashPoint }}</span></td>
+                        <td class="temp"><span class='Temp'>{{ $record->Temp }}</span></td>
+                        <td><span class='WaterSediment'>{{ $record->WaterSediment }} </span></td>
+                        <td><span class='Cleanliness'>{{ $record->Cleanliness }}</span></td>
+                        <td><span class='DateOfTest'>{{ $record->DateOfTest }}</span></td>
+                        <td><span class='MadeBy'>{{ $record->MadeBy }}</span></td>
+                        <td><span class='DeliveredTo'>{{ $record->DeliveredTo }}</span></td>  
+                        <td class="remarks"><span class='Remarks'>{{ substr($record->Remarks, 0, 17) }}{{ strlen($record->Remarks) > 17 ? '..' : '' }}</span></td>
                     </tr>
                 @endforeach 
                 <div class="links">  

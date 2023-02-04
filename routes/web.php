@@ -33,7 +33,7 @@ Route::get('/UpdateVendor/{VendorNo}', [VendorController::class, 'update']);
 
 Route::get('/Edit/{SampleNo}', [FuelTestController::class, 'edit']); 
  
-Route::post('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']); 
+Route::get('/GenerateCertificate/{SampleNo}', [PdfController::class, 'index']); 
  
 Route::get('/export', [FuelTestController::class, 'export']);
 

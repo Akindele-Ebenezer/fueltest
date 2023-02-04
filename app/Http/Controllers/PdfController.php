@@ -14,29 +14,30 @@ class PdfController extends Controller
         $this->fpdf = new Fpdf;
     }
 
-    public function index(Request $request) 
-    {
-    	
-        $SampleNo = $request->SampleNo;   
-        $SampleCollectionDate = $request->SampleCollectionDate; 
-        $TruckPlateNo = $request->TruckPlateNo; 
-        $TankNo = $request->TankNo; 
-        $AppearanceResult = $request->AppearanceResult; 
-        $Color = $request->Color; 
-        $Density = $request->Density; 
-        $FlashPoint = $request->FlashPoint; 
-        $Temp = $request->Temp; 
-        $WaterSediment = str_replace('<', '', $request->WaterSediment); 
-        $Cleanliness = $request->Cleanliness; 
-        $DateOfTest = $request->DateOfTest; 
-        $uid = $request->uid; 
-        $MadeBy = strtoupper($request->MadeBy); 
-        $DeliveredTo = $request->DeliveredTo; 
-        $Remarks = $request->Remarks; 
-        $VendorName = $request->VendorName; 
-        $VendorNo = $request->VendorNo; 
+    public function index($SampleNo_, Request $request) 
+    { 
+        $Record = \App\Models\FuelTestRecord::where('SampleNo', $SampleNo_)->first();
         
-        $ApprovalForUse = $request->ApprovalForUse; 
+        $SampleNo = $SampleNo_;   
+        $SampleCollectionDate = $Record->SampleCollectionDate; 
+        $TruckPlateNo = $Record->TruckPlateNo; 
+        $TankNo = $Record->TankNo; 
+        $AppearanceResult = $Record->AppearanceResult; 
+        $Color = $Record->Color; 
+        $Density = $Record->Density; 
+        $FlashPoint = $Record->FlashPoint; 
+        $Temp = $Record->Temp; 
+        $WaterSediment = str_replace('<', '', $Record->WaterSediment); 
+        $Cleanliness = $Record->Cleanliness; 
+        $DateOfTest = $Record->DateOfTest; 
+        $uid = $Record->uid; 
+        $MadeBy = strtoupper($Record->MadeBy); 
+        $DeliveredTo = $Record->DeliveredTo; 
+        $Remarks = $Record->Remarks; 
+        $VendorName = $Record->VendorName; 
+        $VendorNo = $Record->VendorNo; 
+        
+        $ApprovalForUse = $Record->ApprovalForUse; 
                
         $pdf = new FPDF();
         $pdf->AddPage();
