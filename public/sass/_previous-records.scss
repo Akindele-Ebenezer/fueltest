@@ -855,6 +855,14 @@ section {
             right: -100%;
             width: 30rem;
             z-index: 1000;
+
+            div {
+                ul {
+                    li {
+                        border-bottom: 1px solid #333;
+                    }
+                }
+            }
         }
 
         div {
