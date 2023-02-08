@@ -4,71 +4,49 @@
 @section('email', $email)
 @section('header_info', $title)
 @section('title', $title)
-@section('content')
-@isset($_GET['EditVendor'])
-    <section class="show-record">
+@section('content') 
+    <section class="show-record hide">
         <section class="show-record-side-bar"> 
             <div>
-                <a href="/Vendors">✖</a>
-            </div>
-            @php
-                $VendorId = $_GET['VendorId'];
-                $Vendor = \App\Models\Vendor::where('id', $VendorId)
-                                                    ->first(); 
-
-                $APPROVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
-                                                    ->where('ApprovalForUse', 'APPROVED')
-                                                    ->count(); 
-                                                    
-                $WAIVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
-                                                    ->where('ApprovalForUse', 'WAIVED')
-                                                    ->count(); 
-
-                $FAILED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
-                                                    ->where('ApprovalForUse', 'REJECTED')
-                                                    ->count(); 
-
-                $TOTAL_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo) 
-                                                    ->count(); 
-            @endphp  
+                <span class="CancelRecordModal">✖</span>
+            </div>   
             <br><br>
             <em>Vendor PROFILE</em>
             <hr><br>
-            <center>{{ $Vendor->VendorName }}</center>
+            <center> </center>
             <br>
             <ul> 
-                <form action="/UpdateVendor/{{ $Vendor->VendorNo }}">
+                <form class="UpdateVendor">
                     <h2>Vendor No</h2>
-                    <span>{{ $Vendor->VendorNo }}</span>
+                    <span class="VendorNo_PROFILE"></span>
                     <br><br>
                     <h2>Vendor Name</h2>
-                    <span>{{ $Vendor->VendorName }}</span>
+                    <span class="VendorName_PROFILE"></span>
                     <br><br>
                     <p>
-                        NB: This Vendor supplied <em>{{ $TOTAL_TESTS }}</em> Diesel(s) for testing so far..
+                        NB: This Vendor supplied <em class="Total"> </em> Diesel(s) for testing so far..
                          
                         <br><br>
-                        Approved Tests => {{ $APPROVED_TESTS }} 
+                        Approved Tests => <span class="Approved"></span>   
                         <br>
-                        Waived Tests => {{ $WAIVED_TESTS }}
+                        Waived Tests => <span class="Waived_"></span> 
                         <br>
-                        Failed Tests => {{ $FAILED_TESTS }}
+                        Failed Tests => <span class="Rejected"></span> 
                     </p>
                     <br> 
                     <li>
                         Vendor No: <br>
-                        <input type="text" name="VendorNo" value="{{ $Vendor->VendorNo }}">
+                        <input type="text" name="VendorNo">
                     </li>
                     <li>
                         Vendor Name: <br>
-                        <input type="text" name="VendorName" value="{{ $Vendor->VendorName }}">
+                        <input type="text" name="VendorName">
                     </li>  
                     <button type="submit" name="UpdateVendor">Update</button>
                 </form>
             </ul>
         </section>
-    </section>
-@endisset
+    </section> 
     <section class="previous-records">
         @include('PageTitle')
 
@@ -180,14 +158,31 @@
                     <td class="vendor-id">{{ $Vendor->id }}</td>
                     @if(Session::get('Role') === 'ADMIN') 
                     <td class="action"> 
-                        <input type="checkbox" name="DeleteVendor[]" value="{{ $Vendor->id }}">
-                        <form action="">
-                            <label>
+                        <input type="checkbox" name="DeleteVendor[]" value="{{ $Vendor->id }}"> 
                                 <img class="admin-edit" src="images/edit.png">
                                 <input type="hidden" name="VendorId" value="{{ $Vendor->id }}">
-                                <input type="submit" class="hide" name="EditVendor">
-                            </label>
-                        </form>
+                                <span class="hide">{{ $Vendor->VendorNo }}</span>
+                                <span class="hide">{{ $Vendor->VendorName }}</span> 
+                                @php
+                                    $APPROVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                                        ->where('ApprovalForUse', 'APPROVED')
+                                                                        ->count(); 
+                                                                        
+                                    $WAIVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                                        ->where('ApprovalForUse', 'WAIVED')
+                                                                        ->count(); 
+                    
+                                    $FAILED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                                                        ->where('ApprovalForUse', 'REJECTED')
+                                                                        ->count(); 
+                    
+                                    $TOTAL_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo) 
+                                                                        ->count(); 
+                                @endphp
+                                <span class="hide">{{ $APPROVED_TESTS }}</span> 
+                                <span class="hide">{{ $WAIVED_TESTS }}</span> 
+                                <span class="hide">{{ $FAILED_TESTS }}</span> 
+                                <span class="hide">{{ $TOTAL_TESTS }}</span> 
                     </td>
                     @endif
                     <td class="vendor-no" id="Vend">
@@ -300,4 +295,5 @@
     <script src="/JS/Alert.js"></script>  
     <script src="JS/Resizable.js"></script>
     <script src="JS/Filter.js"></script>
+    <script src="JS/EditVendor.js"></script>
 @endsection

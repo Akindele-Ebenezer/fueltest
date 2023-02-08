@@ -4,67 +4,46 @@
 @section('email', $email)
 @section('header_info', $title)
 @section('title', $title)
-@section('content')
-    @isset($_GET['EditUser'])
-        <section class="show-record">
+@section('content') 
+        <section class="show-record hide">
             <section class="show-record-side-bar"> 
                 <div>
-                    <a href="/Users">✖</a>
+                    <span class="CancelRecordModal">✖</span>
                 </div>
-                @php
-                    $UserId = $_GET['UserId'];
-                    $User = \App\Models\FuelTestUser::where('id', $UserId)
-                                                        ->first(); 
-
-                    $APPROVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
-                                                        ->where('ApprovalForUse', 'APPROVED')
-                                                        ->count(); 
-                                                        
-                    $WAIVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
-                                                        ->where('ApprovalForUse', 'WAIVED')
-                                                        ->count(); 
-
-                    $FAILED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
-                                                        ->where('ApprovalForUse', 'REJECTED')
-                                                        ->count(); 
-
-                    $TOTAL_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId) 
-                                                        ->count(); 
-                @endphp  
                 <br><br>
                 <em>USER PROFILE</em>
                 <hr><br>
-                <center>{{ $User->Name }}</center>
+                <center class="UserName_PROFILE"></center>
                 <br>
                 <ul> 
-                    <form action="/UpdateUser/{{ $UserId }}"> 
+                    <form class="UpdateUser"> 
                         <p>
-                            This User created <em>"{{ $TOTAL_TESTS }}</em> Records" so far..
+                            This User created "<em class="Total"></em> Records" so far..
                              
                             <br><br>
-                            Approved Tests => {{ $APPROVED_TESTS }} 
+                            Approved Tests => <span class="Approved"></span>   
                             <br>
-                            Waived Tests => {{ $WAIVED_TESTS }}
+                            Waived Tests => <span class="Waived_"></span>  
                             <br>
-                            Failed Tests => {{ $FAILED_TESTS }}
+                            Failed Tests => <span class="Rejected"></span>  
                         </p>
                         <br> 
                         <li>
                             USERNAME: <br>
-                            <input type="text" name="UserName" value="{{ $User->Name }}">
+                            <input type="text" name="UserName">
                         </li>
                         <li>
                             EMAIL: <br>
-                            <input type="text" name="UserEmail" value="{{ $User->Email }}">
+                            <input type="text" name="UserEmail">
                         </li>
                         <li>
                             PASSWORD: <br>
-                            <input type="text" name="UserPassword" value="{{ $User->Password }}">
+                            <input type="text" name="UserPassword">
                         </li>
                         <li>
                             ROLE: <br>
                             <select name="UserRole">
-                                <option value="Assign Role..">{{ $User->Role }}</option>
+                                <option value="Assign Role..">Assign Role</option>
                                 <option value="ADMIN">ADMIN</option>
                                 <option value="USER">USER</option>
                             </select> 
@@ -73,8 +52,7 @@
                     </form>
                 </ul>
             </section>
-        </section>
-    @endisset
+        </section> 
     <section class="previous-records">
         @include('PageTitle')
         @if(Session::get('Role') === 'ADMIN') 
@@ -297,15 +275,37 @@
                 <tr> 
                     <td class="user-id">{{ $User->id }}</td>
                     @if(Session::get('Role') === 'ADMIN')   
+                    @php 
+                        $UserId = $User->id; 
+    
+                        $APPROVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                                                            ->where('ApprovalForUse', 'APPROVED')
+                                                            ->count(); 
+                                                            
+                        $WAIVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                                                            ->where('ApprovalForUse', 'WAIVED')
+                                                            ->count(); 
+    
+                        $FAILED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                                                            ->where('ApprovalForUse', 'REJECTED')
+                                                            ->count(); 
+    
+                        $TOTAL_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId) 
+                                                            ->count(); 
+                    @endphp  
                     <td class="action"> 
-                        <input type="checkbox" name="DeleteUser[]" value="{{ $User->id }}">
-                        <form action="">
-                            <label>
-                                <img class="admin-edit" src="images/edit.png">
-                                <input type="hidden" name="UserId" value="{{ $User->id }}">
-                                <input type="submit" class="hide" name="EditUser">
-                            </label>
-                        </form>
+                        <input type="checkbox" name="DeleteUser[]" value="{{ $User->id }}"> 
+                        <img class="admin-edit" src="images/edit.png">
+                        {{-- <input type="hidden" name="UserId" value="{{ $User->id }}">  --}}
+                        <span class="hide">{{ $User->Name }}</span>
+                        <span class="hide">{{ $APPROVED_TESTS }}</span>
+                        <span class="hide">{{ $WAIVED_TESTS }}</span>
+                        <span class="hide">{{ $FAILED_TESTS }}</span>
+                        <span class="hide">{{ $TOTAL_TESTS }}</span>
+                        <span class="hide">{{ $User->id }}</span>
+                        <span class="hide">{{ $User->Email }}</span>
+                        <span class="hide">{{ $User->Password }}</span>
+                        <span class="hide">{{ $User->Role }}</span>
                     </td>
                     @endif
                     <td class="user-email">{{ $User->Email }}</td>
@@ -363,4 +363,5 @@
     </section>
     <script src="JS/Resizable.js"></script>
     <script src="JS/Filter.js"></script>
+    <script src="JS/EditUsers.js"></script>
 @endsection

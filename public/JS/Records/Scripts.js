@@ -107,7 +107,14 @@ for (let i = 0; i < CheckBoxInput.length; i++) {
     });
 }  
 
-let SampleNumbers = document.querySelectorAll('section.previous-records table tr td.sample-no span');
+let SampleNumbers = document.querySelectorAll('section.previous-records table tr td.sample-no .SampleNumber');
+let Vendors = document.querySelectorAll('section.previous-records table tr td.vendors .VendorName');
+
+let ShowRecordArr = [
+    SampleNumbers,
+    Vendors
+];
+
 let ShowRecord = document.querySelector('.ShowRecord');
 let ShowRecordInner = document.querySelector('.ShowRecordInner');
 let CancelRecordModal = document.querySelectorAll('.CancelRecordModal');
@@ -133,8 +140,7 @@ let ShowRecord_DeliveredTo = document.querySelector('.ShowRecord .DeliveredTo');
 let ShowRecord_Remarks = document.querySelector('.ShowRecord .Remarks');
 
 let ShowRecord_OpenPdf = document.querySelector('section.ShowRecord .ShowRecordInner .pdf-and-edit .open-pdf');
-
-// let ShowRecord_EditPdfButton = document.querySelector('.EditIcon');
+ 
 let EditIcons = document.querySelectorAll('.EditIcon');  
 let ShowRecord_EditPdf = document.querySelector('section.edit-this-record');
 
@@ -163,98 +169,103 @@ let VendorName_ = document.querySelector('.VendorName_');
 let VendorNo_ = document.querySelector('.VendorNo_');
 let MadeBy_ = document.querySelector('.MadeBy_');
 
-SampleNumbers.forEach(SampleNo => {
-    SampleNo.addEventListener('click', () => {
-        ShowRecord.classList.toggle('show');
-        ShowRecord.classList.add('show-record');
-        ShowRecordInner.classList.add('show-record-side-bar');
-
-        let Elements = SampleNo.parentElement.parentElement.children;
- 
-        for (let i = 0; i < Elements.length; i++) { 
-            if (Elements[i].firstElementChild.classList.contains('TruckPlateNo')) {
-                ShowRecord_TruckPlateNo.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('VendorName')) {
-                ShowRecord_VendorName.textContent = Elements[i].firstElementChild.textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('SampleCollectionDate')) {  
-                ShowRecord_SampleCollectionDate.forEach(SampleCollectionDate => {
-                    SampleCollectionDate.textContent = Elements[i].textContent; 
-                });
-            } else if (Elements[i].firstElementChild.classList.contains('TankNo')) {
-                ShowRecord_TankNo.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('Temp')) {
-                ShowRecord_Temp.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('AppearanceResult')) {
-                ShowRecord_AppearanceResult.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('Color')) {
-                ShowRecord_Color.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('Density')) {
-                ShowRecord_Density.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('FlashPoint')) {
-                ShowRecord_FlashPoint.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('WaterSediment')) {
-                ShowRecord_WaterSediment.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('Cleanliness')) {
-                ShowRecord_Cleanliness.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('MadeBy')) {
-                ShowRecord_MadeBy.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('DeliveredTo')) {
-                ShowRecord_DeliveredTo.textContent = Elements[i].textContent; 
-            } else if (Elements[i].firstElementChild.classList.contains('Remarks')) {
-                ShowRecord_Remarks.textContent = Elements[i].textContent; 
-            }      
-        }
-
-        ShowRecord_OpenPdf.setAttribute('href', '/GenerateCertificate/' + SampleNo.textContent + '?Certificate');
-        
-        if(window.location.pathname == '/PreviousRecords') { 
-                UpdateMyRecord.setAttribute('action', '/UpdateMyRecord/' + SampleNo.textContent);
-
-                EditIcons.forEach(EditIcon => {
-                    EditIcon.addEventListener('click', () => {
-                        ShowRecord.classList.add('hide');
-                        ShowRecord.classList.remove('show');
-                        ShowRecord_EditPdf.classList.add('show');
+ShowRecordArr.forEach(Elements => {
+    Elements.forEach(SampleNo => {
+        SampleNo.addEventListener('click', () => { 
+            ShowRecord.classList.toggle('show');
+            ShowRecord.classList.add('show-record');
+            ShowRecordInner.classList.add('show-record-side-bar');
     
-                        EditSampleNo.value = ShowRecord_SampleNo.textContent;
-                        SampleNo_.forEach(SampleNo => {
-                            SampleNo.textContent = ShowRecord_SampleNo.textContent;
-                        });
-                        EditVendorName.value = ShowRecord_VendorName.textContent;
-                        EditVendorNo.value = ShowRecord_VendorNo.textContent;
-                        VendorName_.textContent = ShowRecord_VendorName.textContent;
-                        VendorNo_.textContent = ShowRecord_VendorNo.textContent;
-                        EditSampleCollectionDate.forEach(SampleCollectionDate => {
-                            SampleCollectionDate.value = ShowRecord_SampleCollectionDate[0].textContent.substring(0, 10);
-                        });
-                        EditTruckPlateNo.value = ShowRecord_TruckPlateNo.textContent;
-                        EditTankNo.value = ShowRecord_TankNo.textContent;
-                        EditTemp.value = ShowRecord_Temp.textContent;
-                        EditAppearanceResult.value = ShowRecord_AppearanceResult.textContent;
-                        EditColor.value = ShowRecord_Color.textContent;
-                        EditDensity.value = ShowRecord_Density.textContent;
-                        EditFlashPoint.value = ShowRecord_FlashPoint.textContent;
-                        EditWaterSediment.value = ShowRecord_WaterSediment.textContent;
-                        EditCleanliness.value = ShowRecord_Cleanliness.textContent;
-                        EditMadeBy.value = ShowRecord_MadeBy.textContent;
-                        MadeBy_.textContent = ShowRecord_MadeBy.textContent;
-                        EditApprovalForUse.value = ShowRecord_ApprovalForUse[0].textContent; 
-                        EditDeliveredTo.value = ShowRecord_DeliveredTo.textContent;
-                        EditRemarks.value = ShowRecord_Remarks.textContent;
-    
+            let Elements = SampleNo.parentElement.parentElement.children;
+     
+            for (let i = 0; i < Elements.length; i++) { 
+                if (Elements[i].firstElementChild.classList.contains('TruckPlateNo')) {
+                    ShowRecord_TruckPlateNo.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('VendorName')) {
+                    ShowRecord_VendorName.textContent = Elements[i].firstElementChild.textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('SampleCollectionDate')) {  
+                    ShowRecord_SampleCollectionDate.forEach(SampleCollectionDate => {
+                        SampleCollectionDate.textContent = Elements[i].textContent; 
                     });
-                });
+                } else if (Elements[i].firstElementChild.classList.contains('TankNo')) {
+                    ShowRecord_TankNo.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('Temp')) {
+                    ShowRecord_Temp.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('AppearanceResult')) {
+                    ShowRecord_AppearanceResult.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('Color')) {
+                    ShowRecord_Color.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('Density')) {
+                    ShowRecord_Density.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('FlashPoint')) {
+                    ShowRecord_FlashPoint.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('WaterSediment')) {
+                    ShowRecord_WaterSediment.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('Cleanliness')) {
+                    ShowRecord_Cleanliness.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('MadeBy')) {
+                    ShowRecord_MadeBy.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('DeliveredTo')) {
+                    ShowRecord_DeliveredTo.textContent = Elements[i].textContent; 
+                } else if (Elements[i].firstElementChild.classList.contains('Remarks')) {
+                    ShowRecord_Remarks.textContent = Elements[i].textContent; 
+                }      
             }
+    
+            ShowRecord_OpenPdf.setAttribute('href', '/GenerateCertificate/' + SampleNo.textContent + '?Certificate');
+            
+            if(window.location.pathname == '/PreviousRecords') { 
+                    UpdateMyRecord.setAttribute('action', '/UpdateMyRecord/' + SampleNo.textContent);
+    
+                    EditIcons.forEach(EditIcon => {
+                        EditIcon.addEventListener('click', () => {
+                            ShowRecord.classList.add('hide');
+                            ShowRecord.classList.remove('show');
+                            ShowRecord_EditPdf.classList.add('show');
+        
+                            EditSampleNo.value = ShowRecord_SampleNo.textContent;
+                            SampleNo_.forEach(SampleNo => {
+                                SampleNo.textContent = ShowRecord_SampleNo.textContent;
+                            });
+                            EditVendorName.value = ShowRecord_VendorName.textContent;
+                            EditVendorNo.value = ShowRecord_VendorNo.textContent;
+                            VendorName_.textContent = ShowRecord_VendorName.textContent;
+                            VendorNo_.textContent = ShowRecord_VendorNo.textContent;
+                            EditSampleCollectionDate.forEach(SampleCollectionDate => {
+                                SampleCollectionDate.value = ShowRecord_SampleCollectionDate[0].textContent.substring(0, 10);
+                            });
+                            EditTruckPlateNo.value = ShowRecord_TruckPlateNo.textContent;
+                            EditTankNo.value = ShowRecord_TankNo.textContent;
+                            EditTemp.value = ShowRecord_Temp.textContent;
+                            EditAppearanceResult.value = ShowRecord_AppearanceResult.textContent;
+                            EditColor.value = ShowRecord_Color.textContent;
+                            EditDensity.value = ShowRecord_Density.textContent;
+                            EditFlashPoint.value = ShowRecord_FlashPoint.textContent;
+                            EditWaterSediment.value = ShowRecord_WaterSediment.textContent;
+                            EditCleanliness.value = ShowRecord_Cleanliness.textContent;
+                            EditMadeBy.value = ShowRecord_MadeBy.textContent;
+                            MadeBy_.textContent = ShowRecord_MadeBy.textContent;
+                            EditApprovalForUse.value = ShowRecord_ApprovalForUse[0].textContent; 
+                            EditDeliveredTo.value = ShowRecord_DeliveredTo.textContent;
+                            EditRemarks.value = ShowRecord_Remarks.textContent;
+        
+                        });
+                    });
+                }
+    
 
-        ShowRecord_SampleNo.textContent = SampleNo.textContent;  
-        ShowRecord_VendorName_.textContent = ShowRecord_VendorName.textContent;  
-        ShowRecord_VendorNo.textContent = SampleNo.nextElementSibling.textContent; 
-        ShowRecord_NumberOfTotalRecordsForEachVendor.textContent = SampleNo.nextElementSibling.nextElementSibling.textContent; 
-        ShowRecord_ApprovalForUse.forEach(ApprovalForUse => {
-            ApprovalForUse.textContent = SampleNo.nextElementSibling.nextElementSibling.nextElementSibling.textContent
+            ShowRecord_SampleNo.textContent = SampleNo.textContent;  
+            ShowRecord_VendorName_.textContent = ShowRecord_VendorName.textContent;  
+            ShowRecord_VendorNo.textContent = SampleNo.nextElementSibling.textContent; 
+            ShowRecord_NumberOfTotalRecordsForEachVendor.textContent = SampleNo.nextElementSibling.nextElementSibling.textContent; 
+            ShowRecord_ApprovalForUse.forEach(ApprovalForUse => {
+                ApprovalForUse.textContent = SampleNo.nextElementSibling.nextElementSibling.nextElementSibling.textContent
+            }); 
+            // if(SampleNo.className === 'VendorName') {
+            //     console.log(ShowRecord_SampleNo);
+            // } 
         });  
-
-    });  
+    });
 }); 
 
 CancelRecordModal.forEach(Modal => {
