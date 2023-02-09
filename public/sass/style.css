@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  font-size: small;
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-size: 14px;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -9,19 +9,19 @@
 }
 
 h1 {
-  font-family: "Bitter", serif;
+  font-family: "Bitter", serif !important;
 }
 
 h2 {
-  font-family: "Bitter", serif;
+  font-family: "Bitter", serif !important;
 }
 
 h3 {
-  font-family: "Bitter", serif;
+  font-family: "Bitter", serif !important;
 }
 
 h4 {
-  font-family: "Bitter", serif;
+  font-family: "Bitter", serif !important;
 }
 
 .cursor {
@@ -1129,7 +1129,7 @@ section.previous-records table tr.history td {
   align-items: center;
   border: none !important;
   display: flex;
-  font-family: "Bitter", serif;
+  font-family: "Bitter", serif !important;
   font-size: 1.4rem;
 }
 section.previous-records table tr.history td.days {

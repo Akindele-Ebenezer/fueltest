@@ -612,7 +612,24 @@
                             <span class="hide">{{ $record->ApprovalForUse }}</span> 
                         </td>
                         <td class="vendors">
-                            <span class='VendorName'>{{ $record->VendorName }}</span>  
+                            <span class='VendorName'>{{ $record->VendorName }}</span> 
+                            <span class='hide'>{{ $record->SampleNo }}</span> 
+                            <span class="hide">{{ $record->VendorNo }}</span> 
+                            <span class="hide">{{ $NumberOfTotalRecordsForEachVendor }}</span> 
+                            <span class="hide">{{ $record->SampleCollectionDate }}</span>  
+                            <span class="hide">{{ $record->TruckPlateNo }}</span>  
+                            <span class="hide">{{ $record->TankNo }}</span>  
+                            <span class="hide">{{ $record->AppearanceResult }}</span>  
+                            <span class="hide">{{ $record->Color }}</span>  
+                            <span class="hide">{{ $record->Density }}</span>  
+                            <span class="hide">{{ $record->FlashPoint }}</span>  
+                            <span class="hide">{{ $record->WaterSediment }}</span>  
+                            <span class="hide">{{ $record->Cleanliness }}</span>  
+                            <span class="hide">{{ $record->MadeBy }}</span>  
+                            <span class="hide">{{ $record->ApprovalForUse }}</span>  
+                            <span class="hide">{{ $record->DeliveredTo }}</span>  
+                            <span class="hide">{{ $record->Remarks }}</span>  
+                            <span class="hide">{{ $record->Temp }}</span>  
                             <section class="records-tooltip tooltip">  
                                 @include('SwitchCases.SwitchCasesForVendors')  
                             </section>

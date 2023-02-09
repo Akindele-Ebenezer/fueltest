@@ -1,7 +1,9 @@
 * {
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    font-size: small;
+    // font-family: 'Poppins', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
+    // font-size: small;
+    font-size: 14px;
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -19,7 +21,7 @@ $red: lighten($color: red, $amount: 5);
 $headings: 1, 2, 3, 4;
 @each $heading in $headings {
     h#{$heading} {
-        font-family: 'Bitter', serif;
+        font-family: 'Bitter', serif !important;
     }
 }
 

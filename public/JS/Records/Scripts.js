@@ -168,9 +168,8 @@ let SampleNo_ = document.querySelectorAll('.SampleNo_');
 let VendorName_ = document.querySelector('.VendorName_');
 let VendorNo_ = document.querySelector('.VendorNo_');
 let MadeBy_ = document.querySelector('.MadeBy_');
-
-ShowRecordArr.forEach(Elements => {
-    Elements.forEach(SampleNo => {
+ 
+    SampleNumbers.forEach(SampleNo => {
         SampleNo.addEventListener('click', () => { 
             ShowRecord.classList.toggle('show');
             ShowRecord.classList.add('show-record');
@@ -260,13 +259,41 @@ ShowRecordArr.forEach(Elements => {
             ShowRecord_NumberOfTotalRecordsForEachVendor.textContent = SampleNo.nextElementSibling.nextElementSibling.textContent; 
             ShowRecord_ApprovalForUse.forEach(ApprovalForUse => {
                 ApprovalForUse.textContent = SampleNo.nextElementSibling.nextElementSibling.nextElementSibling.textContent
-            }); 
-            // if(SampleNo.className === 'VendorName') {
-            //     console.log(ShowRecord_SampleNo);
-            // } 
+            });  
         });  
-    });
-}); 
+    }); 
+
+Vendors.forEach(Vendor => {
+    Vendor.addEventListener('click', () => {
+        ShowRecord.classList.toggle('show');
+        ShowRecord.classList.add('show-record');
+        ShowRecordInner.classList.add('show-record-side-bar');
+
+        ShowRecord_SampleNo.textContent = Vendor.nextElementSibling.textContent;  
+        ShowRecord_VendorName.textContent = Vendor.textContent;  
+        ShowRecord_VendorName_.textContent = Vendor.textContent;  
+        ShowRecord_VendorNo.textContent = Vendor.nextElementSibling.nextElementSibling.textContent;  
+        ShowRecord_NumberOfTotalRecordsForEachVendor.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.textContent;   
+        ShowRecord_SampleCollectionDate.forEach(SampleCollectionDate => { 
+            SampleCollectionDate.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        });
+        ShowRecord_TruckPlateNo.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_TankNo.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_AppearanceResult.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_Color.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_Density.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_FlashPoint.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_WaterSediment.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_Cleanliness.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_MadeBy.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_ApprovalForUse.forEach(ApprovalForUse => { 
+                ApprovalForUse.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        }); 
+        ShowRecord_DeliveredTo.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_Remarks.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+        ShowRecord_Temp.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;  
+    })
+});
 
 CancelRecordModal.forEach(Modal => {
     Modal.addEventListener('click', () => {
