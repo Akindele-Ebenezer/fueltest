@@ -612,7 +612,7 @@
                             <span class="hide">{{ $record->ApprovalForUse }}</span> 
                         </td>
                         <td class="vendors">
-                            <span class='VendorName'>{{ $record->VendorName }}</span> 
+                            <span class='VendorName cursor'>{{ $record->VendorName }}</span> 
                             <span class='hide'>{{ $record->SampleNo }}</span> 
                             <span class="hide">{{ $record->VendorNo }}</span> 
                             <span class="hide">{{ $NumberOfTotalRecordsForEachVendor }}</span> 

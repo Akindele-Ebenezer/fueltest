@@ -142,6 +142,7 @@ let ShowRecord_Remarks = document.querySelector('.ShowRecord .Remarks');
 let ShowRecord_OpenPdf = document.querySelector('section.ShowRecord .ShowRecordInner .pdf-and-edit .open-pdf');
  
 let EditIcons = document.querySelectorAll('.EditIcon');  
+let EditIcon_ = document.querySelectorAll('.EditIcon_');  
 let ShowRecord_EditPdf = document.querySelector('section.edit-this-record');
 
 let UpdateMyRecord = document.querySelector('.UpdateMyRecord');
@@ -262,7 +263,39 @@ let MadeBy_ = document.querySelector('.MadeBy_');
             });  
         });  
     }); 
+//  
+    // EditIcon_.forEach(EditIcon => {
+    //     EditIcon.addEventListener('click', () => { 
+    //         ShowRecord_EditPdf.classList.add('show');
 
+    //         EditSampleNo.value = ShowRecord_SampleNo.textContent;
+    //         SampleNo_.forEach(SampleNo => {
+    //             SampleNo.textContent = ShowRecord_SampleNo.textContent;
+    //         });
+    //         EditVendorName.value = ShowRecord_VendorName.textContent;
+    //         EditVendorNo.value = ShowRecord_VendorNo.textContent;
+    //         VendorName_.textContent = ShowRecord_VendorName.textContent;
+    //         VendorNo_.textContent = ShowRecord_VendorNo.textContent;
+    //         EditSampleCollectionDate.forEach(SampleCollectionDate => {
+    //             SampleCollectionDate.value = ShowRecord_SampleCollectionDate[0].textContent.substring(0, 10);
+    //         });
+    //         EditTruckPlateNo.value = ShowRecord_TruckPlateNo.textContent;
+    //         EditTankNo.value = ShowRecord_TankNo.textContent;
+    //         EditTemp.value = ShowRecord_Temp.textContent;
+    //         EditAppearanceResult.value = ShowRecord_AppearanceResult.textContent;
+    //         EditColor.value = ShowRecord_Color.textContent;
+    //         EditDensity.value = ShowRecord_Density.textContent;
+    //         EditFlashPoint.value = ShowRecord_FlashPoint.textContent;
+    //         EditWaterSediment.value = ShowRecord_WaterSediment.textContent;
+    //         EditCleanliness.value = ShowRecord_Cleanliness.textContent;
+    //         EditMadeBy.value = ShowRecord_MadeBy.textContent;
+    //         MadeBy_.textContent = ShowRecord_MadeBy.textContent;
+    //         EditApprovalForUse.value = ShowRecord_ApprovalForUse[0].textContent; 
+    //         EditDeliveredTo.value = ShowRecord_DeliveredTo.textContent;
+    //         EditRemarks.value = ShowRecord_Remarks.textContent;
+    //     });   
+    // });   
+// 
 Vendors.forEach(Vendor => {
     Vendor.addEventListener('click', () => {
         ShowRecord.classList.toggle('show');

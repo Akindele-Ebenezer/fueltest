@@ -628,7 +628,7 @@
                             <input type="image" src="/images/pdf.png"> 
                                     @include('DATA.CertificateData')
                         </form>  
-                        <img class="EditIcon" src="/images/edit.png"> 
+                        <img class="EditIcon_" src="/images/edit.png"> 
                         <form class="GenerateChart" action="{{ route('fuel_test_stats') }}" method="get">
                             <label>
                                 <input class="hide" type="submit" src="/images/approved.png" name="GenerateChartForCurrentVendor" value="{{ $previous_record->VendorNo }}"> 
@@ -674,7 +674,24 @@
                         <input type="checkbox" name="DeleteRecord[]" value="{{ $previous_record->id }}">
                     </td>
                     <td class="vendors">
-                        <span class='VendorName'>{{ $previous_record->VendorName }}</span>  
+                        <span class='VendorName cursor'>{{ $previous_record->VendorName }}</span>   
+                        <span class='hide'>{{ $previous_record->SampleNo }}</span> 
+                        <span class="hide">{{ $previous_record->VendorNo }}</span> 
+                        <span class="hide">{{ $NumberOfTotalRecordsForEachVendor_ }}</span> 
+                        <span class="hide">{{ $previous_record->SampleCollectionDate }}</span>  
+                        <span class="hide">{{ $previous_record->TruckPlateNo }}</span>  
+                        <span class="hide">{{ $previous_record->TankNo }}</span>  
+                        <span class="hide">{{ $previous_record->AppearanceResult }}</span>  
+                        <span class="hide">{{ $previous_record->Color }}</span>  
+                        <span class="hide">{{ $previous_record->Density }}</span>  
+                        <span class="hide">{{ $previous_record->FlashPoint }}</span>  
+                        <span class="hide">{{ $previous_record->WaterSediment }}</span>  
+                        <span class="hide">{{ $previous_record->Cleanliness }}</span>  
+                        <span class="hide">{{ $previous_record->MadeBy }}</span>  
+                        <span class="hide">{{ $previous_record->ApprovalForUse }}</span>  
+                        <span class="hide">{{ $previous_record->DeliveredTo }}</span>  
+                        <span class="hide">{{ $previous_record->Remarks }}</span>  
+                        <span class="hide">{{ $previous_record->Temp }}</span>  
                         <section class="records-tooltip tooltip">
                             @include('SwitchCases.SwitchCasesForVendors') 
                         </section>
