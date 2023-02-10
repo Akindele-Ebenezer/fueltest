@@ -143,6 +143,7 @@ let ShowRecord_OpenPdf = document.querySelector('section.ShowRecord .ShowRecordI
  
 let EditIcons = document.querySelectorAll('.EditIcon');  
 let EditIcon_ = document.querySelectorAll('.EditIcon_');  
+let EditUpdate_GeneratePdf = document.querySelector('.EditUpdate_GeneratePdf');  
 let ShowRecord_EditPdf = document.querySelector('section.edit-this-record');
 
 let UpdateMyRecord = document.querySelector('.UpdateMyRecord');
@@ -216,6 +217,7 @@ let MadeBy_ = document.querySelector('.MadeBy_');
             
             if(window.location.pathname == '/PreviousRecords') { 
                     UpdateMyRecord.setAttribute('action', '/UpdateMyRecord/' + SampleNo.textContent);
+                    EditUpdate_GeneratePdf.setAttribute('action', '/GenerateCertificate/' + SampleNo.textContent + '?Certificate');
     
                     EditIcons.forEach(EditIcon => {
                         EditIcon.addEventListener('click', () => {
@@ -263,38 +265,41 @@ let MadeBy_ = document.querySelector('.MadeBy_');
             });  
         });  
     }); 
-//  
-    // EditIcon_.forEach(EditIcon => {
-    //     EditIcon.addEventListener('click', () => { 
-    //         ShowRecord_EditPdf.classList.add('show');
+    
+ 
+    EditIcon_.forEach(EditIcon => {
+        EditIcon.addEventListener('click', () => { 
+            ShowRecord_EditPdf.classList.add('show');
+            UpdateMyRecord.setAttribute('action', '/UpdateMyRecord/' + EditIcon.nextElementSibling.nextElementSibling.textContent);
+            EditUpdate_GeneratePdf.setAttribute('action', '/GenerateCertificate/' + EditIcon.nextElementSibling.nextElementSibling.textContent + '?Certificate');
 
-    //         EditSampleNo.value = ShowRecord_SampleNo.textContent;
-    //         SampleNo_.forEach(SampleNo => {
-    //             SampleNo.textContent = ShowRecord_SampleNo.textContent;
-    //         });
-    //         EditVendorName.value = ShowRecord_VendorName.textContent;
-    //         EditVendorNo.value = ShowRecord_VendorNo.textContent;
-    //         VendorName_.textContent = ShowRecord_VendorName.textContent;
-    //         VendorNo_.textContent = ShowRecord_VendorNo.textContent;
-    //         EditSampleCollectionDate.forEach(SampleCollectionDate => {
-    //             SampleCollectionDate.value = ShowRecord_SampleCollectionDate[0].textContent.substring(0, 10);
-    //         });
-    //         EditTruckPlateNo.value = ShowRecord_TruckPlateNo.textContent;
-    //         EditTankNo.value = ShowRecord_TankNo.textContent;
-    //         EditTemp.value = ShowRecord_Temp.textContent;
-    //         EditAppearanceResult.value = ShowRecord_AppearanceResult.textContent;
-    //         EditColor.value = ShowRecord_Color.textContent;
-    //         EditDensity.value = ShowRecord_Density.textContent;
-    //         EditFlashPoint.value = ShowRecord_FlashPoint.textContent;
-    //         EditWaterSediment.value = ShowRecord_WaterSediment.textContent;
-    //         EditCleanliness.value = ShowRecord_Cleanliness.textContent;
-    //         EditMadeBy.value = ShowRecord_MadeBy.textContent;
-    //         MadeBy_.textContent = ShowRecord_MadeBy.textContent;
-    //         EditApprovalForUse.value = ShowRecord_ApprovalForUse[0].textContent; 
-    //         EditDeliveredTo.value = ShowRecord_DeliveredTo.textContent;
-    //         EditRemarks.value = ShowRecord_Remarks.textContent;
-    //     });   
-    // });   
+            EditSampleNo.value = EditIcon.nextElementSibling.nextElementSibling.textContent;
+            SampleNo_.forEach(SampleNo => {
+                SampleNo.textContent = EditIcon.nextElementSibling.nextElementSibling.textContent;
+            });
+            EditVendorName.value = EditIcon.nextElementSibling.textContent;
+            EditVendorNo.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            VendorName_.textContent = EditVendorName.value;
+            VendorNo_.textContent = EditVendorNo.value;
+            EditSampleCollectionDate.forEach(SampleCollectionDate => {
+                SampleCollectionDate.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent.substring(0, 10);
+            });
+            EditTruckPlateNo.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditTankNo.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditTemp.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditAppearanceResult.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditColor.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditDensity.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditFlashPoint.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditWaterSediment.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditCleanliness.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditMadeBy.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+            MadeBy_.textContent = EditMadeBy.value;
+            EditApprovalForUse.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
+            EditDeliveredTo.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+            EditRemarks.value = EditIcon.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;
+        });   
+    });   
 // 
 Vendors.forEach(Vendor => {
     Vendor.addEventListener('click', () => {
@@ -327,7 +332,43 @@ Vendors.forEach(Vendor => {
         ShowRecord_Temp.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;  
         
         ShowRecord_OpenPdf.setAttribute('href', '/GenerateCertificate/' + ShowRecord_SampleNo.textContent + '?Certificate');
+        EditUpdate_GeneratePdf.setAttribute('action', '/GenerateCertificate/' + ShowRecord_SampleNo.textContent + '?Certificate');
     })
+    
+    EditIcons.forEach(EditIcon => {
+        EditIcon.addEventListener('click', () => {
+            ShowRecord.classList.add('hide');
+            ShowRecord.classList.remove('show');
+            ShowRecord_EditPdf.classList.add('show');
+
+            EditSampleNo.value = ShowRecord_SampleNo.textContent;
+            SampleNo_.forEach(SampleNo => {
+                SampleNo.textContent = ShowRecord_SampleNo.textContent;
+            });
+            EditVendorName.value = ShowRecord_VendorName.textContent;
+            EditVendorNo.value = ShowRecord_VendorNo.textContent;
+            VendorName_.textContent = ShowRecord_VendorName.textContent;
+            VendorNo_.textContent = ShowRecord_VendorNo.textContent;
+            EditSampleCollectionDate.forEach(SampleCollectionDate => {
+                SampleCollectionDate.value = ShowRecord_SampleCollectionDate[0].textContent.substring(0, 10);
+            });
+            EditTruckPlateNo.value = ShowRecord_TruckPlateNo.textContent;
+            EditTankNo.value = ShowRecord_TankNo.textContent;
+            EditTemp.value = ShowRecord_Temp.textContent;
+            EditAppearanceResult.value = ShowRecord_AppearanceResult.textContent;
+            EditColor.value = ShowRecord_Color.textContent;
+            EditDensity.value = ShowRecord_Density.textContent;
+            EditFlashPoint.value = ShowRecord_FlashPoint.textContent;
+            EditWaterSediment.value = ShowRecord_WaterSediment.textContent;
+            EditCleanliness.value = ShowRecord_Cleanliness.textContent;
+            EditMadeBy.value = ShowRecord_MadeBy.textContent;
+            MadeBy_.textContent = ShowRecord_MadeBy.textContent;
+            EditApprovalForUse.value = ShowRecord_ApprovalForUse[0].textContent; 
+            EditDeliveredTo.value = ShowRecord_DeliveredTo.textContent;
+            EditRemarks.value = ShowRecord_Remarks.textContent;
+
+        });
+    });
 });
 
 CancelRecordModal.forEach(Modal => {

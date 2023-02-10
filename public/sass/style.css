@@ -404,7 +404,7 @@ section.fuel-test .fuel-test-left-nav {
   background-image: linear-gradient(to bottom, #483434, #111);
   color: #ddd;
   overflow-x: hidden;
-  width: 25rem;
+  width: 21rem;
 }
 section.fuel-test .fuel-test-left-nav center img {
   border-radius: 0.5rem 1.5rem;
@@ -483,7 +483,6 @@ section.fuel-test .fuel-test-left-nav ul li {
 section.fuel-test .fuel-test-left-nav ul li.active-dashboard {
   background: #423030;
   border-left: 7px solid;
-  border-radius: 0 0.5rem 1rem 0;
 }
 section.fuel-test .fuel-test-left-nav ul li em {
   background: rgba(43, 168, 145, 0.8);
@@ -513,7 +512,7 @@ section.fuel-test .fuel-test-left-nav ul span img {
 }
 section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
   height: 90vh;
-  padding: 1rem 1rem 7rem;
+  padding: 1rem 0 7rem;
 }
 section.fuel-test .fuel-test-left-nav a, section.fuel-test .fuel-test-main a {
   color: #483434;
@@ -914,6 +913,7 @@ section.fuel-test .fuel-test-main .record-info {
   text-align: center;
 }
 section.fuel-test .fuel-test-main center form input {
+  margin-bottom: 3rem;
   transform: translateY(2rem);
   width: 3rem;
 }
@@ -1401,7 +1401,7 @@ section.previous-records .table.other-tables {
 }
 section.previous-records .table form.DeleteRecords_ button {
   position: absolute;
-  right: 5rem;
+  right: 7rem;
   top: 10rem;
 }
 section.previous-records .table .links {
@@ -1584,7 +1584,7 @@ section.show-record section {
   color: #ddd;
   height: 90vh;
   overflow-x: hidden;
-  padding: 2rem;
+  padding: 2rem !important;
   position: absolute;
   right: -100%;
   width: 30rem;

@@ -1,5 +1,5 @@
 <center>
-    <form action="/GenerateCertificate/{{ $SampleNo }}" target="_blank" method="post">@csrf
+    <form class="EditUpdate_GeneratePdf" action="{{ Route::is('record_success') ? '/GenerateCertificate/' . $SampleNo : '' }}" target="_blank" >
         <input type="image" src="/images/pdf.png">
         <input name="SampleNo" type="hidden" value="{{ $SampleNo }}">
         <input name="SampleCollectionDate" type="hidden" value="{{ $SampleCollectionDate }}">

@@ -9,7 +9,7 @@
         <section class="show-record-side-bar fuel-test-main"> 
             <div>
                 {{-- <a href="/FuelTest">✖</a> --}}
-                <span class="CancelRecordModal">✖</span>
+                <a href="/FuelTest"><span class="CancelRecordModal">✖</span></a>
             </div>
             @php
                 $RecordCreatedId = $_GET['SampleNo'];

@@ -8,7 +8,7 @@ section {
                 background-image: linear-gradient( to bottom, $color-2, #111);
                 color: #ddd; 
                 overflow-x: hidden;
-                width: 25rem;
+                width: 21rem;
 
                 center {
                     img {
@@ -112,8 +112,7 @@ section {
     
                         &.active-dashboard {
                             background: darken($color: $color-2, $amount: 2); 
-                            border-left: 7px solid;
-                            border-radius: 0 0.5rem 1rem 0; 
+                            border-left: 7px solid; 
                         } 
 
                         em {
@@ -155,7 +154,7 @@ section {
             &-left-nav,
             &-main {
                 height: 90vh;
-                padding: 1rem 1rem 7rem;
+                padding: 1rem 0 7rem;
                 
                 li {
                     &.active-bg {

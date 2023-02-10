@@ -623,12 +623,38 @@
                     @endif   
 
                 <tr class="rows">
+                    @php
+                        
+                        $NumberOfTotalRecordsForEachVendor_ = App\Models\FuelTestRecord::select('id')
+                                                                                        ->where('uid', $id) 
+                                                                                        ->where('VendorName', $previous_record->VendorName) 
+                                                                                        ->count(); 
+                        
+                    @endphp
                     <td class="pdf-and-edit">
                         <form action="/GenerateCertificate/{{ $previous_record->SampleNo }}" method="post" target="_blank">@csrf
                             <input type="image" src="/images/pdf.png"> 
                                     @include('DATA.CertificateData')
                         </form>  
                         <img class="EditIcon_" src="/images/edit.png"> 
+                        <span class='hide'>{{ $previous_record->VendorName }}</span>   
+                        <span class='hide'>{{ $previous_record->SampleNo }}</span> 
+                        <span class="hide">{{ $previous_record->VendorNo }}</span> 
+                        <span class="hide">{{ $NumberOfTotalRecordsForEachVendor_ }}</span> 
+                        <span class="hide">{{ $previous_record->SampleCollectionDate }}</span>  
+                        <span class="hide">{{ $previous_record->TruckPlateNo }}</span>  
+                        <span class="hide">{{ $previous_record->TankNo }}</span>  
+                        <span class="hide">{{ $previous_record->AppearanceResult }}</span>  
+                        <span class="hide">{{ $previous_record->Color }}</span>  
+                        <span class="hide">{{ $previous_record->Density }}</span>  
+                        <span class="hide">{{ $previous_record->FlashPoint }}</span>  
+                        <span class="hide">{{ $previous_record->WaterSediment }}</span>  
+                        <span class="hide">{{ $previous_record->Cleanliness }}</span>  
+                        <span class="hide">{{ $previous_record->MadeBy }}</span>  
+                        <span class="hide">{{ $previous_record->ApprovalForUse }}</span>  
+                        <span class="hide">{{ $previous_record->DeliveredTo }}</span>  
+                        <span class="hide">{{ $previous_record->Remarks }}</span>  
+                        <span class="hide">{{ $previous_record->Temp }}</span>  
                         <form class="GenerateChart" action="{{ route('fuel_test_stats') }}" method="get">
                             <label>
                                 <input class="hide" type="submit" src="/images/approved.png" name="GenerateChartForCurrentVendor" value="{{ $previous_record->VendorNo }}"> 
@@ -654,14 +680,6 @@
                                 ({{ empty($previous_record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $previous_record->created_at)->format('H:i A') }})
                             </section>
                     </td>
-                    @php
-                        
-                        $NumberOfTotalRecordsForEachVendor_ = App\Models\FuelTestRecord::select('id')
-                                                                                        ->where('uid', $id) 
-                                                                                        ->where('VendorName', $previous_record->VendorName) 
-                                                                                        ->count(); 
-                        
-                    @endphp
                     <td class="sample-no">
                             <section class="records-tooltip tooltip">{{ $previous_record->SampleNo }} <br> <hr> Created at {{ empty($previous_record->created_at) ? '' : Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $previous_record->created_at)->format('H:i A') }}</section> 
                             <span class="SampleNumber">{{ $previous_record->SampleNo }}</span>  

@@ -616,7 +616,7 @@ section {
                 &.DeleteRecords_ {
                     button {
                         position: absolute;
-                        right: 5rem;
+                        right: 7rem;
                         top: 10rem;
                     }
                 }
@@ -850,7 +850,7 @@ section {
             color: #ddd;
             height: 90vh;
             overflow-x: hidden;
-            padding: 2rem;
+            padding: 2rem !important;
             position: absolute;
             right: -100%;
             width: 30rem;
