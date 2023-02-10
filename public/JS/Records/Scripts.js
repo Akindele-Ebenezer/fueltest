@@ -325,6 +325,8 @@ Vendors.forEach(Vendor => {
         ShowRecord_DeliveredTo.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
         ShowRecord_Remarks.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent; 
         ShowRecord_Temp.textContent = Vendor.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent;  
+        
+        ShowRecord_OpenPdf.setAttribute('href', '/GenerateCertificate/' + ShowRecord_SampleNo.textContent + '?Certificate');
     })
 });
 
