@@ -530,12 +530,6 @@ section {
                         display: contents;
                         // transform: translateY(-.03rem);
 
-                        h1 {
-                            font-size: 1.3rem;
-                            margin-block: 0.5rem;
-                            text-align: center;
-                        }
-
                         label {
                             input {
                                 display: none;
@@ -543,6 +537,12 @@ section {
                         }
                     }
 
+                    h1 {
+                        font-size: 1.3rem;
+                        margin-block: 0.5rem;
+                        text-align: center;
+                    }
+                    
                     p {
                         background: -webkit-linear-gradient(#182747, $color-2); 
                         border-bottom: 1px solid #ddd;

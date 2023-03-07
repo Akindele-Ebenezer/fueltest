@@ -208,6 +208,13 @@ button,
     font-size: 5.2rem;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    span {
+        &:last-of-type {
+            display: inherit;
+            text-align: right;
+        }
+    }
 }
 
 .rotate-arrow {

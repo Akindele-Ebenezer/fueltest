@@ -1,6 +1,7 @@
 <center>  
     <div>
-        <h1>{{ $title }} ({{ Route::is('all_records') ? $number_of_all_records_absolute : '' }}{{ Route::is('previous_records') ? $number_of_previous_records_absolute : '' }})</h1> <br> <span>({{ Route::is('all_records') ? $number_of_all_records : '' }}{{ Route::is('previous_records') ? $number_of_previous_records : '' }})</span>
+        <h1>{{ $title }} ({{ Route::is('all_records') ? $number_of_all_records_absolute : '' }}{{ Route::is('previous_records') ? $number_of_previous_records_absolute : '' }})</h1> <br> <span>({{ Route::is('all_records') ? $number_of_all_records : '' }}{{ Route::is('previous_records') ? $number_of_previous_records : '' }}) 
+        </span> 
     </div>
     <div>
         <form action="/export">

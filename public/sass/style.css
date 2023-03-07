@@ -171,6 +171,10 @@ button:hover,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.page-title span:last-of-type, section.fuel-test .fuel-test-main .form div section ul h2 span:last-of-type {
+  display: inherit;
+  text-align: right;
+}
 
 .rotate-arrow {
   rotate: unset !important;
@@ -1343,13 +1347,13 @@ section.previous-records table tr th .filter ul li input[type=checkbox] {
 section.previous-records table tr th form {
   display: contents;
 }
-section.previous-records table tr th form h1 {
+section.previous-records table tr th form label input {
+  display: none;
+}
+section.previous-records table tr th h1 {
   font-size: 1.3rem;
   margin-block: 0.5rem;
   text-align: center;
-}
-section.previous-records table tr th form label input {
-  display: none;
 }
 section.previous-records table tr th p {
   background: -webkit-linear-gradient(#182747, #483434);
