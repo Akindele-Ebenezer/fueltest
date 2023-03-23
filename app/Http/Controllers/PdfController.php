@@ -306,8 +306,8 @@ class PdfController extends Controller
         $pdf->Cell(0, 2,' ', 0, 1, 'C');  
         $pdf->Cell(0, 8, $DateOfTest, 0, 1); 
         
-        $pdf->Image('images/user-signature.png', 52.5, 209, 65); 
-        $pdf->Cell(0, 8, $DateOfTest, 0, 1, 'C'); 
+        $pdf->Image('images/user-signature.png', 72.5, 209, 65); 
+        $pdf->Cell(230, 8, $DateOfTest, 0, 1, 'C'); 
         $pdf->Image('images/depasa-signature.png', 10, 250, 30); 
          
         $pdf->Output(); 
