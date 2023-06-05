@@ -28,7 +28,7 @@ class PdfController extends Controller
         $FlashPoint = $Record->FlashPoint; 
         $Temp = $Record->Temp; 
         $WaterSediment = str_replace('<', '', $Record->WaterSediment); 
-        $Cleanliness = $Record->Cleanliness; 
+        $Cleanliness = str_replace(':', '.', $Record->Cleanliness); 
         $DateOfTest = $Record->DateOfTest; 
         $uid = $Record->uid; 
         $MadeBy = strtoupper($Record->MadeBy); 
@@ -262,14 +262,17 @@ class PdfController extends Controller
  
         switch ($Cleanliness) {
             case $Cleanliness <= 15:
+                $Cleanliness = str_replace('.', ':', $Cleanliness);
                 $CleanlinessResult = 'PASSED';
                 break;      
                 
             case $Cleanliness === 'OK':
+                $Cleanliness = str_replace('.', ':', $Cleanliness);
                 $CleanlinessResult = 'PASSED';
                 break;         
 
             default:
+                $Cleanliness = str_replace('.', ':', $Cleanliness);
                 $CleanlinessResult = 'FAILED';
                 break;   
         } 
