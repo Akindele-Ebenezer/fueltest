@@ -465,7 +465,7 @@
                             <tr class="Yesterday history"> 
                                 @php
                                     
-                                     $number_of_yesterdays_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d', strtotime("-1 day")))
+                                     $number_of_yesterdays_records = App\Models\FuelTestRecord::select('id')->where('SampleCollectionDate', date('Y-m-d', strtotime("-1 day")))
                                                                                                 ->count();
 
                                 @endphp
@@ -478,7 +478,7 @@
                             <tr class="Today history">
                                 @php
                                     
-                                     $number_of_todays_records = App\Models\FuelTestRecord::where('SampleCollectionDate', date('Y-m-d'))
+                                     $number_of_todays_records = App\Models\FuelTestRecord::select('id')->where('SampleCollectionDate', date('Y-m-d'))
                                                                                             ->count();
 
                                 @endphp

@@ -306,10 +306,10 @@ class FuelTestController extends Controller
                 $SampleCollectionDate = date_create($SampleCollectionDate);
                 $DateOfTest = date_create($DateOfTest);
   
-                $NumberOfGoodTestsForAppearanceResult_CurrentVendor = FuelTestRecord::whereIn('AppearanceResult', ['BRIGHT', 'CLEAR'])  
+                $NumberOfGoodTestsForAppearanceResult_CurrentVendor = FuelTestRecord::select('id')->whereIn('AppearanceResult', ['BRIGHT', 'CLEAR'])  
                                                                                     ->where('VendorNo', $VendorNo)
                                                                                     ->count();
-                $NumberOfBadTestsForAppearanceResult_CurrentVendor = FuelTestRecord::whereNotIn('AppearanceResult', ['BRIGHT', 'CLEAR'])   
+                $NumberOfBadTestsForAppearanceResult_CurrentVendor = FuelTestRecord::select('id')->whereNotIn('AppearanceResult', ['BRIGHT', 'CLEAR'])   
                                                                                     ->where('VendorNo', $VendorNo)
                                                                                     ->count();
     
@@ -318,10 +318,10 @@ class FuelTestController extends Controller
                 $PercentageForGoodTestsForAppearanceResult_CurrentVendor = $NumberOfGoodTestsForAppearanceResult_CurrentVendor / $AggregateForAppearanceResult_CurrentVendor * 100;
                 $PercentageForBadTestsForAppearanceResult_CurrentVendor = $NumberOfBadTestsForAppearanceResult_CurrentVendor / $AggregateForAppearanceResult_CurrentVendor * 100;
  
-                $NumberOfGoodTestsForColor_CurrentVendor = FuelTestRecord::where('Color', '<=', 2.5)   
+                $NumberOfGoodTestsForColor_CurrentVendor = FuelTestRecord::select('id')->where('Color', '<=', 2.5)   
                                                                             ->where('VendorNo', $VendorNo)
                                                                             ->count();
-                $NumberOfBadTestsForColor_CurrentVendor = FuelTestRecord::where('Color', '>', 2.5)  
+                $NumberOfBadTestsForColor_CurrentVendor = FuelTestRecord::select('id')->where('Color', '>', 2.5)  
                                                                         ->where('VendorNo', $VendorNo)
                                                                         ->count();
     
@@ -330,10 +330,10 @@ class FuelTestController extends Controller
                 $PercentageForGoodTestsForColor_CurrentVendor = $NumberOfGoodTestsForColor_CurrentVendor / $AggregateForColor_CurrentVendor * 100;
                 $PercentageForBadTestsForColor_CurrentVendor = $NumberOfBadTestsForColor_CurrentVendor / $AggregateForColor_CurrentVendor * 100;
  
-                $NumberOfGoodTestsForDensity_CurrentVendor = FuelTestRecord::whereBetween('Density', [0.82, 0.855])   
+                $NumberOfGoodTestsForDensity_CurrentVendor = FuelTestRecord::select('id')->whereBetween('Density', [0.82, 0.855])   
                                                                             ->where('VendorNo', $VendorNo)
                                                                             ->count();
-                $NumberOfBadTestsForDensity_CurrentVendor = FuelTestRecord::whereNotBetween('Density', [0.82, 0.855])    
+                $NumberOfBadTestsForDensity_CurrentVendor = FuelTestRecord::select('id')->whereNotBetween('Density', [0.82, 0.855])    
                                                                             ->where('VendorNo', $VendorNo)
                                                                             ->count();
     
@@ -342,10 +342,10 @@ class FuelTestController extends Controller
                 $PercentageForGoodTestsForDensity_CurrentVendor = $NumberOfGoodTestsForDensity_CurrentVendor / $AggregateForDensity_CurrentVendor * 100;
                 $PercentageForBadTestsForDensity_CurrentVendor = $NumberOfBadTestsForDensity_CurrentVendor / $AggregateForDensity_CurrentVendor * 100;
  
-                $NumberOfGoodTestsForFlashPoint_CurrentVendor = FuelTestRecord::whereBetween('FlashPoint', [52, 92])   
+                $NumberOfGoodTestsForFlashPoint_CurrentVendor = FuelTestRecord::select('id')->whereBetween('FlashPoint', [52, 92])   
                                                                                 ->where('VendorNo', $VendorNo)
                                                                                 ->count();
-                $NumberOfBadTestsForFlashPoint_CurrentVendor = FuelTestRecord::whereNotBetween('FlashPoint', [52, 92])    
+                $NumberOfBadTestsForFlashPoint_CurrentVendor = FuelTestRecord::select('id')->whereNotBetween('FlashPoint', [52, 92])    
                                                                                 ->where('VendorNo', $VendorNo)
                                                                                 ->count();
     
@@ -354,10 +354,10 @@ class FuelTestController extends Controller
                 $PercentageForGoodTestsForFlashPoint_CurrentVendor = $NumberOfGoodTestsForFlashPoint_CurrentVendor / $AggregateForFlashPoint_CurrentVendor * 100;
                 $PercentageForBadTestsForFlashPoint_CurrentVendor = $NumberOfBadTestsForFlashPoint_CurrentVendor / $AggregateForFlashPoint_CurrentVendor * 100;
  
-                $NumberOfGoodTestsForWaterSediment_CurrentVendor = FuelTestRecord::whereBetween('WaterSediment', [0, 0.050])  
+                $NumberOfGoodTestsForWaterSediment_CurrentVendor = FuelTestRecord::select('id')->whereBetween('WaterSediment', [0, 0.050])  
                                                                                     ->where('VendorNo', $VendorNo)
                                                                                     ->count();
-                $NumberOfBadTestsForWaterSediment_CurrentVendor = FuelTestRecord::whereNotBetween('WaterSediment', [0, 0.050])    
+                $NumberOfBadTestsForWaterSediment_CurrentVendor = FuelTestRecord::select('id')->whereNotBetween('WaterSediment', [0, 0.050])    
                                                                                 ->where('VendorNo', $VendorNo)
                                                                                 ->count();
                 $AggregateForWaterSediment_CurrentVendor = $NumberOfGoodTestsForWaterSediment_CurrentVendor + $NumberOfBadTestsForWaterSediment_CurrentVendor + 0.1;                                                                
@@ -365,10 +365,10 @@ class FuelTestController extends Controller
                 $PercentageForGoodTestsForWaterSediment_CurrentVendor = $NumberOfGoodTestsForWaterSediment_CurrentVendor / $AggregateForWaterSediment_CurrentVendor * 100;
                 $PercentageForBadTestsForWaterSediment_CurrentVendor = $NumberOfBadTestsForWaterSediment_CurrentVendor / $AggregateForWaterSediment_CurrentVendor * 100;
  
-                $NumberOfGoodTestsForCleanliness_CurrentVendor = FuelTestRecord::whereBetween('Cleanliness', [12, 15])  
+                $NumberOfGoodTestsForCleanliness_CurrentVendor = FuelTestRecord::select('id')->whereBetween('Cleanliness', [12, 15])  
                                                                                 ->where('VendorNo', $VendorNo)
                                                                                 ->count();
-                $NumberOfBadTestsForCleanliness_CurrentVendor = FuelTestRecord::whereNotBetween('Cleanliness', [12, 15])   
+                $NumberOfBadTestsForCleanliness_CurrentVendor = FuelTestRecord::select('id')->whereNotBetween('Cleanliness', [12, 15])   
                                                                                 ->where('VendorNo', $VendorNo)
                                                                                 ->count();
     
@@ -1311,7 +1311,7 @@ class FuelTestController extends Controller
                 $title = 'Today';
                 $number_of_all_records = count($all_records); 
 
-                $number_of_all_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday)
+                $number_of_all_records_absolute = FuelTestRecord::select('id')->where('SampleCollectionDate', $RecordsOfToday)
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records) 
@@ -1355,7 +1355,7 @@ class FuelTestController extends Controller
                 $title = 'Last Seven Days';
                 $number_of_all_records = count($all_records);
 
-                $number_of_all_records_absolute = FuelTestRecord::whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])
+                $number_of_all_records_absolute = FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$LastSevenDays, $TodaysDate])
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records) 
@@ -1500,7 +1500,7 @@ class FuelTestController extends Controller
                 $title = 'Diff Tests';
                 $number_of_all_records = count($all_records);
                 
-                $number_of_all_records_absolute = FuelTestRecord::where('ApprovalForUse', NULL)
+                $number_of_all_records_absolute = FuelTestRecord::select('id')->where('ApprovalForUse', NULL)
                                                                     ->count();
 
                 return view("all_records", $ViewData)->with('all_records', $all_records)
@@ -2810,7 +2810,7 @@ class FuelTestController extends Controller
                                                     ->fragment('PreviousRecords');
  
                 $number_of_previous_records = count($previous_records);                                     
-                $number_of_previous_records_absolute = FuelTestRecord::where('uid', $id)
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')->where('uid', $id)
                                                                     ->where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
                                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
                                                                     ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
@@ -2830,7 +2830,7 @@ class FuelTestController extends Controller
                                                                     ->orderBy('SampleNo', 'DESC')
                                                                     ->count();
 
-                $number_of_passed_records =  FuelTestRecord::where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
+                $number_of_passed_records =  FuelTestRecord::select('id')->where('SampleNo', 'LIKE', '%' . $SearchValue . '%')
                                                             ->where('uid', $id)
                                                             ->where('ApprovalForUse', 'APPROVED')
                                                             ->orWhere('SampleCollectionDate', 'LIKE', '%' . $SearchValue . '%')
@@ -3136,7 +3136,7 @@ class FuelTestController extends Controller
                 $title = 'Today';
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('SampleCollectionDate', $RecordsOfToday) 
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')->where('SampleCollectionDate', $RecordsOfToday) 
                                                                     ->where('uid', $id)
                                                                     ->count();
 
@@ -3278,7 +3278,7 @@ class FuelTestController extends Controller
                 
                 $number_of_previous_records = count($previous_records);
 
-                $number_of_previous_records_absolute = FuelTestRecord::where('ApprovalForUse', NULL)
+                $number_of_previous_records_absolute = FuelTestRecord::select('id')->where('ApprovalForUse', NULL)
                                                     ->where('uid', $id)
                                                     ->count();
 

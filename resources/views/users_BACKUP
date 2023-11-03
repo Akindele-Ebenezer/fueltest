@@ -1,5 +1,0 @@
-INSERT INTO `fuel_test_users` (`id`, `Email`, `Password`, `created_at`, `updated_at`, `Name`) VALUES (1, 'awadhesh@depasamarine.com', '12345678', NULL, NULL, 'Awadhesh Tiwari');
-INSERT INTO `fuel_test_users` (`id`, `Email`, `Password`, `created_at`, `updated_at`, `Name`) VALUES (2, 'ebenezer.akindele@depasamarine.com', '1234567', NULL, NULL, 'Ebenezer Akindele');
-INSERT INTO `fuel_test_users` (`id`, `Email`, `Password`, `created_at`, `updated_at`, `Name`) VALUES (3, 'moshe.levinger@depasamarine.com', 'mino@2019', NULL, NULL, 'Moshe Levinger');
-INSERT INTO `fuel_test_users` (`id`, `Email`, `Password`, `created_at`, `updated_at`, `Name`) VALUES (4, 'agada.iyiowo@depasamarine.com', 'fuel@2022', NULL, NULL, 'Jenny');
-INSERT INTO `fuel_test_users` (`id`, `Email`, `Password`, `created_at`, `updated_at`, `Name`) VALUES (5, 'dennis.bulanhagui@depasamarine.com', 'Fuellab1234!', NULL, NULL, 'Dennis');

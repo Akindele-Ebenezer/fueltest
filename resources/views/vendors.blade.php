@@ -164,19 +164,19 @@
                                 <span class="hide">{{ $Vendor->VendorNo }}</span>
                                 <span class="hide">{{ $Vendor->VendorName }}</span> 
                                 @php
-                                    $APPROVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                    $APPROVED_TESTS = \App\Models\FuelTestRecord::select('id')->where('VendorNo', $Vendor->VendorNo)
                                                                         ->where('ApprovalForUse', 'APPROVED')
                                                                         ->count(); 
                                                                         
-                                    $WAIVED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                    $WAIVED_TESTS = \App\Models\FuelTestRecord::select('id')->where('VendorNo', $Vendor->VendorNo)
                                                                         ->where('ApprovalForUse', 'WAIVED')
                                                                         ->count(); 
                     
-                                    $FAILED_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+                                    $FAILED_TESTS = \App\Models\FuelTestRecord::select('id')->where('VendorNo', $Vendor->VendorNo)
                                                                         ->where('ApprovalForUse', 'REJECTED')
                                                                         ->count(); 
                     
-                                    $TOTAL_TESTS = \App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo) 
+                                    $TOTAL_TESTS = \App\Models\FuelTestRecord::select('id')->where('VendorNo', $Vendor->VendorNo) 
                                                                         ->count(); 
                                 @endphp
                                 <span class="hide">{{ $APPROVED_TESTS }}</span> 
@@ -217,7 +217,7 @@
                     </td>
                     <td>
                         @php
-                            $TotalTestsForEachVendor = App\Models\FuelTestRecord::select('SampleCollectionDate')
+                            $TotalTestsForEachVendor = App\Models\FuelTestRecord::select('id')
                                                                                     ->where('VendorName', $Vendor->VendorName)
                                                                                     ->count();
 

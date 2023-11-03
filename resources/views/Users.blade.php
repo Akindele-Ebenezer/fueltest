@@ -278,19 +278,19 @@
                     @php 
                         $UserId = $User->id; 
     
-                        $APPROVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                        $APPROVED_TESTS = \App\Models\FuelTestRecord::select('id')->where('uid', $UserId)
                                                             ->where('ApprovalForUse', 'APPROVED')
                                                             ->count(); 
                                                             
-                        $WAIVED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                        $WAIVED_TESTS = \App\Models\FuelTestRecord::select('id')->where('uid', $UserId)
                                                             ->where('ApprovalForUse', 'WAIVED')
                                                             ->count(); 
     
-                        $FAILED_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId)
+                        $FAILED_TESTS = \App\Models\FuelTestRecord::select('id')->where('uid', $UserId)
                                                             ->where('ApprovalForUse', 'REJECTED')
                                                             ->count(); 
     
-                        $TOTAL_TESTS = \App\Models\FuelTestRecord::where('uid', $UserId) 
+                        $TOTAL_TESTS = \App\Models\FuelTestRecord::select('id')->where('uid', $UserId) 
                                                             ->count(); 
                     @endphp  
                     <td class="action"> 
@@ -311,18 +311,18 @@
                     <td class="user-email">{{ $User->Email }}</td>
                     <td class="user-name">{{ $User->Name }}</td>  
                     @php
-                        $NumberOfRecordsCreatedByCurrentUser = \App\Models\FuelTestRecord::where('uid', $User->id)
+                        $NumberOfRecordsCreatedByCurrentUser = \App\Models\FuelTestRecord::select('id')->where('uid', $User->id)
                                                                                         ->count();
 
-                        $NumberOfRecordsCreatedByCurrentUser_APPROVED = \App\Models\FuelTestRecord::where('uid', $User->id)
+                        $NumberOfRecordsCreatedByCurrentUser_APPROVED = \App\Models\FuelTestRecord::select('id')->where('uid', $User->id)
                                                                                         ->where('ApprovalForUse', 'APPROVED')
                                                                                         ->count();
 
-                        $NumberOfRecordsCreatedByCurrentUser_WAIVED = \App\Models\FuelTestRecord::where('uid', $User->id)
+                        $NumberOfRecordsCreatedByCurrentUser_WAIVED = \App\Models\FuelTestRecord::select('id')->where('uid', $User->id)
                                                                                         ->where('ApprovalForUse', 'WAIVED')
                                                                                         ->count();
 
-                        $NumberOfRecordsCreatedByCurrentUser_REJECTED = \App\Models\FuelTestRecord::where('uid', $User->id)
+                        $NumberOfRecordsCreatedByCurrentUser_REJECTED = \App\Models\FuelTestRecord::select('id')->where('uid', $User->id)
                                                                                         ->where('ApprovalForUse', 'REJECTED')
                                                                                         ->count();
 

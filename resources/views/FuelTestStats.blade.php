@@ -599,21 +599,21 @@ let FuelTestResults = new Chart("myChart", {
                 header('Location: /FuelTestStats');
             }
         
-            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'APPROVED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'WAIVED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
             
-            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'REJECTED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
@@ -623,24 +623,24 @@ let FuelTestResults = new Chart("myChart", {
                 $VendorStatsFrom = $_GET['VendorStatsFrom'];
                 $VendorStatsTo = $_GET['VendorStatsTo'];
 
-                $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+                $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('VendorNo', $vendor->VendorNo)
                                                     ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
                                                     ->get()
                                                     ->count(); 
             
-                $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+                $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'APPROVED')
                                                     ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
                                                     ->where('VendorNo', $vendor->VendorNo)
                                                     ->get()
                                                     ->count(); 
             
-                $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+                $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'WAIVED')
                                                     ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
                                                     ->where('VendorNo', $vendor->VendorNo)
                                                     ->get()
                                                     ->count(); 
                 
-                $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+                $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'REJECTED')
                                                     ->whereBetween('SampleCollectionDate', [$VendorStatsFrom, $VendorStatsTo])
                                                     ->where('VendorNo', $vendor->VendorNo)
                                                     ->get()
@@ -870,92 +870,92 @@ let FuelTestResults = new Chart("myChart", {
 
         @php 
             
-            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $vendor->VendorNo)
+            $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+            $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'APPROVED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+            $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'WAIVED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
         
-            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+            $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'REJECTED')
                                                 ->where('VendorNo', $vendor->VendorNo)
                                                 ->get()
                                                 ->count(); 
 
-            $Appearance = App\Models\FuelTestRecord::whereIn('AppearanceResult', ['BRIGHT', 'CLEAR']) 
+            $Appearance = App\Models\FuelTestRecord::select('id')->whereIn('AppearanceResult', ['BRIGHT', 'CLEAR']) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfGoodAppearace = $Appearance; 
 
-            $BadAppearance = App\Models\FuelTestRecord::whereNotIn('AppearanceResult', ['BRIGHT', 'CLEAR']) 
+            $BadAppearance = App\Models\FuelTestRecord::select('id')->whereNotIn('AppearanceResult', ['BRIGHT', 'CLEAR']) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfBadAppearace = $BadAppearance; 
 
-            $Color = App\Models\FuelTestRecord::where('Color', '<=', 2.5) 
+            $Color = App\Models\FuelTestRecord::select('id')->where('Color', '<=', 2.5) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfGoodColor = $Color; 
 
-            $BadColor = App\Models\FuelTestRecord::where('Color', '>', 2.5) 
+            $BadColor = App\Models\FuelTestRecord::select('id')->where('Color', '>', 2.5) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfBadColor = $BadColor; 
 
-            $Density = App\Models\FuelTestRecord::whereBetween('Density', [0.82, 0.855]) 
+            $Density = App\Models\FuelTestRecord::select('id')->whereBetween('Density', [0.82, 0.855]) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfGoodDensity = $Density; 
 
-            $BadDensity = App\Models\FuelTestRecord::whereNotBetween('Density', [0.82, 0.855])   
+            $BadDensity = App\Models\FuelTestRecord::select('id')->whereNotBetween('Density', [0.82, 0.855])   
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfBadDensity = $BadDensity; 
 
-            $FlashPoint = App\Models\FuelTestRecord::whereBetween('Density', [52, 92]) 
+            $FlashPoint = App\Models\FuelTestRecord::select('id')->whereBetween('Density', [52, 92]) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfGoodFlashPoint = $FlashPoint;
 
-            $BadFlashPoint = App\Models\FuelTestRecord::whereNotBetween('Density', [52, 92]) 
+            $BadFlashPoint = App\Models\FuelTestRecord::select('id')->whereNotBetween('Density', [52, 92]) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfBadFlashPoint = $BadFlashPoint; 
 
-            $WaterSediment = App\Models\FuelTestRecord::whereBetween('WaterSediment', [0, 0.050]) 
+            $WaterSediment = App\Models\FuelTestRecord::select('id')->whereBetween('WaterSediment', [0, 0.050]) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfGoodWaterSediment = $WaterSediment; 
 
-            $BadWaterSediment = App\Models\FuelTestRecord::where('WaterSediment', '>', 0.050) 
+            $BadWaterSediment = App\Models\FuelTestRecord::select('id')->where('WaterSediment', '>', 0.050) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfBadWaterSediment = $BadWaterSediment; 
 
-            $Cleanliness = App\Models\FuelTestRecord::whereBetween('Cleanliness', [12, 15]) 
+            $Cleanliness = App\Models\FuelTestRecord::select('id')->whereBetween('Cleanliness', [12, 15]) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 
             $NumberOfGoodCleanliness = $Cleanliness; 
                   
-            $BadCleanliness = App\Models\FuelTestRecord::whereNotBetween('Cleanliness', [12, 15]) 
+            $BadCleanliness = App\Models\FuelTestRecord::select('id')->whereNotBetween('Cleanliness', [12, 15]) 
                                             ->where('VendorNo', $vendor->VendorNo)
                                             ->count();
 

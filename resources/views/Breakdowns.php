@@ -5,19 +5,19 @@
     $FirstDayOfLastMonth = date("Y-m-d", strtotime("first day of previous month"));  
     $LastDayOfLastMonth = date("Y-m-d", strtotime("last day of previous month")); 
 
-    $NumberOfApprovedRecordsLastMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+    $NumberOfApprovedRecordsLastMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                                                     ->where('ApprovalForUse', 'APPROVED')
                                                                     ->count();
 
-    $NumberOfWaivedRecordsLastMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+    $NumberOfWaivedRecordsLastMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                                                     ->where('ApprovalForUse', 'WAIVED')
                                                                     ->count();
 
-    $NumberOfRejectedRecordsLastMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+    $NumberOfRejectedRecordsLastMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                                                     ->where('ApprovalForUse', 'REJECTED')
                                                                     ->count();
 
-    $NumberOfDiffRecordsLastMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
+    $NumberOfDiffRecordsLastMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfLastMonth, $LastDayOfLastMonth])
                                                                     ->where('VendorName', NULL)
                                                                     ->count();
 
@@ -39,19 +39,19 @@
     $FirstDayOfThisMonth = date('Y-m-01'); 
     $TodaysDate = date('Y-m-d'); 
     
-    $NumberOfApprovedRecordsThisMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+    $NumberOfApprovedRecordsThisMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                                                     ->where('ApprovalForUse', 'APPROVED')
                                                                     ->count();
 
-    $NumberOfWaivedRecordsThisMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+    $NumberOfWaivedRecordsThisMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                                                     ->where('ApprovalForUse', 'WAIVED')
                                                                     ->count();
 
-    $NumberOfRejectedRecordsThisMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+    $NumberOfRejectedRecordsThisMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                                                     ->where('ApprovalForUse', 'REJECTED')
                                                                     ->count();
 
-    $NumberOfDiffRecordsThisMonth = \App\Models\FuelTestRecord::whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
+    $NumberOfDiffRecordsThisMonth = \App\Models\FuelTestRecord::select('id')->whereBetween('SampleCollectionDate', [$FirstDayOfThisMonth, $TodaysDate])
                                                                     ->where('VendorName', NULL)
                                                                     ->count();
 

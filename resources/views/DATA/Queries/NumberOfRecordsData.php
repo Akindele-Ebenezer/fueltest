@@ -1,20 +1,20 @@
 <?php 
  
-    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::where('VendorNo', $Vendor->VendorNo)
+    $NumberOfTotalRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('VendorNo', $Vendor->VendorNo)
                                                                     ->get()
                                                                     ->count();  
 
-    $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'APPROVED')
+    $NumberOfApprovedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'APPROVED')
                                                                         ->where('VendorNo', $Vendor->VendorNo)
                                                                         ->get()
                                                                         ->count(); 
 
-    $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'WAIVED')
+    $NumberOfWavedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'WAIVED')
                                                                     ->where('VendorNo', $Vendor->VendorNo)
                                                                     ->get()
                                                                     ->count(); 
 
-    $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::where('ApprovalForUse', 'REJECTED')
+    $NumberOfRejectedRecordsForEachVendor = App\Models\FuelTestRecord::select('id')->where('ApprovalForUse', 'REJECTED')
                                                                         ->where('VendorNo', $Vendor->VendorNo)
                                                                         ->get()
                                                                         ->count(); 
