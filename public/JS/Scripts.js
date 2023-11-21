@@ -110,10 +110,10 @@ TestInputs.forEach(TestInput => {
         case 'cleanliness-result':
             TestInput.addEventListener('change', () => {
                 TestInput.previousElementSibling.previousElementSibling.lastElementChild.textContent = 
-                (Number(TestInput.value) >= 0) && (Number(TestInput.value) <= 15)
+                (Number(TestInput.value.replace(":", ".")) >= 0) && (Number(TestInput.value.replace(":", ".")) <= 15)
                 ? 'Passed' : 'Failed'; 
                 TestInput.previousElementSibling.previousElementSibling.lastElementChild.style.backgroundColor = 
-                (Number(TestInput.value) >= 0) && (Number(TestInput.value) <= 15)
+                (Number(TestInput.value.replace(":", ".")) >= 0) && (Number(TestInput.value.replace(":", ".")) <= 15)
                 ? 'rgba(43, 168, 145, 0.8)' : '#ff1a1a'; 
             });
             break;
