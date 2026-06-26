@@ -1,0 +1,1825 @@
+* {
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+h1 {
+  font-family: "Bitter", serif !important;
+}
+
+h2 {
+  font-family: "Bitter", serif !important;
+}
+
+h3 {
+  font-family: "Bitter", serif !important;
+}
+
+h4 {
+  font-family: "Bitter", serif !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.Passed {
+  color: rgba(58, 204, 177, 0.8);
+}
+
+.Failed {
+  color: red;
+}
+
+.Waved,
+.Waived {
+  color: rgb(156, 156, 0);
+}
+
+.Total_ {
+  display: inline-block;
+  width: 2rem;
+}
+
+.log-in-alert {
+  border-radius: 1rem;
+  background: #d3ffd3;
+  color: green;
+  padding: 2rem;
+  position: absolute;
+  right: 2rem;
+  top: 10rem;
+  width: max-content;
+  z-index: 2000;
+  padding: 1rem;
+  right: 6rem;
+  top: 2.5rem;
+}
+
+button,
+.button {
+  background: rgb(101.6129032258, 73.3870967742, 73.3870967742);
+  border: 1px solid rgb(101.6129032258, 73.3870967742, 73.3870967742);
+  border-radius: 0.2rem;
+  color: #fff;
+  padding: 0.4rem;
+  transition: 0.5s;
+}
+button:hover,
+.button:hover {
+  background: #fff;
+  border: 1px solid #483434;
+  color: #483434;
+  cursor: pointer;
+}
+
+.date {
+  align-items: center;
+  background: #fff;
+  border-radius: 1rem;
+  color: #483434;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+}
+.date div {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: unset;
+}
+.date div form label input,
+.date div a label input, .date div p label input {
+  display: none;
+}
+.date div form,
+.date div a, .date div p {
+  margin: 0.3rem;
+  padding: 0 0.8rem 0.8rem;
+}
+.date div form svg,
+.date div a svg, .date div p svg {
+  border: 1px solid #333;
+  border-color: #bbb;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  fill: #888;
+  height: 2rem;
+  margin-right: 1rem;
+  padding: 0.25rem;
+  transform: translateY(0.6rem);
+  width: 2rem;
+}
+.date div form svg:hover,
+.date div a svg:hover, .date div p svg:hover {
+  fill: #483434;
+}
+.date div form,
+.date div a {
+  color: #00828f;
+  padding: unset;
+}
+.date div form:nth-of-type(2) {
+  color: red;
+}
+.date div form:first-of-type svg {
+  fill: #483434;
+}
+.date div form:nth-of-type(2) svg {
+  fill: #ff4d4d;
+}
+.date div a:first-of-type svg {
+  fill: #483434;
+}
+.date div a:nth-of-type(2) svg {
+  fill: cadetblue;
+}
+.date h1 {
+  margin-left: 2rem;
+  max-width: 50rem;
+}
+
+.GenerateChart {
+  margin-right: 1rem;
+}
+.GenerateChart label {
+  cursor: pointer;
+}
+
+.hide {
+  display: none !important;
+}
+
+.log-in-button {
+  border-radius: 0.5rem 1rem;
+  padding: 1rem;
+}
+
+.page-title, section.fuel-test .fuel-test-main .form div section ul h2 {
+  background: -webkit-linear-gradient(#182747, #483434);
+  font-size: 5.2rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-title span:last-of-type, section.fuel-test .fuel-test-main .form div section ul h2 span:last-of-type {
+  display: inherit;
+  text-align: right;
+}
+
+.rotate-arrow {
+  rotate: unset !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.tooltip, .records-tooltip {
+  background: #222;
+  border-radius: 0.5rem;
+  box-shadow: 1px 2px 19px #444;
+  color: #eee;
+  display: none;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1000;
+}
+
+.records-tooltip {
+  translate: 12rem;
+}
+
+.resizable {
+  max-width: 400px;
+  min-width: 100px;
+}
+
+.th-min-width {
+  min-width: 145px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}
+
+.loader {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: absolute;
+  visibility: hidden;
+  width: 100vw;
+}
+.loader img {
+  border-radius: 50%;
+  width: 12rem;
+  z-index: 100;
+}
+
+ul {
+  list-style: none;
+}
+ul.error-messages li {
+  color: red;
+  text-align: center;
+}
+
+@media (max-width: 1400px) {
+  * {
+    font-size: 11px;
+  }
+}
+header {
+  background: #000;
+  color: antiquewhite;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+header a {
+  color: antiquewhite;
+}
+header div {
+  padding: 1rem;
+}
+
+nav {
+  background: #fff;
+  color: #483434;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  transform: translateY(3.5rem);
+  width: 100%;
+  z-index: 10;
+}
+nav ul {
+  display: flex;
+}
+nav ul li {
+  letter-spacing: 0.1rem;
+  padding: 0.5rem 2rem;
+}
+nav ul li.active-bg {
+  background: #483434;
+}
+nav ul li:hover {
+  border-bottom: 2px solid antiquewhite;
+}
+nav ul li .active {
+  color: #fff;
+}
+nav ul li a {
+  color: #483434;
+  text-decoration: none;
+}
+
+.nav-sm-screen {
+  background: #eee;
+  display: none;
+  padding: 1rem 0;
+  position: relative;
+  transform: translateY(3.5rem);
+  z-index: 101;
+}
+.nav-sm-screen-header-info div {
+  background: #fff;
+  display: none;
+  padding-inline: 2rem;
+  transform: translateY(4.5rem);
+}
+.nav-sm-screen-header-info div svg {
+  fill: #483434;
+  width: 1rem;
+}
+.nav-sm-screen-header-info div svg:hover {
+  cursor: pointer;
+  fill: rgb(221.4516129032, 208.5483870968, 208.5483870968);
+}
+.nav-sm-screen ul {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.nav-sm-screen ul li a svg {
+  fill: #483434;
+  width: 2rem;
+}
+.nav-sm-screen ul li a svg:hover {
+  cursor: pointer;
+  fill: rgb(221.4516129032, 208.5483870968, 208.5483870968);
+}
+
+@media (max-width: 755px) {
+  nav {
+    display: none;
+  }
+}
+@media (max-width: 755px) {
+  .nav-sm-screen,
+  .nav-sm-screen-header-info div {
+    display: block;
+  }
+}
+section.log-in {
+  display: flex;
+}
+section.log-in div:first-child {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 70vw;
+}
+section.log-in div:last-child {
+  align-self: center;
+  width: 30vw;
+}
+section.log-in div form button[type] {
+  width: 100%;
+}
+section.log-in div form {
+  padding: 2rem 3rem;
+}
+section.log-in div form h2 {
+  border-bottom: 5px solid #483434;
+  font-size: 6rem;
+  margin-block: 1rem;
+}
+section.log-in div form input {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  color: #483434;
+  margin-block: 1rem;
+  padding: 0.75rem;
+  outline: none;
+  width: 100%;
+}
+section.log-in div form p {
+  font-size: 1.2rem;
+  text-align: right;
+}
+section.log-in div form span {
+  color: red;
+}
+
+@media (max-width: 1210px) {
+  section.log-in div:last-child {
+    width: unset;
+  }
+  section.log-in div form input {
+    width: unset;
+  }
+}
+@media (max-width: 588px) {
+  header div:nth-child(2) {
+    display: none;
+  }
+}
+@media (max-width: 378px) {
+  section.log-in div form {
+    padding: 1rem;
+    width: 100vw;
+  }
+  section.log-in div form input {
+    width: 100%;
+  }
+}
+.company-logo {
+  position: absolute;
+  top: 5rem;
+  left: 1rem;
+  width: 10rem;
+}
+
+section.fuel-test {
+  display: flex;
+  transform: translateY(5rem);
+}
+section.fuel-test .fuel-test-left-nav {
+  background-image: linear-gradient(to bottom, #483434, #111);
+  color: #ddd;
+  overflow-x: hidden;
+  width: 21rem;
+}
+section.fuel-test .fuel-test-left-nav center img {
+  margin-top: 3rem;
+  width: 90%;
+}
+section.fuel-test .fuel-test-left-nav ul a {
+  color: #eee;
+}
+section.fuel-test .fuel-test-left-nav ul a li {
+  align-items: center;
+  display: flex;
+}
+section.fuel-test .fuel-test-left-nav ul a li:hover {
+  background: rgb(66.0774193548, 47.7225806452, 47.7225806452);
+  border-radius: 0 0.5rem 1rem 0;
+  cursor: pointer;
+}
+section.fuel-test .fuel-test-left-nav ul a li em {
+  background: rgba(43.3911290323, 167.6088709677, 144.6370967742, 0.8);
+  border-radius: 0.2rem;
+  font-style: unset;
+  margin-left: 1rem;
+  padding: 0 0.3rem;
+}
+section.fuel-test .fuel-test-left-nav ul a li em.report {
+  background: rgb(255, 25.5, 25.5);
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section {
+  display: none;
+  margin-left: 2rem;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show {
+  display: block;
+  margin-left: 2rem;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li {
+  color: #ccc;
+  display: flex;
+  margin-block: 0.4rem;
+  padding: 0.3rem !important;
+  padding-left: 0.5rem !important;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li a {
+  font-family: unset;
+  font-size: smaller;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section-show ul li a:hover {
+  font-weight: bold;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li {
+  display: flex;
+  color: #ccc;
+  margin-block: 0.4rem;
+  padding: 0.3rem !important;
+  padding-left: 0.5rem !important;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li a {
+  font-family: unset;
+  font-size: smaller;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li a:hover {
+  font-weight: bold;
+}
+section.fuel-test .fuel-test-left-nav ul div.sub-section ul li .vendor-no {
+  border: 1px solid;
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
+section.fuel-test .fuel-test-left-nav ul li {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.09rem;
+  padding: 1rem;
+}
+section.fuel-test .fuel-test-left-nav ul li.active-dashboard {
+  background: rgb(66.0774193548, 47.7225806452, 47.7225806452);
+  border-left: 7px solid;
+}
+section.fuel-test .fuel-test-left-nav ul li em {
+  background: rgba(43.3911290323, 167.6088709677, 144.6370967742, 0.8);
+  border-radius: 0.2rem;
+  margin-right: 1em;
+  padding: 0 0.3rem;
+}
+section.fuel-test .fuel-test-left-nav ul li svg {
+  fill: rgb(244.3333333333, 212.3333333333, 169.6666666667);
+  height: 1.4rem;
+  margin-right: 1.5rem;
+  width: 1rem;
+}
+section.fuel-test .fuel-test-left-nav ul .sub-section-container {
+  position: relative;
+}
+section.fuel-test .fuel-test-left-nav ul .sub-section-container .arrow {
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+section.fuel-test .fuel-test-left-nav ul span img {
+  rotate: 270deg;
+  transition: 1s;
+  width: 1.5rem;
+}
+section.fuel-test .fuel-test-left-nav, section.fuel-test .fuel-test-main {
+  height: 90vh;
+  padding: 1rem 0 7rem;
+}
+section.fuel-test .fuel-test-left-nav a, section.fuel-test .fuel-test-main a {
+  color: #483434;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+section.fuel-test .fuel-test-main {
+  overflow-x: hidden;
+  position: relative;
+  width: 80vw;
+}
+section.fuel-test .fuel-test-main .form {
+  background: #f9f9f9;
+  border-radius: 0.3rem;
+  box-shadow: 1px 2px 19px #ddd;
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+  padding: 1rem;
+}
+section.fuel-test .fuel-test-main .form div {
+  align-items: center;
+  background: #fff;
+  border-radius: 0.5rem;
+  display: flex;
+  margin: 0.4rem;
+  padding: 0.5rem;
+  position: relative;
+  width: 42rem;
+}
+section.fuel-test .fuel-test-main .form div:last-of-type {
+  background: unset;
+  box-shadow: unset;
+  justify-content: center;
+  margin-block: 1.5rem;
+  width: 100%;
+}
+section.fuel-test .fuel-test-main .form div.Survey {
+  display: unset;
+  padding: unset;
+}
+section.fuel-test .fuel-test-main .form div.Survey div {
+  margin: unset;
+}
+section.fuel-test .fuel-test-main .form div.Survey div:last-of-type {
+  display: unset;
+}
+section.fuel-test .fuel-test-main .form div.Survey div:last-of-type h2 {
+  color: #483434;
+  border-bottom: 1px solid #eee;
+  font-family: initial;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+section.fuel-test .fuel-test-main .form div.Survey div:last-of-type hr {
+  color: #eee;
+}
+section.fuel-test .fuel-test-main .form div.Survey div:last-of-type p {
+  padding-left: 1rem;
+}
+section.fuel-test .fuel-test-main .form div.Survey div:last-of-type p span:first-of-type {
+  display: inline-block;
+  margin-right: 2rem;
+  width: 8rem;
+}
+section.fuel-test .fuel-test-main .form div.Survey div:last-of-type p span em {
+  background: #483434;
+  border-radius: 0.3rem;
+  color: #fff;
+  display: block;
+  font-style: unset;
+  margin-block: 0.3rem;
+  padding: 0.3rem;
+  width: fit-content;
+}
+section.fuel-test .fuel-test-main .form div select {
+  border: 3px solid #999;
+  width: 100%;
+}
+section.fuel-test .fuel-test-main .form div section {
+  background: #fff;
+  box-shadow: 1px 2px 19px #bbb;
+  display: none;
+  max-height: 27rem;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  position: absolute;
+  left: 14rem;
+  top: 5rem;
+  width: 28rem;
+  z-index: 1;
+}
+section.fuel-test .fuel-test-main .form div section ul h2 {
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-block: 1rem;
+}
+section.fuel-test .fuel-test-main .form div section ul li {
+  align-items: center;
+  border-bottom: 1px solid antiquewhite;
+  border-left: 3px solid #fff;
+  display: flex;
+  color: #333;
+  font-size: 1.25rem;
+  justify-content: space-between;
+  text-transform: capitalize;
+  width: 100% !important;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Rejected {
+  color: red;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Approved {
+  color: #00592e;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Waved {
+  color: #ffc966;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Bright {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+  border-radius: unset;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Bright span {
+  background: green;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Clear {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+  background: rgba(191, 191, 1, 0.17);
+  border-radius: unset;
+  color: #abab00;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Clear span {
+  background: #abab00;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Bright, section.fuel-test .fuel-test-main .form div section ul li.Clear, section.fuel-test .fuel-test-main .form div section ul li.Muddy {
+  padding-right: 1rem;
+}
+section.fuel-test .fuel-test-main .form div section ul li:hover {
+  background: rgb(240.55, 240.55, 240.55);
+  border-left: 3px solid #483434;
+  cursor: pointer;
+  padding-left: 1rem;
+  transition: 0.5s;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Muddy {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+  background: rgba(0, 130, 143, 0.1098039216);
+  border-radius: unset;
+  color: #00bccf;
+}
+section.fuel-test .fuel-test-main .form div section ul li.Muddy span {
+  background: #00bccf;
+}
+section.fuel-test .fuel-test-main .form div section ul li p {
+  color: unset;
+  color: #483434;
+  position: unset;
+  transform: unset;
+  width: 15rem;
+}
+section.fuel-test .fuel-test-main .form div section ul li span {
+  border-radius: 1rem;
+  color: cadetblue;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  text-align: center;
+  width: 5rem;
+}
+section.fuel-test .fuel-test-main .form div section.ToggleList {
+  display: block;
+}
+section.fuel-test .fuel-test-main .form div svg {
+  fill: rgb(101.6129032258, 73.3870967742, 73.3870967742);
+  width: 2rem;
+}
+section.fuel-test .fuel-test-main .form div svg:hover {
+  cursor: pointer;
+  fill: rgb(221.4516129032, 208.5483870968, 208.5483870968);
+}
+section.fuel-test .fuel-test-main .form form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+section.fuel-test .fuel-test-main .form input,
+section.fuel-test .fuel-test-main .form h3 {
+  border: 1px solid #ccc;
+  color: #483434;
+  outline: none;
+  padding: 1rem;
+  width: 100%;
+}
+section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]:first-of-type, section.fuel-test .fuel-test-main .form input[placeholder="Name of VENDOR..."]:first-of-type,
+section.fuel-test .fuel-test-main .form h3[placeholder="Vendor No..."]:first-of-type,
+section.fuel-test .fuel-test-main .form h3[placeholder="Name of VENDOR..."]:first-of-type {
+  width: 40%;
+  margin-right: 1rem;
+}
+section.fuel-test .fuel-test-main .form input[placeholder="Vendor No..."]:last-of-type, section.fuel-test .fuel-test-main .form input[placeholder="Name of VENDOR..."]:last-of-type,
+section.fuel-test .fuel-test-main .form h3[placeholder="Vendor No..."]:last-of-type,
+section.fuel-test .fuel-test-main .form h3[placeholder="Name of VENDOR..."]:last-of-type {
+  width: 53%;
+}
+section.fuel-test .fuel-test-main .form input:focus,
+section.fuel-test .fuel-test-main .form h3:focus {
+  border-bottom: 3px solid #483434;
+}
+section.fuel-test .fuel-test-main .form input[name=SampleNo], section.fuel-test .fuel-test-main .form input[name=TruckPlateNo], section.fuel-test .fuel-test-main .form input[name=Temp], section.fuel-test .fuel-test-main .form input[name=WaterSediment], section.fuel-test .fuel-test-main .form input[name=VendorNo], section.fuel-test .fuel-test-main .form input[name=Remarks],
+section.fuel-test .fuel-test-main .form h3[name=SampleNo],
+section.fuel-test .fuel-test-main .form h3[name=TruckPlateNo],
+section.fuel-test .fuel-test-main .form h3[name=Temp],
+section.fuel-test .fuel-test-main .form h3[name=WaterSediment],
+section.fuel-test .fuel-test-main .form h3[name=VendorNo],
+section.fuel-test .fuel-test-main .form h3[name=Remarks] {
+  border: none;
+  border-bottom: 1px solid #483434;
+  border-radius: unset;
+}
+section.fuel-test .fuel-test-main .form input[name=FlashPoint],
+section.fuel-test .fuel-test-main .form h3[name=FlashPoint] {
+  color: rgb(0, 141.6811594203, 156);
+  font-style: italic;
+}
+section.fuel-test .fuel-test-main .form input[name=TankNo],
+section.fuel-test .fuel-test-main .form h3[name=TankNo] {
+  color: #f33f3f;
+  font-style: italic;
+}
+section.fuel-test .fuel-test-main .form input[name=TruckPlateNo],
+section.fuel-test .fuel-test-main .form h3[name=TruckPlateNo] {
+  color: rgb(0, 141.6811594203, 156);
+  font-style: italic;
+}
+section.fuel-test .fuel-test-main .form input[name=SampleNo],
+section.fuel-test .fuel-test-main .form h3[name=SampleNo] {
+  border-bottom: 3px solid #483434;
+  color: #00828f;
+  cursor: pointer;
+}
+section.fuel-test .fuel-test-main .form input:focus,
+section.fuel-test .fuel-test-main .form h3:focus {
+  border-bottom: 3px solid #483434;
+}
+section.fuel-test .fuel-test-main .form input.select, section.fuel-test .fuel-test-main .form input[type=date],
+section.fuel-test .fuel-test-main .form h3.select,
+section.fuel-test .fuel-test-main .form h3[type=date] {
+  background: #eee;
+  border: none;
+  border-radius: unset;
+  cursor: pointer;
+}
+section.fuel-test .fuel-test-main .form input[type=date],
+section.fuel-test .fuel-test-main .form h3[type=date] {
+  background: rgb(252.8333333333, 246.3333333333, 237.6666666667);
+  color: #f33f3f;
+}
+section.fuel-test .fuel-test-main .form label {
+  border-radius: 0.3rem;
+  color: #483434;
+  display: block;
+  margin-right: 1rem;
+  padding: 1rem;
+  width: 37%;
+}
+section.fuel-test .fuel-test-main section form {
+  background: #fff;
+  padding: 0 1rem 1rem;
+  width: fit-content;
+}
+section.fuel-test .fuel-test-main section form button {
+  margin-right: 0.2rem;
+}
+section.fuel-test .fuel-test-main section form input {
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  color: #483434;
+  font-style: italic;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  outline: none;
+  padding: 0.2rem 1rem;
+}
+section.fuel-test .fuel-test-main section form span {
+  margin-right: 0.5rem;
+}
+section.fuel-test .fuel-test-main section form span img {
+  margin-right: 0.5rem;
+  translate: 0 1rem;
+  width: 3rem;
+}
+section.fuel-test .fuel-test-main section.GetRecordSection {
+  align-items: center;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+section.fuel-test .fuel-test-main section.GetRecordSection form img {
+  translate: 0 1rem;
+  width: 2.5rem;
+}
+section.fuel-test .fuel-test-main section.GetRecordSection form input[type=submit] {
+  background: #222;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+section.fuel-test .fuel-test-main .record-created-alert,
+section.fuel-test .fuel-test-main .record-updated-alert {
+  border-radius: 1rem;
+  background: #d3ffd3;
+  color: green;
+  padding: 2rem;
+  position: absolute;
+  right: 2rem;
+  top: 10rem;
+  width: max-content;
+  z-index: 2000;
+}
+section.fuel-test .fuel-test-main .vendor-info {
+  color: #222;
+  font-size: 0.95rem;
+  padding-block: 0.6rem;
+}
+
+@media (max-width: 1047px) {
+  section.fuel-test .fuel-test-main .form div {
+    width: 80%;
+  }
+}
+@media (max-width: 950px) {
+  section.fuel-test .fuel-test-main {
+    width: unset;
+  }
+}
+@media (max-width: 740px) {
+  section.fuel-test .fuel-test-main .form div {
+    flex-wrap: wrap;
+  }
+  section.fuel-test .fuel-test-main .form div select {
+    border: none;
+    border-radius: 0;
+    margin-block: 2rem;
+  }
+  section.fuel-test .fuel-test-main .form input {
+    margin-block: 2rem;
+  }
+}
+@media (max-width: 541px) {
+  section.fuel-test .fuel-test-main .form label {
+    width: max-content;
+  }
+  section.previous-records table tr td {
+    font-size: 10px;
+    width: 10rem;
+  }
+  section.previous-records table tr td.appearance-result {
+    margin: auto;
+  }
+  section.previous-records table tr td p[class] {
+    font-size: 10px;
+    padding: 0;
+    width: 5rem;
+  }
+  section.previous-records table tr td.remarks {
+    width: 30rem;
+  }
+  section.previous-records table tr th {
+    font-size: 10px;
+    width: 8rem;
+  }
+}
+@media (max-width: 399px) {
+  section.fuel-test .fuel-test-main h1 {
+    font-size: 3.2rem;
+  }
+}
+section.fuel-test .fuel-test-main h1,
+section.fuel-test .fuel-test-main .record-info {
+  margin-left: 2rem;
+  text-align: center;
+}
+section.fuel-test .fuel-test-main center form input {
+  margin-bottom: 3rem;
+  transform: translateY(2rem);
+  width: 3rem;
+}
+
+section.previous-records {
+  background: #f4f4f4;
+}
+section.previous-records .SampleNumber {
+  cursor: pointer;
+}
+section.previous-records .SampleNumber:hover {
+  font-weight: bold;
+}
+section.previous-records .add-vendor,
+section.previous-records .add-user {
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  margin-left: 1rem;
+  padding: 1em;
+}
+section.previous-records .add-vendor form,
+section.previous-records .add-user form {
+  color: #483434;
+}
+section.previous-records .add-vendor form input,
+section.previous-records .add-user form input {
+  background: #eee;
+  border: none;
+  border-bottom: 1px solid #bbb;
+  margin-inline: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem;
+}
+section.previous-records .add-vendor form select,
+section.previous-records .add-user form select {
+  margin-inline: 1rem;
+}
+section.previous-records .date {
+  height: unset;
+  overflow: unset;
+}
+section.previous-records .date div {
+  height: unset;
+  overflow: hidden;
+  width: unset;
+}
+section.previous-records center {
+  align-items: center;
+  background: #fff;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 2rem 1rem 0;
+  padding: 1rem 1rem 1rem 0;
+}
+section.previous-records center a button {
+  background: #483434;
+  border: 1px solid #483434;
+  border-radius: 0.2rem;
+  margin-left: 0.5rem;
+}
+section.previous-records center a button:hover {
+  background: #483434;
+  color: #fff;
+}
+section.previous-records center div {
+  display: flex;
+  height: unset;
+  margin: unset;
+  overflow: unset;
+  width: unset;
+}
+section.previous-records center div form label img {
+  translate: 0 0.6rem;
+  width: 2rem;
+}
+section.previous-records center div form label input {
+  display: none;
+}
+section.previous-records center div form svg {
+  border: 1px solid #333;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  fill: #333;
+  padding: 0.25rem;
+  transform: translate(-0.2rem, 0.2rem);
+  width: 1.5rem;
+}
+section.previous-records center h1 {
+  background: -webkit-linear-gradient(#182747, #483434);
+  background-clip: border-box;
+  font-size: 2rem;
+  margin: 1rem;
+  text-transform: uppercase;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+section.previous-records center span {
+  color: #483434;
+}
+section.previous-records .Passed,
+section.previous-records .Failed,
+section.previous-records .Waved,
+section.previous-records .Diff {
+  margin-left: 0.75rem;
+}
+section.previous-records .Passed label,
+section.previous-records .Failed label,
+section.previous-records .Waved label,
+section.previous-records .Diff label {
+  cursor: pointer;
+}
+section.previous-records .Diff {
+  color: #00828f;
+}
+section.previous-records div {
+  height: 61vh;
+  margin: 1rem 1rem 0;
+  overflow: scroll;
+  width: 75vw;
+}
+section.previous-records table {
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 0.5rem;
+  margin-block: 1rem;
+  padding: 0.5rem 0.5rem 5rem;
+  width: max-content;
+}
+section.previous-records table td {
+  position: relative;
+}
+section.previous-records table td:not(td.pdf-and-edit) {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 0.4rem 1rem;
+}
+section.previous-records table td.action {
+  border: none !important;
+  display: flex;
+  height: 2.5rem;
+  justify-content: space-evenly;
+  text-align: center;
+}
+section.previous-records table tr.history, section.previous-records table tr.history td {
+  border: none;
+  padding-inline: 0.5rem;
+}
+section.previous-records table tr.history {
+  border-bottom: 1px solid #eee;
+  border-left: 5px solid #ddd;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-top: 1rem;
+}
+section.previous-records table.vendors, section.previous-records table.users {
+  text-align: left;
+}
+section.previous-records table.vendors tr td, section.previous-records table.users tr td {
+  padding-block: 0.5rem;
+}
+section.previous-records table.vendors tr td .ApprovedTestsForEachVendor, section.previous-records table.users tr td .ApprovedTestsForEachVendor {
+  border-radius: 0.2rem;
+  padding: 0 0.3rem;
+}
+section.previous-records table.vendors tr td .FailedTestsForEachVendor, section.previous-records table.users tr td .FailedTestsForEachVendor {
+  border-radius: 0.2rem;
+  padding: 0 0.3rem;
+}
+section.previous-records table.vendors tr td .WaivedTestsForEachVendor, section.previous-records table.users tr td .WaivedTestsForEachVendor {
+  border-radius: 0.2rem;
+  padding: 0 0.3rem;
+}
+section.previous-records table.vendors tr td.status, section.previous-records table.users tr td.status {
+  text-align: center;
+}
+section.previous-records table.vendors tr td.status .offline, section.previous-records table.users tr td.status .offline {
+  background: rgb(255, 25.5, 25.5);
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+}
+section.previous-records table.vendors tr td.status .online, section.previous-records table.users tr td.status .online {
+  background: rgba(43.3911290323, 167.6088709677, 144.6370967742, 0.8);
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+}
+section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.user-email {
+  width: 25rem !important;
+}
+section.previous-records table.vendors tr td.vendor-id, section.previous-records table.vendors tr td.user-id, section.previous-records table.users tr td.vendor-id, section.previous-records table.users tr td.user-id {
+  width: 2rem;
+}
+section.previous-records table.vendors tr td .hide, section.previous-records table.users tr td .hide {
+  display: none;
+}
+section.previous-records table.vendors tr td.vendor-no, section.previous-records table.vendors tr td.user-email, section.previous-records table.users tr td.vendor-no, section.previous-records table.users tr td.user-email {
+  width: 10rem;
+}
+section.previous-records table.vendors tr th:first-of-type, section.previous-records table.users tr th:first-of-type {
+  min-width: 2rem;
+  max-width: 4rem;
+}
+section.previous-records table tr {
+  color: #444;
+}
+section.previous-records table tr:not(.history):nth-of-type(even) {
+  background: #f4f4f4 !important;
+}
+section.previous-records table tr.rows {
+  background: #f4f4f4;
+}
+section.previous-records table tr.rows:nth-of-type(3n) {
+  background: #fff !important;
+}
+section.previous-records table tr.history {
+  display: none;
+}
+section.previous-records table tr.history td {
+  align-items: center;
+  border: none !important;
+  display: flex;
+  font-family: "Bitter", serif !important;
+  font-size: 1.4rem;
+}
+section.previous-records table tr.history td.days {
+  width: max-content;
+}
+section.previous-records table tr.history td span {
+  font-style: italic;
+  margin-left: 1rem;
+}
+section.previous-records table tr td {
+  border: 1px solid #ddd !important;
+}
+section.previous-records table tr td .Bright {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+}
+section.previous-records table tr td .CM {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+  background: rgba(255, 140, 140, 0.1803921569);
+  color: #f33f3f;
+}
+section.previous-records table tr td .Clear {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+  background: rgba(191, 191, 1, 0.17);
+  color: #abab00;
+}
+section.previous-records table tr td input {
+  border: none;
+  outline: none;
+  text-align: center;
+}
+section.previous-records table tr td input.Certificate {
+  display: none;
+}
+section.previous-records table tr td .Muddy {
+  background: rgba(98, 217, 98, 0.1803921569);
+  color: green;
+  height: unset;
+  text-align: center;
+  width: 10rem;
+  background: rgba(0, 130, 143, 0.1098039216);
+  color: #00bccf;
+}
+section.previous-records table tr td p.Appearance {
+  font-size: 0.9rem;
+  margin: auto;
+  text-transform: uppercase;
+  width: 5rem;
+}
+section.previous-records table tr td.sample-no, section.previous-records table tr td.vendor-no {
+  margin-right: 1rem;
+}
+section.previous-records table tr td.sample-no label, section.previous-records table tr td.vendor-no label {
+  cursor: pointer;
+}
+section.previous-records table tr td.vendors label {
+  cursor: pointer;
+}
+section.previous-records table tr td.vendors, section.previous-records table tr td.vendor-name label, section.previous-records table tr td.vendor-name {
+  font-family: arial;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+section.previous-records table tr td img {
+  height: 1.45rem;
+  translate: 0 0.5rem;
+  width: 1.45rem;
+}
+section.previous-records table tr td img.admin-edit {
+  cursor: pointer;
+  translate: 0;
+}
+section.previous-records table tr td.vendor-name label {
+  color: unset;
+  cursor: pointer;
+}
+section.previous-records table tr td.pdf-and-edit {
+  border: none !important;
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+}
+section.previous-records table tr td.pdf-and-edit img {
+  cursor: pointer;
+  height: 1.45rem;
+  translate: 0 0.5rem;
+  width: 1.45rem;
+}
+section.previous-records table tr td.pdf-and-edit .time {
+  margin-inline: 1rem;
+  translate: 0 0.5rem;
+  width: 6rem;
+}
+section.previous-records table tr td button {
+  margin-top: unset;
+  padding: 0.2rem 1rem;
+}
+section.previous-records table tr td button:hover {
+  cursor: pointer;
+}
+section.previous-records table tr td input[type=image] {
+  margin-inline: 1rem;
+  translate: 0 0.2rem;
+  width: 2rem;
+}
+section.previous-records table tr th {
+  background: rgb(131.2258064516, 94.7741935484, 94.7741935484);
+  border: 1px solid #ddd;
+  color: #fff;
+  font-weight: unset;
+  padding: 0.3rem;
+  position: sticky;
+  text-align: center;
+  top: 0;
+  z-index: 102;
+}
+section.previous-records table tr th .filter {
+  background: #fff;
+  box-shadow: 1px 2px 19px #ccc;
+  color: #333;
+  display: none;
+  height: 20rem;
+  margin: unset;
+  margin-block: 2rem;
+  overflow-x: hidden;
+  padding: 0 2rem 4rem;
+  position: absolute;
+  text-align: left;
+  width: 20rem;
+}
+section.previous-records table tr th .filter-toggle {
+  display: block;
+  width: fit-content;
+}
+section.previous-records table tr th .filter ul {
+  position: relative;
+}
+section.previous-records table tr th .filter ul button {
+  padding: unset;
+  padding-inline: 1rem;
+  position: unset !important;
+  transition: unset;
+}
+section.previous-records table tr th .filter ul button:first-of-type {
+  background: #bbb;
+  border: 1px solid #eee;
+}
+section.previous-records table tr th .filter ul button:first-of-type a {
+  color: #fff;
+}
+section.previous-records table tr th .filter ul button:first-of-type:hover {
+  border: 1px solid #fff;
+  color: #fff;
+}
+section.previous-records table tr th .filter ul center {
+  background: #fff;
+  border: 1px solid #eee;
+  margin: 0 auto 1rem;
+  padding: 0.5rem;
+  width: 16rem;
+}
+section.previous-records table tr th .filter ul li {
+  display: flex;
+}
+section.previous-records table tr th .filter ul li.date {
+  display: flex;
+  font-weight: bold;
+  margin-block: 0.5rem;
+}
+section.previous-records table tr th .filter ul li.date input {
+  border: none;
+  color: #777;
+  cursor: pointer;
+}
+section.previous-records table tr th .filter ul li.date span {
+  padding-left: 0.55rem;
+  width: 5rem;
+}
+section.previous-records table tr th .filter ul li:hover:not(section.previous-records table tr th .filter ul li.date) {
+  background: #eee;
+  cursor: pointer;
+}
+section.previous-records table tr th .filter ul li input {
+  margin-right: 1rem;
+}
+section.previous-records table tr th .filter ul li input[type=checkbox] {
+  margin-left: 1rem;
+}
+section.previous-records table tr th form {
+  display: contents;
+}
+section.previous-records table tr th form label input {
+  display: none;
+}
+section.previous-records table tr th h1 {
+  font-size: 1.3rem;
+  margin-block: 0.5rem;
+  text-align: center;
+}
+section.previous-records table tr th p {
+  background: -webkit-linear-gradient(#182747, #483434);
+  border-bottom: 1px solid #ddd;
+  font-size: 2rem;
+  font-family: "Bitter", serif;
+  text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+section.previous-records table tr th section.DatesFilter button {
+  background: #483434 !important;
+  border-radius: 0.6rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+section.previous-records table tr th svg {
+  cursor: pointer;
+  fill: antiquewhite;
+  height: 1.2rem;
+  margin-inline: 0.3rem;
+  transform: translateY(0.3rem);
+  width: 1.2rem;
+}
+section.previous-records table tr th svg:hover {
+  fill: rgb(244.3333333333, 212.3333333333, 169.6666666667);
+}
+section.previous-records table tr th svg:last-of-type {
+  border: 1px solid antiquewhite;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+}
+section.previous-records table tr th.vendors {
+  width: 222px;
+}
+section.previous-records table tr th.vendor-name, section.previous-records table tr th.user-name {
+  text-align: left;
+}
+section.previous-records table tr th.vendors-th {
+  padding-inline: 1rem;
+  text-align: right;
+}
+section.previous-records .table {
+  padding-bottom: 8rem;
+}
+section.previous-records .table.other-tables {
+  height: 53vh;
+  overflow-x: auto;
+}
+section.previous-records .table form.DeleteRecords_ button {
+  position: absolute;
+  right: 7rem;
+  top: 10rem;
+}
+section.previous-records .table .links {
+  background: #fff;
+  border-radius: 0.5rem;
+  height: unset;
+  margin: unset;
+  overflow: hidden;
+  padding: 0.5rem;
+  width: unset;
+}
+section.previous-records .table .links nav {
+  display: unset;
+  position: sticky;
+  top: 0;
+}
+section.previous-records .table .links nav a[aria-label="Next &raquo;"] {
+  color: #999 !important;
+}
+section.previous-records .table .links nav a:first-of-type {
+  color: inherit;
+  font-style: italic;
+}
+section.previous-records .table .links nav a:last-of-type {
+  background: rgb(101.6129032258, 73.3870967742, 73.3870967742);
+  color: #fff;
+  padding: 0.5rem;
+}
+section.previous-records .table .links nav div {
+  height: unset;
+  margin: unset;
+  margin-right: 1rem;
+  overflow: hidden;
+  width: unset;
+}
+section.previous-records .table .links nav div.hidden {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+section.previous-records .table .links nav div p {
+  color: #333;
+}
+section.previous-records .table .links nav div svg {
+  height: 1.45rem;
+  translate: 0rem 0.3rem;
+}
+section.previous-records .table .links nav span[aria-current] {
+  background: rgb(101.6129032258, 73.3870967742, 73.3870967742);
+  border-radius: 0.1rem;
+  color: #fff;
+  margin-inline: 0.3rem;
+  padding: 0.1rem 0.5rem;
+}
+section.previous-records .table .links nav span[aria-label="&laquo; Previous"] {
+  color: #999 !important;
+}
+section.previous-records .table .links nav span.rounded-md {
+  font-style: italic;
+  width: 16rem;
+}
+section.previous-records .table .links nav span.rounded-md a {
+  color: rgb(101.6129032258, 73.3870967742, 73.3870967742);
+  font-size: 1rem;
+  font-style: italic;
+}
+section.previous-records .table .links nav span.rounded-md a:last-of-type {
+  background: unset;
+  color: unset;
+  padding: unset;
+}
+section.hide-record {
+  display: none;
+}
+section.search {
+  align-items: center;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1rem;
+  padding: 1rem;
+}
+section.search form {
+  background: #fff;
+  padding: 1rem;
+  width: fit-content;
+}
+section.search form:first-of-type {
+  display: flex;
+}
+section.search form:first-of-type button:first-of-type {
+  margin-inline: 0.5rem;
+}
+section.search form:last-of-type {
+  margin-right: 1rem;
+}
+section.search form .icon-button {
+  display: flex;
+}
+section.search form .icon-button svg {
+  fill: rgb(66.0774193548, 47.7225806452, 47.7225806452);
+  margin-right: 0.5rem;
+  width: 1.3rem;
+}
+section.show-record-side-bar {
+  right: 0 !important;
+}
+section.show-record-side-bar ul li input,
+section.show-record-side-bar ul li select {
+  background: unset;
+  border: none;
+  border-bottom: 1px solid #483434;
+  color: #fff !important;
+  margin-block: 1em;
+  outline: none;
+  padding-inline: 0.3em;
+}
+section.show-record {
+  background: rgba(0, 0, 0, 0.5);
+  height: 90vh;
+  position: absolute;
+  width: 100vw;
+  z-index: 2500;
+}
+section.show-record .fuel-test-main {
+  position: absolute;
+  width: 40em;
+}
+section.show-record .fuel-test-main a {
+  color: unset;
+  display: block;
+  text-align: center;
+}
+section.show-record .fuel-test-main .form {
+  background: unset;
+  box-shadow: unset;
+  display: unset;
+}
+section.show-record .fuel-test-main .form div {
+  background: unset;
+  border-radius: unset;
+}
+section.show-record .fuel-test-main .form div input,
+section.show-record .fuel-test-main .form div input.select,
+section.show-record .fuel-test-main .form div input[type=date] {
+  background: unset;
+  border: none;
+  border-bottom: 1px solid #483434;
+  color: #fff !important;
+  margin-left: unset;
+  padding: 0.1em 0.5em !important;
+  width: 21em;
+}
+section.show-record .fuel-test-main .form div section {
+  box-shadow: unset;
+  height: fit-content;
+  left: 8rem !important;
+}
+section.show-record .fuel-test-main .form div svg {
+  margin-right: unset;
+  padding: unset;
+  transform: unset;
+  width: 1.5em;
+}
+section.show-record .fuel-test-main .form label {
+  color: white;
+  margin-right: unset;
+  width: 10.5em;
+}
+section.show-record .fuel-test-main .form label[for=VendorNo] {
+  width: 13.6em;
+}
+section.show-record .fuel-test-main .record-info {
+  margin-left: unset;
+  padding-inline: 2rem !important;
+  text-align: unset;
+}
+section.show-record section {
+  background-image: linear-gradient(to bottom, #483434, #111);
+  color: #ddd;
+  height: 90vh;
+  overflow-x: hidden;
+  padding: 2rem !important;
+  position: absolute;
+  right: -100%;
+  width: 30rem;
+  z-index: 1000;
+}
+section.show-record section div ul li {
+  border-bottom: 1px solid #333;
+}
+section.show-record div:first-child {
+  display: flex;
+  gap: 0.4rem;
+}
+section.show-record div:first-child .CancelRecordModal {
+  cursor: pointer;
+  color: red;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-block: 1rem;
+  position: fixed;
+  right: 2rem;
+  top: 0;
+  text-align: right;
+}
+section.show-record div:first-child .pdf-and-edit {
+  background: #000;
+  position: fixed;
+  translate: -2rem 0;
+  z-index: 10;
+}
+section.show-record div:first-child .pdf-and-edit a, section.show-record div:first-child .pdf-and-edit em {
+  color: #fff;
+  padding: 0.3rem 1rem;
+}
+section.show-record div:first-child .pdf-and-edit label,
+section.show-record div:first-child .pdf-and-edit img {
+  cursor: pointer;
+}
+section.show-record div:first-child form input {
+  width: 3rem;
+}
+section.show-record div:first-child form input[type=submit] {
+  display: none;
+}
+section.show-record div:last-child {
+  margin-top: 4rem;
+}
+section.show-record div.edit-vendor-details {
+  display: unset;
+}
+section.show-record div input {
+  border: none;
+  margin-block: 0.5em;
+  margin-left: 3em;
+  outline: none;
+  padding-inline: 0.5em;
+  width: 80%;
+}
+section.show-record div svg {
+  cursor: pointer;
+  fill: antiquewhite;
+  margin-right: 1rem;
+  padding: 0.25rem;
+  transform: translate(-0.2rem, 0.55rem);
+  width: 1.5rem;
+}
+section.show-record center {
+  font-size: 1.2rem;
+  text-align: center;
+}
+section.show-record h2 span {
+  font-size: small !important;
+  position: unset !important;
+}
+section.show-record ul h2, section.show-record ul h3 {
+  margin-bottom: 0.5rem;
+}
+section.show-record ul li span:last-child {
+  margin-left: 2.8rem;
+}
+section input[placeholder="Search.."] {
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  color: #483434;
+  font-style: italic;
+  margin-top: 0.5rem;
+  outline: none;
+  padding: 0.2rem 1rem;
+}
+section button[name=Clear] {
+  background: #483434;
+}
+section button[name=Clear] svg {
+  fill: #f24040 !important;
+}
+
+@media (min-width: 1416px) {
+  section.previous-records div {
+    margin-left: 2rem;
+    width: 78vw;
+  }
+}
+@media (max-width: 950px) {
+  section.fuel-test .fuel-test-left-nav {
+    display: none;
+  }
+  section.fuel-test .previous-records div {
+    width: 100vw;
+  }
+}
+div:target {
+  padding-top: 13rem;
+}
+
+.chart-date {
+  top: 6rem;
+}
+
+.filter-vendor-stats {
+  margin-bottom: unset;
+  margin: 8rem auto;
+  width: 60rem;
+}
+.filter-vendor-stats form {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+footer p {
+  width: 70rem;
+}
+
+#fuel-test-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: auto;
+}
+#fuel-test-dashboard.reveal-vendors-padding-top {
+  padding-top: 1rem;
+}
+#fuel-test-dashboard .reveal-vendors {
+  cursor: pointer;
+  font-style: italic;
+  text-decoration: underline;
+}
+#fuel-test-dashboard .reveal-vendors:hover {
+  color: #999;
+}
+
+.fuel-test-dashboard-inner {
+  background: #fff;
+  padding-inline: 1rem;
+  margin-bottom: 2rem;
+}
+.fuel-test-dashboard-inner div {
+  color: #333;
+  padding-block: 1rem;
+}
+.fuel-test-dashboard-inner div p {
+  display: flex;
+}
+.fuel-test-dashboard-inner div p span:nth-of-type(1) {
+  margin-right: 2rem;
+  width: 16rem;
+}
+.fuel-test-dashboard-inner div p span.Failed {
+  color: rgba(255, 30, 30, 0.8);
+}
+.fuel-test-dashboard-inner div p span.Passed {
+  color: rgba(58, 204, 177, 0.8);
+}
+.fuel-test-dashboard-inner div p span.Waved {
+  color: rgba(173, 173, 49, 0.95);
+}
+.fuel-test-dashboard-inner div p span.Failed, .fuel-test-dashboard-inner div p span.Passed, .fuel-test-dashboard-inner div p span.Diff, .fuel-test-dashboard-inner div p span.Waved {
+  width: 8rem;
+}
+.fuel-test-dashboard-inner div p span.Diff {
+  background: #483434;
+  color: #fff;
+  font-style: italic;
+}
+.fuel-test-dashboard-inner div p span.Total {
+  width: 6rem;
+}
+.fuel-test-dashboard-inner h1 {
+  border-bottom: 1px solid #eee;
+  font-family: initial;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.insights {
+  background: #f9f9f9;
+}
+
+#myChart6,
+#myChart7 {
+  width: 95vw !important;
+}
+
+.Title {
+  margin-top: 8rem;
+  text-align: center;
+}
+.Title h1 {
+  font-family: arial;
+  font-size: 2rem;
+}
+.Title h2 {
+  font-family: initial;
+}
+
+@media (min-width: 1825px) {
+  #fuel-test-dashboard {
+    width: 90%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

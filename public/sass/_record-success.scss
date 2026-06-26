@@ -1,0 +1,21 @@
+section {
+    &.fuel-test {
+        .fuel-test-main {
+            h1,  
+            .record-info {
+                margin-left: 2rem;
+                text-align: center;
+            }
+
+            center {
+                form {
+                    input {
+                        margin-bottom: 3rem;
+                        transform: translateY(2rem);
+                        width: 3rem;
+                    }
+                }
+            }
+        }
+    }
+}
